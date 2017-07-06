@@ -1,0 +1,40 @@
+{
+  "name": "firefly",
+  "version": "1.0.0",
+  "description": "A minimal modern web app boilerplate using firebase, react, and webpack",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack-dev-server --history-api-fallback",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sampl/firefly.git"
+  },
+  "keywords": [
+    "firebase",
+    "react",
+    "webpack",
+    "boilerplate",
+    "firefly"
+  ],
+  "author": "Sam Pierce Lolla",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sampl/firefly/issues"
+  },
+  "homepage": "https://github.com/sampl/firefly#readme",
+  "dependencies": {
+    "async": "^2.5.0",
+    "file-loader": "^0.11.2",
+    "lodash": "^4.17.4",
+    "moment": "^2.18.1",
+    "normalize.css": "^7.0.0"
+  },
+  "devDependencies": {
+    "css-loader": "^0.28.4",
+    "style-loader": "^0.18.2",
+    "webpack": "^3.1.0",
+    "webpack-dev-server": "^2.5.0"
+  }
+}
