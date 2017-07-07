@@ -6,4 +6,14 @@ import 'file-loader?name=[name].[ext]!./index.html'
 import 'normalize.css' // use a CSS reset - https://necolas.github.io/normalize.css/
 import './main.css'    // our app's CSS
 
-console.log('hallo werld')
+// import React
+// learn about react here: https://facebook.github.io/react/docs/hello-world.html
+import React from 'react'
+import ReactDOM from 'react-dom'
+
+// import our Routes component
+// this contains all our top-level components
+import Routes from './Routes'
+
+// tell react to render the Routes component to the #root div in index.html
+ReactDOM.render(<Routes />, document.getElementById('root'))
