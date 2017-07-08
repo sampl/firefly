@@ -1,3 +1,7 @@
 **/.DS_Store
 build
 node_modules
+.firebaserc
+firebase-debug.log
+firebase-config-stage.json
+firebase-config-live.json

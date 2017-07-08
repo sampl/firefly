@@ -9,6 +9,7 @@ import {
 // components
 import Home from './components/Home'
 import Posts from './components/posts/Posts'
+import Post from './components/posts/Post'
 import Error from './components/Error'
 
 const Routes = () => (
@@ -19,6 +20,7 @@ const Routes = () => (
       </div>
       <Switch>
         <Route exact path="/" component={Home} />
+        <Route path="/posts/:post_key" component={Post} />
         <Route path="/posts" component={Posts} />
         <Route component={Error} />
       </Switch>

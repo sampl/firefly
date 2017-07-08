@@ -12,4 +12,9 @@ Create a new project with `git clone https://github.com/sampl/firefly && cd fire
 
 ### Developing
 
-Start the server with `$ npm start`
+Start the server with `npm start`
+
+### Deploying
+
+Deploy to stage with `npm run stage`
+Deploy to live with `npm run live`

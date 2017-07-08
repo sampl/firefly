@@ -6,6 +6,9 @@ import 'file-loader?name=[name].[ext]!./index.html'
 import 'normalize.css' // use a CSS reset - https://necolas.github.io/normalize.css/
 import './main.css'    // our app's CSS
 
+// set up Firebase database
+import db from './db'
+
 // import React
 // learn about react here: https://facebook.github.io/react/docs/hello-world.html
 import React from 'react'
