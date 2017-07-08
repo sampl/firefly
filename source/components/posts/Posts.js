@@ -2,7 +2,7 @@ import React from 'react'
 import _ from 'lodash'
 import { Link } from 'react-router-dom'
 
-// data
+// model
 import PostModel from '../../models/Posts'
 
 class Posts extends React.Component {

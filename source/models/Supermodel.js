@@ -6,11 +6,6 @@ var Moment = require('moment')
    - all items that come back from a query have "key" attributes
    - validates against a yup schema before saving/updating
    - adds timestamps and saves which user created/updated
-
-   TODO - move to mongoose-style?
-   post = new Post(data); post.save();
-   rather than Post.save(data)
-   http://mongoosejs.com/docs/models.html
 */
 
 class Supermodel {
@@ -88,8 +83,6 @@ class Supermodel {
     }.bind(this))
 
   }
-
-  // TODO - detstroy method
 
   // VALIDATION
 

@@ -1,9 +1,4 @@
-// import Firebase
-// guide here: https://firebase.google.com/docs/web/setup
 import Firebase from 'firebase'
+import firebaseConfig from '../firebase-config-stage.json'
 
-// config
-var firebaseConfig = require('../firebase-config-stage.json')
-
-// start our Firebase app
 Firebase.initializeApp(firebaseConfig)
