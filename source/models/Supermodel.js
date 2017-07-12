@@ -1,26 +1,26 @@
 var Firebase = require('firebase')
 var Moment = require('moment')
+var EventEmitter = require('eventemitter3')
 
 /*
   Helper superclass to keep Firebase stuff DRY
    - all items that come back from a query have "key" attributes
-   - validates against a yup schema before saving/updating
    - adds timestamps and saves which user created/updated
 */
 
-class Supermodel {
+class Supermodel extends EventEmitter {
 
-  constructor(name, location, schema) {
+  constructor(name, location) {
+    super()
     this.name = name
     this.ref = Firebase.database().ref(location)
-    this.schema = schema
   }
 
   // GETTERS
 
   get(item_key, callback) {
     this.ref.child(item_key).once('value').then(function(snap) {
-      var item = snap.val()
+      var item = snap.val() || {} // still need to be able to set the key on the next line, even if item doesn't exist
       item.key = item_key
       callback(null, item)
     })
@@ -50,48 +50,42 @@ class Supermodel {
 
   // SETTERS
 
-  create(item, callback) {
+  create(item_data, callback) {
 
-    this.isValid(item, function(valid) {
-      if (!valid) {
-        callback({message: this.name+' is not valid'}, null)
-      } else {
-        item.created_by = Firebase.auth().currentUser ? Firebase.auth().currentUser.uid : null
-        item.created_on = Moment().format()
+    item_data.created_by = Firebase.auth().currentUser ? Firebase.auth().currentUser.uid : null
+    item_data.created_on = Moment().format()
 
-        var key = this.ref.push().key
-        this.ref.child(key).update(item)
-
+    var key = this.ref.push().key
+    this.ref.child(key).update(item_data, function(err) {
+      if (!err) {
+        this.emit('change')
         callback(null, key)
       }
-    }.bind(this))
+    }.bind(this)).catch(function(err) {
+      callback(err, null)
+    })
 
   }
 
   update(item_key, new_data, callback) {
 
-    this.isValid(item, function(valid) {
-      if (!valid) {
-        callback({message: this.name+' is not valid'}, null)
-      } else {
-        new_data.updated_by = Firebase.auth().currentUser ? Firebase.auth().currentUser.uid : null
-        new_data.updated_on = Moment().format()
+    new_data.updated_by = Firebase.auth().currentUser ? Firebase.auth().currentUser.uid : null
+    new_data.updated_on = Moment().format()
 
-        this.ref.child(item_key).update(new_data)
-        callback(null, this)
+    this.ref.child(item_key).update(new_data, function(err) {
+      if (!err) {
+        this.emit('change')
+        callback(null, key)
       }
-    }.bind(this))
-
-  }
-
-  // VALIDATION
-
-  isValid(item, callback) {
-    this.schema.isValid(item).then(function(valid){
-      callback(valid)
+    }.bind(this)).catch(function(err) {
+      callback(err, null)
     })
+
   }
 
 }
 
 export default Supermodel
+
+// debugging
+window.Supermodel = Supermodel

@@ -1,4 +1,12 @@
 import Firebase from 'firebase'
-import firebaseConfig from '../firebase-config-stage.json'
+import firebaseConfigLive from '../firebase-config-live.json'
+import firebaseConfigStage from '../firebase-config-stage.json'
 
-Firebase.initializeApp(firebaseConfig)
+if (window.production) {
+  Firebase.initializeApp(firebaseConfigLive)
+} else {
+  Firebase.initializeApp(firebaseConfigStage)
+}
+
+// debugging
+window.Firebase = Firebase
