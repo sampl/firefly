@@ -69,7 +69,9 @@ When you're ready to deploy your app to stage (for testing or getting feedback f
 
 Also, replace 'myapp.com' in `source/app.js` with the url of your real site.
 
-When it's time to go live, run `npm run live` 🎉🎉🎉
+When it's time to go live, run `npm run live`
+
+🎉🎉🎉
 
 ### Next steps
 

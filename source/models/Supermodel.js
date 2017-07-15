@@ -72,15 +72,22 @@ class Supermodel extends EventEmitter {
     new_data.updated_by = Firebase.auth().currentUser ? Firebase.auth().currentUser.uid : null
     new_data.updated_on = Moment().format()
 
+    // ensure we're not trying to write the key as part of the document
+    delete new_data.key
+
     this.ref.child(item_key).update(new_data, function(err) {
       if (!err) {
         this.emit('change')
-        callback(null, key)
+        callback(null, item_key)
       }
     }.bind(this)).catch(function(err) {
       callback(err, null)
     })
 
+  }
+
+  destroy(item_key) {
+    this.ref.child(item_key).remove()
   }
 
 }

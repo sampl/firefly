@@ -7,8 +7,8 @@ import PostModel from '../../models/Posts'
 
 class Posts extends React.Component {
 
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
       posts: []
     }
@@ -26,15 +26,17 @@ class Posts extends React.Component {
     var posts = _.map(this.state.posts, function(post) {
       return(
         <div key={post.key}>
-          <h2>{post.title}</h2>
+          <Link to={'/posts/'+post.key}>
+            <h2>{post.title}</h2>
+          </Link>
           <p>{post.content}</p>
-          <Link to={'/posts/'+post.key}>show post</Link>
         </div>
       )
     })
     return (
       <div>
         <h1>All Posts</h1>
+        <Link to={'/posts/new'}>new post</Link>
         {posts}
       </div>
     )

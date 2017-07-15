@@ -5,8 +5,8 @@
       ".write": "root.child('admin').hasChild(auth.uid)"
     },
     "post": {
+      ".read": "true",
       "$post_id": {
-        ".read": "true",
         ".write": "!data.exists() || data.child('created_by').val() === auth.uid || root.child('admin').hasChild(auth.uid)",
         ".validate": "newData.hasChildren(['title','content','created_by','created_on'])",
         "title": {
