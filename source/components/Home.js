@@ -14,7 +14,16 @@ const Home = () => (
 
     <br/>
     <br/>
-    
+
+    <Link to='/me'>Show profile</Link>
+    <br/>
+    <Link to={{ pathname: `/me`, state: { modal: true } }}>
+      Show profile (in a modal)
+    </Link>
+
+    <br/>
+    <br/>
+
     <LoggedOutOnly>You are logged out</LoggedOutOnly>
     <LoggedInOnly>You're logged in<AdminOnly>--and you're an admin too</AdminOnly>!</LoggedInOnly>
 

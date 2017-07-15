@@ -12,10 +12,16 @@ import db from './db'
 import React from 'react'
 import ReactDOM from 'react-dom'
 
+import {
+  BrowserRouter,
+  Route
+} from 'react-router-dom'
+
 // components
-import Routes from './Routes'
+import App from './components/_layout/App'
 
 window.production = window.location.hostname == 'myapp.com' ? true : false
 
-// tell react to render the Routes component to the #root div in index.html
-ReactDOM.render(<Routes />, document.getElementById('root'))
+// render App to the DOM
+// use Route to give the App props for location and history
+ReactDOM.render( <BrowserRouter><Route component={App}/></BrowserRouter>, document.getElementById('root'))
