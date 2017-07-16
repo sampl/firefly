@@ -5,3 +5,4 @@ node_modules
 firebase-debug.log
 firebase-config-stage.json
 firebase-config-live.json
+service-account-key.json
