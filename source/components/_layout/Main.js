@@ -46,22 +46,36 @@ class Main extends React.Component {
     return (
       <div>
 
-        <div className="header">
+        <div style={styles.header}>
           <Link to='/'>Firefly</Link>
-          <div style={{float: 'right'}}>
+          <div style={styles.account}>
             {account}
           </div>
         </div>
 
         <Routes location={this.props.location} />
 
-        <div className="footer">
-          <p style={{textAlign: 'center'}}> &copy; 2017 </p>
+        <div style={styles.footer} >
+          <p> &copy; 2017 </p>
         </div>
 
       </div>
     )
   }
+}
+
+var styles = {
+  header: {
+    borderBottom: '1px solid #eee',
+    padding: '0 0 1rem',
+    margin: '0 0 2rem',
+  },
+  account: {
+    float: 'right',
+  },
+  footer: {
+    textAlign: 'center',
+  },
 }
 
 export default Main

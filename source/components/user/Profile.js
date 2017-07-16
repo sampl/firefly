@@ -40,7 +40,7 @@ class Profile extends React.Component {
     if (this.state.user) {
       return(
         <div>
-          <img style={{maxWidth: '100px', maxHeight: '100px'}} src={this.state.user.photoURL} />
+          <img style={styles.image} src={this.state.user.photoURL} />
           <h2>Your Profile</h2>
           <p>Name: {this.state.user.displayName}</p>
           <p>Email: {this.state.user.email}</p>
@@ -50,6 +50,14 @@ class Profile extends React.Component {
     } else {
       return(<div>not logged in</div>)
     }
+  }
+}
+
+var styles = {
+  image: {
+    maxWidth: '100px',
+    maxHeight: '100px',
+    borderRadius: '50%',
   }
 }
 

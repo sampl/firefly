@@ -1,3 +1,8 @@
+/*
+  Global CSS only
+  Try to use inline styles in component files instead of adding here
+*/
+
 * {
   box-sizing: border-box;
 }
@@ -7,10 +12,4 @@ body {
   max-width: 600px;
   margin: 2rem auto;
   padding: 0 1rem;
-}
-
-.header {
-  border-bottom: 1px solid #eee;
-  padding: 0 0 1rem;
-  margin: 0 0 2rem;
 }
