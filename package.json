@@ -27,6 +27,7 @@
   },
   "homepage": "https://github.com/sampl/firefly#readme",
   "dependencies": {
+    "algoliasearch": "^3.24.1",
     "async": "^2.5.0",
     "eventemitter3": "^2.0.3",
     "file-loader": "^0.11.2",
@@ -35,6 +36,7 @@
     "moment": "^2.18.1",
     "normalize.css": "^7.0.0",
     "react": "^15.6.1",
+    "react-autosuggest": "^9.3.1",
     "react-dom": "^15.6.1",
     "react-router-dom": "^4.1.1"
   },

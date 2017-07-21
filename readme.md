@@ -66,5 +66,5 @@ When it's time to go live, run `npm run live`!
 
 - [Use a custom domain](https://firebase.google.com/docs/hosting/custom-domain) like `www.myapp.com`. When you do, replace 'myapp.com' in `source/app.js` with the url of your real site.
 - [Create a Service Account](https://firebase.google.com/docs/admin/setup#add_firebase_to_your_app) to run maintenance scripts with `node scripts/test.js`
-- Use [Firebase functions](https://firebase.google.com/docs/functions/) to write server-side code
+- To enable search, sign up for [Algolia](https://www.algolia.com/), [configure your functions credentials](https://firebase.google.com/docs/functions/config-env), and [upgrade your Firebase  plan](https://console.firebase.google.com) to a tier that has [Firebase functions](https://firebase.google.com/docs/functions/). See the server code at `/functions/index.js` for more details.
 - Did I miss something? Could something be more clear? [Submit issues and PRs](https://github.com/sampl/firefly/issues)

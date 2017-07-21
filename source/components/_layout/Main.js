@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 
 import UsersModel from '../../models/User'
 import Routes from './Routes'
+import Search from './Search'
 
 class Main extends React.Component {
 
@@ -48,6 +49,7 @@ class Main extends React.Component {
 
         <div style={styles.header}>
           <Link to='/'>Firefly</Link>
+          <Search />
           <div style={styles.account}>
             {account}
           </div>
