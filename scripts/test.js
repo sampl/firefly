@@ -1,12 +1,24 @@
 var admin = require("firebase-admin")
-var serviceAccount = require("../service-account-key.json")
-var firebaseConfig = require("../firebase-config-stage.json")
 
+var serviceAccountDev = require("../config/service-account-key-dev.json")
+var serviceAccountProd = require("../config/service-account-key-prod.json")
+
+var firebaseConfigDev = require("../config/firebase-config-dev.json")
+var firebaseConfigProd = require("../config/firebase-config-prod.json")
+
+// use on production server with `node test.js prod`, otherwise falls back to dev
 // https://firebase.google.com/docs/database/admin/start
-admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount),
-  databaseURL: firebaseConfig.databaseURL,
-})
+if (process.argv[2] == 'prod') {
+  admin.initializeApp({
+    credential: admin.credential.cert(serviceAccountProd),
+    databaseURL: firebaseConfigProd.databaseURL,
+  })
+} else {
+  admin.initializeApp({
+    credential: admin.credential.cert(serviceAccountDev),
+    databaseURL: firebaseConfigDev.databaseURL,
+  })
+}
 
 var db = admin.database()
 var ref = db.ref('/post')

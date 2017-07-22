@@ -4,10 +4,11 @@
   "description": "A minimal modern web app boilerplate using firebase, react, and webpack",
   "main": "index.js",
   "scripts": {
-    "start": "firebase use stage && webpack-dev-server --history-api-fallback",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "stage": "firebase use stage && webpack && firebase deploy",
-    "live": "firebase use live && webpack -p && firebase deploy"
+    "start": "npm run dev",
+    "dev": "firebase use dev && webpack-dev-server --config webpack.dev.js",
+    "stage": "firebase use dev && webpack --config webpack.dev.js && firebase deploy",
+    "live": "firebase use prod && webpack  --config webpack.prod.js && firebase deploy"
   },
   "repository": {
     "type": "git",

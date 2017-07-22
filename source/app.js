@@ -20,7 +20,11 @@ import {
 // components
 import App from './components/_layout/App'
 
-window.production = window.location.hostname == 'myapp.com' ? true : false
+if (PRODUCTION) {
+  console.log('env: production/live')
+} else {
+  console.log('env: stage/dev')
+}
 
 // render App to the DOM
 // use Route to give the App props for location and history

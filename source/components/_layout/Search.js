@@ -2,9 +2,8 @@ import React from 'react'
 import { Redirect } from 'react-router-dom'
 import Autosuggest from 'react-autosuggest'
 import Algolia from 'algoliasearch'
-import algoliaConfig from '../../../algolia-config.json'
 
-var algolia = Algolia(algoliaConfig.app_id, algoliaConfig.app_key)
+var algolia = Algolia(ALGOLIA.app_id, ALGOLIA.app_key)
 var index = algolia.initIndex('posts')
 
 class Search extends React.Component {
@@ -52,7 +51,7 @@ class Search extends React.Component {
 
   _onSuggestionSelected(event, attrs) {
     this.setState({
-      redirect: '/posts/'+attrs.suggestion.key
+      redirect: '/posts/'+attrs.suggestion.objectID
     })
   }
 

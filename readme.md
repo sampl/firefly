@@ -23,7 +23,7 @@ Install the node `firebase-tools` and package globally with `npm install -g fire
 
 ### Starting a new project
 
-Each project you make using Firefly actually uses _two_ Firebase projects--one for development and staging, and one for the live site. You'll follow these steps twice:
+Each project you make using Firefly actually uses _two_ Firebase projects--one for development and staging, and one for the live production site. You'll follow these steps twice:
 
  1. Go to the [Firebase console](console.firebase.google.com) and sign in with your Google account
  2. Create a new project and name it something like `MyProjectName [Live]`
@@ -35,14 +35,9 @@ Now we can start writing code:
 
 In your terminal, `cd` to the folder where you want your project to live, clone this repo with `git clone https://github.com/sampl/firefly`, then `cd firefly` and `npm install`. While the packages are installing, open the `firefly` folder in your favorite editor.
 
-Now let's rename a few files. This will keep them from getting committed to git since the new names are listed in the `.gitignore` file. We're going to be putting security secrets in these.
+Now, in the `/config` folder, rename each file to remove ".example" (for ex: `firebase-config-dev.example.json` should now be `firebase-config-dev.json`). We're going to be putting security secrets in these files, and renaming them this way will keep them from getting committed into git (because the filenames without ".example" are listed in the `.gitignore` file).
 
-```
-rename  .firebaserc.example                 to   .firebaserc.example
-rename  firebase-config-live.example.json   to   firebase-config-live.json
-rename  firebase-config-stage.example.json  to   firebase-config-stage.json
-rename  service-account-key.example.json    to   service-account-key.json
-```
+Also rename `.firebaserc.example` to `.firebaserc`
 
 When you're done, open up each of the renamed files and replace the empty spaces with the values you saved from the Firebase website.
 
