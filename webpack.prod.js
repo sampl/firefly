@@ -3,6 +3,8 @@
 
 var path = require('path')
 var webpack = require('webpack')
+var CleanWebpackPlugin = require('clean-webpack-plugin')
+var HtmlWebpackPlugin = require('html-webpack-plugin')
 
 var algoliaConfig = require('./config/algolia-config.json')
 var firebaseClientConfig = require('./config/firebase-config-prod.json')
@@ -10,7 +12,7 @@ var firebaseClientConfig = require('./config/firebase-config-prod.json')
 module.exports = {
   entry: './source/app.js',
   output: {
-    filename: 'app.js',
+    filename: 'app-[hash].js',
     path: path.resolve(__dirname, 'build'),
   },
   plugins: [
@@ -18,6 +20,11 @@ module.exports = {
       PRODUCTION: JSON.stringify(true),
       ALGOLIA: JSON.stringify(algoliaConfig),
       FIREBASE: JSON.stringify(firebaseClientConfig),
+    }),
+    new CleanWebpackPlugin(['build']),
+    new HtmlWebpackPlugin({
+      template: './source/index.html',
+      hash: true,
     }),
     new webpack.optimize.UglifyJsPlugin(),
   ],

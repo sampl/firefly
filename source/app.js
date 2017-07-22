@@ -1,9 +1,3 @@
-// HTML
-// tells webpack to copy /source/index.html into the /build folder
-// otherwise, index.html would have to live in /build, and we'd commit /build
-import 'file-loader?name=[name].[ext]!./index.html'
-
-// CSS
 import 'normalize.css' // css reset
 import './main.css'    // our app's css
 
