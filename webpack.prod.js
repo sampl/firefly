@@ -14,6 +14,7 @@ module.exports = {
   output: {
     filename: 'app-[hash].js',
     path: path.resolve(__dirname, 'build'),
+    publicPath: '/',
   },
   plugins: [
     new webpack.DefinePlugin({

@@ -12,8 +12,9 @@ var firebaseClientConfig = require('./config/firebase-config-dev.json')
 module.exports = {
   entry: './source/app.js',
   output: {
-    filename: 'app-[hash].js',
+    filename: 'app.js',
     path: path.resolve(__dirname, 'build'),
+    publicPath: '/',
   },
   plugins: [
     new webpack.DefinePlugin({
@@ -24,7 +25,6 @@ module.exports = {
     new CleanWebpackPlugin(['build']),
     new HtmlWebpackPlugin({
       template: './source/index.html',
-      hash: true,
     }),
   ],
   devServer: {
