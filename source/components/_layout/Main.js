@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-import UsersModel from '../../models/User'
+import User from '../../models/User'
 import Routes from './Routes'
 import Search from './Search'
 
@@ -17,11 +17,11 @@ class Main extends React.Component {
 
   componentWillMount() {
     this._get()
-    UsersModel.on('change', this._get)
+    User.on('change', this._get)
   }
 
   _get() {
-    UsersModel.getCurrentUser(function(err, user){
+    User.getCurrentUser(function(err, user){
       this.setState({
         user,
       })

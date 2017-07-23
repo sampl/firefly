@@ -3,64 +3,77 @@ import Firebase from 'firebase'
 import Moment from 'moment'
 import Async from 'async'
 
-var Users = new Supermodel('User', '/user')
+var User = new Supermodel('User', '/user')
 
-Users.create = function(user, callback) {
-  callback({message: 'users are created when they sign in'}, null)
+// override the Supermodel create method
+User.create = function(user, callback) {
+  callback(new Error('users are created when they sign in'), null)
 }
 
-Users.loginWithGoogle = function() {
+User.loginWithGoogle = function() {
   var provider = new Firebase.auth.GoogleAuthProvider()
   Firebase.auth().signInWithPopup(provider).then(function(result) {
     // TODO - create user profile if they haven't logged in before
     this.update(result.user.uid, {
       last_login: Moment().format()
-    }, function(){})
-  }.bind(this) )
+    }, function(err, key){
+      if (err) {
+        console.error('Could not update profile for user '+key)
+      }
+    })
+  }.bind(this)).catch(function(err){
+    alert(err.message)
+  })
 }
 
-Users.logOut = function() {
+User.logOut = function() {
   Firebase.auth().signOut()
 }
 
-Users.loggedIn = function() {
+User.isLoggedIn = function() {
   return Firebase.auth().currentUser ? true : false
 }
 
 // TODO - refactor using async parallel or similar
-Users.getCurrentUser = function(callback) {
+User.getCurrentUser = function(callback) {
   var currentUser = Firebase.auth().currentUser
   if (currentUser) {
     this.get(currentUser.uid, function(err, user){
 
-      // add attributes from Firebase.auth().currentUser
-      user.displayName = currentUser.displayName
-      user.email = currentUser.email
-      user.emailVerified = currentUser.emailVerified
-      user.isAnonymous = currentUser.isAnonymous
-      user.phoneNumber = currentUser.phoneNumber
-      user.photoURL = currentUser.photoURL
-      user.uid = currentUser.uid
+      if (err) {
+        callback(err, null)
+      } else {
+        // add attributes from Firebase.auth().currentUser
+        user.displayName = currentUser.displayName
+        user.email = currentUser.email
+        user.emailVerified = currentUser.emailVerified
+        user.isAnonymous = currentUser.isAnonymous
+        user.phoneNumber = currentUser.phoneNumber
+        user.photoURL = currentUser.photoURL
+        user.uid = currentUser.uid
 
-      // TODO - listen for admin changes and fire 'change' event
-      Firebase.database().ref('admin').child(currentUser.uid).once('value', function(snap) {
-        if (snap.val()) {
-          user.isAdmin = true
-        }
-        callback(err, user)
-      })
+        // TODO - listen for admin changes and fire 'change' event
+        Firebase.database().ref('admin').child(currentUser.uid).once('value').then(function(snap) {
+          if (snap.val()) {
+            user.isAdmin = true
+          }
+          callback(null, user)
+        }).catch(function(err){
+          callback(err, null)
+        })
+      }
 
     })
   } else {
-    callback({message: 'not signed in'}, null)
+    callback(new Error('Not signed in'), null)
   }
 }
 
 Firebase.auth().onAuthStateChanged( function(){
   this.emit('change')
-}.bind(Users))
+}.bind(User))
 
-export default Users
+export default User
 
 // debugging
-window.Users = Users
+window.User = User

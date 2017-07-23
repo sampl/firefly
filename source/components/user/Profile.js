@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router'
 
-import UsersModel from '../../models/User'
+import User from '../../models/User'
 
 class Profile extends React.Component {
 
@@ -16,15 +16,15 @@ class Profile extends React.Component {
 
   componentWillMount() {
     this._get()
-    UsersModel.on('change', this._get)
+    User.on('change', this._get)
   }
 
   componentWillUnmount() {
-    UsersModel.removeListener('change', this._get)
+    User.removeListener('change', this._get)
   }
 
   _get() {
-    UsersModel.getCurrentUser(function(err, user){
+    User.getCurrentUser(function(err, user){
       this.setState({
         user,
       })
@@ -32,11 +32,14 @@ class Profile extends React.Component {
   }
 
   _logOut() {
-    UsersModel.logOut()
+    User.logOut()
     this.props.history.push('/')
   }
 
   render() {
+    if (this.state.error) {
+      return(<Error message="couldn't find that profile" />)
+    }
     if (this.state.user) {
       return(
         <div>

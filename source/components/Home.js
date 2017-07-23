@@ -11,6 +11,8 @@ const Home = () => (
     <Link to='/posts'>show posts</Link>
     <br/>
     <Link to='/404'>a page that doesn't exist</Link>
+    <br/>
+    <Link to='/posts/123'>a *post* that doesn't exist</Link>
 
     <br/>
     <br/>

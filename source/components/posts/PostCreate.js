@@ -5,9 +5,10 @@ import {
 } from 'react-router-dom'
 
 import PostForm from './PostForm'
+import Error from '../Error'
 
 // model
-import PostModel from '../../models/Posts'
+import Post from '../../models/Post'
 
 class PostCreate extends React.Component {
 
@@ -18,14 +19,22 @@ class PostCreate extends React.Component {
   }
 
   _savePost(post) {
-    PostModel.create(post, function(err, post_key) {
-      this.setState({
-        justSavedPost: post_key
-      })
+    Post.create(post, function(err, post_key) {
+      if (err) {
+        alert(err.message)
+      } else {
+        this.setState({
+          justSavedPost: post_key
+        })
+      }
     }.bind(this))
   }
 
   render() {
+
+    if (this.state.error) {
+      return (<Error message={this.state.error}/>)
+    }
 
     // shouldn't pass null to controlled components in PostForm
     var emptyPost = {

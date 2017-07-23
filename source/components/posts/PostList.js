@@ -2,10 +2,12 @@ import React from 'react'
 import _ from 'lodash'
 import { Link } from 'react-router-dom'
 
-// model
-import PostModel from '../../models/Posts'
+import Error from '../Error'
 
-class Posts extends React.Component {
+// model
+import Post from '../../models/Post'
+
+class PostList extends React.Component {
 
   constructor(props) {
     super(props)
@@ -15,14 +17,25 @@ class Posts extends React.Component {
   }
 
   componentWillMount() {
-    PostModel.getAll(function(err, posts){
-      this.setState({
-        posts: posts,
-      })
+    Post.getAll(function(err, posts){
+      if (err) {
+        this.setState({
+          error: err.message
+        })
+      } else {
+        this.setState({
+          posts,
+        })
+      }
     }.bind(this))
   }
 
   render() {
+
+    if (this.state.error) {
+      return (<Error message={this.state.error}/>)
+    }
+
     var posts = _.map(this.state.posts, function(post) {
       return(
         <div key={post.key}>
@@ -43,4 +56,4 @@ class Posts extends React.Component {
   }
 }
 
-export default Posts
+export default PostList

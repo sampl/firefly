@@ -1,6 +1,6 @@
 import React from 'react'
 
-import UsersModel from '../../models/User'
+import User from '../../models/User'
 
 class LoggedInOnly extends React.Component {
 
@@ -14,16 +14,16 @@ class LoggedInOnly extends React.Component {
 
   componentWillMount() {
     this._get()
-    UsersModel.on('change', this._get)
+    User.on('change', this._get)
   }
 
   componentWillUnmount() {
-    UsersModel.removeListener('change', this._get)
+    User.removeListener('change', this._get)
   }
 
   _get() {
     this.setState({
-      loggedIn: UsersModel.loggedIn() ? true : false
+      loggedIn: User.isLoggedIn() ? true : false
     })
   }
 

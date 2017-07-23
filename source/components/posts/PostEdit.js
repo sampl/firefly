@@ -2,9 +2,10 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 import PostForm from './PostForm'
+import Error from '../Error'
 
 // model
-import PostModel from '../../models/Posts'
+import Post from '../../models/Post'
 
 class PostEdit extends React.Component {
 
@@ -18,25 +19,37 @@ class PostEdit extends React.Component {
   }
 
   componentWillMount() {
-    PostModel.get(this.props.match.params.post_key, function(err, post){
-      this.setState({
-        post,
-      })
+    Post.get(this.props.match.params.post_key, function(err, post){
+      if (err) {
+        this.setState({
+          error: err.message
+        })
+      } else {
+        this.setState({
+          post,
+        })
+      }
     }.bind(this))
   }
 
   _savePost(post) {
-    PostModel.update(post.key, post, function(err, post) {
-      console.log(err, post)
+    Post.update(post.key, post, function(err, post) {
+      if (err) {
+        alert(err.message)
+      }
       this.props.history.goBack()
     }.bind(this))
   }
 
   _deletePost() {
-    PostModel.destroy(this.state.post.key)
+    Post.destroy(this.state.post.key)
   }
 
   render() {
+    if (this.state.error) {
+      return (<Error message={this.state.error}/>)
+    }
+
     if (this.state.post.title) {
       var form = <PostForm post={this.state.post} onSubmit={this._savePost} />
     } else {

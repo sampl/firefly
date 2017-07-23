@@ -1,7 +1,7 @@
 import React from 'react'
 import { history } from 'react-router-dom'
 
-import UsersModel from '../../models/User'
+import User from '../../models/User'
 
 class Login extends React.Component {
 
@@ -13,17 +13,17 @@ class Login extends React.Component {
 
   componentWillMount() {
     this._get()
-    UsersModel.on('change', this._get)
+    User.on('change', this._get)
   }
 
   componentWillUnmount() {
-    UsersModel.removeListener('change', this._get)
+    User.removeListener('change', this._get)
   }
 
   _get() {
     // if there's a logged in user and you're on the login page (probably because
     // they *just* logged in), try to redirect you to where they're supposed to go
-    UsersModel.getCurrentUser(function(err, user){
+    User.getCurrentUser(function(err, user){
       if (user) {
         console.log('logged in; redirecting')
 
@@ -43,7 +43,7 @@ class Login extends React.Component {
   }
 
   _login() {
-    UsersModel.loginWithGoogle()
+    User.loginWithGoogle()
   }
 
   render() {

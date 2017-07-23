@@ -1,9 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-// model
-import PostModel from '../../models/Posts'
-
 class PostForm extends React.Component {
 
   constructor(props) {

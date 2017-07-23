@@ -4,6 +4,7 @@ var EventEmitter = require('eventemitter3')
 
 /*
   Helper superclass to keep Firebase stuff DRY
+   - errors in callbacks
    - all items that come back from a query have "key" attributes
    - adds timestamps and saves which user created/updated
 */
@@ -20,19 +21,31 @@ class Supermodel extends EventEmitter {
 
   get(item_key, callback) {
     this.ref.child(item_key).once('value').then(function(snap) {
-      var item = snap.val() || {} // still need to be able to set the key on the next line, even if item doesn't exist
-      item.key = item_key
-      callback(null, item)
+      var item = snap.val()
+      if (!item) {
+        callback(new Error(`Couldn't find ${this.name} ${item_key}`), null)
+      } else {
+        item.key = item_key
+        callback(null, item)
+      }
+    }.bind(this)).catch(function(err){
+      callback(err, null)
     })
   }
 
   getByChildValue(child, value, callback) {
     this.ref.orderByChild(child).equalTo(value).once('value').then(function(snap) {
       var items = snap.val()
-      var key = Object.keys(items)[0]
-      var item = items[key]
-      item.key = key
-      callback(null, item)
+      if (!items) {
+        callback(new Error(`Couldn't find ${this.name} with ${child} "${value}"`), null)
+      } else {
+        var key = Object.keys(items)[0]
+        var item = items[key]
+        item.key = item_key
+        callback(null, item)
+      }
+    }.bind(this)).catch(function(err){
+      callback(err, null)
     })
   }
 
@@ -45,6 +58,8 @@ class Supermodel extends EventEmitter {
         items.push(item)
       })
       callback(null, items)
+    }).catch(function(err){
+      callback(err, null)
     })
   }
 
