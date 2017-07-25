@@ -13,6 +13,7 @@ import {
 
 // components
 import App from './components/_layout/App'
+import ScrollToTop from './components/_util/ScrollToTop'
 
 if (PRODUCTION) {
   console.log('env: production/live')
@@ -22,4 +23,10 @@ if (PRODUCTION) {
 
 // render App to the DOM
 // use Route to give the App props for location and history
-ReactDOM.render( <BrowserRouter><Route component={App}/></BrowserRouter>, document.getElementById('root'))
+ReactDOM.render(
+    <BrowserRouter>
+      <ScrollToTop>
+        <Route component={App}/>
+      </ScrollToTop>
+    </BrowserRouter>
+, document.getElementById('root'))
