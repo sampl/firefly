@@ -1,5 +1,5 @@
 import React from 'react'
-import { Redirect } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import Autosuggest from 'react-autosuggest'
 import Algolia from 'algoliasearch'
 
@@ -18,7 +18,6 @@ class Search extends React.Component {
     this.state = {
       value: '',
       suggestions: [],
-      redirect: null,
     }
 
   }
@@ -50,9 +49,7 @@ class Search extends React.Component {
   }
 
   _onSuggestionSelected(event, attrs) {
-    this.setState({
-      redirect: '/posts/'+attrs.suggestion.objectID
-    })
+    this.props.history.push('/posts/'+attrs.suggestion.objectID)
   }
 
   render() {
@@ -61,10 +58,6 @@ class Search extends React.Component {
       placeholder: 'Type to search',
       value: this.state.value,
       onChange: this._onChange,
-    }
-
-    if (this.state.redirect) {
-      return( <Redirect to={this.state.redirect} /> )
     }
 
     return (
@@ -110,4 +103,4 @@ var styles = {
   },
 }
 
-export default Search
+export default withRouter(Search)

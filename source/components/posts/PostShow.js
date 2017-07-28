@@ -21,6 +21,11 @@ class PostShow extends React.Component {
     Post.on('change', this._get)
   }
 
+  componentWillUpdate() {
+    this._get()
+    Post.on('change', this._get)
+  }
+
   componentWillUnmount() {
     Post.removeListener('change', this._get)
   }
