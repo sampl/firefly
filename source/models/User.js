@@ -34,6 +34,11 @@ User.isLoggedIn = function() {
   return Firebase.auth().currentUser ? true : false
 }
 
+// TODO - restructure these synchronous on-offs into their own model or something?
+User.getCurrentUserId = function() {
+  return Firebase.auth().currentUser.uid
+}
+
 // TODO - refactor using async parallel or similar
 User.getCurrentUser = function(callback) {
   var currentUser = Firebase.auth().currentUser

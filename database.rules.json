@@ -32,6 +32,32 @@
         }
       }
     },
+    "post_like": {
+      ".read": "true",
+      ".indexOn": "post",
+      "$post_id": {
+        ".write": "!data.exists() || data.child('created_by').val() === auth.uid || root.child('admin').hasChild(auth.uid)",
+        ".validate": "newData.hasChildren(['post','created_by','created_on'])",
+        "post": {
+          ".validate": "newData.isString()"
+        },
+        "created_by": {
+          ".validate": "newData.isString()"
+        },
+        "updated_by": {
+          ".validate": "newData.isString()"
+        },
+        "created_on": {
+          ".validate": "newData.isString()"
+        },
+        "updated_on": {
+          ".validate": "newData.isString()"
+        },
+        "$other": {
+          ".validate": "false"
+        }
+      }
+    },
     "user": {
       "$user_id": {
         ".read": "true",

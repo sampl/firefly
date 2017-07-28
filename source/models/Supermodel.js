@@ -33,17 +33,15 @@ class Supermodel extends EventEmitter {
     })
   }
 
-  getByChildValue(child, value, callback) {
-    this.ref.orderByChild(child).equalTo(value).once('value').then(function(snap) {
-      var items = snap.val()
-      if (!items) {
-        callback(new Error(`Couldn't find ${this.name} with ${child} "${value}"`), null)
-      } else {
-        var key = Object.keys(items)[0]
-        var item = items[key]
-        item.key = item_key
-        callback(null, item)
-      }
+  getAllWithAttrValue(attrName, attrValue, callback) {
+    this.ref.orderByChild(attrName).equalTo(attrValue).once('value').then(function(snap) {
+      var items = []
+      snap.forEach(function(childSnap) {
+        var item = childSnap.val()
+        item.key = childSnap.key
+        items.push(item)
+      })
+      callback(null, items)
     }.bind(this)).catch(function(err){
       callback(err, null)
     })
@@ -103,6 +101,7 @@ class Supermodel extends EventEmitter {
 
   destroy(item_key) {
     this.ref.child(item_key).remove()
+    this.emit('change')
   }
 
 }

@@ -4,11 +4,9 @@ import {
   Redirect
 } from 'react-router-dom'
 
+import Post from '../../models/Post'
 import PostForm from './PostForm'
 import Error from '../Error'
-
-// model
-import Post from '../../models/Post'
 
 class PostCreate extends React.Component {
 
