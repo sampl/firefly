@@ -1,6 +1,11 @@
 import Supermodel from './Supermodel'
 
-var PostLike = new Supermodel('Post like', '/post_like')
+var PostLike = Object.create(Supermodel)
+
+PostLike.init({
+  name: 'Post like',
+  location: '/post_like',
+})
 
 export default PostLike
 

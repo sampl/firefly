@@ -23,7 +23,6 @@ class PostShow extends React.Component {
 
   componentWillUpdate() {
     this._get()
-    Post.on('change', this._get)
   }
 
   componentWillUnmount() {
@@ -31,7 +30,7 @@ class PostShow extends React.Component {
   }
 
   _get() {
-    Post.get(this.props.match.params.post_key, function(err, post){
+    Post.getBySlug(this.props.match.params.post_slug, function(err, post){
       if (err) {
         this.setState({
           error: err.message
@@ -56,7 +55,7 @@ class PostShow extends React.Component {
           <h1>{this.state.post.title}</h1>
           <PostLiker post={this.state.post} />
           <p>{this.state.post.content}</p>
-          <Link to={'/posts/'+this.state.post.key+'/edit'}>edit post</Link>
+          <Link to={'/posts/'+this.state.post.slug+'/edit'}>edit post</Link>
         </div>
       )
     }

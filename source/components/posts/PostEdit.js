@@ -17,7 +17,7 @@ class PostEdit extends React.Component {
   }
 
   componentWillMount() {
-    Post.get(this.props.match.params.post_key, function(err, post){
+    Post.getBySlug(this.props.match.params.post_slug, function(err, post){
       if (err) {
         this.setState({
           error: err.message
@@ -31,11 +31,11 @@ class PostEdit extends React.Component {
   }
 
   _savePost(post) {
-    Post.update(post.key, post, function(err, post) {
+    Post.update(post.key, post, function(err, post_key) {
       if (err) {
         alert(err.message)
       }
-      this.props.history.goBack()
+      this.props.history.push('/posts/'+post.slug)
     }.bind(this))
   }
 

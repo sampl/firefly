@@ -5,11 +5,15 @@
       ".write": "root.child('admin').hasChild(auth.uid)"
     },
     "post": {
+      ".indexOn": "slug",
       ".read": "true",
       "$post_id": {
         ".write": "!data.exists() || data.child('created_by').val() === auth.uid || root.child('admin').hasChild(auth.uid)",
         ".validate": "newData.hasChildren(['title','content','created_by','created_on'])",
         "title": {
+          ".validate": "newData.isString()"
+        },
+        "slug": {
           ".validate": "newData.isString()"
         },
         "content": {

@@ -19,9 +19,9 @@ class Routes extends React.Component {
     return (
       <Switch location={this.props.location}>
         <Route exact path="/" component={Home} />
-        <Route path="/posts/:post_key/edit" component={PostEdit} />
+        <Route path="/posts/:post_slug/edit" component={PostEdit} />
         <Route path="/posts/new" component={PostCreate} />
-        <Route path="/posts/:post_key" component={PostShow} />
+        <Route path="/posts/:post_slug" component={PostShow} />
         <Route path="/posts" component={PostList} />
         <Route path="/login" component={Login} />
         <Route path="/me" component={Profile} />

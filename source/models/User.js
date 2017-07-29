@@ -3,7 +3,12 @@ import Firebase from 'firebase'
 import Moment from 'moment'
 import Async from 'async'
 
-var User = new Supermodel('User', '/user')
+var User = Object.create(Supermodel)
+
+User.init({
+  name: 'User',
+  location: '/user',
+})
 
 // override the Supermodel create method
 User.create = function(user, callback) {

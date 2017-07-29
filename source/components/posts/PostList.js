@@ -48,7 +48,7 @@ class PostList extends React.Component {
 
     posts = _.map(posts, (post) =>
       <div key={post.key}>
-        <Link to={'/posts/'+post.key}>
+        <Link to={'/posts/'+post.slug}>
           <h2>{post.title}</h2>
         </Link>
         <p>{post.content}</p>
