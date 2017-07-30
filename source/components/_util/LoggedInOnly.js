@@ -23,7 +23,7 @@ class LoggedInOnly extends React.Component {
 
   _get() {
     this.setState({
-      loggedIn: User.isLoggedIn() ? true : false
+      loggedIn: User.getLoggedInUser() ? true : false
     })
   }
 

@@ -9,7 +9,7 @@ class PostEdit extends React.Component {
 
   constructor(props) {
     super(props)
-    this._savePost = this._savePost.bind(this)
+    this._editPost = this._editPost.bind(this)
     this._deletePost = this._deletePost.bind(this)
     this.state = {
       post: {}
@@ -17,25 +17,29 @@ class PostEdit extends React.Component {
   }
 
   componentWillMount() {
-    Post.getBySlug(this.props.match.params.post_slug, function(err, post){
-      if (err) {
-        this.setState({
-          error: err.message
-        })
-      } else {
-        this.setState({
-          post,
-        })
-      }
+    Post.getBySlug(this.props.match.params.post_slug).then(function(post){
+      this.setState({
+        post,
+      })
+    }.bind(this)).catch(function(err){
+      this.setState({
+        error: err.message
+      })
     }.bind(this))
   }
 
-  _savePost(post) {
-    Post.update(post.key, post, function(err, post_key) {
-      if (err) {
-        alert(err.message)
-      }
-      this.props.history.push('/posts/'+post.slug)
+  _editPost(post) {
+    Post.update(post.key, post).then(function(post_key) {
+
+      // TODO - use promises better here
+      Post.get(post_key).then(function(post) {
+        this.props.history.push("/posts/"+post.slug)
+      }.bind(this)).catch(function(err){
+        alert("Whoops, couldn't find the newly edited post: "+err.message)
+      })
+
+    }.bind(this)).catch(function(err){
+      alert("Whoops, couldn't edit the post: "+err.message)
     }.bind(this))
   }
 
@@ -49,7 +53,7 @@ class PostEdit extends React.Component {
     }
 
     if (this.state.post.title) {
-      var form = <PostForm post={this.state.post} onSubmit={this._savePost} />
+      var form = <PostForm post={this.state.post} onSubmit={this._editPost} />
     } else {
       var form = 'loading...'
     }

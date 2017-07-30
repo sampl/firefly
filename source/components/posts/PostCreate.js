@@ -6,33 +6,31 @@ import {
 
 import Post from '../../models/Post'
 import PostForm from './PostForm'
-import Error from '../Error'
 
 class PostCreate extends React.Component {
 
   constructor(props) {
     super(props)
-    this._savePost = this._savePost.bind(this)
+    this._createPost = this._createPost.bind(this)
     this.state = {}
   }
 
-  _savePost(post) {
-    Post.create(post, function(err, post_key) {
-      if (err) {
-        alert(err.message)
-      } else {
-        this.setState({
-          justSavedPost: post_key
-        })
-      }
-    }.bind(this))
+  _createPost(post) {
+    Post.create(post).then(function(post_key) {
+
+      // TODO - use promises better here
+      Post.get(post_key).then(function(post) {
+        this.props.history.push("/posts/"+post.slug)
+      }.bind(this)).catch(function(err){
+        alert("Whoops, couldn't find the new post: "+err.message)
+      })
+
+    }.bind(this)).catch(function(err){
+      alert("Whoops, couldn't create the post: "+err.message)
+    })
   }
 
   render() {
-
-    if (this.state.error) {
-      return (<Error message={this.state.error}/>)
-    }
 
     // shouldn't pass null to controlled components in PostForm
     var emptyPost = {
@@ -40,14 +38,10 @@ class PostCreate extends React.Component {
       content: '',
     }
 
-    // "render" a redirect when a post is saved
-    var redirect = this.state.justSavedPost ? <Redirect to={'/posts/'+this.state.justSavedPost} /> : null
-
     return (
       <div>
-        { redirect }
         <h1>New post</h1>
-        <PostForm post={emptyPost} onSubmit={this._savePost}/>
+        <PostForm post={emptyPost} onSubmit={this._createPost}/>
       </div>
     )
   }

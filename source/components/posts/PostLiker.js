@@ -28,12 +28,12 @@ class PostLiker extends React.Component {
 
   _get() {
 
-    PostLike.getAllWithAttrValue('post', this.props.post.key, function(err, likes) {
+    PostLike.getAllWithAttrValue('post', this.props.post.key).then(function(likes) {
 
       // see if any of the likes on the post are the current user
-      if (User.isLoggedIn()) {
+      if (User.getLoggedInUser()) {
         var userLike = _.find(likes, (like) =>
-          like.created_by === User.getCurrentUserId()
+          like.created_by === User.getLoggedInUser().uid
         )
       }
 
@@ -41,13 +41,15 @@ class PostLiker extends React.Component {
         userLike,
         numLikes: likes ? likes.length : 0,
       })
+    }.bind(this)).catch(function(err){
+      // ignore error?
     }.bind(this))
 
   }
 
   _onClick() {
 
-    if (User.isLoggedIn()) {
+    if (User.getLoggedInUser()) {
       if (!this.state.userLike) {
         PostLike.create({post: this.props.post.key}, function(){})
       } else {

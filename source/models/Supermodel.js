@@ -4,9 +4,9 @@ var EventEmitter = require('eventemitter3')
 
 /*
   Helper object to keep Firebase stuff DRY
-   - errors in callbacks
    - all items that come back from a query have "key" attributes
    - adds timestamps and saves which user created/updated
+   - fire change events to the model for views to listen to
 */
 
 var Supermodel = Object.create(new EventEmitter())
@@ -18,68 +18,58 @@ Supermodel.init = function({name, location}) {
 
 // GETTERS
 
-Supermodel.get = function(item_key, callback) {
-  this.ref.child(item_key).once('value').then(function(snap) {
+Supermodel.get = function(item_key) {
+  return this.ref.child(item_key).once('value').then(function(snap) {
     var item = snap.val()
     if (!item) {
-      callback(new Error(`Couldn't find ${this.name} ${item_key}`), null)
+      throw new Error(`Couldn't find ${this.name} ${item_key}`)
     } else {
       item.key = item_key
-      callback(null, item)
+      return item
     }
-  }.bind(this)).catch(function(err){
-    callback(err, null)
-  })
+  }.bind(this))
 }
 
-Supermodel.getAllWithAttrValue = function(attrName, attrValue, callback) {
-  this.ref.orderByChild(attrName).equalTo(attrValue).once('value').then(function(snap) {
+Supermodel.getAllWithAttrValue = function(attrName, attrValue) {
+  return this.ref.orderByChild(attrName).equalTo(attrValue).once('value').then(function(snap) {
     var items = []
     snap.forEach(function(childSnap) {
       var item = childSnap.val()
       item.key = childSnap.key
       items.push(item)
     })
-    callback(null, items)
-  }.bind(this)).catch(function(err){
-    callback(err, null)
+    return items
   })
 }
 
-Supermodel.getAll = function(callback) {
-  this.ref.once('value').then(function(snap) {
+Supermodel.getAll = function() {
+  return this.ref.once('value').then(function(snap) {
     var items = []
     snap.forEach(function(childSnap) {
       var item = childSnap.val()
       item.key = childSnap.key
       items.push(item)
     })
-    callback(null, items)
-  }).catch(function(err){
-    callback(err, null)
+    return items
   })
 }
 
 // SETTERS
 
-Supermodel.create = function(item_data, callback) {
+Supermodel.create = function(item_data) {
 
   item_data.created_by = Firebase.auth().currentUser ? Firebase.auth().currentUser.uid : null
   item_data.created_on = Moment().format()
 
-  var key = this.ref.push().key
-  this.ref.child(key).update(item_data, function(err) {
-    if (!err) {
-      this.emit('change')
-      callback(null, key)
-    }
-  }.bind(this)).catch(function(err) {
-    callback(err, null)
-  })
+  var new_key = this.ref.push().key
+  return this.ref.child(new_key).update(item_data).then(function() {
+    this.emit('change')
+    return new_key
+  }.bind(this))
 
 }
 
-Supermodel.update = function(item_key, new_data, callback) {
+Supermodel.update = function(item_key, new_data) {
 
   new_data.updated_by = Firebase.auth().currentUser ? Firebase.auth().currentUser.uid : null
   new_data.updated_on = Moment().format()
@@ -94,18 +84,16 @@ Supermodel.update = function(item_key, new_data, callback) {
     }
   })
 
-  this.ref.child(item_key).update(new_data, function() {
+  return this.ref.child(item_key).update(new_data).then(function() {
     this.emit('change')
-    callback(null, item_key)
-  }.bind(this)).catch(function(err) {
-    callback(err, null)
-  })
+    return item_key
+  }.bind(this))
 
 }
 
 Supermodel.destroy = function(item_key) {
-  this.ref.child(item_key).remove()
   this.emit('change')
+  return this.ref.child(item_key).remove()
 }
 
 export default Supermodel

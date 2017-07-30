@@ -8,30 +8,26 @@ Post.init({
   location: '/post',
 })
 
-Post.getBySlug = function(slug, callback) {
-  Supermodel.getAllWithAttrValue.bind(this)('slug', slug, function(err, posts){
-    if (err) {
-      callback(null, err)
+Post.getBySlug = function(slug) {
+  return Supermodel.getAllWithAttrValue.bind(this)('slug', slug).then(function(posts){
+    if (posts.length == 0) {
+      throw new Error("Couldn't find post with slug "+slug)
     } else {
-      if (posts.length == 0) {
-        callback(new Error("Couldn't find post with slug "+slug), null)
-      } else {
-        callback(null, posts[0])
-      }
+      return posts[0]
     }
   })
 }
 
-Post.create = function(post_data, callback) {
+Post.create = function(post_data) {
   post_data.slug = slugify(post_data.title).toLowerCase()
-  Supermodel.create.bind(this)(post_data, callback)
+  return Supermodel.create.bind(this)(post_data)
 }
 
-Post.update = function(post_key, post_data, callback) {
+Post.update = function(post_key, post_data) {
   if (post_data.title) {
     post_data.slug = slugify(post_data.title).toLowerCase()
   }
-  Supermodel.update.bind(this)(post_key, post_data, callback)
+  return Supermodel.update.bind(this)(post_key, post_data)
 }
 
 export default Post

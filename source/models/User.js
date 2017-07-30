@@ -10,74 +10,50 @@ User.init({
   location: '/user',
 })
 
-// override the Supermodel create method
-User.create = function(user, callback) {
-  callback(new Error('users are created when they sign in'), null)
+// OVERRIDE METHODS
+
+User.create = function(user) {
+  throw new Error('users are created when they sign in')
 }
+
+// LOG IN/OUT
 
 User.loginWithGoogle = function() {
   var provider = new Firebase.auth.GoogleAuthProvider()
-  Firebase.auth().signInWithPopup(provider).then(function(result) {
+  return Firebase.auth().signInWithPopup(provider).then(function(result) {
+
     // TODO - create user profile if they haven't logged in before
-    this.update(result.user.uid, {
+    var new_data = {
       last_login: Moment().format()
-    }, function(err, key){
-      if (err) {
-        console.error('Could not update profile for user '+key)
-      }
+    }
+
+    // TODO - use promises better here
+    this.update(result.user.uid, new_data).then(function(updated_user) {
+      console.log('updated user profile w/ last login')
+    }).catch(function(err){
+      console.error('Could not update profile for user '+result.user.uid)
     })
-  }.bind(this)).catch(function(err){
-    alert(err.message)
-  })
+
+  }.bind(this))
 }
 
 User.logOut = function() {
   Firebase.auth().signOut()
 }
 
-User.isLoggedIn = function() {
-  return Firebase.auth().currentUser ? true : false
+// GET
+
+User.getLoggedInUser = function() {
+  return Firebase.auth().currentUser
 }
 
-// TODO - restructure these synchronous on-offs into their own model or something?
-User.getCurrentUserId = function() {
-  return Firebase.auth().currentUser.uid
+// TODO - listen for admin changes and fire 'change' event?
+User.getAdminStatus = function() {
+  return Firebase.database().ref('admin').child(Firebase.auth().currentUser.uid).once('value').then(function(snap) {
+    return snap.val() ? true : false
+  })
 }
 
-// TODO - refactor using async parallel or similar
-User.getCurrentUser = function(callback) {
-  var currentUser = Firebase.auth().currentUser
-  if (currentUser) {
-    this.get(currentUser.uid, function(err, user){
-
-      if (err) {
-        callback(err, null)
-      } else {
-        // add attributes from Firebase.auth().currentUser
-        user.displayName = currentUser.displayName
-        user.email = currentUser.email
-        user.emailVerified = currentUser.emailVerified
-        user.isAnonymous = currentUser.isAnonymous
-        user.phoneNumber = currentUser.phoneNumber
-        user.photoURL = currentUser.photoURL
-        user.uid = currentUser.uid
-
-        // TODO - listen for admin changes and fire 'change' event
-        Firebase.database().ref('admin').child(currentUser.uid).once('value').then(function(snap) {
-          if (snap.val()) {
-            user.isAdmin = true
-          }
-          callback(null, user)
-        }).catch(function(err){
-          callback(err, null)
-        })
-      }
-
-    })
-  } else {
-    callback(new Error('Not signed in'), null)
-  }
-}
 
 Firebase.auth().onAuthStateChanged( function(){
   this.emit('change')

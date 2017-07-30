@@ -24,11 +24,9 @@ class Profile extends React.Component {
   }
 
   _get() {
-    User.getCurrentUser(function(err, user){
-      this.setState({
-        user,
-      })
-    }.bind(this))
+    this.setState({
+      user: User.getLoggedInUser()
+    })
   }
 
   _logOut() {

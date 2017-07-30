@@ -11,25 +11,25 @@
         ".write": "!data.exists() || data.child('created_by').val() === auth.uid || root.child('admin').hasChild(auth.uid)",
         ".validate": "newData.hasChildren(['title','content','created_by','created_on'])",
         "title": {
-          ".validate": "newData.isString()"
+          ".validate": "newData.isString() && newData.val() != ''"
         },
         "slug": {
-          ".validate": "newData.isString()"
+          ".validate": "newData.isString() && newData.val() != ''"
         },
         "content": {
-          ".validate": "newData.isString()"
+          ".validate": "newData.isString() && newData.val() != ''"
         },
         "created_by": {
-          ".validate": "newData.isString()"
+          ".validate": "newData.isString() && newData.val() != ''"
         },
         "updated_by": {
-          ".validate": "newData.isString()"
+          ".validate": "newData.isString() && newData.val() != ''"
         },
         "created_on": {
-          ".validate": "newData.isString()"
+          ".validate": "newData.val().matches(/^20[0-9][0-9]-[0-9][0-9]-[0-9][0-9]T[0-9][0-9]:[0-9][0-9]:[0-9][0-9][+-][0-9][0-9]:[0-9][0-9]/)"
         },
         "updated_on": {
-          ".validate": "newData.isString()"
+          ".validate": "newData.val().matches(/^20[0-9][0-9]-[0-9][0-9]-[0-9][0-9]T[0-9][0-9]:[0-9][0-9]:[0-9][0-9][+-][0-9][0-9]:[0-9][0-9]/)"
         },
         "$other": {
           ".validate": "false"
@@ -43,19 +43,19 @@
         ".write": "!data.exists() || data.child('created_by').val() === auth.uid || root.child('admin').hasChild(auth.uid)",
         ".validate": "newData.hasChildren(['post','created_by','created_on'])",
         "post": {
-          ".validate": "newData.isString()"
+          ".validate": "newData.isString() && newData.val() != ''"
         },
         "created_by": {
-          ".validate": "newData.isString()"
+          ".validate": "newData.isString() && newData.val() != ''"
         },
         "updated_by": {
-          ".validate": "newData.isString()"
+          ".validate": "newData.isString() && newData.val() != ''"
         },
         "created_on": {
-          ".validate": "newData.isString()"
+          ".validate": "newData.val().matches(/^20[0-9][0-9]-[0-9][0-9]-[0-9][0-9]T[0-9][0-9]:[0-9][0-9]:[0-9][0-9][+-][0-9][0-9]:[0-9][0-9]/)"
         },
         "updated_on": {
-          ".validate": "newData.isString()"
+          ".validate": "newData.val().matches(/^20[0-9][0-9]-[0-9][0-9]-[0-9][0-9]T[0-9][0-9]:[0-9][0-9]:[0-9][0-9][+-][0-9][0-9]:[0-9][0-9]/)"
         },
         "$other": {
           ".validate": "false"
@@ -70,19 +70,19 @@
           ".validate": "true"
         },
         "created_by": {
-          ".validate": "newData.isString()"
+          ".validate": "newData.isString() && newData.val() != ''"
         },
         "updated_by": {
-          ".validate": "newData.isString()"
+          ".validate": "newData.isString() && newData.val() != ''"
         },
         "created_on": {
-          ".validate": "newData.isString()"
+          ".validate": "newData.val().matches(/^20[0-9][0-9]-[0-9][0-9]-[0-9][0-9]T[0-9][0-9]:[0-9][0-9]:[0-9][0-9][+-][0-9][0-9]:[0-9][0-9]/)"
         },
         "updated_on": {
-          ".validate": "newData.isString()"
+          ".validate": "newData.val().matches(/^20[0-9][0-9]-[0-9][0-9]-[0-9][0-9]T[0-9][0-9]:[0-9][0-9]:[0-9][0-9][+-][0-9][0-9]:[0-9][0-9]/)"
         },
         "last_login": {
-          ".validate": "newData.isString()"
+          ".validate": "newData.val().matches(/^20[0-9][0-9]-[0-9][0-9]-[0-9][0-9]T[0-9][0-9]:[0-9][0-9]:[0-9][0-9][+-][0-9][0-9]:[0-9][0-9]/)"
         },
         "$other": {
           ".validate": "false"

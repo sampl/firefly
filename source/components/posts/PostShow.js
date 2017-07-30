@@ -30,16 +30,14 @@ class PostShow extends React.Component {
   }
 
   _get() {
-    Post.getBySlug(this.props.match.params.post_slug, function(err, post){
-      if (err) {
-        this.setState({
-          error: err.message
-        })
-      } else {
-        this.setState({
-          post,
-        })
-      }
+    Post.getBySlug(this.props.match.params.post_slug).then(function(post){
+      this.setState({
+        post,
+      })
+    }.bind(this)).catch(function(err){
+      this.setState({
+        error: err.message
+      })
     }.bind(this))
   }
 
