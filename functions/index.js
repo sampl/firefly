@@ -28,8 +28,33 @@ exports.updateSearchIndex = functions.database.ref('/post/{post_key}').onWrite( 
 exports.updatePostLikeCount = functions.database.ref('/post_like/{post_key}').onWrite( function(event) {
   var direction = event.data.val() ? 1 : -1
   var post = event.data.val() ? event.data.val().post : event.data.previous.val().post
-  admin.database().ref(`post/${post}/_like_count`).transaction(function(likes) {
-    return (likes || 0) + direction
+
+  // test if there's still a post to increment/decrement
+  // for ex: if I delete a post, it's likes will get deleted, and this will run
+  // do decrement the count of a post that doens't exist (adding a new crappy post)
+  return admin.database().ref(`post/${post}`).once('value').then(function(snap) {
+    if (snap.val()) {
+      admin.database().ref(`post/${post}/_like_count`).transaction(function(num_likes) {
+        return (num_likes || 0) + direction
+      })
+      return
+    } else {
+      return
+    }
   })
-  return
+
+})
+
+// when someone deletes a post, delete all post_likes that liked that post
+exports.deleteOldPostLikes = functions.database.ref('/post/{post_key}').onWrite( function(event) {
+  if (event.data.val() === null) {
+    return admin.database().ref("/post_like").orderByChild("post").equalTo(event.params.post_key).once('value').then(function(snap) {
+      snap.forEach(function(childSnap) {
+        console.log('removing post_like '+childSnap.key)
+        admin.database().ref("/post_like/"+childSnap.key).remove()
+      })
+    })
+  } else {
+    return
+  }
 })
