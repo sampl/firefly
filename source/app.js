@@ -1,19 +1,10 @@
-import 'normalize.css' // css reset
-import './main.css'    // our app's css
-
-import db from './db'
-
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import {
-  BrowserRouter,
-  Route
-} from 'react-router-dom'
-
-// components
+import db from './db'
 import App from './components/_layout/App'
-import ScrollToTop from './components/_util/ScrollToTop'
+import 'normalize.css' // css reset
+import './main.css'    // our app's css
 
 if (PRODUCTION) {
   console.log('env: production/live')
@@ -22,11 +13,4 @@ if (PRODUCTION) {
 }
 
 // render App to the DOM
-// use Route to give the App props for location and history
-ReactDOM.render(
-    <BrowserRouter>
-      <ScrollToTop>
-        <Route component={App}/>
-      </ScrollToTop>
-    </BrowserRouter>
-, document.getElementById('root'))
+ReactDOM.render(<App />, document.getElementById('root'))

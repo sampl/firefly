@@ -1,4 +1,9 @@
 import React from 'react'
+import {
+  BrowserRouter,
+  Route
+} from 'react-router-dom'
+import ScrollToTop from '../_util/ScrollToTop'
 
 // components
 import Modal from '../_layout/Modal'
@@ -6,6 +11,19 @@ import Main from '../_layout/Main'
 import Routes from './Routes'
 
 class App extends React.Component {
+  render() {
+    // use Route to give the ModalWrapper props for location and history for the modal
+    return(
+      <BrowserRouter>
+        <ScrollToTop>
+          <Route component={ModalWrapper}/>
+        </ScrollToTop>
+      </BrowserRouter>
+    )
+  }
+}
+
+class ModalWrapper extends React.Component {
 
   componentWillUpdate(nextProps) {
     // when the page changes, save where we just were so we can render it behind a modal
