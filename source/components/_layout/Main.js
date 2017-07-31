@@ -27,13 +27,14 @@ class Main extends React.Component {
   }
 
   render() {
+    let account
     if (this.state.user) {
-      var account =
+      account =
         <Link to='/me'>
           <img style={{width: '24px', height: '24px', borderRadius: '50%'}} src={this.state.user.photoURL} />
         </Link>
     } else {
-      var account =
+      account =
         <Link to={{
           pathname: `/login`,
           state: { modal: true }
@@ -64,7 +65,7 @@ class Main extends React.Component {
   }
 }
 
-var styles = {
+let styles = {
   header: {
     borderBottom: '1px solid #eee',
     padding: '0 0 1rem',

@@ -3,7 +3,7 @@ import Firebase from 'firebase'
 import Moment from 'moment'
 import Async from 'async'
 
-var User = Object.create(Supermodel)
+let User = Object.create(Supermodel)
 
 User.init({
   name: 'User',
@@ -19,11 +19,11 @@ User.create = function(user) {
 // LOG IN/OUT
 
 User.loginWithGoogle = function() {
-  var provider = new Firebase.auth.GoogleAuthProvider()
+  let provider = new Firebase.auth.GoogleAuthProvider()
   return Firebase.auth().signInWithPopup(provider).then(function(result) {
 
     // TODO - create user profile if they haven't logged in before
-    var new_data = {
+    let new_data = {
       last_login: Moment().format()
     }
 

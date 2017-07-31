@@ -54,7 +54,7 @@ class Profile extends React.Component {
   }
 }
 
-var styles = {
+let styles = {
   image: {
     maxWidth: '100px',
     maxHeight: '100px',

@@ -1,7 +1,7 @@
 import Supermodel from './Supermodel'
 import slugify from 'slugify'
 
-var Post = Object.create(Supermodel)
+let Post = Object.create(Supermodel)
 
 Post.init({
   name: 'Post',

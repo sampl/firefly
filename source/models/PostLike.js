@@ -1,6 +1,6 @@
 import Supermodel from './Supermodel'
 
-var PostLike = Object.create(Supermodel)
+let PostLike = Object.create(Supermodel)
 
 PostLike.init({
   name: 'Post like',

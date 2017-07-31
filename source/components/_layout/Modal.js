@@ -18,7 +18,7 @@ class Modal extends React.Component {
   }
 }
 
-var styles = {
+let styles = {
   wrapper: {
     position: 'fixed',
     top: 0,

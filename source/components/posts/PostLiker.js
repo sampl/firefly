@@ -30,9 +30,11 @@ class PostLiker extends React.Component {
 
     PostLike.getAllWithAttrValue('post', this.props.post.key).then(function(likes) {
 
+      let userLike = null
+
       // see if any of the likes on the post are the current user
       if (User.getLoggedInUser()) {
-        var userLike = _.find(likes, (like) =>
+        userLike = _.find(likes, (like) =>
           like.created_by === User.getLoggedInUser().uid
         )
       }
@@ -56,7 +58,7 @@ class PostLiker extends React.Component {
         PostLike.destroy(this.state.userLike.key, function(){})
       }
     } else {
-      var state = {
+      let state = {
         modal: true,
         returnTo: this.props.location.pathname,
       }
@@ -76,7 +78,7 @@ class PostLiker extends React.Component {
 
 export default withRouter(PostLiker)
 
-var style = {
+let style = {
   liked: {
     cursor: 'pointer',
     fontWeight: 'bold',

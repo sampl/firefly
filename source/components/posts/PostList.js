@@ -42,7 +42,7 @@ class PostList extends React.Component {
       return (<Error message={this.state.error}/>)
     }
 
-    var posts = this.state.posts.sort((a, b) => (a._like_count || 0) < (b._like_count || 0))
+    let posts = this.state.posts.sort((a, b) => (a._like_count || 0) < (b._like_count || 0))
 
     posts = _.map(posts, (post) =>
       <div key={post.key}>

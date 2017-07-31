@@ -28,7 +28,7 @@ class Login extends React.Component {
 
       // check for something like myapp.com/login?redirect_url=/posts
       // TODO - actually parse the query string
-      var redirect_url = this.props.history.location.search.split('redirect_url=')[1]
+      let redirect_url = this.props.history.location.search.split('redirect_url=')[1]
       if (redirect_url) {
         this.props.history.push(redirect_url)
       } else {

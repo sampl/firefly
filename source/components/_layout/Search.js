@@ -3,8 +3,8 @@ import { withRouter } from 'react-router-dom'
 import Autosuggest from 'react-autosuggest'
 import Algolia from 'algoliasearch'
 
-var algolia = Algolia(ALGOLIA.app_id, ALGOLIA.app_key)
-var index = algolia.initIndex('posts')
+let algolia = Algolia(ALGOLIA.app_id, ALGOLIA.app_key)
+let index = algolia.initIndex('posts')
 
 class Search extends React.Component {
   constructor() {
@@ -32,7 +32,9 @@ class Search extends React.Component {
     value = value.trim().toLowerCase()
 
     if (value.length === 0) {
-      var suggestions = []
+      this.setState({
+        suggestions: []
+      })
     } else {
       index.search(value, function(err, content) {
         this.setState({
@@ -54,7 +56,7 @@ class Search extends React.Component {
 
   render() {
 
-    var inputProps = {
+    let inputProps = {
       placeholder: 'Type to search',
       value: this.state.value,
       onChange: this._onChange,
@@ -77,7 +79,7 @@ class Search extends React.Component {
 }
 
 // more classes: https://github.com/moroshko/react-autosuggest#themeProp
-var styles = {
+let styles = {
   container: {
     position: 'relative',
     display: 'inline',

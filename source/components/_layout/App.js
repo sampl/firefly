@@ -14,16 +14,16 @@ class App extends React.Component {
 
   render() {
 
-    var renderInModal = (this.props.location && this.props.location.state && this.props.location.state.modal)
-
+    let renderInModal = (this.props.location && this.props.location.state && this.props.location.state.modal)
+    let content
     if (renderInModal) {
-      var content =
+      content =
         <div>
           <Modal goBack={this.props.history.goBack} />
           <Main location={this.previousLocation} />
         </div>
     } else {
-      var content = <Main />
+      content = <Main />
     }
 
     return(content)

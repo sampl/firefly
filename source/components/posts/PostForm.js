@@ -13,7 +13,7 @@ class PostForm extends React.Component {
   }
 
   _onChange(e) {
-    var post = this.state.post
+    let post = this.state.post
     post[e.target.name] = e.target.value
     this.setState({
       post: this.props.post

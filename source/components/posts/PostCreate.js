@@ -33,7 +33,7 @@ class PostCreate extends React.Component {
   render() {
 
     // shouldn't pass null to controlled components in PostForm
-    var emptyPost = {
+    let emptyPost = {
       title: '',
       content: '',
     }

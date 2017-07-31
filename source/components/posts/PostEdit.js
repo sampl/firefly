@@ -52,10 +52,11 @@ class PostEdit extends React.Component {
       return (<Error message={this.state.error}/>)
     }
 
+    let form
     if (this.state.post.title) {
-      var form = <PostForm post={this.state.post} onSubmit={this._editPost} />
+      form = <PostForm post={this.state.post} onSubmit={this._editPost} />
     } else {
-      var form = 'loading...'
+      form = 'loading...'
     }
     return (
       <div>

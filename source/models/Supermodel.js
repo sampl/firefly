@@ -1,6 +1,6 @@
-var Firebase = require('firebase')
-var Moment = require('moment')
-var EventEmitter = require('eventemitter3')
+let Firebase = require('firebase')
+let Moment = require('moment')
+let EventEmitter = require('eventemitter3')
 
 /*
   Helper object to keep Firebase stuff DRY
@@ -9,7 +9,7 @@ var EventEmitter = require('eventemitter3')
    - fire change events to the model for views to listen to
 */
 
-var Supermodel = Object.create(new EventEmitter())
+let Supermodel = Object.create(new EventEmitter())
 
 Supermodel.init = function({name, location}) {
   this.name = name
@@ -20,7 +20,7 @@ Supermodel.init = function({name, location}) {
 
 Supermodel.get = function(item_key) {
   return this.ref.child(item_key).once('value').then(function(snap) {
-    var item = snap.val()
+    let item = snap.val()
     if (!item) {
       throw new Error(`Couldn't find ${this.name} ${item_key}`)
     } else {
@@ -32,9 +32,9 @@ Supermodel.get = function(item_key) {
 
 Supermodel.getAllWithAttrValue = function(attrName, attrValue) {
   return this.ref.orderByChild(attrName).equalTo(attrValue).once('value').then(function(snap) {
-    var items = []
+    let items = []
     snap.forEach(function(childSnap) {
-      var item = childSnap.val()
+      let item = childSnap.val()
       item.key = childSnap.key
       items.push(item)
     })
@@ -44,9 +44,9 @@ Supermodel.getAllWithAttrValue = function(attrName, attrValue) {
 
 Supermodel.getAll = function() {
   return this.ref.once('value').then(function(snap) {
-    var items = []
+    let items = []
     snap.forEach(function(childSnap) {
-      var item = childSnap.val()
+      let item = childSnap.val()
       item.key = childSnap.key
       items.push(item)
     })
@@ -61,7 +61,7 @@ Supermodel.create = function(item_data) {
   item_data.created_by = Firebase.auth().currentUser ? Firebase.auth().currentUser.uid : null
   item_data.created_on = Moment().format()
 
-  var new_key = this.ref.push().key
+  let new_key = this.ref.push().key
   return this.ref.child(new_key).update(item_data).then(function() {
     this.emit('change')
     return new_key

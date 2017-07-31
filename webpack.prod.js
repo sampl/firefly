@@ -1,13 +1,13 @@
 // This file tells webpack to bundle all files that /source/app.js imports and spit out the result in /build/app.js
 // Learn more here: https://webpack.js.org/guides/getting-started/
 
-var path = require('path')
-var webpack = require('webpack')
-var CleanWebpackPlugin = require('clean-webpack-plugin')
-var HtmlWebpackPlugin = require('html-webpack-plugin')
+let path = require('path')
+let webpack = require('webpack')
+let CleanWebpackPlugin = require('clean-webpack-plugin')
+let HtmlWebpackPlugin = require('html-webpack-plugin')
 
-var algoliaConfig = require('./config/algolia-config.json')
-var firebaseClientConfig = require('./config/firebase-config-prod.json')
+let algoliaConfig = require('./config/algolia-config.json')
+let firebaseClientConfig = require('./config/firebase-config-prod.json')
 
 module.exports = {
   entry: './source/app.js',
