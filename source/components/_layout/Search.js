@@ -51,7 +51,7 @@ class Search extends React.Component {
   }
 
   _onSuggestionSelected(event, attrs) {
-    this.props.history.push('/posts/'+attrs.suggestion.objectID)
+    this.props.history.push('/posts/'+attrs.suggestion.slug)
   }
 
   render() {
