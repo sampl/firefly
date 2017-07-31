@@ -17,6 +17,7 @@ class PostShow extends React.Component {
   }
 
   componentWillMount() {
+    this._isMounted = true
     this._get()
     Post.on('change', this._get)
   }
@@ -26,18 +27,23 @@ class PostShow extends React.Component {
   }
 
   componentWillUnmount() {
+    this._isMounted = false
     Post.removeListener('change', this._get)
   }
 
   _get() {
     Post.getBySlug(this.props.match.params.post_slug).then( (post) => {
-      this.setState({
-        post,
-      })
+      if (this._isMounted) {
+        this.setState({
+          post,
+        })
+      }
     }).catch( (err) => {
-      this.setState({
-        error: err.message
-      })
+      if (this._isMounted) {
+        this.setState({
+          error: err.message
+        })
+      }
     })
   }
 

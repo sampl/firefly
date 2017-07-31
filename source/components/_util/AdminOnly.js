@@ -18,19 +18,23 @@ class AdminOnly extends React.Component {
   }
 
   componentWillMount() {
+    this._isMounted = true
     this._get()
     User.on('change', this._get)
   }
 
   componentWillUnmount() {
+    this._isMounted = false
     User.removeListener('change', this._get)
   }
 
   _get() {
     User.getAdminStatus( (status) => {
-      this.setState({
-        admin: status
-      })
+      if (this._isMounted) {
+        this.setState({
+          admin: status
+        })
+      }
     }).catch( (err) => {
       console.error("Whoops, couldn't get the user's admin status: "+err.message)
     })

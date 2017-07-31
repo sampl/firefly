@@ -16,23 +16,29 @@ class PostList extends React.Component {
   }
 
   componentWillMount() {
+    this._isMounted = true
     this._get()
     Post.on('change', this._get)
   }
 
   componentWillUnmount() {
+    this._isMounted = false
     Post.removeListener('change', this._get)
   }
 
   _get() {
     Post.getAll().then( (posts) => {
-      this.setState({
-        posts,
-      })
+      if (this._isMounted) {
+        this.setState({
+          posts,
+        })
+      }
     }).catch( (err) => {
-      this.setState({
-        error: err.message
-      })
+      if (this._isMounted) {
+        this.setState({
+          error: err.message
+        })
+      }
     })
   }
 

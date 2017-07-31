@@ -18,11 +18,13 @@ class PostLiker extends React.Component {
   }
 
   componentWillMount() {
+    this._isMounted = true
     this._get()
     PostLike.on('change', this._get)
   }
 
   componentWillUnmount() {
+    this._isMounted = false
     PostLike.removeListener('change', this._get)
   }
 
@@ -39,10 +41,12 @@ class PostLiker extends React.Component {
         )
       }
 
-      this.setState({
-        userLike,
-        numLikes: likes ? likes.length : 0,
-      })
+      if (this._isMounted) {
+        this.setState({
+          userLike,
+          numLikes: likes ? likes.length : 0,
+        })
+      }
     }).catch( (err) => {
       // ignore error?
     })
