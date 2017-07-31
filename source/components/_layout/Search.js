@@ -36,11 +36,11 @@ class Search extends React.Component {
         suggestions: []
       })
     } else {
-      index.search(value, function(err, content) {
+      index.search(value, (err, content) => {
         this.setState({
           suggestions: content.hits
         })
-      }.bind(this))
+      })
     }
   }
 

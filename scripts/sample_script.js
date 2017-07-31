@@ -24,13 +24,11 @@ if (process.argv[2] == 'prod') {
 
 let database_ref = admin.database().ref('/post')
 
-posts.forEach(function(post) {
+posts.forEach( (post) => {
   let key = database_ref.push().key
-  database_ref.child(key).update(post, function(err) {
-    if (err) {
-      console.error('something went wrong: ', err)
-    } else {
-      console.log('created post '+key)
-    }
+  database_ref.child(key).update(post).then( (err) => {
+    console.log('created post '+key)
+  }).catch( (err) => {
+    console.error('something went wrong: ', err)
   })
 })

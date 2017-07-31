@@ -19,7 +19,7 @@ Supermodel.init = function({name, location}) {
 // GETTERS
 
 Supermodel.get = function(item_key) {
-  return this.ref.child(item_key).once('value').then(function(snap) {
+  return this.ref.child(item_key).once('value').then( (snap) => {
     let item = snap.val()
     if (!item) {
       throw new Error(`Couldn't find ${this.name} ${item_key}`)
@@ -27,13 +27,13 @@ Supermodel.get = function(item_key) {
       item.key = item_key
       return item
     }
-  }.bind(this))
+  })
 }
 
 Supermodel.getAllWithAttrValue = function(attrName, attrValue) {
-  return this.ref.orderByChild(attrName).equalTo(attrValue).once('value').then(function(snap) {
+  return this.ref.orderByChild(attrName).equalTo(attrValue).once('value').then( (snap) => {
     let items = []
-    snap.forEach(function(childSnap) {
+    snap.forEach( (childSnap) => {
       let item = childSnap.val()
       item.key = childSnap.key
       items.push(item)
@@ -43,9 +43,9 @@ Supermodel.getAllWithAttrValue = function(attrName, attrValue) {
 }
 
 Supermodel.getAll = function() {
-  return this.ref.once('value').then(function(snap) {
+  return this.ref.once('value').then( (snap) => {
     let items = []
-    snap.forEach(function(childSnap) {
+    snap.forEach( (childSnap) => {
       let item = childSnap.val()
       item.key = childSnap.key
       items.push(item)
@@ -62,10 +62,10 @@ Supermodel.create = function(item_data) {
   item_data.created_on = Moment().format()
 
   let new_key = this.ref.push().key
-  return this.ref.child(new_key).update(item_data).then(function() {
+  return this.ref.child(new_key).update(item_data).then( () => {
     this.emit('change')
     return new_key
-  }.bind(this))
+  })
 
 }
 
@@ -84,10 +84,10 @@ Supermodel.update = function(item_key, new_data) {
     }
   })
 
-  return this.ref.child(item_key).update(new_data).then(function() {
+  return this.ref.child(item_key).update(new_data).then( () => {
     this.emit('change')
     return item_key
-  }.bind(this))
+  })
 
 }
 

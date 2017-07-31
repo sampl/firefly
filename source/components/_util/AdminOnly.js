@@ -27,13 +27,13 @@ class AdminOnly extends React.Component {
   }
 
   _get() {
-    User.getAdminStatus(function(status){
+    User.getAdminStatus( (status) => {
       this.setState({
         admin: status
       })
-    }.bind(this)).catch(function(err){
+    }).catch( (err) => {
       console.error("Whoops, couldn't get the user's admin status: "+err.message)
-    }.bind(this))
+    })
   }
 
   render() {

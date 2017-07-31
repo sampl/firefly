@@ -16,16 +16,16 @@ class PostCreate extends React.Component {
   }
 
   _createPost(post) {
-    Post.create(post).then(function(post_key) {
+    Post.create(post).then( (post_key) => {
 
       // TODO - use promises better here
-      Post.get(post_key).then(function(post) {
+      Post.get(post_key).then( (post) => {
         this.props.history.push("/posts/"+post.slug)
-      }.bind(this)).catch(function(err){
+      }).catch( (err) => {
         alert("Whoops, couldn't find the new post: "+err.message)
       })
 
-    }.bind(this)).catch(function(err){
+    }).catch( (err) => {
       alert("Whoops, couldn't create the post: "+err.message)
     })
   }

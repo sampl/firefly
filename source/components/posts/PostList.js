@@ -25,15 +25,15 @@ class PostList extends React.Component {
   }
 
   _get() {
-    Post.getAll().then(function(posts){
+    Post.getAll().then( (posts) => {
       this.setState({
         posts,
       })
-    }.bind(this)).catch(function(err){
+    }).catch( (err) => {
       this.setState({
         error: err.message
       })
-    }.bind(this))
+    })
   }
 
   render() {

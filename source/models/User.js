@@ -12,7 +12,7 @@ User.init({
 
 // OVERRIDE METHODS
 
-User.create = function(user) {
+User.create = function() {
   throw new Error('users are created when they sign in')
 }
 
@@ -20,7 +20,7 @@ User.create = function(user) {
 
 User.loginWithGoogle = function() {
   let provider = new Firebase.auth.GoogleAuthProvider()
-  return Firebase.auth().signInWithPopup(provider).then(function(result) {
+  return Firebase.auth().signInWithPopup(provider).then( (result) => {
 
     // TODO - create user profile if they haven't logged in before
     let new_data = {
@@ -28,13 +28,13 @@ User.loginWithGoogle = function() {
     }
 
     // TODO - use promises better here
-    this.update(result.user.uid, new_data).then(function(updated_user) {
+    this.update(result.user.uid, new_data).then( (updated_user) => {
       console.log('updated user profile w/ last login')
-    }).catch(function(err){
+    }).catch( (err) => {
       console.error('Could not update profile for user '+result.user.uid)
     })
 
-  }.bind(this))
+  })
 }
 
 User.logOut = function() {
@@ -49,15 +49,14 @@ User.getLoggedInUser = function() {
 
 // TODO - listen for admin changes and fire 'change' event?
 User.getAdminStatus = function() {
-  return Firebase.database().ref('admin').child(Firebase.auth().currentUser.uid).once('value').then(function(snap) {
+  return Firebase.database().ref('admin').child(Firebase.auth().currentUser.uid).once('value').then( (snap) => {
     return snap.val() ? true : false
   })
 }
 
-
-Firebase.auth().onAuthStateChanged( function(){
-  this.emit('change')
-}.bind(User))
+Firebase.auth().onAuthStateChanged( () => {
+  User.emit('change')
+})
 
 export default User
 

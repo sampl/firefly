@@ -42,7 +42,7 @@ class Login extends React.Component {
   }
 
   _login() {
-    User.loginWithGoogle().catch(function(err){
+    User.loginWithGoogle().catch( (err) => {
       alert(err.message)
     })
   }

@@ -17,30 +17,30 @@ class PostEdit extends React.Component {
   }
 
   componentWillMount() {
-    Post.getBySlug(this.props.match.params.post_slug).then(function(post){
+    Post.getBySlug(this.props.match.params.post_slug).then( (post) => {
       this.setState({
         post,
       })
-    }.bind(this)).catch(function(err){
+    }).catch( (err) => {
       this.setState({
         error: err.message
       })
-    }.bind(this))
+    })
   }
 
   _editPost(post) {
-    Post.update(post.key, post).then(function(post_key) {
+    Post.update(post.key, post).then( (post_key) => {
 
       // TODO - use promises better here
-      Post.get(post_key).then(function(post) {
+      Post.get(post_key).then( (post) => {
         this.props.history.push("/posts/"+post.slug)
-      }.bind(this)).catch(function(err){
+      }).catch( (err) => {
         alert("Whoops, couldn't find the newly edited post: "+err.message)
       })
 
-    }.bind(this)).catch(function(err){
+    }).catch( (err) => {
       alert("Whoops, couldn't edit the post: "+err.message)
-    }.bind(this))
+    })
   }
 
   _deletePost() {

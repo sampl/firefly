@@ -28,7 +28,7 @@ class PostLiker extends React.Component {
 
   _get() {
 
-    PostLike.getAllWithAttrValue('post', this.props.post.key).then(function(likes) {
+    PostLike.getAllWithAttrValue('post', this.props.post.key).then( (likes) => {
 
       let userLike = null
 
@@ -43,9 +43,9 @@ class PostLiker extends React.Component {
         userLike,
         numLikes: likes ? likes.length : 0,
       })
-    }.bind(this)).catch(function(err){
+    }).catch( (err) => {
       // ignore error?
-    }.bind(this))
+    })
 
   }
 
@@ -53,9 +53,9 @@ class PostLiker extends React.Component {
 
     if (User.getLoggedInUser()) {
       if (!this.state.userLike) {
-        PostLike.create({post: this.props.post.key}, function(){})
+        PostLike.create({post: this.props.post.key}, () => {})
       } else {
-        PostLike.destroy(this.state.userLike.key, function(){})
+        PostLike.destroy(this.state.userLike.key, () => {})
       }
     } else {
       let state = {
