@@ -32,10 +32,13 @@ class Main extends React.Component {
 let styles = {
   header: {
     borderBottom: '1px solid #eee',
-    padding: '0 0 1rem',
-    margin: '0 0 2rem',
+    padding: '1rem 0',
+    margin: '2rem 0',
   },
   footer: {
+    borderTop: '1px solid #eee',
+    padding: '1rem 0',
+    margin: '2rem 0',
     textAlign: 'center',
   },
 }

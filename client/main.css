@@ -5,6 +5,7 @@
 
 * {
   box-sizing: border-box;
+  font-family: system-ui, sans-serif;
 }
 
 body {
@@ -12,4 +13,19 @@ body {
   max-width: 600px;
   margin: 2rem auto;
   padding: 0 1rem;
+  color: #333;
+}
+
+h1, h2, h3 {
+  font-weight: normal;
+}
+
+a {
+  color: hsl(220, 80%, 60%);
+  text-decoration: none;
+}
+
+a:hover {
+  color: hsl(220, 80%, 60%);
+  text-decoration: underline;
 }

@@ -66,15 +66,19 @@ class PostList extends React.Component {
 
     return (
       <div>
-        <h1>FireFly</h1>
 
         <Link to={'/posts/new'}>new post</Link>
-
-        {posts}
-
+        <br/>
+        <br/>
         <Link to='/404'>a page that doesn't exist</Link>
         <br/>
+        <br/>
         <Link to='/posts/123'>a *post* that doesn't exist</Link>
+
+        <br/>
+        <br/>
+
+        {posts}
 
       </div>
     )
