@@ -1,4 +1,4 @@
-// This file tells webpack to bundle all files that /source/app.js imports and spit out the result in /build/app.js
+// This file tells webpack to bundle all files that /client/app.js imports and spit out the result in /build/app.js
 // Learn more here: https://webpack.js.org/guides/getting-started/
 
 let path = require('path')
@@ -10,7 +10,7 @@ let algoliaConfig = require('./config/algolia-config.json')
 let firebaseClientConfig = require('./config/firebase-config-prod.json')
 
 module.exports = {
-  entry: './source/app.js',
+  entry: './client/app.js',
   output: {
     filename: 'app-[hash].js',
     path: path.resolve(__dirname, 'build'),
@@ -24,7 +24,7 @@ module.exports = {
     }),
     new CleanWebpackPlugin(['build']),
     new HtmlWebpackPlugin({
-      template: './source/index.html',
+      template: './client/index.html',
       hash: true,
     }),
     new webpack.optimize.UglifyJsPlugin(),

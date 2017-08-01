@@ -2,8 +2,8 @@ import React from 'react'
 import { withRouter } from 'react-router-dom'
 import _ from 'lodash'
 
-import User from '../../models/User'
-import PostLike from '../../models/PostLike'
+import User from '../../../models/User'
+import PostLike from '../../../models/PostLike'
 
 class PostLiker extends React.Component {
 

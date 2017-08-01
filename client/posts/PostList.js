@@ -3,7 +3,11 @@ import _ from 'lodash'
 import { Link } from 'react-router-dom'
 
 import Post from '../../models/Post'
-import Error from '../Error'
+import Error from '../_util/Error'
+
+import AdminOnly from '../_util/AdminOnly'
+import LoggedInOnly from '../_util/LoggedInOnly'
+import LoggedOutOnly from '../_util/LoggedOutOnly'
 
 class PostList extends React.Component {
 
@@ -62,9 +66,16 @@ class PostList extends React.Component {
 
     return (
       <div>
-        <h1>All Posts</h1>
+        <h1>FireFly</h1>
+
         <Link to={'/posts/new'}>new post</Link>
+
         {posts}
+
+        <Link to='/404'>a page that doesn't exist</Link>
+        <br/>
+        <Link to='/posts/123'>a *post* that doesn't exist</Link>
+
       </div>
     )
   }

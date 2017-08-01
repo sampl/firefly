@@ -2,8 +2,8 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 import Post from '../../models/Post'
-import PostLiker from './PostLiker'
-import Error from '../Error'
+import PostLiker from './components/PostLiker'
+import Error from '../_util/Error'
 
 class PostShow extends React.Component {
 

@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 
 import db from './db'
-import App from './components/_layout/App'
+import App from './_layout/App'
 import 'normalize.css' // css reset
 import './main.css'    // our app's css
 

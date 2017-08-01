@@ -2,8 +2,8 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 import Post from '../../models/Post'
-import PostForm from './PostForm'
-import Error from '../Error'
+import PostForm from './components/PostForm'
+import Error from '../_util/Error'
 
 class PostEdit extends React.Component {
 

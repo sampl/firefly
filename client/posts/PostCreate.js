@@ -5,7 +5,7 @@ import {
 } from 'react-router-dom'
 
 import Post from '../../models/Post'
-import PostForm from './PostForm'
+import PostForm from './components/PostForm'
 
 class PostCreate extends React.Component {
 

@@ -6,8 +6,8 @@ import {
 import ScrollToTop from '../_util/ScrollToTop'
 
 // components
-import Modal from '../_layout/Modal'
-import Main from '../_layout/Main'
+import Modal from './Modal'
+import Main from './Main'
 import Routes from './Routes'
 
 class App extends React.Component {

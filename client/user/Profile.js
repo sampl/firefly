@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router'
 
 import User from '../../models/User'
+import AdminOnly from '../_util/AdminOnly'
 
 class Profile extends React.Component {
 
@@ -45,6 +46,9 @@ class Profile extends React.Component {
           <h2>Your Profile</h2>
           <p>Name: {this.state.user.displayName}</p>
           <p>Email: {this.state.user.email}</p>
+          <AdminOnly>
+            <p>⭐️ is an admin</p>
+          </AdminOnly>
           <button onClick={this._logOut}>log out</button>
         </div>
       )

@@ -29,7 +29,7 @@ class AdminOnly extends React.Component {
   }
 
   _get() {
-    User.getAdminStatus( (status) => {
+    User.getAdminStatus().then( (status) => {
       if (this._isMounted) {
         this.setState({
           admin: status
