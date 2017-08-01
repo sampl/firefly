@@ -28,7 +28,10 @@ class Account extends React.Component {
     if (this.state.user) {
       return (
         <div style={styles.account}>
-          <Link to='/me'>
+          <Link to={{
+              pathname: `/me`,
+              state: { modal: true }
+            }}>
             <img style={{width: '24px', height: '24px', borderRadius: '50%'}} src={this.state.user.photoURL} />
           </Link>
         </div>

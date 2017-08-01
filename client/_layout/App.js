@@ -26,15 +26,28 @@ class App extends React.Component {
 class ModalWrapper extends React.Component {
 
   componentWillUpdate(nextProps) {
-    // when the page changes, save where we just were so we can render it behind a modal
-    this.previousLocation = this.props.location
+
+    if (nextProps.location.key !== this.props.location.key) {             // when going to a different route
+      if (nextProps.location.state && nextProps.location.state.modal) {   // if new route is supposed to be a modal
+        this.previousLocation = this.props.location                       // ...save the stuff on the current page for the background "behind" the modal
+        document.getElementsByTagName("body")[0].style.overflow = "hidden"   // style body so it doesn't scroll in the bg
+      } else {
+        document.getElementsByTagName("body")[0].style.overflow = "auto"
+      }
+    }
+
   }
 
   render() {
 
-    let renderInModal = (this.props.location && this.props.location.state && this.props.location.state.modal)
+    // are we supposed to be showing a modal
+    let locationHasModalState = (this.props.location && this.props.location.state && this.props.location.state.modal)
+
+    // do we have children to put "behind" the modal
+    let isModal = (locationHasModalState && this.previousLocation )
+
     let content
-    if (renderInModal) {
+    if (isModal) {
       content =
         <div>
           <Modal goBack={this.props.history.goBack} />
