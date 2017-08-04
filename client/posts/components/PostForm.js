@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import Validation from 'react-validation'
 
 class PostForm extends React.Component {
 
@@ -27,19 +28,30 @@ class PostForm extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this._submit}>
+      <Validation.components.Form onSubmit={this._submit}>
         <div>
           Title
-          <input name="title" value={this.state.post.title} onChange={this._onChange} />
+          <Validation.components.Input name="title" value={this.state.post.title} validations={['required']} onChange={this._onChange} />
         </div>
         <div>
           Content
-          <input name="content" value={this.state.post.content} onChange={this._onChange} />
+          <Validation.components.Input name="content" value={this.state.post.content} validations={['required']} onChange={this._onChange} />
         </div>
-        <button type="submit">Submit</button>
-      </form>
+        <Validation.components.Button type="submit">Submit</Validation.components.Button>
+      </Validation.components.Form>
     )
   }
 }
+
+Object.assign(Validation.rules, {
+  required: {
+    rule: (value) => {
+      return value.toString().trim()
+    },
+    hint: (value) => {
+      return <span style={{color: 'hsl(0, 80%, 60%)', display: 'block'}}>Required</span>
+    }
+  },
+})
 
 export default PostForm
