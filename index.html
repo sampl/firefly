@@ -4,6 +4,7 @@
 
 <head>
   <title>Firefly | A Simple Javascript App Boilerplate</title>
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:300,400,500,700" rel="stylesheet">
   <style>
 
     * {
@@ -13,7 +14,7 @@
       font-family: system-ui, sans-serif;
       line-height: 1.4;
       margin: 0 0 10rem;
-      color: #333;
+      color: #555666;
     }
 
     /* HERO */
@@ -25,6 +26,7 @@
       justify-content: flex-start;
       height: 90vh;
       background: #333;
+      background: linear-gradient(45deg, #FD7D68, #FDB952);
       border: 15px solid white;
       color: white;
       padding: 2rem;
@@ -38,21 +40,19 @@
       margin: 0 0 2rem;
     }
     .top-bar h1 {
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       margin: 0;
+      color: white;
+      font-weight: 500;
     }
-    .top-bar .nav {
+    header nav {
       margin: 0;
       padding: 0;
     }
-    .top-bar .nav a {
+    header nav a {
       display: inline-block;
       color: white;
-      text-decoration: none;
       margin-left: 1rem;
-    }
-    .top-bar .nav a:hover {
-      text-decoration: underline;
     }
 
     /* hero content */
@@ -61,25 +61,26 @@
       margin: 6rem 0 3rem;
       text-align: center;
     }
-    .hero-content a {
-      color: white;
-    }
     .headline {
-      font-family: monospace;
-      font-size: 2rem;
+      font-family: 'Roboto Mono', monospace;
+      font-size: 1.4rem;
     }
     .sub-headline {
-      font-size: 1.2rem;
+      font-size: 1rem;
       margin: 0 0 2rem;
     }
     .clone {
-      font-family: monospace;
+      font-family: 'Roboto Mono', monospace;
       margin: 0rem auto;
       background: white;
       display: inline-block;
-      color: black;
+      color: #9155ff;
       padding: .5rem .75rem;
       border-radius: 2px;
+    }
+    .hero-content a {
+      color: white;
+      text-decoration: underline;
     }
 
     /* MAIN */
@@ -102,7 +103,7 @@
 
     /* main sticky-nav */
 
-    .sticky-nav {
+    aside nav {
       margin: 0 0 2rem;
       position: absolute;
       position: -webkit-sticky;
@@ -111,37 +112,47 @@
       left: 2rem;
       width: 180px;
     }
-    .sticky-nav a {
+    aside nav a {
       display: block;
-      text-decoration: none;
       margin-bottom: .25rem;
     }
-    .sticky-nav a:hover {
-      text-decoration: underline;
-    }
-    .sticky-nav a.primary {
-      color: black;
+    aside nav a.primary {
+      color: #555666;
       margin-top: .75rem;
+      font-weight: 500;
     }
-    .sticky-nav a.secondary {
-      color: #666;
+    aside nav a.secondary {
+      color: #777888;
       margin-left: 1rem;
+      font-size: .9rem;
     }
 
     /* main content */
 
     h1 {
-      font-family: monospace;
-      font-size: 1.8rem;
+      color: #FF5555;
+      font-family: 'Roboto Mono', monospace;
+      font-size: 1.4rem;
       font-weight: normal;
-      margin: 2rem 0 1rem;
+      margin: 5rem 0 1rem;
     }
     h2 {
       font-size: 1.1rem;
       margin: 1.5rem 0 .5rem;
     }
     code {
+      font-family: 'Roboto Mono', monospace;
       background: #eee;
+      /*font-size: 1.1em;*/
+      padding: 2px 4px;
+      border-radius: 2px;
+    }
+    a {
+      color: #9155ff;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
     }
 
   </style>
@@ -152,11 +163,11 @@
 <header>
   <div class="top-bar">
     <h1>Firefly</h1>
-    <div class="nav">
+    <nav>
       <a href="#philosophy">Philosophy</a>
       <a href="#how-it-works">How it works</a>
-      <a href="#using-firefly">Using Firefly</a>
-    </div>
+      <a href="#using">Using Firefly</a>
+    </nav>
   </div>
   <div class="hero-content">
     <p class="headline">Building real web apps is easier than you think</p>
@@ -172,7 +183,7 @@
 <main>
 
 <aside>
-  <div class="sticky-nav">
+  <nav>
     <a class="primary" href="#philosophy">Philosophy</a>
     <a class="secondary" href="#philosophy-just-js">It's Just JS</a>
     <a class="secondary" href="#philosophy-less-code">Less Code</a>
@@ -189,7 +200,7 @@
     <a class="secondary" href="#using-working">As you work</a>
     <a class="secondary" href="#using-deploying">Deploying</a>
     <a class="secondary" href="#using-next">Next steps</a>
-  </div>
+  </nav>
 </aside>
 
 <section>
