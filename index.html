@@ -1,2 +1,212 @@
-<h1>Firefly</h1>
-<p>A minimal, modern single-page web app boilerplate with firebase, react, and webpack</p>
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+  <title>Firefly | A Simple Javascript App Boilerplate</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: system-ui, sans-serif;
+      line-height: 1.4;
+      margin: 0 0 10rem;
+    }
+
+    /* HERO */
+
+    .hero {
+      background: #333;
+      /*border: 15px solid white;*/
+      color: white;
+      padding: 2rem;
+    }
+    nav {
+      margin: 0 0 2rem;
+    }
+    nav ul {
+      float: right;
+      margin: 0;
+      padding: 0;
+    }
+    nav ul li {
+      display: inline-block;
+    }
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      margin-left: 1rem;
+    }
+    .hero-content {
+      margin: 6rem 0 3rem;
+      text-align: center;
+    }
+    .hero-content a {
+      color: white;
+    }
+    .headline {
+      font-size: 1.6rem;
+    }
+    .sub-headline {
+      font-size: 1.2rem;
+      margin: 0 0 2rem;
+    }
+    .clone {
+      font-family: monospace;
+      margin: 0rem auto;
+      background: white;
+      display: inline-block;
+      color: black;
+      padding: .5rem .75rem;
+      border-radius: 2px;
+    }
+
+    /* MAIN */
+
+    main {
+      margin: 0 auto;
+      padding: 2rem;
+      max-width: 800px;
+    }
+    h1 {
+      font-family: monospace;
+      font-size: 1.8rem;
+      font-weight: normal;
+      margin: 2rem 0 1rem;
+    }
+    h2 {
+      font-family: monospace;
+      font-size: 1.2rem;
+      margin: 1.5rem 0 .5rem;
+    }
+    code {
+      background: #eee;
+    }
+
+  </style>
+</head>
+
+<body>
+
+<div class="hero">
+  <nav>
+    <ul>
+      <li><a href="#philosophy">Philosophy</a></li>
+      <li><a href="#how-it-works">How it works</a></li>
+      <li><a href="#using-firefly">Using Firefly</a></li>
+    </ul>
+    <div>Firefly</div>
+  </nav>
+  <div class="hero-content">
+    <p class="headline">You can build real apps</p>
+    <p class="sub-headline">Firefly is a minimal, modern single-page web app boilerplate with firebase, react, and webpack</p>
+    <div class="clone">git clone https://github.com/sampl/firefly</div>
+    <p>
+      or
+      <a href="https://github.com/sampl/firefly">view on Github</a></p>
+    </p>
+  </div>
+</div>
+
+<main>
+
+  <h1>Philosophy</h1>
+
+  <p>This is intended to be an approachable starting place for writing "real" web apps. It's made especially for designers (and other people who are only used to writing a bit of client-side javascript but who don't have experience with servers and databases).</p>
+
+  <h1>How it works</h1>
+
+  <h2>Models</h2>
+
+  <p>Firefly uses a service called the Firebase Real-time Database for persisting data.</p>
+
+  <p><a href="https://firebase.google.com/docs/database/web/start">Firebase Real-time Database guide</a></p>
+
+  <h2>Views</h2>
+
+  <ul>
+    <li>Go through the guides for <a href="https://facebook.github.io/react/docs/hello-world.html">React</a> and <a href="https://reacttraining.com/react-router/web/guides">React Router</a></li>
+    <li>Learn about the <a href="https://github.com/primus/eventemitter3">eventemitter3</a> library, which we use to listen for data changes and re-render react (instead of something like <a href="https://egghead.io/courses/getting-started-with-redux">Redux</a>)</li>
+  </ul>
+
+  <h2>Backend</h2>
+
+  <p>Firefly doesn't use a traditional backend server like you would with Express or Ruby on Rails. Instead, many of the normal things backend servers do are taken care of for you by the Real-time Database features, or are just done in the browser.</p>
+
+  <p>However, there are a few things that just can't be done in the browser.</p>
+
+  <ul>
+    <li>To enable search, sign up for <a href="https://www.algolia.com">Algolia</a>, <a href="https://firebase.google.com/docs/functions/config-env">configure your functions credentials</a>, and <a href="https://console.firebase.google.com">upgrade your Firebase plan</a> to a tier that has <a href="https://firebase.google.com/docs/functions">Firebase functions</a>. See the server code at <code>/functions/index.js</code> for more details.</li>
+    <li>We use <a href="https://firebase.google.com/docs/auth/web/start">Firebase Authentication</a> for logging users in, etc.</li>
+    <li><a href="https://firebase.google.com/docs/admin/setup#add_firebase_to_your_app">Create a Service Account</a> to run maintenance scripts with <code>node scripts/test.js</code></li>
+  </ul>
+
+  <h2>Bringing it all together</h2>
+
+  <ul>
+    <li>Learn about <a href="https://nodesource.com/blog/an-absolute-beginners-guide-to-using-npm/">npm packages and scripts</a></li>
+    <li>Webpack</li>
+    <li>Firebase hosting</li>
+  </ul>
+
+  <h1>Using Firefly</h1>
+
+  <h2>Prerequisites</h2>
+
+  <p>If you haven't already, <a href="https://nodejs.org/en/download">download and install node</a></p>
+
+  <p>Install the node <code>firebase-tools</code> and package globally with <code>npm install -g firebase-tools</code>. You only need to do this once for each computer you use.</p>
+
+  <h2>Starting a new project</h2>
+
+  <p>Each project you make using Firefly actually uses _two_ Firebase projects--one for development and staging, and one for the live production site. You'll follow these steps twice:</p>
+
+  <ol>
+    <li>Go to the <a href="console.firebase.google.com">Firebase console</a> and sign in with your Google account</li>
+    <li>Create a new project and name it something like <code>MyProjectName [Live]</code></li>
+    <li>Now click "Add Firebase to your web app" (look for the pink circle)</li>
+    <li>You'll see a popup window with a block of code--save this text, you'll need it in a few minutes</li>
+    <li>Return to step 2 and repeat, but call this project <code>MyProjectName [Stage]</code> or something similar</li>
+  </ol>
+
+  <p>Now we can start writing code:</p>
+
+  <p>In your terminal, <code>cd</code> to the folder where you want your project to live, clone this repo with <code>git clone https://github.com/sampl/firefly</code>, then <code>cd firefly</code> and <code>npm install</code>. While the packages are installing, open the <code>firefly</code> folder in your favorite editor.</p>
+
+  <p>Now, in the <code>/config</code> folder, rename each file to remove ".example" (for ex: <code>firebase-config-dev.example.json</code> should now be <code>firebase-config-dev.json</code>). We're going to be putting security secrets in these files, and renaming them this way will keep them from getting committed into git (because the filenames without ".example" are listed in the <code>.gitignore</code> file).</p>
+
+  <p>Also rename <code>.firebaserc.example</code> to <code>.firebaserc</code></p>
+
+  <p>When you're done, open up each of the renamed files and replace the empty spaces with the values you saved from the Firebase website.</p>
+
+  <h2>As you work</h2>
+
+  <p>Start your app with <code>npm start</code> and open <a href="http://localhost:8080">http://localhost:8080</a>. You should see a basic web app! 😎</p>
+
+  <p>Now go back to your text editor and try editing some files. Changes to your code should automatically appear in the browser when you save.</p>
+
+  <p>After each change, commit your work using <a href="">git</a>.</p>
+
+  <h2>Deploying</h2>
+
+  <p>When you're ready to deploy your app to stage (for testing or getting feedback from friends), run <code>npm run stage</code></p>
+
+  <p><strong>Before going live, <a href="https://firebase.google.com/docs/database/security">secure your app</a> with <code>database.rules.json</code></strong></p>
+
+  <p>When it's time to go live, run <code>npm run live</code>!</p>
+
+  <p style="font-size: 2rem;">🎉 🎉 🎉</p>
+
+  <h2>Next steps</h2>
+
+  <ul>
+    <li><a href="https://firebase.google.com/docs/hosting/custom-domain">Use a custom domain</a> like <code>www.myapp.com</code>.</li>
+    <li>Did I miss something? Could something be more clear? <a href="https://github.com/sampl/firefly/issues">Submit issues and PRs</a></li>
+  </ul>
+
+</main>
+
+</body>
+
+</html>
