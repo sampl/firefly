@@ -5,6 +5,7 @@
 <head>
   <title>Firefly | A Simple Javascript App Boilerplate</title>
   <style>
+
     * {
       box-sizing: border-box;
     }
@@ -12,32 +13,50 @@
       font-family: system-ui, sans-serif;
       line-height: 1.4;
       margin: 0 0 10rem;
+      color: #333;
     }
 
     /* HERO */
 
-    .hero {
+    header {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      justify-content: flex-start;
+      height: 90vh;
       background: #333;
-      /*border: 15px solid white;*/
+      border: 15px solid white;
       color: white;
       padding: 2rem;
     }
-    .hero nav {
+
+    /* hero nav */
+
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
       margin: 0 0 2rem;
     }
-    .hero nav ul {
-      float: right;
+    .top-bar h1 {
+      font-size: 1.2rem;
+      margin: 0;
+    }
+    .top-bar .nav {
       margin: 0;
       padding: 0;
     }
-    .hero nav ul li {
+    .top-bar .nav a {
       display: inline-block;
-    }
-    .hero nav ul li a {
       color: white;
       text-decoration: none;
       margin-left: 1rem;
     }
+    .top-bar .nav a:hover {
+      text-decoration: underline;
+    }
+
+    /* hero content */
+
     .hero-content {
       margin: 6rem 0 3rem;
       text-align: center;
@@ -46,7 +65,8 @@
       color: white;
     }
     .headline {
-      font-size: 1.6rem;
+      font-family: monospace;
+      font-size: 2rem;
     }
     .sub-headline {
       font-size: 1.2rem;
@@ -65,34 +85,51 @@
     /* MAIN */
 
     main {
+      display: flex;
       margin: 0 auto;
-      padding: 2rem 2rem 2rem calc(180px + 4rem);
+      padding: 2rem;
       max-width: 900px;
       position: relative;
     }
-    main nav {
+
+    aside {
+      flex: 0 0 20%;
+    }
+    section {
+      flex: 0 1 80%;
+      padding-left: 2rem;
+    }
+
+    /* main sticky-nav */
+
+    .sticky-nav {
       margin: 0 0 2rem;
       position: absolute;
+      position: -webkit-sticky;
+      position: sticky;
       top: 4rem;
       left: 2rem;
       width: 180px;
     }
-    main nav a {
+    .sticky-nav a {
       display: block;
       text-decoration: none;
       margin-bottom: .25rem;
     }
-    main nav a:hover {
+    .sticky-nav a:hover {
       text-decoration: underline;
     }
-    main nav a.primary {
+    .sticky-nav a.primary {
       color: black;
       margin-top: .75rem;
     }
-    main nav a.secondary {
+    .sticky-nav a.secondary {
       color: #666;
       margin-left: 1rem;
     }
+
+    /* main content */
+
     h1 {
       font-family: monospace;
       font-size: 1.8rem;
@@ -100,8 +137,7 @@
       margin: 2rem 0 1rem;
     }
     h2 {
-      font-family: monospace;
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       margin: 1.5rem 0 .5rem;
     }
     code {
@@ -113,30 +149,33 @@
 
 <body>
 
-<div class="hero">
-  <nav>
-    <ul>
-      <li><a href="#philosophy">Philosophy</a></li>
-      <li><a href="#how-it-works">How it works</a></li>
-      <li><a href="#using-firefly">Using Firefly</a></li>
-    </ul>
-    <div>Firefly</div>
-  </nav>
+<header>
+  <div class="top-bar">
+    <h1>Firefly</h1>
+    <div class="nav">
+      <a href="#philosophy">Philosophy</a>
+      <a href="#how-it-works">How it works</a>
+      <a href="#using-firefly">Using Firefly</a>
+    </div>
+  </div>
   <div class="hero-content">
-    <p class="headline">You can build real apps</p>
-    <p class="sub-headline">Firefly is a minimal, modern single-page web app boilerplate with firebase, react, and webpack</p>
+    <p class="headline">Building real web apps is easier than you think</p>
+    <!-- <p class="sub-headline">Firefly is a minimal, modern single-page web app boilerplate with firebase, react, and webpack</p> -->
+    <p class="sub-headline">If you've ever tried to learn Rails and given up, Firefly was made for you.</p>
     <div class="clone">git clone https://github.com/sampl/firefly</div>
     <p>
-      or
-      <a href="https://github.com/sampl/firefly">view on Github</a></p>
+      or <a href="https://github.com/sampl/firefly">view on Github</a></p>
     </p>
   </div>
-</div>
+</header>
 
 <main>
 
-  <nav>
+<aside>
+  <div class="sticky-nav">
     <a class="primary" href="#philosophy">Philosophy</a>
+    <a class="secondary" href="#philosophy-just-js">It's Just JS</a>
+    <a class="secondary" href="#philosophy-less-code">Less Code</a>
 
     <a class="primary" href="#how-it-works">How it works</a>
     <a class="secondary" href="#how-it-works-models">Models</a>
@@ -150,13 +189,30 @@
     <a class="secondary" href="#using-working">As you work</a>
     <a class="secondary" href="#using-deploying">Deploying</a>
     <a class="secondary" href="#using-next">Next steps</a>
-  </nav>
+  </div>
+</aside>
+
+<section>
+
+  <p>Firefly is intended to be an approachable starting place for writing "real" web apps. It's made especially for designers (and other people who are only used to writing a bit of client-side javascript but who don't have experience with servers and databases).</p>
 
   <h1 id="philosophy">Philosophy</h1>
 
-  <p>This is intended to be an approachable starting place for writing "real" web apps. It's made especially for designers (and other people who are only used to writing a bit of client-side javascript but who don't have experience with servers and databases).</p>
+  <p>If you're used to working with jQuery, Rails, or Express, Firefly is going to seem a bit... different. Trust me--it's OK. But learning a bit about <em>why</em> Firefly was made might help you understand some of the things you're not used to yet.</p>
+
+  <h2 id="philosophy-just-js">It's Just JS</h2>
+
+  <p>You shouldn't have to learn two languages to make an app. That's why we've avoided template languages, backend languages, and SQL in favor of just Javascript (and things that work like Javascript).</p>
+  <p>One think you might not be used to is the <em>kind</em> of Javascript that Firefly uses: <a href="">ES6</a>. ES6 is just the latest version of the language, and it comes with some new features that are going to be really helpful for you. Don't worry--we don't use all the crazy new stuff, and there are guides to help you as you go.</p>
+
+  <h2 id="philosophy-less-code">Less Code</h2>
+
+  <p>You might have seen boilerplate projects in the past with a lot of code. Those projects can be useful if you already know how to write full apps and need to build something quickly for a hackathon, but they're daunting for new app developers and they contain a lot of things you'll never need.</p>
+  <p>Firefly includes only the things we know you'll need for your app--and we <a href="#using-next">show you how to add whatever else you might need later</a>.</p>
 
   <h1 id="how-it-works">How it works</h1>
+
+  <p>A project based on Firefly has a couple types of files: models to handle your data, and views to show your data to the user. Let's look at each one in a little more detail.</p>
 
   <h2 id="how-it-works-models">Models</h2>
 
@@ -190,6 +246,8 @@
     <li>Webpack</li>
     <li>Firebase hosting</li>
   </ul>
+
+
 
   <h1 id="using">Using Firefly</h1>
 
@@ -245,6 +303,8 @@
     <li><a href="https://firebase.google.com/docs/hosting/custom-domain">Use a custom domain</a> like <code>www.myapp.com</code>.</li>
     <li>Did I miss something? Could something be more clear? <a href="https://github.com/sampl/firefly/issues">Submit issues and PRs</a></li>
   </ul>
+
+</section>
 
 </main>
 
