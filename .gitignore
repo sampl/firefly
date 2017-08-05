@@ -1,10 +1,7 @@
-**/.DS_Store
-build
-node_modules
-.firebaserc
-firebase-debug.log
-config/algolia-config.json
-config/firebase-config-dev.json
-config/firebase-config-prod.json
-config/service-account-key-dev.json
-config/service-account-key-prod.json
+# Ignore everything...
+*
+
+# ...except these files
+!.gitignore
+!CNAME
+!index.html
