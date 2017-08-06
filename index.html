@@ -220,9 +220,10 @@
     <a class="secondary" href="#how-it-backend">Backend</a>
     <a class="secondary" href="#how-it-works-other">Other stuff</a>
 
-    <a class="primary" href="#using">Using Firefly</a>
-    <a class="secondary" href="#using-prerequisites">Prerequisites</a>
-    <a class="secondary" href="#using-starting">Getting Started</a>
+    <a class="primary" href="#using">Creating your project</a>
+    <a class="secondary" href="#using-prerequisites">Before you start</a>
+    <a class="secondary" href="#using-clone">Clone the boilerplate</a>
+    <a class="secondary" href="#using-firebase">Connect to Firebase</a>
     <a class="secondary" href="#using-working">As you work</a>
     <a class="secondary" href="#using-deploying">Deploying</a>
 
@@ -308,27 +309,36 @@
 
   <p>Install the node <code>firebase-tools</code> and package globally with <code>npm install -g firebase-tools</code>. You only need to do this once for each computer you use.</p>
 
-  <h2 id="using-starting">Getting Started</h2>
+  <h2 id="using-clone">Clone the boilerplate</h2>
 
-  <p>Each project you make using Firefly actually uses _two_ Firebase projects--one for development and staging, and one for the live production site. You'll follow these steps twice:</p>
+  <p>Firefly is just a sample app--not a framework. To start a new Firefly project, we just make a copy of Firefly and start making changes.</p>
+
+  <ul>
+    <li>In your terminal, <code>cd</code> to the folder where you want your project to live</li>
+    <li>Clone this repo with <code>git clone https://github.com/sampl/firefly</code></li>
+    <li>You must <code>cd firefly</code> to go into the folder you just created</li>
+    <li>Run <code>npm install</code> to install all the packages Firefly needs</li>
+  </ul>
+
+  <p>If we try to start our project now, it will error because it can't connect to the database.</p>
+
+
+  <h2 id="using-firebase">Connecting to Firebase</h2>
 
   <ol>
     <li>Go to the <a href="console.firebase.google.com">Firebase console</a> and sign in with your Google account</li>
-    <li>Create a new project and name it something like <code>MyProjectName [Live]</code></li>
+    <li>Create a new project and name it something like <code>MyProjectName - Stage</code></li>
     <li>Now click "Add Firebase to your web app" (look for the pink circle)</li>
-    <li>You'll see a popup window with a block of code--save this text, you'll need it in a few minutes</li>
-    <li>Return to step 2 and repeat, but call this project <code>MyProjectName [Stage]</code> or something similar</li>
+    <li>You'll see a popup window with a block of code--leave this window open, you'll need it in a minute</li>
   </ol>
 
-  <p>Now we can start writing code:</p>
+  <p>Now we need to rename a few files. We're going to be putting security secrets in these files, and renaming them this way will keep them from getting committed into git (because the filenames without ".example" are listed in the <code>.gitignore</code> file).</p>
 
-  <p>In your terminal, <code>cd</code> to the folder where you want your project to live, clone this repo with <code>git clone https://github.com/sampl/firefly</code>, then <code>cd firefly</code> and <code>npm install</code>. While the packages are installing, open the <code>firefly</code> folder in your favorite editor.</p>
+  <ul>
+    <li>First, rename <code>.firebaserc.example</code> to <code>.firebaserc</code> and replace the blank space next to "dev" with the <code>projectId</code> from the Firebase website.</li>
+    <li>Rename <code>config/firebase-config-dev.example.json</code> to <code>firebase-config-dev.json</code> and replace the blank spaces in that file with the codes from the Firebase website too.</li>
+  </ul>
 
-  <p>Now, in the <code>/config</code> folder, rename each file to remove ".example" (for ex: <code>firebase-config-dev.example.json</code> should now be <code>firebase-config-dev.json</code>). We're going to be putting security secrets in these files, and renaming them this way will keep them from getting committed into git (because the filenames without ".example" are listed in the <code>.gitignore</code> file).</p>
-
-  <p>Also rename <code>.firebaserc.example</code> to <code>.firebaserc</code></p>
-
-  <p>When you're done, open up each of the renamed files and replace the empty spaces with the values you saved from the Firebase website.</p>
 
   <h2 id="using-working">As you work</h2>
 
@@ -338,19 +348,27 @@
 
   <p>After each change, commit your work using <a href="">git</a>.</p>
 
-  <h2 id="using-deploying">Deploying</h2>
-
   <p>When you're ready to deploy your app to stage (for testing or getting feedback from friends), run <code>npm run stage</code></p>
 
-  <p><strong>Before going live, <a href="https://firebase.google.com/docs/database/security">secure your app</a> with <code>database.rules.json</code></strong></p>
+
+  <h2 id="using-deploying">Deploying</h2>
+
+  <p>Each project you make using Firefly actually uses <em>two</em> Firebase projects--one for development and staging, and one for the live production site. We already made the development project, no</p>
+
+  <li>Go back to <a href="#using-firebase">Connecting to Firebase</a> and repeat, but call this project something like <code>MyProjectName - LIVE</code>, fill in the "prod" value in <code>.firebaserc</code>, and rename the config file with "prod" in the name.</li>
+
+  <p><strong>Firefly is insecure by default. Before going live, <a href="https://firebase.google.com/docs/database/security">secure your app</a> by writing rules in <code>database.rules.json</code></strong></p>
 
   <p>When it's time to go live, run <code>npm run live</code>!</p>
 
   <p style="font-size: 2rem;">🎉 🎉 🎉</p>
 
+
+
   <h1 id="next">Next steps</h1>
 
   <p>One of Firefly's principles is "as little code as possible", which means you'll probably want to add some features to fit your use case.</p>
+
 
   <h2 id="next-development">Development</h2>
 
