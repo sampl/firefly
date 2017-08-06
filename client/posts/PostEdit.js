@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import Post from '../../models/Post'
 import PostForm from './components/PostForm'
 import Error from '../_util/Error'
+import Loading from '../_util/Loading'
 
 class PostEdit extends React.Component {
 
@@ -12,18 +13,21 @@ class PostEdit extends React.Component {
     this._editPost = this._editPost.bind(this)
     this._deletePost = this._deletePost.bind(this)
     this.state = {
-      post: {}
+      loading: true,
+      post: {},
     }
   }
 
   componentWillMount() {
     Post.getBySlug(this.props.match.params.post_slug).then( (post) => {
       this.setState({
+        loading: false,
         post,
       })
     }).catch( (err) => {
       this.setState({
-        error: err.message
+        loading: false,
+        error: err.message,
       })
     })
   }
@@ -48,10 +52,12 @@ class PostEdit extends React.Component {
   }
 
   render() {
+    if (this.state.loading) {
+      return(<Loading />)
+    }
     if (this.state.error) {
       return (<Error message={this.state.error}/>)
     }
-
     let form
     if (this.state.post.title) {
       form = <PostForm post={this.state.post} onSubmit={this._editPost} />

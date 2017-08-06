@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import Post from '../../models/Post'
 import PostLiker from './components/PostLiker'
 import Error from '../_util/Error'
+import Loading from '../_util/Loading'
 
 class PostShow extends React.Component {
 
@@ -11,6 +12,7 @@ class PostShow extends React.Component {
     super(props)
     this._get = this._get.bind(this)
     this.state = {
+      loading: true,
       post: {},
       error: null,
     }
@@ -35,19 +37,24 @@ class PostShow extends React.Component {
     Post.getBySlug(this.props.match.params.post_slug).then( (post) => {
       if (this._isMounted) {
         this.setState({
+          loading: false,
           post,
         })
       }
     }).catch( (err) => {
       if (this._isMounted) {
         this.setState({
-          error: err.message
+          loading: false,
+          error: err.message,
         })
       }
     })
   }
 
   render() {
+    if (this.state.loading) {
+      return(<Loading />)
+    }
     if (this.state.error) {
       return (<Error message={this.state.error}/>)
     }

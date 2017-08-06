@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 
 import Post from '../../models/Post'
 import Error from '../_util/Error'
+import Loading from '../_util/Loading'
 
 import AdminOnly from '../_util/AdminOnly'
 import LoggedInOnly from '../_util/LoggedInOnly'
@@ -15,7 +16,8 @@ class PostList extends React.Component {
     super(props)
     this._get = this._get.bind(this)
     this.state = {
-      posts: []
+      loading: true,
+      posts: [],
     }
   }
 
@@ -34,20 +36,24 @@ class PostList extends React.Component {
     Post.getAll().then( (posts) => {
       if (this._isMounted) {
         this.setState({
+          loading: false,
           posts,
         })
       }
     }).catch( (err) => {
       if (this._isMounted) {
         this.setState({
-          error: err.message
+          loading: false,
+          error: err.message,
         })
       }
     })
   }
 
   render() {
-
+    if (this.state.loading) {
+      return(<Loading />)
+    }
     if (this.state.error) {
       return (<Error message={this.state.error}/>)
     }
@@ -66,14 +72,10 @@ class PostList extends React.Component {
 
     return (
       <div>
-
         <Link to={'/posts/new'}>new post</Link>
-
         <br/>
         <br/>
-
         {posts}
-
       </div>
     )
   }

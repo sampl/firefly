@@ -3,6 +3,7 @@ import { Link } from 'react-router'
 
 import User from '../../models/User'
 import AdminOnly from '../_util/AdminOnly'
+import Loading from '../_util/Loading'
 
 class Profile extends React.Component {
 
@@ -11,7 +12,8 @@ class Profile extends React.Component {
     this._get = this._get.bind(this)
     this._logOut = this._logOut.bind(this)
     this.state = {
-      user: {}
+      loading: true,
+      user: null,
     }
   }
 
@@ -26,7 +28,8 @@ class Profile extends React.Component {
 
   _get() {
     this.setState({
-      user: User.getLoggedInUser()
+      loading: false,
+      user: User.getLoggedInUser(),
     })
   }
 
@@ -36,6 +39,9 @@ class Profile extends React.Component {
   }
 
   render() {
+    if (this.state.loading) {
+      return(<Loading />)
+    }
     if (this.state.error) {
       return(<Error message="couldn't find that profile" />)
     }

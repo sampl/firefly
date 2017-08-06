@@ -29,3 +29,15 @@ a:hover {
   color: hsl(220, 80%, 60%);
   text-decoration: underline;
 }
+
+
+/* Animations */
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg)
+  }
+  to {
+    transform: rotate(359deg)
+  }
+}
