@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "npm run dev",
-    "dev": "firebase use dev && webpack-dev-server --config webpack.dev.js",
+    "dev": "firebase use dev && firebase deploy --only database && webpack-dev-server --config webpack.dev.js",
     "stage": "firebase use dev && webpack --config webpack.dev.js && firebase deploy",
     "live": "firebase use prod && webpack  --config webpack.prod.js && firebase deploy"
   },
