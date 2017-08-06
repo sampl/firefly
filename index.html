@@ -139,13 +139,17 @@
       margin-bottom: .25rem;
     }
     aside nav a.primary {
+      color: #FF5555;
+      color: #8e5eed;
       color: #555666;
       margin-top: 1.75rem;
       font-weight: 500;
       font-size: 1.1rem;
+      font-size: 1rem;
     }
     aside nav a.secondary {
       color: #777888;
+      font-size: 0.9rem;
     }
 
     /* main content */
@@ -162,6 +166,9 @@
       font-weight: 600;
       margin: 1.5rem 0 .5rem;
     }
+    li {
+      margin: 0 0 .5rem;
+    }
     code {
       font-family: 'Roboto Mono', monospace;
       background: #f5f5f5;
@@ -176,6 +183,16 @@
     a:hover {
       text-decoration: underline;
     }
+    .callout {
+      padding: 0 1rem 1rem 1rem;
+      margin: 0 0 1rem;
+      background: hsl(45, 100%, 95%);
+      border: 2px solid hsl(45, 100%, 80%);
+      border-radius: 4px;
+    }
+    .callout code {
+      background: none;
+    }
 
   </style>
 </head>
@@ -188,12 +205,12 @@
     <nav>
       <a href="#philosophy">Philosophy</a>
       <a href="#how-it-works">How it works</a>
-      <a href="#using">Using Firefly</a>
+      <a href="#guide">Guide</a>
       <a href="#next">Next steps</a>
     </nav>
   </div>
   <div class="hero-content">
-    <p class="headline">Building real web apps is easier than you think</p>
+    <p class="headline">Making real websites is easier than you think</p>
     <!-- <p class="sub-headline">Firefly is a minimal, modern single-page web app boilerplate with firebase, react, and webpack</p> -->
     <p class="sub-headline">If you've ever tried to learn Rails and given up, Firefly was made for you.</p>
     <div class="clone">git clone https://github.com/sampl/firefly</div>
@@ -211,21 +228,22 @@
 <aside>
   <nav>
     <a class="primary" href="#philosophy">Philosophy</a>
-    <a class="secondary" href="#philosophy-just-js">It's Just JS</a>
-    <a class="secondary" href="#philosophy-less-code">Less Code</a>
+    <a class="secondary" href="#philosophy-less">Less Is More</a>
+    <a class="secondary" href="#philosophy-js">Embrace Javascript</a>
+    <a class="secondary" href="#philosophy-code-over-convention">Code over Convention</h2>
 
     <a class="primary" href="#how-it-works">How it works</a>
     <a class="secondary" href="#how-it-works-models">Models</a>
     <a class="secondary" href="#how-it-works-views">Views</a>
-    <a class="secondary" href="#how-it-backend">Backend</a>
     <a class="secondary" href="#how-it-works-other">Other stuff</a>
 
-    <a class="primary" href="#using">Creating your project</a>
-    <a class="secondary" href="#using-prerequisites">Before you start</a>
-    <a class="secondary" href="#using-clone">Clone the boilerplate</a>
-    <a class="secondary" href="#using-firebase">Connect to Firebase</a>
-    <a class="secondary" href="#using-working">As you work</a>
-    <a class="secondary" href="#using-deploying">Deploying</a>
+    <a class="primary" href="#guide">Guide</a>
+    <a class="secondary" href="#guide-quick-start">Quick start</a>
+    <a class="secondary" href="#guide-prerequisites">Before you begin</a>
+    <a class="secondary" href="#guide-clone">Clone the boilerplate</a>
+    <a class="secondary" href="#guide-firebase">Connect to Firebase</a>
+    <a class="secondary" href="#guide-working">As you work</a>
+    <a class="secondary" href="#guide-deploying">Deploying</a>
 
     <a class="primary" href="#next">Next steps</a>
     <a class="secondary" href="#next-development">Development</a>
@@ -240,21 +258,18 @@
 
   <h1 id="philosophy">Philosophy</h1>
 
-  <p>If you're used to working with jQuery, Rails, or Express, Firefly is going to seem a bit... different. Trust me--it's OK. But learning a bit about <em>why</em> Firefly was made might help you understand some of the things you're not used to yet.</p>
+  <p>If you're used to working with jQuery, Rails, or Express, Firefly is going to feel very different. Learning <em>why</em> Firefly was created might help you understand the new parts.</p>
 
-  <h2 id="philosophy-just-js">It's Just JS</h2>
-
-  <p>You shouldn't have to learn two languages to make an app. That's why we've avoided template languages, backend languages, and SQL in favor of just Javascript (and things that work like Javascript).</p>
-  <p>One think you might not be used to is the <em>kind</em> of Javascript that Firefly uses: <a href="">ES6</a>. ES6 is just the latest version of the language, and it comes with some new features that are going to be really helpful for you. Don't worry--we don't use all the crazy new stuff, and there are guides to help you as you go.</p>
-
-  <h2 id="philosophy-less-code">Less Code</h2>
+  <h2 id="philosophy-less">Less Is More</h2>
 
   <p>You might have seen boilerplate projects in the past with a lot of code. Those projects can be useful if you already know how to write full apps and need to build something quickly for a hackathon, but they're daunting for new app developers and they contain a lot of things you'll never need.</p>
-  <p>Firefly includes only the things we know you'll need for your app--and we <a href="#using-next">show you how to add whatever else you might need later</a>.</p>
+  <p>Firefly includes only the things we know you'll need for your app--and we <a href="#-next">show you how to add whatever else you might need later</a>.</p>
 
-  <h2 id="philosophy-serverless">Serverless</h2>
+  <h2 id="philosophy-js">Embrace Javascript</h2>
 
-  <p>Services over servers</p>
+  <p>You shouldn't have to learn two languages to make an app. That's why we've avoided template languages, backend languages, and SQL in favor of just Javascript (and things that work like Javascript).</p>
+
+  <p>One think you might not be used to is the <em>kind</em> of Javascript that Firefly uses: <a href="">ES6</a>. ES6 is just the latest version of the language, and it comes with some new features that are going to be really helpful for you. Don't worry--we don't use all the crazy new stuff, and there are guides to help you as you go.</p>
 
   <h2 id="philosophy-code-over-convention">Code over Convention</h2>
 
@@ -264,7 +279,11 @@
 
   <h1 id="how-it-works">How it works</h1>
 
-  <p>A project based on Firefly has a couple types of files: models to handle your data, and views to show your data to the user. Let's look at each one in a little more detail.</p>
+  <p>Serverless - Firefly doesn't use a traditional backend server like you would with Express or Ruby on Rails. Instead, many of the normal things backend servers do are taken care of for you by the Real-time Database features, or are just done in the browser.</p>
+
+  <p>Firefly code is mostly made of models to get and save your data and views to show your data to the user.</p>
+
+  <p>You could think of Firefly as an MVC app (without the C)</p>
 
   <h2 id="how-it-works-models">Models</h2>
 
@@ -274,26 +293,19 @@
 
   <h2 id="how-it-works-views">Views</h2>
 
+  <p>Views in Firefly do a lot--and that's a good thing</p>
+
   <ul>
     <li>Go through the guides for <a href="https://facebook.github.io/react/docs/hello-world.html">React</a> and <a href="https://reacttraining.com/react-router/web/guides">React Router</a></li>
     <li>Learn about the <a href="https://github.com/primus/eventemitter3">eventemitter3</a> library, which we use to listen for data changes and re-render react (instead of something like <a href="https://egghead.io/courses/getting-started-with-redux">Redux</a>)</li>
   </ul>
 
-  <h2 id="how-it-backend">Backend</h2>
-
-  <p>Firefly doesn't use a traditional backend server like you would with Express or Ruby on Rails. Instead, many of the normal things backend servers do are taken care of for you by the Real-time Database features, or are just done in the browser.</p>
-
-  <p>However, there are a few things that just can't be done in the browser.</p>
+  <h2 id="how-it-works-other">Other stuff</h2>
 
   <ul>
     <li>To enable search, sign up for <a href="https://www.algolia.com">Algolia</a>, <a href="https://firebase.google.com/docs/functions/config-env">configure your functions credentials</a>, and <a href="https://console.firebase.google.com">upgrade your Firebase plan</a> to a tier that has <a href="https://firebase.google.com/docs/functions">Firebase functions</a>. See the server code at <code>/functions/index.js</code> for more details.</li>
     <li>We use <a href="https://firebase.google.com/docs/auth/web/start">Firebase Authentication</a> for logging users in, etc.</li>
     <li><a href="https://firebase.google.com/docs/admin/setup#add_firebase_to_your_app">Create a Service Account</a> to run maintenance scripts with <code>node scripts/test.js</code></li>
-  </ul>
-
-  <h2 id="how-it-works-other">Other stuff</h2>
-
-  <ul>
     <li>Learn about <a href="https://nodesource.com/blog/an-absolute-beginners-guide-to-using-npm/">npm packages and scripts</a></li>
     <li>Webpack</li>
     <li>Firebase hosting</li>
@@ -301,29 +313,45 @@
 
 
 
-  <h1 id="using">Using Firefly</h1>
+  <h1 id="guide">Guide</h1>
 
-  <h2 id="using-prerequisites">Prerequisites</h2>
+  <p>At its heart, Firefly is simply a boilerplate app. This guide will walk you through makeing a copy of Firefly and configuring it to work with Firebase.</p>
 
-  <p>If you haven't already, <a href="https://nodejs.org/en/download">download and install node</a></p>
+  <div class="callout">
+    <h2 id="guide-quick-start">Quick start</h2>
 
-  <p>Install the node <code>firebase-tools</code> and package globally with <code>npm install -g firebase-tools</code>. You only need to do this once for each computer you use.</p>
+    <ul>
+      <li><code>git clone https://github.com/sampl/firefly &amp;&amp; cd firefly &amp;&amp; npm install</code></li>
+      <li>rename <code>.firebaserc</code> &amp; <code>/config</code> files and add your Firebase keys</li>
+      <li><code>npm start</code></li>
+    </ul>
+  </div>
 
-  <h2 id="using-clone">Clone the boilerplate</h2>
+  <h2 id="guide-prerequisites">Before you begin</h2>
 
-  <p>Firefly is just a sample app--not a framework. To start a new Firefly project, we just make a copy of Firefly and start making changes.</p>
+  <p>This tutorial uses <code>git</code>. If you're not already a git user, <a href="https://www.codecademy.com/learn/learn-git">you can learn about it here</a>.</p>
+
+  <p>If you haven't already, <a href="https://nodejs.org/en/download">download and install node</a>.</p>
+
+  <p>Run <code>npm install -g firebase-tools</code> to install the <a href="https://firebase.google.com/docs/cli/">Firebase CLI</a>. You only need to do this once per computer.</p>
+
+  <h2 id="guide-clone">Clone the boilerplate</h2>
+
+  <p>To start a new Firefly project, we just make a copy of Firefly and make changes.</p>
 
   <ul>
     <li>In your terminal, <code>cd</code> to the folder where you want your project to live</li>
     <li>Clone this repo with <code>git clone https://github.com/sampl/firefly</code></li>
-    <li>You must <code>cd firefly</code> to go into the folder you just created</li>
+    <li>Go into the folder you just created with <code>cd firefly</code></li>
     <li>Run <code>npm install</code> to install all the packages Firefly needs</li>
   </ul>
 
-  <p>If we try to start our project now, it will error because it can't connect to the database.</p>
+  <p>Now you've got your own Firefly app!</p>
+
+  <p>However, if we try to start our project now, it will error because it can't connect to the database.</p>
 
 
-  <h2 id="using-firebase">Connecting to Firebase</h2>
+  <h2 id="guide-firebase">Connecting to Firebase</h2>
 
   <ol>
     <li>Go to the <a href="console.firebase.google.com">Firebase console</a> and sign in with your Google account</li>
@@ -355,7 +383,7 @@
 
   <p>Each project you make using Firefly actually uses <em>two</em> Firebase projects--one for development and staging, and one for the live production site. We already made the development project, no</p>
 
-  <li>Go back to <a href="#using-firebase">Connecting to Firebase</a> and repeat, but call this project something like <code>MyProjectName - LIVE</code>, fill in the "prod" value in <code>.firebaserc</code>, and rename the config file with "prod" in the name.</li>
+  <li>Go back to <a href="#guide-firebase">Connecting to Firebase</a> and repeat, but call this project something like <code>MyProjectName - LIVE</code>, fill in the "prod" value in <code>.firebaserc</code>, and rename the config file with "prod" in the name.</li>
 
   <p><strong>Firefly is insecure by default. Before going live, <a href="https://firebase.google.com/docs/database/security">secure your app</a> by writing rules in <code>database.rules.json</code></strong></p>
 
@@ -367,7 +395,7 @@
 
   <h1 id="next">Next steps</h1>
 
-  <p>One of Firefly's principles is "as little code as possible", which means you'll probably want to add some features to fit your use case.</p>
+  <p>One of Firefly's principles is "as little code as possible", so you'll probably want to add some features before you ship.</p>
 
 
   <h2 id="next-development">Development</h2>
