@@ -3,6 +3,7 @@
 <html lang="en">
 
 <head>
+  <meta name="viewport" content="width=device-width">
   <title>Firefly | A Simple Javascript App Boilerplate</title>
   <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:300,400,500,700" rel="stylesheet">
   <style>
@@ -23,13 +24,20 @@
       display: flex;
       flex-direction: column;
       align-items: stretch;
-      justify-content: flex-start;
-      height: 90vh;
+      justify-content: space-between;;
+      min-height: 90vh;
       background: #333;
       background: linear-gradient(45deg, #FD7D68, #FDB952);
-      border: 15px solid white;
+      margin: 15px;
       color: white;
       padding: 2rem;
+    }
+
+    @media (max-width:770px) {
+      header {
+        padding: 1rem;
+        min-height: 20rem;
+      }
     }
 
     /* hero nav */
@@ -55,10 +63,16 @@
       margin-left: 1rem;
     }
 
+    @media (max-width:770px) {
+      header nav {
+        display: none;
+      }
+    }
+
     /* hero content */
 
     .hero-content {
-      margin: 6rem 0 3rem;
+      margin: 2rem 0 0;
       text-align: center;
     }
     .headline {
@@ -74,7 +88,7 @@
       margin: 0rem auto;
       background: white;
       display: inline-block;
-      color: #9155ff;
+      color: #8e5eed;
       padding: .5rem .75rem;
       border-radius: 2px;
     }
@@ -99,6 +113,16 @@
     section {
       flex: 0 1 80%;
       padding-left: 2rem;
+      margin-top: 1rem;
+    }
+
+    @media (max-width:770px) {
+      main {
+        flex-direction: column;
+      }
+      section {
+        padding-left: 0;
+      }
     }
 
     /* main sticky-nav */
@@ -108,9 +132,7 @@
       position: absolute;
       position: -webkit-sticky;
       position: sticky;
-      top: 4rem;
-      left: 2rem;
-      width: 180px;
+      top: 2rem;
     }
     aside nav a {
       display: block;
@@ -118,13 +140,12 @@
     }
     aside nav a.primary {
       color: #555666;
-      margin-top: .75rem;
+      margin-top: 1.75rem;
       font-weight: 500;
+      font-size: 1.1rem;
     }
     aside nav a.secondary {
       color: #777888;
-      margin-left: 1rem;
-      font-size: .9rem;
     }
 
     /* main content */
@@ -138,17 +159,18 @@
     }
     h2 {
       font-size: 1.1rem;
+      font-weight: 600;
       margin: 1.5rem 0 .5rem;
     }
     code {
       font-family: 'Roboto Mono', monospace;
-      background: #eee;
-      /*font-size: 1.1em;*/
+      background: #f5f5f5;
+      font-size: 0.85em;
       padding: 2px 4px;
       border-radius: 2px;
     }
     a {
-      color: #9155ff;
+      color: #8e5eed;
       text-decoration: none;
     }
     a:hover {
@@ -178,6 +200,9 @@
     <p>
       or <a href="https://github.com/sampl/firefly">view on Github</a></p>
     </p>
+  </div>
+  <div>
+    <!-- empty div to get flex layout on <header> working -->
   </div>
 </header>
 
