@@ -82,7 +82,7 @@ class Search extends React.Component {
 let styles = {
   container: {
     position: 'relative',
-    display: 'inline',
+    display: 'inline-block',
   },
   suggestionsContainerOpen: {
     border: '1px solid',
