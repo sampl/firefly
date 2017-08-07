@@ -42,6 +42,7 @@ let styles = {
     zIndex: 3,
     background: 'white',
     width: '400px',
+    maxWidth: '100%',
     margin: '2rem auto',
     padding: '2rem',
   },

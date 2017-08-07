@@ -35,7 +35,7 @@ class PostForm extends React.Component {
         </div>
         <div>
           Content
-          <Validation.components.Input name="content" value={this.state.post.content} validations={['required']} onChange={this._onChange} />
+          <Validation.components.Textarea name="content" value={this.state.post.content} validations={['required']} onChange={this._onChange} />
         </div>
         <Validation.components.Button type="submit">Submit</Validation.components.Button>
       </Validation.components.Form>

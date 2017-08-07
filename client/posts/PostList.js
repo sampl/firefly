@@ -65,8 +65,9 @@ class PostList extends React.Component {
         <Link to={'/posts/'+post.slug}>
           <h2>{post.title}</h2>
         </Link>
+        <p>{post._like_count || 0} {post._like_count == 1 ? 'like' : 'likes'}</p>
         <p>{post.content}</p>
-        <p>{post._like_count || 0} likes</p>
+        <br/>
       </div>
     )
 

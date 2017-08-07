@@ -12,10 +12,9 @@ class Main extends React.Component {
       <div>
 
         <div style={styles.header}>
-          <Account />
           <Link to='/'>Firefly</Link>
-          {' '}
           <Search />
+          <Account />
         </div>
 
         <Routes location={this.props.location} />
@@ -34,6 +33,8 @@ let styles = {
     borderBottom: '1px solid #eee',
     padding: '1rem 0',
     margin: '2rem 0',
+    display: 'flex',
+    justifyContent: 'space-between',
   },
   footer: {
     borderTop: '1px solid #eee',

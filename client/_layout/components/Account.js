@@ -27,34 +27,24 @@ class Account extends React.Component {
   render() {
     if (this.state.user) {
       return (
-        <div style={styles.account}>
-          <Link to={{
-              pathname: `/me`,
-              state: { modal: true }
-            }}>
-            <img style={{width: '24px', height: '24px', borderRadius: '50%'}} src={this.state.user.photoURL} />
-          </Link>
-        </div>
+        <Link to={{
+            pathname: `/me`,
+            state: { modal: true }
+          }}>
+          <img style={{width: '24px', height: '24px', borderRadius: '50%'}} src={this.state.user.photoURL} />
+        </Link>
       )
     } else {
       return (
-        <div style={styles.account}>
-          <Link to={{
-              pathname: `/login`,
-              state: { modal: true }
-            }}>
-            login
-          </Link>
-        </div>
+        <Link to={{
+            pathname: `/login`,
+            state: { modal: true }
+          }}>
+          login
+        </Link>
       )
     }
   }
-}
-
-let styles = {
-  account: {
-    float: 'right',
-  },
 }
 
 export default Account

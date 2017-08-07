@@ -31,6 +31,13 @@ a:hover {
 }
 
 
+/* Form styles */
+
+form > div {
+  margin: 0 0 1rem;
+}
+
+
 /* Animations */
 
 @keyframes rotation {
