@@ -5,10 +5,7 @@ import { Link } from 'react-router-dom'
 import Post from '../../models/Post'
 import Error from '../_util/Error'
 import Loading from '../_util/Loading'
-
-import AdminOnly from '../_util/AdminOnly'
 import LoggedInOnly from '../_util/LoggedInOnly'
-import LoggedOutOnly from '../_util/LoggedOutOnly'
 
 class PostList extends React.Component {
 
@@ -73,7 +70,9 @@ class PostList extends React.Component {
 
     return (
       <div>
-        <Link to={'/posts/new'}>new post</Link>
+        <LoggedInOnly>
+          <Link to={'/posts/new'}>new post</Link>
+        </LoggedInOnly>
         <br/>
         <br/>
         {posts}

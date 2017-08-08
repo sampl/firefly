@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 import Post from '../../models/Post'
+import User from '../../models/User'
 import PostLiker from './components/PostLiker'
 import Error from '../_util/Error'
 import Loading from '../_util/Loading'
@@ -61,12 +62,16 @@ class PostShow extends React.Component {
     if (!this.state.post.title) {
       return (<div>loading...</div>)
     } else {
+      let editLink = null
+      if (User.getLoggedInUser() && this.state.post.createdBy == User.getLoggedInUser().uid) {
+        editLink = <Link to={'/posts/'+this.state.post.slug+'/edit'}>edit post</Link>
+      }
       return (
         <div>
           <h1>{this.state.post.title}</h1>
           <PostLiker post={this.state.post} />
           <p>{this.state.post.content}</p>
-          <Link to={'/posts/'+this.state.post.slug+'/edit'}>edit post</Link>
+          {editLink}
         </div>
       )
     }
