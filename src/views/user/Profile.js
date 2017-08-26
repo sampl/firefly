@@ -1,9 +1,9 @@
 import React from 'react'
-import { Link } from 'react-router'
 
 import User from '../../models/User'
 import AdminOnly from '../_util/AdminOnly'
 import Loading from '../_util/Loading'
+import Error from '../_util/Error'
 
 class Profile extends React.Component {
 
@@ -48,12 +48,12 @@ class Profile extends React.Component {
     if (this.state.user) {
       return(
         <div>
-          <img style={styles.image} src={this.state.user.photoURL} />
+          <img style={styles.image} src={this.state.user.photoURL} alt={this.state.user.displayName} />
           <h2>Your Profile</h2>
           <p>Name: {this.state.user.displayName}</p>
           <p>Email: {this.state.user.email}</p>
           <AdminOnly>
-            <p>⭐️ is an admin</p>
+            <p>is an admin</p>
           </AdminOnly>
           <button onClick={this._logOut}>log out</button>
         </div>

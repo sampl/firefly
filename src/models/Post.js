@@ -10,7 +10,7 @@ Post.init({
 
 Post.getBySlug = function(slug) {
   return Supermodel.getAllWithAttrValue.bind(this)('slug', slug).then( (posts) => {
-    if (posts.length == 0) {
+    if (posts.length === 0) {
       throw new Error("Couldn't find post with slug "+slug)
     } else {
       return posts[0]

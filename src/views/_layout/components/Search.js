@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom'
 import Autosuggest from 'react-autosuggest'
 import Algolia from 'algoliasearch'
 
-let algolia = Algolia(ALGOLIA.app_id, ALGOLIA.app_key)
+let algolia = Algolia(process.env.REACT_APP_ALGOLIA_APP_ID, process.env.REACT_APP_ALGOLIA_APP_KEY)
 let index = algolia.initIndex('posts')
 
 class Search extends React.Component {

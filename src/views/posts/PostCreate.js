@@ -1,8 +1,4 @@
 import React from 'react'
-import {
-  Link,
-  Redirect
-} from 'react-router-dom'
 
 import Post from '../../models/Post'
 import PostForm from './components/PostForm'

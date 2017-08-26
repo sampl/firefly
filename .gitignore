@@ -3,8 +3,5 @@ build
 node_modules
 .firebaserc
 firebase-debug.log
-config/algolia-config.json
-config/firebase-config-dev.json
-config/firebase-config-prod.json
-config/service-account-key-dev.json
-config/service-account-key-prod.json
+.env.development
+.env.production

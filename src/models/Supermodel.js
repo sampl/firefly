@@ -79,7 +79,7 @@ Supermodel.update = function(item_key, new_data) {
 
   // ensure we're not writing derived attrs (attrs that start with "_")
   Object.keys(new_data).forEach( (key) => {
-    if (key.indexOf('_') == 0) {
+    if (key.indexOf('_') === 0) {
       delete new_data[key]
     }
   })

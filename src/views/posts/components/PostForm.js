@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import Validation from 'react-validation'
 
 class PostForm extends React.Component {

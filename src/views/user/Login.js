@@ -1,5 +1,4 @@
 import React from 'react'
-import { history } from 'react-router-dom'
 
 import User from '../../models/User'
 

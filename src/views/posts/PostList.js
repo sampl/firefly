@@ -1,21 +1,20 @@
 import React from 'react'
+import _ from 'lodash'
 import { Link } from 'react-router-dom'
 
 import Post from '../../models/Post'
-import User from '../../models/User'
-import PostLiker from './components/PostLiker'
 import Error from '../_util/Error'
 import Loading from '../_util/Loading'
+import LoggedInOnly from '../_util/LoggedInOnly'
 
-class PostShow extends React.Component {
+class PostList extends React.Component {
 
   constructor(props) {
     super(props)
     this._get = this._get.bind(this)
     this.state = {
       loading: true,
-      post: {},
-      error: null,
+      posts: [],
     }
   }
 
@@ -25,21 +24,17 @@ class PostShow extends React.Component {
     Post.on('change', this._get)
   }
 
-  componentWillUpdate() {
-    this._get()
-  }
-
   componentWillUnmount() {
     this._isMounted = false
     Post.removeListener('change', this._get)
   }
 
   _get() {
-    Post.getBySlug(this.props.match.params.post_slug).then( (post) => {
+    Post.getAll().then( (posts) => {
       if (this._isMounted) {
         this.setState({
           loading: false,
-          post,
+          posts,
         })
       }
     }).catch( (err) => {
@@ -59,23 +54,31 @@ class PostShow extends React.Component {
     if (this.state.error) {
       return (<Error message={this.state.error}/>)
     }
-    if (!this.state.post.title) {
-      return (<div>loading...</div>)
-    } else {
-      let editLink = null
-      if (User.getLoggedInUser() && this.state.post.createdBy == User.getLoggedInUser().uid) {
-        editLink = <Link to={'/posts/'+this.state.post.slug+'/edit'}>edit post</Link>
-      }
-      return (
-        <div>
-          <h1>{this.state.post.title}</h1>
-          <PostLiker post={this.state.post} />
-          <p>{this.state.post.content}</p>
-          {editLink}
-        </div>
-      )
-    }
+
+    let posts = this.state.posts.sort((a, b) => (a._like_count || 0) < (b._like_count || 0))
+
+    posts = _.map(posts, (post) =>
+      <div key={post.key}>
+        <Link to={'/posts/'+post.slug}>
+          <h2>{post.title}</h2>
+        </Link>
+        <p>{post._like_count || 0} {post._like_count === 1 ? 'like' : 'likes'}</p>
+        <p>{post.content}</p>
+        <br/>
+      </div>
+    )
+
+    return (
+      <div>
+        <LoggedInOnly>
+          <Link to={'/posts/new'}>new post</Link>
+        </LoggedInOnly>
+        <br/>
+        <br/>
+        {posts}
+      </div>
+    )
   }
 }
 
-export default PostShow
+export default PostList

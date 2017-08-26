@@ -8,7 +8,6 @@ import ScrollToTop from '../_util/ScrollToTop'
 // components
 import Modal from './Modal'
 import Main from './Main'
-import Routes from './Routes'
 
 class App extends React.Component {
   render() {

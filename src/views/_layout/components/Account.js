@@ -31,7 +31,7 @@ class Account extends React.Component {
             pathname: `/me`,
             state: { modal: true }
           }}>
-          <img style={{width: '24px', height: '24px', borderRadius: '50%'}} src={this.state.user.photoURL} />
+          <img style={{width: '24px', height: '24px', borderRadius: '50%'}} src={this.state.user.photoURL} alt="you" />
         </Link>
       )
     } else {

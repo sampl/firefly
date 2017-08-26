@@ -1,7 +1,6 @@
 import Supermodel from './Supermodel'
 import Firebase from 'firebase'
 import Moment from 'moment'
-import Async from 'async'
 
 let User = Object.create(Supermodel)
 

@@ -1,0 +1,12 @@
+[
+  {
+    "title": "Created from a script",
+    "content": "This post was created by running a test script locally",
+    "slug": "created-from-a-script"
+  },
+  {
+    "title": "Another interloper",
+    "content": "This post was ALSO created by running a test script locally",
+    "slug": "another-interloper"
+  }
+]

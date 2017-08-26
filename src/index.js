@@ -1,16 +1,13 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
+// eslint-disable-next-line
 import db from './db'
-import App from './_layout/App'
+import App from './views/_layout/App'
 import 'normalize.css' // css reset
 import './main.css'    // our app's css
 
-if (PRODUCTION) {
-  console.log('env: production/live')
-} else {
-  console.log('env: stage/dev')
-}
+console.log('env: '+process.env.NODE_ENV)
 
 // render App to the DOM
 ReactDOM.render(<App />, document.getElementById('root'))
