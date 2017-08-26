@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import { BrowserRouter } from 'react-router-dom'
 
 // eslint-disable-next-line
 import db from './db'
@@ -10,4 +11,4 @@ import './main.css'    // our app's css
 console.log('env: '+process.env.NODE_ENV)
 
 // render App to the DOM
-ReactDOM.render(<App />, document.getElementById('root'))
+ReactDOM.render(<BrowserRouter><App /></BrowserRouter>, document.getElementById('root'))
