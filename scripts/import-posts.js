@@ -1,6 +1,6 @@
 let firebase = require("firebase-admin")
 
-let posts = require("./data/sample_posts.json")
+let posts = require("./sample_posts.json")
 
 // if run with `node test.js prod`, use on production data--otherwise use development
 if (process.argv[2] == 'prod') {
