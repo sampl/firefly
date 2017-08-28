@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 import { BrowserRouter } from 'react-router-dom'
 
 // eslint-disable-next-line
-import db from './db'
+import database from './database'
 import App from './views/_layout/App'
 import 'normalize.css' // css reset
 import './main.css'    // our app's css
