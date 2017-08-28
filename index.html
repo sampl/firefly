@@ -241,20 +241,19 @@
 <aside>
   <nav>
     <a class="primary" href="#philosophy">Philosophy</a>
-    <a class="secondary" href="#philosophy-less">Less Is More</a>
-    <a class="secondary" href="#philosophy-js">Embrace Javascript</a>
-    <a class="secondary" href="#philosophy-code-over-convention">Code over Convention</h2>
+    <a class="secondary" href="#philosophy-modern">Cautiously Modern</a>
+    <a class="secondary" href="#philosophy-simple">Radically Simple</a>
+    <a class="secondary" href="#philosophy-learners">Built for Learners</a>
 
     <a class="primary" href="#how-it-works">How it works</a>
     <a class="secondary" href="#how-it-works-models">Models</a>
     <a class="secondary" href="#how-it-works-views">Views</a>
-    <a class="secondary" href="#how-it-works-bundling">Bundling</a>
+    <a class="secondary" href="#how-it-works-bundling">Bundling and Hosting</a>
 
     <a class="primary" href="#getting-started">Getting Started</a>
     <a class="secondary" href="#getting-started-quick-start">Quick start</a>
     <a class="secondary" href="#getting-started-prerequisites">Before you begin</a>
     <a class="secondary" href="#getting-started-create">Creating your app</a>
-    <a class="secondary" href="#getting-started-firebase">Connecting to Firebase</a>
     <a class="secondary" href="#getting-started-working">As you work</a>
     <a class="secondary" href="#getting-started-deploying">Deploying</a>
 
@@ -283,59 +282,82 @@
 
   <h1 id="philosophy">Philosophy</h1>
 
-  <h2 id="philosophy-less">Modules over Monoliths</h2>
+  <blockquote>"Give me six hours to chop down a tree and I will spend the first four sharpening the axe."</blockquote>
 
-  <p>Unlike Ember. The javascript ecosystem
 
-  <p>NPM, already home to thousands of amazing packages. NPM might be the worlds biggest collection of software hat does one thing well.</p>
+  <h2 id="philosophy-modern">Cautiously Modern</h2>
 
-  <p>Firefly isn't a framework--it's just a boilerplate that shows you how to plug the most important pieces together. What you add afterward is up to you.</p>
+  <p>Love it or hate it, the Javascript ecosystem is one of the most powerful. Firely wholeheartedly embraces JS--with a few caveats:</p>
+
+  <p>Shouldn't go to the bleeding edge. All libraries and services we use are well-established, used in production by major companies and will be supported for years to come.</p>
+
 
   <p>This not only makes it easier to, but easier to swap out smaller pieces of your app as new packages become available.</p>
 
-  <p>You'll find a list of [likely additions] at the bottom of this guide.</p>
+  <p>If you're used to working with jQuery, Rails, or Express, Firefly is going to feel very different. There are a few concepts that are important to understand before you dive in.</p>
+
+
+  <ul>
+    <li><strong>Heavy front-end</strong> - Firefly uses the front-end as much as possible. Simpler to manage and faster transitions.</li>
+    <li><strong>Serverless backend</strong> - what Firefly can't do on the client or with a 3rd party service, it does using Firebase Functions. These are lightweight backend functions that run on the Google cloud servers, and require no uptime monitoring or special deployment. Firefly doesn't use a traditional backend server like you would with Express or Ruby on Rails. Instead, many of the normal things backend servers do are taken care of for you by the Real-time Database features, or are just done in the browser.</li>
+    <li><strong>Heavy use of services</strong> - Firefly outsources a lot of its features to services specially built for a single purpose. For example, search in firefly is simply an Algolia integration. The Firefly database is built on the Firebase Real-time Database. This increases the chances of [vendor lock-in], but I believe the benefits of having no server or API code at all far outweigh that cost. Try authenticating a user with Firefly vs Passport and you might agree.</li>
+    <li><strong>Modern Javascript</strong> - One think you might not be used to is the <em>kind</em> of Javascript that Firefly uses: <a href="">ES6</a>. ES6 is just the latest version of the language, and it comes with some new features that are going to be really helpful for you. Don't worry--we don't use all the crazy new stuff, and there are guides to help you as you go.</li>
+  </ul>
 
 
 
-  <h2 id="philosophy-less">Less Is More</h2>
+
+  <h2 id="philosophy-simple">Radically Simple</h2>
+
+  Do everything it takes to reduce simplicity.
+
+  Not LOC, but things user has to have int heir head
+
+  - Instead of scripts to generate code, just let users copy-paste when they want to create new things
+  Use libs from NPM, so you don't have to think about the code
+  <p>NPM, already home to thousands of amazing packages. NPM might be the worlds biggest collection of software hat does one thing well.</p>
+
 
   <p>When you start something new there's a lot to learn and firefly is no exception. But as you (and your codebase) mature, it's still important to have as a little cold as possible. Any code that you maintain, even if you didn't write it, is your responsibility to keep running and bug free. And as app complexity gross, keeping code bug free gets exponentially harder. That's why Firefly strives to keep total lines of code to a minimum.</p>
 
   <p>For example:</p>
   <ul>
     <li>Features like search, that not everybody needs, live in a separate repo.</li>
-    <li>Instead of generators and scaffolds, you simply create new models and views by copying and pasting existing boilerplate code.</li>
     <li>features like email and search don't live in a firefly app at all. (See services)</li>
     <li>wherever practical, code that you shouldn't edit is abstract the way behind an npm package</li>
   </ul>
 
-  <p>This means that installing firefly doesn't dump a bunch of files that you don't understand into your project. in fact firefly is only about 50 files, just json JavaScript HTML CSS and markdown.</p>
-
-  <p>And unlike Rails, you don't have to update firefly "underneath" your app separately from your packages. It's just a boilerplate, so you can always take and use whatever party find useful.</p>
-
-  <p>You shouldn't have to learn two languages to make an app. That's why we've avoided template languages, backend languages, and SQL in favor of just Javascript (and things that work like Javascript).</p>
-
-  <p>You might have seen boilerplate projects in the past with a lot of code. Those projects can be useful if you already know how to write full apps and need to build something quickly for a hackathon, but they're daunting for new app developers and they contain a lot of things you'll never need.</p>
-
-  <p>Firefly includes only the things we know you'll need for your app--and we <a href="#-next">show you how to add whatever else you might need later</a>.</p>
+  <ul>
+    <li><strong>Boilerplate</strong> - Firefly isn't a library or framework--it's just a sample app that shows you how to plug the most important pieces together. What you add afterward is up to you. Unlike Rails, you don't have to update firefly "underneath" your app separately from your packages. It's just a boilerplate, so you can always take and use whatever party find useful.</li>
+    <li><strong>Less code</strong> - You might have seen boilerplate projects in the past with a lot of code. Those projects can be useful if you already know how to write full apps and need to build something quickly for a hackathon, but they're daunting for new app developers and they contain a lot of things you'll never need.</li>
+    <li><strong>No fluff</strong> - Firefly has no generators or CLI. Instead of generators and scaffolds, you simply create new models and views by copying and pasting existing boilerplate code. This means that installing firefly doesn't dump a bunch of files that you don't understand into your project. in fact firefly is only about 50 files, just json JavaScript HTML CSS and markdown.</li>
+    <li><strong>Extendable</strong> - Making it easy to write more code for Firely means we don't have to include a lot of crap out-of-the-box. Firefly includes only the things we know you'll need for your app--and we <a href="#-next">show you how to add whatever else you might need later</a>.</li>
+    <li><strong>One Language</strong> - You shouldn't have to learn two languages to make an app. That's why we've avoided template languages, backend languages, and SQL in favor of just Javascript (and things that work like Javascript like JSX).</li>
+  </ul>
 
 
-  <h2 id="philosophy-clarity">Clarity over concision</h2>
+
+  <h2 id="philosophy-learners">Built for Learners</h2>
+
+  A lot of the things in the previous two principles are probably sending experienced web-devs into a small rage right now.
+
+  Relying on packages, pushing to the bleeding etc are bad practices for developers.
+
+  Our goal is different. We're
+
+  Do things that don't scale. Zero to one.
+
+  Get people to having a nice webapp that works, and will continue to work **as quickly as possible**.
+
+  Think circular dependencies.
+
+  The goal is NOT to improve the speed of development for entrenched web-devs; it's to empower those who have skills OUTSIDE of engineering to develop their ideas into working products.
 
   <p>Some developers try to make their code bases seem smaller by writing really dense-looking code. This doesn't actually make their code easier to use because all the logical complexity is still there--and now it's harder to understand!
 
   <p>I've tried to include is a little code as possible in Firefly--but the code I did include was written to be easy to understand.</p>
 
   <p>Thousands of people are introduced to Javascript and programming each day. That's why Firefly should not just be a great tool, but also a great teacher. I've also added a ton of comments so that you can go through the code base and learn as you work (you can strip these out for your own projects, of course). This document also has lots of links to tutorials and videos that I found helpful while learning React, Firebase, and ES6.</p>
-
-
-  <h2 id="philosophy-js">Embrace Javascript</h2>
-
-  <p>One think you might not be used to is the <em>kind</em> of Javascript that Firefly uses: <a href="">ES6</a>. ES6 is just the latest version of the language, and it comes with some new features that are going to be really helpful for you. Don't worry--we don't use all the crazy new stuff, and there are guides to help you as you go.</p>
-
-
-
-  <h2 id="philosophy------">Low cognitive overhead</h2>
 
   <p>Javascript reduces context switching cost.</p>
 
@@ -351,27 +373,15 @@
   </ul>
 
 
-  <h2 id="philosophy-code-over-convention">Code over Convention</h2>
 
-  <p>Unlike Rails, Firefly isn't a big framework. At its core, Firefly is just a readme (this page) and a boilerplate.</p>
+  <ul>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+  </ul>
 
-  <p>Let's dive into some internals and see how all this fits together.</p>
 
-
-    <p>"Give me six hours to chop down a tree and I will spend the first four sharpening the axe."</p>
-
-    <p>If you're used to working with jQuery, Rails, or Express, Firefly is going to feel very different. There are a few concepts that are important to understand before you dive in.</p>
-
-    <p>Services - Firefly outsources a lot of its features to services specially built for a single purpose. For example, search in firefly is simply an Algolia integration. And the firebase database is built on the firebase real-time database. This increases the chances of [vendor lock-in], but I believe the benefits of having no server or API code at all far outweigh that cost. Try authenticating a user with Firefly vs Passport and you might agree.</p>
-
-    <p>Serverless - what Firefly can't do on the client or with a 3rd party service, it does using Firebase Functions. These are lightweight backend functions that run on the Google cloud servers, and require no uptime monitoring or special deployment.</p>
-
-    <ul>
-      <li>learn more about severless architecture</li>
-      <li>AWS lambda</li>
-    </ul>
-
-    <p>Serverless - Firefly doesn't use a traditional backend server like you would with Express or Ruby on Rails. Instead, many of the normal things backend servers do are taken care of for you by the Real-time Database features, or are just done in the browser.</p>
 
 
   <h1 id="how-it-works">How it works</h1>
@@ -439,7 +449,7 @@
   <p>Instead, Firefly uses the much-simpler <a href="https://github.com/primus/eventemitter3">eventemitter3</a> library to let models announce when they've changed, and let views listen for those changes so they know to re-render.</p>
 
 
-  <h2 id="how-it-works-bundling">Bundling</h2>
+  <h2 id="how-it-works-bundling">Bundling and Hosting</h2>
 
   <p>NPM, the javascript package manager, to import 3rd party packages (and run scripts to start the development server and deploy). Here's a <a href="https://nodesource.com/blog/an-absolute-beginners-guide-to-using-npm/">tutorial</a> to get you started.</p>
 
@@ -475,6 +485,8 @@
 
   <h2 id="getting-started-create">Creating your app</h2>
 
+  <h3>Get the code</h3>
+
   <p>Firefly is just a boilerplate. To start a new Firefly project, we simply make a copy of Firefly.</p>
 
   <ol>
@@ -485,9 +497,6 @@
   </ol>
 
   <p>You've got your own Firefly app! Now let's tell it how to find the database.</p>
-
-
-  <h2 id="getting-started-firebase">Connecting to Firebase</h2>
 
   <h3>Create the database</h3>
 
@@ -532,11 +541,11 @@
 
   <h2 id="using-deploying">Deploying</h2>
 
-  <p>Each project you make using Firefly actually uses <em>two</em> Firebase projects--one for development and staging, and one for the live production site. We already made the development project, now we need to make the live project.</p>
+  <p>Each project you make using Firefly actually uses <em>two</em> Firebase projects--one for development and staging, and one for the live production site. We already made the development project, now we need to make one for production.</p>
 
   <ol>
     <li>Go back to <a href="#getting-started-firebase">Connecting to Firebase</a> and repeat the steps, but call this project something like <code>MyProjectName - LIVE</code></li>
-    <li>Fill in the "prod" value in <code>.firebaserc</code></li>
+    <li>Fill in the "production" value in <code>.firebaserc</code></li>
     <li>Rename <code>.env.production.example</code> to <code>.env.production</code> and add the new Firebase connection parameters there too.</p>
     <li><strong>Firefly is insecure by default. Before going live, <a href="https://firebase.google.com/docs/database/security">secure your app</a> by writing rules in <code>database.rules.json</code></strong></li>
   </ol>
