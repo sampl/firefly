@@ -14,7 +14,7 @@
     body {
       font-family: system-ui, sans-serif;
       line-height: 1.4;
-      margin: 0 0 10rem;
+      margin: 0;
       color: #555666;
     }
 
@@ -213,6 +213,15 @@
       margin: 1rem 0;
       padding-left: 1rem;
     }
+    footer {
+      margin: 8rem 0;
+      text-align: center;
+      color: #999aaa;
+    }
+    footer a {
+      color: #999aaa;
+      text-decoration: underline;
+    }
 
   </style>
 </head>
@@ -248,23 +257,23 @@
 <aside>
   <nav>
     <a class="primary" href="#philosophy">Philosophy</a>
-    <a class="secondary" href="#philosophy-modern">Cautiously Modern</a>
-    <a class="secondary" href="#philosophy-simple">Radically Simple</a>
-    <a class="secondary" href="#philosophy-learners">Built for Learners</a>
+    <a class="secondary" href="#philosophy-modern">Cautiously modern</a>
+    <a class="secondary" href="#philosophy-simple">Radically simple</a>
+    <a class="secondary" href="#philosophy-learners">Built for learners</a>
 
     <a class="primary" href="#how-it-works">How it works</a>
     <a class="secondary" href="#how-it-works-models">Models</a>
     <a class="secondary" href="#how-it-works-views">Views</a>
-    <a class="secondary" href="#how-it-works-bundling">Bundling and Hosting</a>
+    <a class="secondary" href="#how-it-works-other">Other stuff</a>
 
-    <a class="primary" href="#getting-started">Getting Started</a>
+    <a class="primary" href="#getting-started">Getting started</a>
     <a class="secondary" href="#getting-started-quick-start">Quick start</a>
     <a class="secondary" href="#getting-started-prerequisites">Before you begin</a>
     <a class="secondary" href="#getting-started-create">Creating your app</a>
     <a class="secondary" href="#getting-started-working">As you work</a>
     <a class="secondary" href="#getting-started-deploying">Deploying</a>
 
-    <a class="primary" href="#next">Next Steps</a>
+    <a class="primary" href="#next">Next steps</a>
     <a class="secondary" href="#next-tracking">Tracking</a>
     <a class="secondary" href="#next-other">Other</a>
   </nav>
@@ -272,15 +281,15 @@
 
 <section>
 
-  <p><strong>Making websites is <em>still too hard</em>.</strong> Sure, writing some HTML, CSS, and jQuery is easy enough--but letting users log in, adding forms, and building search are an order of magnitude more difficult.</p>
+  <p><strong>Making websites is <em>still too hard</em>.</strong> HTML &amp; CSS are easy enough--but letting users log in, adding forms, and building search are an order of magnitude more difficult.</p>
 
   <!-- Suddenly you're lost in a world of schemas, migrations, joins, servers, and password salts. Most people just give up!-->
 
   <p>Luckily, some new tools are making it easier. When combined, they make a pretty compelling package.</p>
 
-  <p>That's what Firefly is--a couple modern web tools put together to make web development easier. Think of it as a smaller, friendlier, more modern alternative to Ruby on Rails for getting your MVP off the ground. Firefly embraces modern concepts like the <a href="">single-page web application</a>, <a href="">serverless architecture</a>, and <a href="">component-based views</a>. Together, they make for a radically small codebase.
+  <p>That's what Firefly is--a couple modern web tools put together to make web development easier. Firefly embraces modern concepts like the <a href="">single-page web application</a>, <a href="">serverless architecture</a>, and <a href="">component-based views</a>. Together, they make for a radically small codebase.
 
-  <p>I think you'll Firefly makes creating basic apps surprisingly simple. Contributions are welcome!</p>
+  <p>Think of it as a smaller, friendlier alternative to Rails for people writing MVPs. I think you'll find Firefly makes apps surprisingly simple.</p>
 
 
   <!-- <p>Ruby on Rails opened up web development to a whole generation of developers--even people who didn't think they WERE  developers before they found Rails. Without it, we wouldn't have many of the amazing services we have today. Properly framed, I think the modern JavaScript ecosystem can do the same.</p> -->
@@ -289,12 +298,13 @@
 
   <h1 id="philosophy">Philosophy</h1>
 
-  <blockquote>"Give me six hours to chop down a tree and I will spend the first four sharpening the axe."</blockquote>
-
+  <!-- <blockquote>"Give me six hours to chop down a tree and I will spend the first four sharpening the axe."</blockquote> -->
 
   <h2 id="philosophy-modern">Cautiously Modern</h2>
 
-  <p>Love it or hate it, the Javascript ecosystem is one of the most powerful. Firely wholeheartedly embraces JS--with a few caveats:</p>
+  <p>Love it or hate it, the modern Javascript ecosystem has made JS the most popular programming language in the world.</p>
+
+  <p>Firely wholeheartedly embraces Javascript--with a few caveats:</p>
 
   <p>Shouldn't go to the bleeding edge. All libraries and services we use are well-established, used in production by major companies and will be supported for years to come.</p>
 
@@ -307,7 +317,6 @@
   <ul>
     <li><strong>Heavy front-end</strong> - Firefly uses the front-end as much as possible. Simpler to manage and faster transitions.</li>
     <li><strong>Serverless backend</strong> - what Firefly can't do on the client or with a 3rd party service, it does using Firebase Functions. These are lightweight backend functions that run on the Google cloud servers, and require no uptime monitoring or special deployment. Firefly doesn't use a traditional backend server like you would with Express or Ruby on Rails. Instead, many of the normal things backend servers do are taken care of for you by the Real-time Database features, or are just done in the browser.</li>
-    <li><strong>Heavy use of services</strong> - Firefly outsources a lot of its features to services specially built for a single purpose. For example, search in firefly is simply an Algolia integration. The Firefly database is built on the Firebase Real-time Database. This increases the chances of [vendor lock-in], but I believe the benefits of having no server or API code at all far outweigh that cost. Try authenticating a user with Firefly vs Passport and you might agree.</li>
     <li><strong>Modern Javascript</strong> - One think you might not be used to is the <em>kind</em> of Javascript that Firefly uses: <a href="">ES6</a>. ES6 is just the latest version of the language, and it comes with some new features that are going to be really helpful for you. Don't worry--we don't use all the crazy new stuff, and there are guides to help you as you go.</li>
   </ul>
 
@@ -356,6 +365,8 @@
 
   Get people to having a nice webapp that works, and will continue to work **as quickly as possible**.
 
+  Time to "a ha!" moment.
+
   Think circular dependencies.
 
   The goal is NOT to improve the speed of development for entrenched web-devs; it's to empower those who have skills OUTSIDE of engineering to develop their ideas into working products.
@@ -382,7 +393,7 @@
 
 
   <ul>
-    <li></li>
+    <li><strong>Use of services</strong> - Firefly outsources a lot of its features to services specially built for a single purpose. For example, search in Firefly is simply an Algolia integration. This increases the chances of <a href="">vendor lock-in</a>, but for this project the benefits of having no server or API code at all far outweigh that cost. Compare authenticating a user with Firefly to using <a href="">Passport</a> and you might agree.</li>
     <li></li>
     <li></li>
     <li></li>
@@ -441,7 +452,11 @@
 
   <h2 id="how-it-works-views">Views</h2>
 
-  <p>Views in Firefly are built with <a href="">React</a>. If you're used to writing HTML, CSS, and JavaScript in different files, React will feel a little weird at first. Stick with it--writing your UI using all-on-one components (like iOS and Android apps do) will feel like a revelation soon. Start by reading the <a href="https://facebook.github.io/react/docs/hello-world.html">official React guide</a>.</p>
+  <h3>Component-based views</h3>
+
+  <p>Views in Firefly are built with <a href="">React</a>. If you're used to writing HTML, CSS, and JavaScript in different files, React will feel a little weird at first. Stick with it--writing your UI using all-on-one components will feel like a revelation soon.</p>
+
+  <p>Start by reading the <a href="https://facebook.github.io/react/docs/hello-world.html">official React guide</a>.</p>
 
 
   <h3>Routing</h3>
@@ -456,17 +471,26 @@
   <p>Instead, Firefly uses the much-simpler <a href="https://github.com/primus/eventemitter3">eventemitter3</a> library to let models announce when they've changed, and let views listen for those changes so they know to re-render.</p>
 
 
-  <h2 id="how-it-works-bundling">Bundling and Hosting</h2>
+  <h2 id="how-it-works-other">Other stuff</h2>
 
-  <p>NPM, the javascript package manager, to import 3rd party packages (and run scripts to start the development server and deploy). Here's a <a href="https://nodesource.com/blog/an-absolute-beginners-guide-to-using-npm/">tutorial</a> to get you started.</p>
+  <p>Firefly uses <a href="">create-react-app</a> and <a href="">Firebase command-line tools</a> to take care of transpiling, bundling, running tests, and deployment. You don't have to write or manage any configuration, just run <code>npm start</code> in your terminal.</p>
 
-  <p>Firefly uses create-react-app to . You don't have to do any configuration, just run <code>npm start</code> in your terminal</p>
+
+  <h3>Bundling</h3>
 
   <p>Modern Javascript requires transpiling code to ensure it works on all browsers. Under-the-hood, Create React App uses Webpack to bundle all your files into a single <code>app.js</code>. It starts at client/app.js, finds all the files it imports (and he ones they import, etc) and bundles it up into a single app.js for the server.</p>
 
-  <p>Create React App also includes ESLint to keep you from making small mistakes, the Babel transpiler to make sure the JS you write works on all browsers, and Jest to run automated tests on your code.</p>
 
-  <p>Firebase hosting to host your data.</p>
+  <h3>Hosting</h3>
+
+  <p>Firebase hosting to host your data. Hosting your static files is the same price on Firebase as it is on Google Cloud Platform (read: very very cheap). HTTPS is included for free too.</p>
+
+
+  <h3>Etc</h3>
+
+  <p>Create React App also includes <a href="">ESLint</a> to keep you from making small mistakes, the <a href="">Babel</a> transpiler to make sure the code you write works on all browsers, and <a href="">Jest</a> to run automated tests on your code.</p>
+
+  <p>NPM, the javascript package manager, to import 3rd party packages (and run scripts to start the development server and deploy). Here's a <a href="https://nodesource.com/blog/an-absolute-beginners-guide-to-using-npm/">tutorial</a> to get you started.</p>
 
 
   <h1 id="getting-started">Getting Started</h1>
@@ -589,6 +613,8 @@
   </ul>
 
   <p>Did I miss something? Could something be more clear? <a href="https://github.com/sampl/firefly/issues">Submit issues and PRs</a></p>
+
+  <footer>by <a href="http://sampl.us/">Sam Pierce Lolla</a></footer>
 
 </section>
 
