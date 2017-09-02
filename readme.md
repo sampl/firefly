@@ -1,4 +1,9 @@
+![Firefly](https://media.giphy.com/media/4BFo8uGv7NWeI/giphy.gif "Firefly")
+
 An approachable starting place for writing "real" web apps. Firefly was made **especially for designers** (and other people who are only used to writing a bit of client-side javascript but who don't have experience with servers and databases).
+
+**[Live Demo](https://firefly-66e12.firebaseapp.com)**
+
 
 # Documentation
 
@@ -8,10 +13,8 @@ An approachable starting place for writing "real" web apps. Firefly was made **e
  - **[Getting started](http://getfirefly.org/#getting-started)**
  - **[Next steps](http://getfirefly.org/#next)**
 
-### [Live Demo](https://firefly-66e12.firebaseapp.com)
 
-
-# Folder Structure
+# Structure
 
 ### [`/functions`](https://github.com/sampl/firefly/tree/master/functions)
 
@@ -66,5 +69,3 @@ Views for CRUD of our main model, Posts
 ### [`/src/views/user`](https://github.com/sampl/firefly/tree/master/src/views/user)
 
 Views related to Users
-
-**Read the [full documentation](http://getfirefly.org)**
