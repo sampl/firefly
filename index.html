@@ -14,22 +14,16 @@
     body {
       font-family: system-ui, sans-serif;
       line-height: 1.4;
-      margin: 0;
+      margin: 0 auto;
+      max-width: 900px;
       color: #555666;
     }
 
     /* HERO */
 
     header {
-      display: flex;
-      flex-direction: column;
-      align-items: stretch;
-      justify-content: space-between;;
-      min-height: 90vh;
-      background: #333;
-      background: linear-gradient(45deg, #FD7D68, #FDB952);
+      /*min-height: 90vh;*/
       margin: 15px;
-      color: white;
       padding: 2rem;
     }
 
@@ -45,12 +39,11 @@
     .top-bar {
       display: flex;
       justify-content: space-between;
-      margin: 0 0 2rem;
+      margin: 0 0 3rem;
     }
     .top-bar h1 {
       font-size: 1.1rem;
       margin: 0;
-      color: white;
       font-weight: 500;
     }
     header nav {
@@ -59,7 +52,6 @@
     }
     header nav a {
       display: inline-block;
-      color: white;
       margin-left: 1rem;
     }
 
@@ -71,13 +63,26 @@
 
     /* hero content */
 
+    .illustration {
+      margin: 0 -3rem;
+    }
+    .cell {
+      display: flex;
+      justify-content: space-between;
+
+      align-items: stretch;
+      min-height: 40px;
+      flex: 1;
+    }
     .hero-content {
-      margin: 2rem 0 0;
+      color: white;
+      padding: 2.5rem;
       text-align: center;
+      width: 100%;
     }
     .headline {
-      /*font-family: 'Roboto Mono', monospace;*/
-      font-size: 2.2rem;
+      font-family: 'Roboto Mono', monospace;
+      font-size: 2rem;
     }
     .sub-headline-big {
       font-size: 1.2rem;
@@ -97,8 +102,7 @@
       margin: 0rem auto;
       background: white;
       display: inline-block;
-      color: #FD7D68;
-      box-shadow: 0 2px 4px #FD7D68;
+      color: rgb(251,71,74);
       padding: 1rem 1.5rem;
       border-radius: 4px;
       font-size: 1.2rem;
@@ -109,9 +113,7 @@
 
     main {
       display: flex;
-      margin: 0 auto;
       padding: 2rem;
-      max-width: 900px;
       position: relative;
     }
 
@@ -256,21 +258,112 @@
       <a href="#next">Next steps</a>
     </nav>
   </div>
-  <div class="hero-content">
-    <!-- <p class="headline">Making real websites is easier than you think</p> -->
-    <p class="headline">You can build real web apps, too</p>
-    <p class="sub-headline-big">Firefly is the simple, friendly boilerplate for new devs who just want to ship.</p>
-    <p class="sub-headline">Building modern web apps with user login, forms, and search really is easier than you think. Let Firefly show you how.</p>
-    <!-- <p class="sub-headline">If you've ever tried to learn Rails and given up, Firefly was made for you.</p> -->
-    <a class="button" href="#start">Read the Guide</a>
-    <p>
-      or <a href="https://github.com/sampl/firefly">view source on Github</a></p>
-    </p>
+
+  <div class="illustration">
+    <div class="cell" style="flex-direction: column;">
+      <div class="cell">
+
+        <!-- NW -->
+        <div class="cell">
+          <div class="cell" style="background: white;"></div>
+          <div class="cell" style="background: linear-gradient(90deg, rgb(240,208,91), rgb(240,208,91)); border-radius: 10px 0 0 0;"></div>
+        </div>
+
+        <!-- N -->
+        <div class="cell" style="flex: 10; flex-direction: column;">
+          <div class="cell" style="background: linear-gradient(90deg, rgb(240,208,91), rgb(253,212,42)); border-radius: 0 10px 0 0;"></div>
+          <div class="cell" style="background: linear-gradient(90deg, rgb(240,208,91), rgb(253,212,42));">
+            <div class="cell" style="background: linear-gradient(90deg, rgb(230,156,84), rgb(252,151,33)); border-radius: 10px 0 0 0;">
+              <!-- <div>
+                <div style="background: red; width: 10px; height: 10px; border-radius: 50%; margin: 20px 0 20px 12px; float: left;"></div>
+                <div style="background: red; width: 10px; height: 10px; border-radius: 50%; margin: 20px 0 20px 12px; float: left;"></div>
+                <div style="background: red; width: 10px; height: 10px; border-radius: 50%; margin: 20px 0 20px 12px; float: left;"></div>
+              </div> -->
+            </div>
+          </div>
+        </div>
+
+        <!-- NE -->
+        <div class="cell" style="flex-direction: column;">
+          <div class="cell" style="background: white;"></div>
+          <div class="cell" style="background: linear-gradient(90deg, rgb(249,71,76), rgb(251,70,72)); border-radius: 0 10px 0 0;"></div>
+        </div>
+
+      </div>
+      <div class="cell">
+
+        <!-- W -->
+        <div class="cell">
+          <div class="cell" style="background: linear-gradient(90deg, rgb(63,97,255), rgb(63,98,255)); border-radius: 10px 0 0 0;"></div>
+          <div class="cell" style="background: linear-gradient(90deg, rgb(42,140,91), rgb(41,140,91));"></div>
+        </div>
+
+        <!-- C -->
+        <div class="cell" style="flex: 10;">
+          <div class="cell" style="background: rgb(41,140,91);">
+            <div class="hero-content" style="background: linear-gradient(90deg, rgb(31,32,99), rgb(36,38,53)); border-radius: 0 0 0 10px;">
+              <!-- <p class="headline">Making real websites is easier than you think</p> -->
+              <p class="headline">You can build real web apps, too</p>
+              <p class="sub-headline-big">Firefly is the simple, friendly boilerplate for devs who just want to ship.</p>
+              <p class="sub-headline">Building modern web apps with user login, forms, and search really is easier than you think. Let Firefly show you how.</p>
+              <!-- <p class="sub-headline">If you've ever tried to learn Rails and given up, Firefly was made for you.</p> -->
+              <a class="button" href="#start">Read the Guide</a>
+              <p>
+                or <a href="https://github.com/sampl/firefly">view source on Github</a></p>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- E -->
+        <div class="cell">
+          <div class="cell" style="background: rgb(251,71,74);">
+            <div class="cell" style="background: linear-gradient(90deg, rgb(89,35,187), rgb(89,35,186)); border-radius: 0 10px 0 0;">
+            </div>
+          </div>
+          <div class="cell" style="background: linear-gradient(90deg, rgb(251,71,74), rgb(251,70,72)); border-radius: 0 0 10px 0;"></div>
+        </div>
+      </div>
+      <div class="cell">
+
+        <!-- SW -->
+        <div class="cell" style="flex-direction: column;">
+          <div class="cell">
+            <div class="cell" style="background: linear-gradient(90deg, rgb(63,97,255), rgb(63,98,255)); border-radius: 0 0 0 10px;"></div>
+            <div class="cell" style="background: linear-gradient(90deg, rgb(42,140,91), rgb(41,140,91));"></div>
+          </div>
+          <div class="cell">
+            <div class="cell" style="background: white;"></div>
+            <div class="cell" style="background: linear-gradient(90deg, rgb(240,208,91), rgb(240,208,91)); border-radius: 0 0 0 10px;"></div>
+          </div>
+        </div>
+
+        <!-- S -->
+        <div class="cell" style="flex: 10; flex-direction: column;">
+          <div class="cell" style="background: linear-gradient(90deg, rgb(41,140,91), rgb(28,156,42));"></div>
+          <div class="cell" style="background: linear-gradient(90deg, rgb(240,208,91), rgb(253,212,42)); border-radius: 0 0 10px 0;"></div>
+        </div>
+
+        <!-- SE -->
+        <div class="cell" style="flex-direction: column;">
+          <div class="cell">
+            <div class="cell" style="background: linear-gradient(90deg, rgb(56,101,255), rgb(55,101,255)); border-radius: 0 0 10px 0;"></div>
+            <div class="cell" style="background: white;"></div>
+          </div>
+          <div class="cell">
+            <div class="cell" style="background: white;"></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
   </div>
+
   <div>
     <!-- empty div to get flex layout on <header> working -->
   </div>
 </header>
+
 
 <main>
 
