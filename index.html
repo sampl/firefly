@@ -402,11 +402,11 @@
 
   <p>That's what Firefly is&mdash;a couple modern web tools put together to help you build real web apps. Think of it as a tiny alternative to Rails for building MVPs.</p>
 
-  <p>I built Firefly for myself so that I bring my own ideas to life. I hope you use it to make something of your own.</p>
+  <p>I built Firefly for myself to help me with my own projects. I hope you use it to make something of your own.</p>
 
   <div class="callout">
     <h3>Warning</h3>
-    <p>Firefly makes web development radically simple by not using backend servers, relational databases, unit tests, and other sane best-practices for enterprise codebases.</p>
+    <p>Firefly makes web development radically simple by not using backend servers, relational databases, unit tests, and other normal best-practices for large codebases.</p>
   </div>
 
 
@@ -415,59 +415,56 @@
 
   <h2 id="philosophy-modern">Cautiously Modern</h2>
 
-  <p>Firefly takes advantage of some modern web dev ideas to make the codebase extremely small.</p>
+  <p>Firefly wouldn't be possible without some recent ideas in web development:</p>
 
   <ul>
-    <li><strong>Modern Javascript</strong> - Firely uses modern Javascript and the huge JS/NPM ecosystem, with one major caveat: we don't go bleeding-edge. All libraries and services we use are well-established, used in production by major companies and will be supported for years to come.</li>
-    <li><strong>Single-page application</strong> - Firefly uses the front-end as much as possible. This lets us have a single codebase for most of our app logic.</li>
-    <li><strong>Serverless backend</strong> - What Firefly can't do on the client or with a 3rd party service, it does using Firebase Functions, which require no uptime monitoring or special deployment.</li>
+    <li><strong>Modern Javascript</strong> - Firely embraces modern Javascript and the huge <a href="">NPM</a> ecosystem, with one major caveat: we don't go bleeding-edge. The <a href="https://github.com/sampl/firefly/blob/master/package.json">libraries</a> and services we use are well-established, used in production by major companies and will likely be supported for years to come.</li>
+    <li><strong>Single-page application</strong> - Firefly puts as much app logic as possible in on the front-end to run in the browser, which keeps us from writing an API and maintaining models in two places.</li>
+    <li><strong>Serverless backend</strong> - What Firefly can't do on the client or with a 3rd party service, it does using <a href="">Firebase cloud functions</a>, which require no uptime monitoring or special deployment configuration.</li>
   </ul>
 
 
   <h2 id="philosophy-simple">Radically Simple</h2>
 
-  <p>One way to make something easier to understand it to make it smaller. That's why Firefly goes to the extreme to reduce the amount of "stuff" you have to keep in your head to get things done.</p>
+  <p>FFirefly goes to the extreme to reduce the amount of "stuff" you have to keep in your head at one time.</p>
 
   <ul>
-    <li><strong>Less code</strong> - Lots of app boilerplates are daunting, but Firefly has as little code as possible. The less code your app has, the less you have to understand and maintain.</li>
-    <li><strong>Fewer features</strong> - Easy extendability means fewer features out-of-the-box. Firefly has login, form validation, and search&mdash;for everything else, we show you how to <a href="#next">add it on your own</a>.</li>
+    <li><strong>Less code</strong> - Lots of app boilerplates are daunting, but Firefly has as little code as possible. The less code your app has, the less you have to understand&mdash;and maintain.</li>
     <li><strong>Boilerplate</strong> - Firefly is just a boilerplate, not a library or framework. There are no scaffolds and no CLI (to add more models and views, just copy-and-paste).</li>
-    <li><strong>Services</strong> - Instead of including code for authentication and search, Firefly outsources complicated stuff to APIs. This increases the chances of <a href="">vendor lock-in</a>, but vastly reduces the amount of complex code.</li>
+    <li><strong>Services</strong> - Instead of including code for authentication and search, Firefly outsources the complicated stuff to vendor APIs. This increases the chances of <a href="">vendor lock-in</a>, but vastly reduces the amount of complex code in your app.</li>
+    <li><strong>Easy extensibility</strong> - Firefly only has one collection with login, form validation, and search&mdash;for everything else, we show you how to <a href="#next">add it on your own</a>.</li>
   </ul>
 
 
   <h2 id="philosophy-learners">Built for learners</h2>
 
-  <p>Firefly's goal is NOT to be a tool for experienced engineers&mdash;it's to empower people with non-engineering skills to develop working products as quickly as possible. That's why Firefly should not just be a great tool, but also a great teacher.</p>
+  <p>Firefly's goal is NOT to be a production framework for experienced engineers&mdash;it's to empower people with a broad skill set to rapidly develop working products. That's why Firefly should not just be a great tool, but also a great teacher.</p>
 
   <ul>
-    <li><strong>Code style</strong> - When possible, I've opted for code that's easy to read over code that's concise and clever. For example, you won't see any of <a href="https://stackoverflow.com/a/44527667/1061063">this stuff</a> in Firefly.</li>
-    <li><strong>Code comments</strong> - <a href="">Code comments aren't always a good idea</a>&mdash;but when you're trying to understand a new codebase, they can make a huge difference. Firefly's source is heavily commented. Start reading at the <a href="https://github.com/sampl/firefly/blob/master/readme.md">readme</a>.</li>
-    <li><strong>Creative constraints</strong> - Firebase makes some opinionated choices about what you need and what you don't&mdash; so you don't have to salt passwords, manage sessions, write password reset logic, monitor server uptime, build a REST api, or write SQL joins.</li>
-    <li><strong>Extensible</strong> - Since Firefly is just a boilerplate, adding features is often as simple as copy-pasting from other parts of the app or <code>npm install</code>-ing a new package.</li>
+    <li><strong>Code style</strong> - When possible, Firefly uses code that's easy to read over code that's concise and clever. For example, you won't see any of <a href="https://stackoverflow.com/a/44527667/1061063">this stuff</a> in Firefly.</li>
+    <li><strong>Code comments</strong> - <a href="">Code comments aren't always a good idea</a>&mdash;but when you're trying to understand a new codebase, they can make a huge difference. Firefly's <a href="">source</a> is heavily commented.</li>
+    <li><strong>Creative constraints</strong> - Firebase makes some opinionated choices about what you need and what you don't. This means you'll never have to salt passwords, manage sessions, write password reset logic, monitor server uptime, build a REST api, or write SQL joins.</li>
   </ul>
-
-  <!-- <p>Ruby on Rails opened up web development to a whole generation of developers&mdash;even people who didn't think they WERE  developers before they found Rails. Without it, we wouldn't have many of the amazing services we have today. Properly framed, I think the modern JavaScript ecosystem can do the same.</p> -->
 
 
   <h1 id="how-it-works">How it works</h1>
 
   <p>At its heart, Firefly is just a single-page front-end web app boilerplate.</p>
 
-  <p>By default, it shows a list of Posts. Users can read individual posts and search for posts. Once they log in, users can create and edit their own posts. Check out the <a href="https://firefly-66e12.firebaseapp.com/">Firefly demo</a> to see it in action.</p>
+  <p>A new Firebase project is a page with a list of Posts. Users can read individual posts and search for posts. Once they log in, users can create and edit their own posts. Check out the <a href="https://firefly-66e12.firebaseapp.com/">Firefly demo</a> to see it in action.</p>
 
-  <p>The Firefly source has a lot more comments&mdash;as you read, try following along in the <a href="">code</a>.</p>
+  <p>The Firefly source has a lot more comments&mdash;as you read, try following along in the <a href="">code</a>. The <a href="https://github.com/sampl/firefly/blob/master/readme.md">Readme</a> is a good place to start.</p>
 
 
   <h2 id="how-it-works-models">Models</h2>
 
   <h3>The database</h3>
 
-  <p>Firefly uses the NoSQL <a href="">Firebase Real-time Database</a> for persisting data. The Firebase database is basically a big JSON file in the cloud that you access directly from a users web browser (no server required). Before you go much further, you should read the <a href="https://firebase.google.com/docs/database/web/start">Firebase Real-time Database Guide</a>.</p>
+  <p>Firefly uses the NoSQL <a href="">Firebase Real-time Database</a> for persisting data. The Firebase database is basically a big JSON file in the cloud that you access directly from a user's web browser (no server required). Before you go much further, you should read the <a href="https://firebase.google.com/docs/database/web/start">Firebase Real-time Database Guide</a>.</p>
 
-  <p>Since Firebase is basically just JSON, it has no schema, no tables, and no collections. The convention in <em>Firefly</em>, however, is to use the top level of the database as a collection, the second level for unique keys for items in that collection, and the third level for the attributes of each item (like a row). It looks like this:</p>
+  <p>Since the database is basically just JSON, it has no schema, no tables, and no collections. The convention in <em>Firefly</em>, however, is to use the top level of the database as a collection, the second level for unique keys for items in that collection, and the third level for the attributes of each item. Think of it as a table, primary key, and row, respectively.</p>
 
-  <pre>{
+<pre>{
   "dogs": {
     "1": {
       "name": "spot",
@@ -484,13 +481,32 @@
 
   <h3>Firefly models</h3>
 
-  <p>It's easy to read and write to this data using Firebase, but you should avoid writing to the database directly.</p>
+  <p>It's easy to access this database using the <a href="">Firebase API</a>, but you should avoid writing to the database directly.</p>
 
-  <p>Firefly makes it easy to add, read, and remove items with Javascript objects called <a href="https://github.com/sampl/firefly/tree/master/src/models">models</a>. Models have clear separation from Firefly views (Kind of like MVC, without the "C").</p>
+  <p>Firefly makes it easy to add, read, and remove items by giving you Javascript objects called <a href="https://github.com/sampl/firefly/tree/master/src/models">models</a>. In Firefly, models have clear separation from views (kind of like MVC without the "C").</p>
 
   <p>You can write a Firefly model however you like, but default Firefly models use a "base" model called <a href="https://github.com/sampl/firefly/blob/master/src/models/Supermodel.js">Supermodel</a>. When you <a href="https://github.com/sampl/firefly/blob/master/src/models/Post.js#L4">extend</a> Superclass to make a model, your new model will have a lot of useful functions for adding, querying, and deleting items built-in.</p>
 
+<pre>
+import Supermodel from './Supermodel'
+
+let Comment = Object.create(Supermodel)
+
+Comment.init({
+  name: 'Comment',
+  location: '/comment',
+})
+</pre>
+
   <p>Although Firebase can listen for changes to data, Firefly uses explict "get" functions to fetch data from models. This makes separating the models and views easier, and it's a simpler paradigm to learn and debug for beginners (pull requests welcome though!).</p>
+
+<pre>
+import Comment from '../models/Comment'
+
+Comment.getAll().then((comments) => {
+  console.log(comments)
+})
+</pre>
 
   <p>Most models simply modify and return the Firebase promise on the Firebase query library. This makes error handling in the views very simple, but you'll wan tto learn a bit about <a href="https://www.youtube.com/watch?v=f8IgdnYIwOU">how promises work</a>.</p>
 
@@ -501,20 +517,22 @@
 
   <p>Firefly uses <a href="https://firebase.google.com/docs/auth/web/start">Firebase Authentication</a> for logging users in, etc.</p>
 
+  <!-- TODO - better docs here -->
 
   <h3>Securing your data</h3>
 
-  <p>Because clients can write data directly into your database, you need to write some security rules to keep bad guys from deleting data or viewing private data. <a href="https://firebase.google.com/docs/database/security">This video</a> does a great job explaining how these rules work.</p>
+  <p>Because clients can write data directly into your database, you need to write some security rules to keep bad guys from deleting data or viewing private data. Firefly comes with a default set of rules for Posts that you can use can copy. <a href="https://firebase.google.com/docs/database/security">This video</a> does a great job explaining how these rules work.</p>
 
 
   <h3>Relational data</h3>
 
-  <p>Handling data that "relates" to other data is one of the trickier parts of web development. Because Firebase is a NoSQL database, Firefly has to handle this differently from o</p>
+  <p>Handling data that "relates" to other data is one of the trickier parts of web development. Because Firebase is a NoSQL database, Firefly handles this differently than other apps.</p>
 
   <p>In Firefly, each collection can be directly manipulated by the clients. Which clients can update which collection is restricted by the security rules the developer writes.</p>
 
   <p>Each collection also has some attributes that are automatically calculated on the backend for security reasons. They are only updated by Firebase server cloud functions, which have unlimited privledges. These are designated with an underscore at the beginning of their name.</p>
 
+  <!-- TODO - use real code for this ex -->
   <p>For example: when you "like" a post in Firefly, the Firebase client adds a new "like" to <code>post_likes</code> in the database. Then, a Firebase function who's is watching that table finds the post you liked and increments that post's <code>_like_count</code> attribute. Now we can query and sort posts by the number of likes they have&mdash;but users can't edit a post's like count directly.</p>
 
   <!-- <p>Loop to query lots of results&mdash;fairly fast because Firebase batches db requests</p> -->
@@ -525,17 +543,17 @@
 
   <h3>Component-based views</h3>
 
-  <p>Views in Firefly are built with <a href="">React</a>, which keeps a component's controller logic, templates, and even its CSS all in a single file. If you're used to writing HTML, CSS, and JavaScript in different files, this will feel weird at first. Stick with it&mdash;writing your UI using all-on-one components will feel like a revelation soon. Start by reading the <a href="https://facebook.github.io/react/docs/hello-world.html">official React guide</a>.</p>
+  <p>Views in Firefly are built with <a href="">React</a>, which keeps a component's controller logic, templates, and sometimes styles all in a single file. If you're used to writing HTML, CSS, and JavaScript in different files, this will feel weird at first. Stick with it&mdash;writing your UI using all-on-one components will feel like a revelation soon. Get started by reading the excellent <a href="https://facebook.github.io/react/docs/hello-world.html">official React guide</a>.</p>
 
 
   <h3>Routing</h3>
 
-  <p>The router is the part of the app that shows different pages based on the URL. We use the popular <a href="https://reacttraining.com/react-router/web/guides">React Router</a>.</p>
+  <p>The router is the part of the app that shows different pages based on the URL. React has no router built-in, so we use the popular <a href="https://reacttraining.com/react-router/web/guides">React Router</a>.</p>
 
 
   <h3>Listening for updates</h3>
 
-  <p>Many React apps use something like <a href="https://egghead.io/courses/getting-started-with-redux">Redux</a> to for state management (which sort of a fancy way of saying "keep my views up-to-date when my data changes"). Many developers agree that <a>Redux is overkill</a> for a lot of simple apps.</p>
+  <p>Many React apps use something like <a href="https://egghead.io/courses/getting-started-with-redux">Redux</a> to for state management (which sort of a fancy way of saying "keep my UI up-to-date when my data changes"). Many developers agree that <a>Redux is overkill</a> for a lot of simple apps.</p>
 
   <p>Instead, Firefly uses the much-simpler <a href="https://github.com/primus/eventemitter3">eventemitter3</a> library to let models announce when they've changed, and let views listen for those changes so they know to re-render.</p>
 
@@ -552,7 +570,7 @@
 
   <h3>Hosting</h3>
 
-  <p>We use Firebase hosting to host your app. Firebase hosting comes with HTTPS for free, and it's the same price as Google Cloud Platform object storage (very cheap). See <a href="#using-deploying">Getting Started: Deploying</a> for directions on deploying your app.</p>
+  <p>We use Firebase hosting to host your app. Firebase hosting comes with HTTPS for free, and it's the same price as Google Cloud Platform object storage (cheap). See <a href="#using-deploying">Getting Started: Deploying</a> for directions on deploying your app to Firebase hosting.</p>
 
 
   <h1 id="getting-started">Getting Started</h1>
@@ -673,9 +691,9 @@
     <li>The <a href="https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md">Create React App user guide</a> has a ton of great guides for adding things like CSS Preprocessors, unit testing, and more.</li>
 
     <li>There are some great tools for keeping an eye on your app when it's live. We recommend <a href="https://docs.sentry.io/clients/javascript/">Sentry</a> for monitoring errors on the site, <a href="https://support.google.com/analytics/answer/1008080?hl=en">Google Analytics</a> for tracking traffic, and <a href="https://docs.intercom.com/install-on-your-product-or-site/quick-install/install-intercom-on-your-web-app-for-logged-in-users">Intercom</a> for in-app support.</li>
-
-    <li>Did I miss something? Could something be more clear? <a href="https://github.com/sampl/firefly/issues">Submit issues and PRs</a></li>
   </ul>
+
+  <p>Did I miss something? Could something be more clear? <a href="https://github.com/sampl/firefly/issues">Submit issues and PRs</a></p>
 
   <footer>by <a href="http://sampl.us/">Sam Pierce Lolla</a></footer>
 
