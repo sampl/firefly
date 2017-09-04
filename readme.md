@@ -48,7 +48,9 @@ When Webpack runs, it compiles all these files into just an `app.js` and `index.
 
 ### [`/src/models`](https://github.com/sampl/firefly/tree/master/src/models)
 
-Models handle moving data in and out of our Firebase database
+Your models are code that get data from a server somewhere. Having this code separated into its own modules helps keep your app well-organized. These are mostly used by the React views in `/client`, but could be imported by scripts and functions too.
+
+All of these models inherit methods from the `Supermodel.js` file, which contains a bunch of convenient functions for working with Firebase.
 
 ### [`/src/views`](https://github.com/sampl/firefly/tree/master/src/views)
 
