@@ -1,4 +1,4 @@
-import Supermodel from './Supermodel'
+import Supermodel from './_Supermodel'
 
 let PostLike = Object.create(Supermodel)
 

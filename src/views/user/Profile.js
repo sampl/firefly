@@ -1,9 +1,9 @@
 import React from 'react'
 
-import User from '../../models/User'
+import Auth from '../../models/Auth'
 import AdminOnly from '../_util/AdminOnly'
-import Loading from '../_util/Loading'
-import Error from '../_util/Error'
+import Loading from '../Loading'
+import Error from '../Error'
 
 class Profile extends React.Component {
 
@@ -19,22 +19,22 @@ class Profile extends React.Component {
 
   componentWillMount() {
     this._get()
-    User.on('change', this._get)
+    Auth.on('change', this._get)
   }
 
   componentWillUnmount() {
-    User.removeListener('change', this._get)
+    Auth.removeListener('change', this._get)
   }
 
   _get() {
     this.setState({
       loading: false,
-      user: User.getLoggedInUser(),
+      user: Auth.getLoggedInUser(),
     })
   }
 
   _logOut() {
-    User.logOut()
+    Auth.logOut()
     this.props.history.push('/')
   }
 

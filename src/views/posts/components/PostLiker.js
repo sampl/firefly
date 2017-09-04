@@ -2,7 +2,7 @@ import React from 'react'
 import { withRouter } from 'react-router-dom'
 import _ from 'lodash'
 
-import User from '../../../models/User'
+import Auth from '../../../models/Auth'
 import PostLike from '../../../models/PostLike'
 
 class PostLiker extends React.Component {
@@ -35,9 +35,9 @@ class PostLiker extends React.Component {
       let userLike = null
 
       // see if any of the likes on the post are the current user
-      if (User.getLoggedInUser()) {
+      if (Auth.getLoggedInUser()) {
         userLike = _.find(likes, (like) =>
-          like.created_by === User.getLoggedInUser().uid
+          like.created_by === Auth.getLoggedInUser().uid
         )
       }
 
@@ -55,7 +55,7 @@ class PostLiker extends React.Component {
 
   _onClick() {
 
-    if (User.getLoggedInUser()) {
+    if (Auth.getLoggedInUser()) {
       if (!this.state.userLike) {
         PostLike.create({post: this.props.post.key}, () => {})
       } else {

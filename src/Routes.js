@@ -5,13 +5,13 @@ import {
 } from 'react-router-dom'
 
 // components
-import PostShow from    '../posts/PostShow'
-import PostList from    '../posts/PostList'
-import PostEdit from    '../posts/PostEdit'
-import PostCreate from  '../posts/PostCreate'
-import Login from       '../user/Login'
-import Profile from     '../user/Profile'
-import Error from       '../_util/Error'
+import PostShow from    './views/posts/PostShow'
+import PostList from    './views/posts/PostList'
+import PostEdit from    './views/posts/PostEdit'
+import PostCreate from  './views/posts/PostCreate'
+import Login from       './views/user/Login'
+import Profile from     './views/user/Profile'
+import Error from       './views/Error'
 
 class Routes extends React.Component {
   render() {

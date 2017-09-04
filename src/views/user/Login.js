@@ -1,6 +1,6 @@
 import React from 'react'
 
-import User from '../../models/User'
+import Auth from '../../models/Auth'
 
 class Login extends React.Component {
 
@@ -12,17 +12,17 @@ class Login extends React.Component {
 
   componentWillMount() {
     this._get()
-    User.on('change', this._get)
+    Auth.on('change', this._get)
   }
 
   componentWillUnmount() {
-    User.removeListener('change', this._get)
+    Auth.removeListener('change', this._get)
   }
 
   _get() {
     // if there's a logged in user and you're on the login page (probably because
     // they *just* logged in), try to redirect you to where they're supposed to go
-    if (User.getLoggedInUser()) {
+    if (Auth.getLoggedInUser()) {
       console.log('logged in; redirecting')
 
       // check for something like myapp.com/login?redirect_url=/posts
@@ -41,7 +41,7 @@ class Login extends React.Component {
   }
 
   _login() {
-    User.loginWithGoogle().catch( (err) => {
+    Auth.loginWithGoogle().catch( (err) => {
       alert(err.message)
     })
   }

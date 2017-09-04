@@ -2,8 +2,8 @@ import React from 'react'
 
 import Post from '../../models/Post'
 import PostForm from './components/PostForm'
-import Error from '../_util/Error'
-import Loading from '../_util/Loading'
+import Error from '../Error'
+import Loading from '../Loading'
 
 class PostEdit extends React.Component {
 

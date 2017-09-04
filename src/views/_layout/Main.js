@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-import Routes from './Routes'
+import Routes from '../../Routes'
 import Search from './components/Search'
 import Account from './components/Account'
 

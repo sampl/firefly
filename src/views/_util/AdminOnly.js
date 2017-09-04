@@ -5,7 +5,7 @@
 
 import React from 'react'
 
-import User from '../../models/User'
+import Auth from '../../models/Auth'
 
 class AdminOnly extends React.Component {
 
@@ -20,16 +20,16 @@ class AdminOnly extends React.Component {
   componentWillMount() {
     this._isMounted = true
     this._get()
-    User.on('change', this._get)
+    Auth.on('change', this._get)
   }
 
   componentWillUnmount() {
     this._isMounted = false
-    User.removeListener('change', this._get)
+    Auth.removeListener('change', this._get)
   }
 
   _get() {
-    User.getAdminStatus().then( (status) => {
+    Auth.getAdminStatus().then( (status) => {
       if (this._isMounted) {
         this.setState({
           admin: status

@@ -1,6 +1,6 @@
 import React from 'react'
 
-import User from '../../models/User'
+import Auth from '../../models/Auth'
 
 class LoggedOutOnly extends React.Component {
 
@@ -14,16 +14,16 @@ class LoggedOutOnly extends React.Component {
 
   componentWillMount() {
     this._get()
-    User.on('change', this._get)
+    Auth.on('change', this._get)
   }
 
   componentWillUnmount() {
-    User.removeListener('change', this._get)
+    Auth.removeListener('change', this._get)
   }
 
   _get() {
     this.setState({
-      loggedOut: !User.getLoggedInUser() ? true : false
+      loggedOut: !Auth.getLoggedInUser() ? true : false
     })
   }
 

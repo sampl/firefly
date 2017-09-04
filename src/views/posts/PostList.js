@@ -3,8 +3,8 @@ import _ from 'lodash'
 import { Link } from 'react-router-dom'
 
 import Post from '../../models/Post'
-import Error from '../_util/Error'
-import Loading from '../_util/Loading'
+import Error from '../Error'
+import Loading from '../Loading'
 import LoggedInOnly from '../_util/LoggedInOnly'
 
 class PostList extends React.Component {

@@ -1,11 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
+import Auth from '../../models/Auth'
 import Post from '../../models/Post'
-import User from '../../models/User'
 import PostLiker from './components/PostLiker'
-import Error from '../_util/Error'
-import Loading from '../_util/Loading'
+import Error from '../Error'
+import Loading from '../Loading'
 
 class PostShow extends React.Component {
 
@@ -63,7 +63,7 @@ class PostShow extends React.Component {
       return (<div>loading...</div>)
     } else {
       let editLink = null
-      if (User.getLoggedInUser() && this.state.post.createdBy === User.getLoggedInUser().uid) {
+      if (Auth.getLoggedInUser() && this.state.post.createdBy === Auth.getLoggedInUser().uid) {
         editLink = <Link to={'/posts/'+this.state.post.slug+'/edit'}>edit post</Link>
       }
       return (

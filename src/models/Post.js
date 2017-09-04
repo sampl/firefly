@@ -1,4 +1,4 @@
-import Supermodel from './Supermodel'
+import Supermodel from './_Supermodel'
 import slugify from 'slugify'
 
 let Post = Object.create(Supermodel)

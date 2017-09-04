@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-import User from '../../../models/User'
+import Auth from '../../../models/Auth'
 
 class Account extends React.Component {
 
@@ -15,12 +15,12 @@ class Account extends React.Component {
 
   componentWillMount() {
     this._get()
-    User.on('change', this._get)
+    Auth.on('change', this._get)
   }
 
   _get() {
     this.setState({
-      user: User.getLoggedInUser()
+      user: Auth.getLoggedInUser()
     })
   }
 
