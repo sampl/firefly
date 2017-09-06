@@ -29,7 +29,7 @@
 
     @media (max-width:770px) {
       header {
-        padding: 1rem;
+        padding: 0rem;
         min-height: 20rem;
       }
     }
@@ -56,7 +56,7 @@
     }
 
     @media (max-width:770px) {
-      header nav {
+      header .top-bar {
         display: none;
       }
     }
@@ -66,19 +66,36 @@
     .illustration {
       margin: 0 -3rem;
     }
+    @media (max-width:1000px) {
+      .illustration {
+        margin: 0;
+      }
+    }
+
     .cell {
       display: flex;
       justify-content: space-between;
 
       align-items: stretch;
-      min-height: 40px;
+      min-height: 30px;
       flex: 1;
     }
+    @media (max-width:770px) {
+      .cell {
+        min-height: 20px;
+      }
+    }
+
     .hero-content {
       color: white;
       padding: 2.5rem;
       text-align: center;
       width: 100%;
+    }
+    @media (max-width:770px) {
+      .hero-content {
+        padding: 1rem;
+      }
     }
     .headline {
       font-family: 'Roboto Mono', monospace;
@@ -108,6 +125,9 @@
       font-size: 1.2rem;
       font-weight: 500;
     }
+    .hero-content a.button:hover {
+      color: rgba(251,71,74,0.8);
+    }
 
     /* MAIN */
 
@@ -129,6 +149,7 @@
     @media (max-width:770px) {
       main {
         flex-direction: column;
+        padding: 1rem;
       }
       section {
         padding-left: 0;
@@ -138,7 +159,7 @@
     /* main sticky-nav */
 
     aside nav {
-      margin: 0 0 2rem;
+      margin: 0 0 6rem;
       position: absolute;
       position: -webkit-sticky;
       position: sticky;
@@ -217,11 +238,11 @@
       text-decoration: underline;
     }
     .callout {
-      padding: 0 1rem 1rem 1rem;
+      padding: 0.01rem 1rem 1rem 1.5rem;
       margin: 0 0 1rem;
-      background: hsl(45, 100%, 95%);
-      border: 1px solid transparent;
-      border-radius: 4px;
+      color: #666777;
+      border-left: 3px solid rgba(251,71,74,.8);
+      background: hsl(236, 100%, 98%);
     }
     .callout h3 {
       color: #555666;
@@ -303,9 +324,9 @@
           <div class="cell" style="background: rgb(41,140,91);">
             <div class="hero-content" style="background: linear-gradient(90deg, rgb(31,32,99), rgb(36,38,53)); border-radius: 0 0 0 10px;">
               <!-- <p class="headline">Making real websites is easier than you think</p> -->
-              <p class="headline">You can build real web apps, too</p>
-              <p class="sub-headline-big">Firefly is the simple, friendly boilerplate for devs who just want to ship.</p>
-              <p class="sub-headline">Building modern web apps with user login, forms, and search really is easier than you think. Let Firefly show you how.</p>
+              <p class="headline"><span style="text-decoration: underline;">You</span> can build real web apps, too</p>
+              <p class="sub-headline-big">Let Firefly teach you how. It's the friendly project boilerplate for devs who just want to ship.</p>
+              <!-- <p class="sub-headline">Building modern web apps with user login, forms, and search really is easier than you think. Let Firefly show you how.</p> -->
               <!-- <p class="sub-headline">If you've ever tried to learn Rails and given up, Firefly was made for you.</p> -->
               <a class="button" href="#start">Read the Guide</a>
               <p>
