@@ -1,20 +1,25 @@
-![Firefly](https://media.giphy.com/media/4BFo8uGv7NWeI/giphy.gif "Firefly")
+**Making websites is still too hard.**
 
-An approachable starting place for writing "real" web apps. Firefly was made **especially for designers** (and other people who are only used to writing a bit of client-side javascript but who don't have experience with servers and databases).
+Building a static site is pretty easy—but letting users log in, submit forms, and search is an order of magnitude harder. Many people who try just give up.
+
+Luckily, some new tools are making it easier. Together, they make a pretty compelling package.
+
+That's what Firefly is—a couple modern web tools put together to help you build real web apps. Think of it as a tiny alternative to Rails for building MVPs.
+
+I built Firefly for myself to help me with my own projects. I hope you use it to make something of your own.
+
+**Warning**: Firefly makes web development radically simple by not using backend servers, relational databases, unit tests, and other normal best-practices for large codebases.
 
 **[Live Demo](https://firefly-66e12.firebaseapp.com)**
 
-
-# Documentation
-
-### Full documentation at [getfirefly.org](http://getfirefly.org)
+**Full documentation at [getfirefly.org](http://getfirefly.org)**
  - **[Philosophy](http://getfirefly.org/#philosophy)**
  - **[How it works](http://getfirefly.org/#how-it-works)**
  - **[Getting started](http://getfirefly.org/#getting-started)**
  - **[Next steps](http://getfirefly.org/#next)**
 
 
-# Structure
+## App Structure
 
 ### [`/functions`](https://github.com/sampl/firefly/tree/master/functions)
 
