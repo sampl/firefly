@@ -1,5 +1,9 @@
 {
   "rules": {
+    "_minimum_allowable_app_version": {
+      ".read": "true",
+      ".write": "false"
+    },
     "admin": {
       ".read": "root.child('admin').hasChild(auth.uid)",
       ".write": "root.child('admin').hasChild(auth.uid)"

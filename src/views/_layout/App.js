@@ -1,6 +1,7 @@
 import React from 'react'
 import {withRouter} from 'react-router-dom'
 
+import KillSwitch from '../_util/KillSwitch'
 import Modal from './Modal'
 import Main from './Main'
 
@@ -36,18 +37,20 @@ class App extends React.Component {
     // and do we have children to put "behind" the modal?
     let isModal = (locationHasModalState && this.previousLocation )
 
-    let content
     if (isModal) {
-      content =
-        <div>
+      return(
+        <KillSwitch>
           <Modal goBack={this.props.history.goBack} />
           <Main location={this.previousLocation} />
-        </div>
+        </KillSwitch>
+      )
     } else {
-      content = <Main />
+      return(
+        <KillSwitch>
+          <Main />
+        </KillSwitch>
+      )
     }
-
-    return(content)
   }
 }
 
