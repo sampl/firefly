@@ -54,7 +54,7 @@ class KillSwitch extends React.Component {
         </div>
       )
     } else {
-      return( this.props.children )
+      return( <div> {this.props.children} </div> )
     }
   }
 
