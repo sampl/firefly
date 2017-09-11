@@ -13,18 +13,22 @@ class LoggedOutOnly extends React.Component {
   }
 
   componentWillMount() {
+    this._isMounted = true
     this._get()
     Auth.on('change', this._get)
   }
 
   componentWillUnmount() {
+    this._isMounted = false
     Auth.removeListener('change', this._get)
   }
 
   _get() {
-    this.setState({
-      loggedOut: !Auth.getLoggedInUser() ? true : false
-    })
+    if (this._isMounted) {
+      this.setState({
+        loggedOut: !Auth.getLoggedInUser() ? true : false
+      })
+    }
   }
 
   render() {
