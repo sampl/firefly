@@ -1,7 +1,6 @@
 import Firebase from 'firebase'
 import Moment from 'moment'
-import EventEmitter from 'eventemitter3'
-
+import EventEmitter from 'events'
 import User from '../models/User'
 
 // This is a thin wrapper around Firebase login/logout functions.

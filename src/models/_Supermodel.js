@@ -1,6 +1,6 @@
 let Firebase = require('firebase')
 let Moment = require('moment')
-let EventEmitter = require('eventemitter3')
+let EventEmitter = require('events').EventEmitter
 
 /*
   Helper object to keep Firebase stuff DRY
