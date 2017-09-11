@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "react-scripts test --env=jsdom",
-    "start": "firebase use dev && firebase deploy --only database && react-scripts start",
-    "stage": "firebase use dev && react-scripts build && firebase deploy",
-    "live": "firebase use prod && react-scripts build && firebase deploy"
+    "start": "firebase use development && firebase deploy --only database && react-scripts start",
+    "stage": "firebase use development && react-scripts build && firebase deploy",
+    "live": "firebase use production && react-scripts build && firebase deploy"
   },
   "repository": {
     "type": "git",
