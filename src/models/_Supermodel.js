@@ -30,8 +30,8 @@ Supermodel.get = function(item_key) {
   })
 }
 
-Supermodel.getAllWithAttrValue = function(attrName, attrValue) {
-  return this.ref.orderByChild(attrName).equalTo(attrValue).once('value').then( (snap) => {
+Supermodel.getAllBy = function(attribute, value) {
+  return this.ref.orderByChild(attribute).equalTo(value).once('value').then( (snap) => {
     let items = []
     snap.forEach( (childSnap) => {
       let item = childSnap.val()
@@ -58,8 +58,9 @@ Supermodel.getAll = function() {
 
 Supermodel.create = function(item_data) {
 
-  item_data.created_by = Firebase.auth().currentUser ? Firebase.auth().currentUser.uid : null
-  item_data.created_on = Moment().format()
+  item_data.metadata = {}
+  item_data.metadata.created_by = Firebase.auth().currentUser ? Firebase.auth().currentUser.uid : null
+  item_data.metadata.created_on = Moment().format()
 
   let new_key = this.ref.push().key
   return this.ref.child(new_key).update(item_data).then( () => {
@@ -71,8 +72,9 @@ Supermodel.create = function(item_data) {
 
 Supermodel.update = function(item_key, new_data) {
 
-  new_data.updated_by = Firebase.auth().currentUser ? Firebase.auth().currentUser.uid : null
-  new_data.updated_on = Moment().format()
+  new_data.metadata = new_data.metadata || {}
+  new_data.metadata.updated_by = Firebase.auth().currentUser ? Firebase.auth().currentUser.uid : null
+  new_data.metadata.updated_on = Moment().format()
 
   // ensure we're not trying to write the key as part of the document
   delete new_data.key

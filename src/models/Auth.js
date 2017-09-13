@@ -14,16 +14,19 @@ Auth.loginWithGoogle = function() {
   let provider = new Firebase.auth.GoogleAuthProvider()
   return Firebase.auth().signInWithPopup(provider).then( (result) => {
 
-    // TODO - create user profile if they haven't logged in before
+    // save at least something so we have a complete list of users
+    // (Firebase doesn't give us an API for the whole list)
     let new_data = {
-      last_login: Moment().format()
+      metadata: {
+        last_login: Moment().format(),
+      },
     }
 
     // TODO - use promises better here
     User.update(result.user.uid, new_data).then( (updated_user) => {
-      console.log('updated user profile w/ last login')
+      console.log('Saved user and last login')
     }).catch( (err) => {
-      console.error('Could not update profile for user '+result.user.uid)
+      console.error('Could not update user '+result.user.uid)
     })
 
   })

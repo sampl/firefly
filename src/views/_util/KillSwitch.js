@@ -31,7 +31,7 @@ class KillSwitch extends React.Component {
 
   componentWillUnmount() {
     this._isMounted = false
-    this.ref.off('change', this._get)
+    this.ref.off('value', this._get)
   }
 
   _get() {

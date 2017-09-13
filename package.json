@@ -24,7 +24,6 @@
   "bugs": {
     "url": "https://github.com/sampl/firefly/issues"
   },
-  "homepage": "https://github.com/sampl/firefly#readme",
   "dependencies": {
     "algoliasearch": "^3.24.1",
     "async": "^2.5.0",

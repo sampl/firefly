@@ -30,7 +30,7 @@ class PostLiker extends React.Component {
 
   _get() {
 
-    PostLike.getAllWithAttrValue('post', this.props.post.key).then( (likes) => {
+    PostLike.getAllBy('post', this.props.post.key).then( (likes) => {
 
       let userLike = null
 
