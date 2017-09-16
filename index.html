@@ -16,7 +16,7 @@
       line-height: 1.4;
       margin: 0 auto;
       max-width: 900px;
-      color: #555666;
+      color: #444555;
     }
 
     /* HERO */
@@ -172,7 +172,7 @@
     aside nav a.primary {
       color: #FF5555;
       color: #8e5eed;
-      color: #555666;
+      color: #444555;
       margin-top: 1.75rem;
       font-weight: 500;
       font-size: 1.1rem;
@@ -202,7 +202,7 @@
       margin: 5rem 0 1rem;
     }
     h2 {
-      color: #555666;
+      color: #444555;
       font-size: 1.4rem;
       font-weight: 600;
       margin: 2.5rem 0 .5rem;
@@ -245,7 +245,7 @@
       background: hsl(236, 100%, 98%);
     }
     .callout h3 {
-      color: #555666;
+      color: #444555;
     }
     blockquote {
       color: #777888;
@@ -634,7 +634,7 @@ Comment.getAll().then((comments) => {
 
   <ol>
     <li>Go to the <a href="console.firebase.google.com">Firebase console</a> and sign in with your Google account</li>
-    <li>Create a new project and name it something like <code>MyProjectName (Stage)</code></li>
+    <li>Create a new project and name it something like <code>MyProjectName [DEVELOPMENT]</code></li>
     <li>Click "Add Firebase to your web app"</li>
     <li>You'll see a block of code&mdash;leave this window open, you'll need it in a minute</li>
   </ol>
@@ -644,7 +644,7 @@ Comment.getAll().then((comments) => {
   <p>Now let's connect our database to our app. The connection parameters are security secrets, so first we'll rename our environment files to keep them from getting committed into git (the new filenames are listed in <code>.gitignore</code>).</p>
 
   <ol>
-    <li>First, rename <code>.firebaserc.example</code> to <code>.firebaserc</code> and replace the blank space next to "dev" with the <code>projectId</code> from the Firebase website.</li>
+    <li>First, rename <code>.firebaserc.example</code> to <code>.firebaserc</code> and replace the blank space next to "development" with the <code>projectId</code> from the Firebase website.</li>
     <li>Rename <code>.env.development.example</code> to <code>.env.development</code>. Replace the blank spaces in that file with the codes from the Firebase website too.</li>
   </ol>
 
@@ -680,15 +680,13 @@ Comment.getAll().then((comments) => {
 
   <p>After each change, commit your work using <a href="">git</a>.</p>
 
-  <p>When you're ready to deploy your app to stage, run <code>npm run stage</code>.</p>
-
 
   <h2 id="using-deploying">Deploying</h2>
 
-  <p>Each project you make using Firefly actually uses <em>two</em> Firebase projects&mdash;one for development and staging, and one for the live production site. We already made the development project, now we need to make one for production.</p>
+  <p>Each project you make using Firefly actually uses <em>two</em> Firebase projects&mdash;one for development, and one for the live production site. We already made the development project, now we need to make one for production.</p>
 
   <ol>
-    <li>Go back to <a href="#getting-started-firebase">Connecting to Firebase</a> and repeat the steps, but call this project something like <code>MyProjectName - LIVE</code></li>
+    <li>Go back to <a href="#getting-started-firebase">Connecting to Firebase</a> and repeat the steps, but call this project something like <code>MyProjectName [LIVE]</code></li>
     <li>Fill in the "production" value in <code>.firebaserc</code></li>
     <li>Rename <code>.env.production.example</code> to <code>.env.production</code> and add the new Firebase connection parameters there too.</p>
     <li><strong>Firefly is insecure by default. Before going live, <a href="https://firebase.google.com/docs/database/security">secure your app</a> by writing rules in <code>database.rules.json</code></strong></li>
