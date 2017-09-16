@@ -6,7 +6,6 @@
   "scripts": {
     "test": "react-scripts test --env=jsdom",
     "start": "firebase use development && firebase deploy --only database && react-scripts start",
-    "stage": "firebase use development && react-scripts build && firebase deploy",
     "live": "firebase use production && react-scripts build && firebase deploy"
   },
   "repository": {
