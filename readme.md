@@ -10,7 +10,7 @@ I built Firefly for myself to help me with my own projects. I hope you use it to
 
 **Warning**: Firefly makes web development radically simple by not using backend servers, relational databases, unit tests, and other normal best-practices for large codebases.
 
-**[Live Demo](https://firefly-66e12.firebaseapp.com)**
+**[Live Demo](https://firefly-a64d8.firebaseapp.com/)**
 
 **Full documentation at [getfirefly.org](http://getfirefly.org)**
  - **[Philosophy](http://getfirefly.org/#philosophy)**
