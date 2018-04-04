@@ -4,7 +4,7 @@ import Firebase from 'firebase'
 // eslint-disable-next-line
 import Firestore from 'firebase/firestore'
 
-import App from './App'
+import App from './views/App'
 
 // LOGGING
 console.log('create-react-app env:', process.env.NODE_ENV)

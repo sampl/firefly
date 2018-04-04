@@ -2,7 +2,7 @@ import React from 'react'
 
 import {
   Wrapper
-} from './styles/global'
+} from '../styles/global'
 
 const App = () => (
   <Wrapper>
