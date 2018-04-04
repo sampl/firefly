@@ -3,14 +3,17 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "firebase": "^4.12.1",
     "react": "^16.3.1",
     "react-dom": "^16.3.1",
     "react-scripts": "1.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
+    "start": "sh -ac '. .env.dev;   firebase use dev &&   react-scripts start'",
+    "dev":   "sh -ac '. .env.dev;   firebase use dev &&   react-scripts build && firebase deploy'",
+    "stage": "sh -ac '. .env.stage; firebase use stage && react-scripts build && firebase deploy'",
+    "live":  "sh -ac '. .env.live;  firebase use live  && react-scripts build && firebase deploy'",
+    "test":  "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   }
 }
