@@ -6,6 +6,10 @@ import Firestore from 'firebase/firestore'
 
 import App from './App'
 
+// LOGGING
+console.log('create-react-app env:', process.env.NODE_ENV)
+console.log('firefly app env:', process.env.REACT_APP_ENV)
+
 // DATABASE
 const dbConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
