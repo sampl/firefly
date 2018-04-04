@@ -3,13 +3,13 @@ import slugify from 'slugify'
 
 import { prepareDocForCreate } from '../data/firestore_utils'
 
-const createPost = (post) => {
+const createPost = (values) => {
   console.log(`creating new post`)
 
-  post.slug = slugify(post.title, {lower: true})
+  values.slug = slugify(values.title, {lower: true})
 
-  return Firebase.firestore().collection('posts').add(prepareDocForCreate(post))
-    .then( () => post)
+  return Firebase.firestore().collection('posts').add(prepareDocForCreate(values))
+    .then( () => values)
     .catch( error => {
       alert(`Whoops, couldn't create the post: ${error.message}`)
     })

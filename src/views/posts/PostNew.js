@@ -9,7 +9,7 @@ import {
 
 const NewPost = ({history}) => {
   return <Wrapper>
-    <PostForm onSubmit={post => createPost(post).then(p => history.push(`/${p.slug}`))} />
+    <PostForm onSubmit={values => createPost(values).then(p => history.push(`/${p.slug}`))} />
   </Wrapper>
 }
 

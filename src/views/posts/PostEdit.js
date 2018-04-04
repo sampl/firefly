@@ -13,7 +13,7 @@ const EditPost = ({loading, post, error, history}) => {
 
   if (loading) {
     return <Wrapper>
-      <h1>Loading post...</h1>
+      <p>Loading post...</p>
     </Wrapper>
   }
 
@@ -22,7 +22,9 @@ const EditPost = ({loading, post, error, history}) => {
   }
 
   return <Wrapper>
-    <PostForm post={post} onSubmit={post => updatePost(post).then(p => history.push(`/${p.slug}`))} />
+    <PostForm post={post} onSubmit={values => {
+      updatePost(post.id, values).then(() => history.push(`/${post.slug}`))
+    }} />
     <div onClick={() => {
         if (window.confirm(`Are you sure you want to delete this post?`)) {
           deletePost(post).then( () => history.push(`/`))

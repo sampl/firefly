@@ -1,53 +1,76 @@
 import React from 'react'
+import { Formik } from 'formik'
+
+import {
+  Label,
+  Input,
+  ValidationError,
+  Button,
+} from '../../styles/forms'
 
 class PostForm extends React.Component {
 
-  constructor(props) {
-    super(props)
-    const emptyPost = {
-      title: '',
-      content: '',
+  _validate = values => {
+    let errors = {}
+    if (!values.title) {
+      errors.title = 'You have to add a title to your post'
     }
-    this.state = {
-      post: this.props.post ? this.props.post : emptyPost,
-    }
+    return errors
   }
 
-  _onChange = event => {
-    const post = this.state.post
-    post[event.target.name] = event.target.value
-    this.setState({
-      post,
-    })
-  }
-
-  _submit = event => {
-    event.preventDefault()
-    this.props.onSubmit(this.state.post)
+  _submit = values => {
+    this.props.onSubmit(values)
   }
 
   render() {
-    return (
-      <form onSubmit={this._submit}>
+    return <Formik
+      initialValues={{
+        title: this.props.post ? this.props.post.title : '',
+        content: this.props.post ? this.props.post.content : '',
+      }}
+      validate={this._validate}
+      onSubmit={this._submit}
+      render={({
+        values,
+        errors,
+        touched,
+        handleChange,
+        handleBlur,
+        handleSubmit,
+        isSubmitting,
+      }) => (
+        <form onSubmit={handleSubmit}>
 
-        <label>
-          Title
-          <input name="title" value={this.state.post.title} onChange={this._onChange} />
-        </label>
+          <Label for="title">Title</Label>
+          <Input
+            type="text"
+            name="title"
+            onChange={handleChange}
+            onBlur={handleBlur}
+            value={values.title}
+          />
+          {touched.title && errors.title && <ValidationError>{errors.title}</ValidationError>}
 
-        <br />
+          <br />
 
-        <label>
-          Content
-          <textarea name="content" value={this.state.post.content} onChange={this._onChange} />
-        </label>
+          <Label for="content">Content</Label>
+          <Input
+            type="text"
+            name="content"
+            onChange={handleChange}
+            onBlur={handleBlur}
+            value={values.content}
+          />
+          {touched.content && errors.content && <ValidationError>{errors.content}</ValidationError>}
 
-        <br />
+          <br />
 
-        <button type="submit">Submit</button>
+          <Button type="submit" disabled={isSubmitting}>Submit</Button>
 
-      </form>
-    )
+        </form>
+      )}
+    />
+
   }
 }
 
