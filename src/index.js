@@ -3,8 +3,9 @@ import ReactDOM from 'react-dom'
 import Firebase from 'firebase'
 // eslint-disable-next-line
 import Firestore from 'firebase/firestore'
+import { BrowserRouter } from 'react-router-dom'
 
-import App from './views/App'
+import Routes from './Routes'
 
 // LOGGING
 console.log('create-react-app env:', process.env.NODE_ENV)
@@ -19,4 +20,4 @@ const dbConfig = {
 let FirebaseApp = Firebase.initializeApp(dbConfig)
 window.firebase = FirebaseApp // debugging
 
-ReactDOM.render(<App />, document.getElementById('root'))
+ReactDOM.render(<BrowserRouter><Routes /></BrowserRouter>, document.getElementById('root'))
