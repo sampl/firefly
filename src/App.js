@@ -1,10 +1,14 @@
 import React from 'react'
 
+import {
+  Wrapper
+} from './styles/global'
+
 const App = () => (
-  <div>
+  <Wrapper>
     <h1>Firefly</h1>
     <p>Hello world</p>
-  </div>
+  </Wrapper>
 )
 
 export default App

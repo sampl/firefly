@@ -6,14 +6,15 @@
     "firebase": "^4.12.1",
     "react": "^16.3.1",
     "react-dom": "^16.3.1",
-    "react-scripts": "1.1.4"
+    "react-scripts": "1.1.4",
+    "styled-components": "^3.2.5"
   },
   "scripts": {
     "start": "sh -ac '. .env.dev;   firebase use dev &&   react-scripts start'",
-    "dev":   "sh -ac '. .env.dev;   firebase use dev &&   react-scripts build && firebase deploy'",
+    "dev": "sh -ac '. .env.dev;   firebase use dev &&   react-scripts build && firebase deploy'",
     "stage": "sh -ac '. .env.stage; firebase use stage && react-scripts build && firebase deploy'",
-    "live":  "sh -ac '. .env.live;  firebase use live  && react-scripts build && firebase deploy'",
-    "test":  "react-scripts test --env=jsdom",
+    "live": "sh -ac '. .env.live;  firebase use live  && react-scripts build && firebase deploy'",
+    "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   }
 }
