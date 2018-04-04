@@ -5,7 +5,7 @@ import Firebase from 'firebase'
 import Firestore from 'firebase/firestore'
 import { BrowserRouter } from 'react-router-dom'
 
-import Routes from './Routes'
+import App from './views/App'
 
 // LOGGING
 console.log('create-react-app env:', process.env.NODE_ENV)
@@ -20,4 +20,4 @@ const dbConfig = {
 let FirebaseApp = Firebase.initializeApp(dbConfig)
 window.firebase = FirebaseApp // debugging
 
-ReactDOM.render(<BrowserRouter><Routes /></BrowserRouter>, document.getElementById('root'))
+ReactDOM.render(<BrowserRouter><App /></BrowserRouter>, document.getElementById('root'))

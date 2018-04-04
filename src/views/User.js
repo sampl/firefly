@@ -14,7 +14,8 @@ const User = ({loading, auth, error}) => {
 
   if (auth) {
     return <div>
-      <div>Logged in as {auth.displayName}</div>
+      {auth.displayName}
+      {' '}
       <button onClick={logOut}>log out</button>
     </div>
   }

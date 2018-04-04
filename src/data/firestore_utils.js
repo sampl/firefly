@@ -16,7 +16,7 @@ const getOneFromDocumentSnapshot = snapshot => {
 }
 
 const getOneFromQuerySnapshot = snapshot => {
-  if (!snapshot.docs) {
+  if (snapshot.empty) {
     return null
   }
   let doc = snapshot.docs[0].data()

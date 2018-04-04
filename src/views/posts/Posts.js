@@ -8,14 +8,22 @@ import {
 
 const Posts = ({loading, posts, error}) => {
 
-  if (error) {
-    return <Error error={error} />
-  }
-
   if (loading) {
     return <Wrapper>
       <h1>All Posts</h1>
       <p>loading posts...</p>
+    </Wrapper>
+  }
+
+  if (error) {
+    return <Error error={error} />
+  }
+
+  if (posts.length === 0) {
+    return <Wrapper>
+      <h1>All Posts</h1>
+      <p>No posts yet!</p>
+      <Link to="/new">New post</Link>
     </Wrapper>
   }
 
@@ -27,6 +35,8 @@ const Posts = ({loading, posts, error}) => {
         <br />
       </div>
     ))}
+    <br />
+    <Link to="/new">+ New post</Link>
   </Wrapper>
 }
 
