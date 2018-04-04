@@ -1,5 +1,6 @@
 import React from 'react'
-import Validation from 'react-validation'
+import Form from 'react-validation/build/form'
+import Input from 'react-validation/build/input'
 
 class PostForm extends React.Component {
 
@@ -27,30 +28,21 @@ class PostForm extends React.Component {
 
   render() {
     return (
-      <Validation.components.Form onSubmit={this._submit}>
+      <Form onSubmit={this._submit}>
         <div>
           Title
-          <Validation.components.Input name="title" value={this.state.post.title} validations={['required']} onChange={this._onChange} />
+          <Input name="title" value={this.state.post.title} validations={['required']} onChange={this._onChange} />
         </div>
-        <div>
-          Content
-          <Validation.components.Textarea name="content" value={this.state.post.content} validations={['required']} onChange={this._onChange} />
-        </div>
-        <Validation.components.Button type="submit">Submit</Validation.components.Button>
-      </Validation.components.Form>
+        <Button type="submit">Submit</Button>
+      </Form>
     )
   }
 }
 
-Object.assign(Validation.rules, {
-  required: {
-    rule: (value) => {
-      return value.toString().trim()
-    },
-    hint: (value) => {
-      return <span style={{color: 'hsl(0, 80%, 60%)', display: 'block'}}>Required</span>
-    }
-  },
-})
+const required = value => {
+  if (!value.toString().trim().length) {
+    return <span style={{color: 'hsl(0, 80%, 60%)', display: 'block'}}>Required</span>
+  }
+}
 
 export default PostForm
