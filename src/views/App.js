@@ -12,6 +12,8 @@ const App = () => (
     <Link to="/">Firefly</Link>
 
     <div style={{float: 'right'}}>
+      <Link to="/search">🔎</Link>
+      {' '}
       <User />
     </div>
 
