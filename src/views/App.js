@@ -2,7 +2,6 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 import Routes from '../Routes'
-import AuthProvider from '../data/AuthProvider'
 import User from './User'
 import {
   Wrapper
@@ -13,9 +12,7 @@ const App = () => (
     <Link to="/">Firefly</Link>
 
     <div style={{float: 'right'}}>
-      <AuthProvider render={ ({loading, auth, error}) => (
-          <User loading={loading} auth={auth} error={error} />
-        )}/>
+      <User />
     </div>
 
     <br />

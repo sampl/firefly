@@ -26,7 +26,8 @@ class UserLikeProvider extends React.Component {
   }
 
   _subscribeToChanges = () => {
-    this.unsubscribe = Firebase.firestore().collection('postLikes')
+    if (Firebase.auth().currentUser) {
+      this.unsubscribe = Firebase.firestore().collection('postLikes')
       .where('post', '==', this.props.post.id)
       .where('user', '==', Firebase.auth().currentUser.uid)
       .onSnapshot( snap => {
@@ -42,6 +43,7 @@ class UserLikeProvider extends React.Component {
           error,
         })
       })
+    }
   }
 
   componentWillUnmount() {
