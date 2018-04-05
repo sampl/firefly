@@ -4,3 +4,4 @@ node_modules
 .firebaserc
 firebase-debug.log
 .env.*
+serviceAccountKey*
