@@ -1,7 +1,7 @@
-**/.DS_Store
+.DS_Store
 build
 node_modules
 .firebaserc
 firebase-debug.log
-.env.development
-.env.production
+.env.*
+serviceAccountKey*

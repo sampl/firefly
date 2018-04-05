@@ -1,76 +1,40 @@
 import React from 'react'
+import { withRouter } from 'react-router-dom'
 
-import Post from '../../models/Post'
-import PostForm from './components/PostForm'
+import deletePost from '../../actions/deletePost'
+import updatePost from '../../actions/updatePost'
+import PostSlugProvider from '../../data/PostSlugProvider'
 import Error from '../Error'
-import Loading from '../Loading'
+import PostForm from './PostForm'
+import {
+  Wrapper
+} from '../../styles/global'
 
-class PostEdit extends React.Component {
+const EditPost = ({slug, history}) => (
+  <PostSlugProvider slug={slug} render={ ({loading, post, error}) => {
 
-  constructor(props) {
-    super(props)
-    this._editPost = this._editPost.bind(this)
-    this._deletePost = this._deletePost.bind(this)
-    this.state = {
-      loading: true,
-      post: {},
+    if (loading) {
+      return <Wrapper>
+        <p>Loading post...</p>
+      </Wrapper>
     }
-  }
 
-  componentWillMount() {
-    Post.getBySlug(this.props.match.params.post_slug).then( (post) => {
-      this.setState({
-        loading: false,
-        post,
-      })
-    }).catch( (err) => {
-      this.setState({
-        loading: false,
-        error: err.message,
-      })
-    })
-  }
-
-  _editPost(post) {
-    Post.update(post.key, post).then( (post_key) => {
-
-      // TODO - use promises better here
-      Post.get(post_key).then( (post) => {
-        this.props.history.push("/posts/"+post.slug)
-      }).catch( (err) => {
-        alert("Whoops, couldn't find the newly edited post: "+err.message)
-      })
-
-    }).catch( (err) => {
-      alert("Whoops, couldn't edit the post: "+err.message)
-    })
-  }
-
-  _deletePost() {
-    Post.destroy(this.state.post.key)
-  }
-
-  render() {
-    if (this.state.loading) {
-      return(<Loading />)
+    if (error) {
+      return <Error error={error} />
     }
-    if (this.state.error) {
-      return (<Error message={this.state.error}/>)
-    }
-    let form
-    if (this.state.post.title) {
-      form = <PostForm post={this.state.post} onSubmit={this._editPost} />
-    } else {
-      form = 'loading...'
-    }
-    return (
-      <div>
-        <h1>Edit post</h1>
-        {form}
-        <a href="" onClick={this._deletePost}>delete post</a>
-      </div>
-    )
-  }
-}
 
-export default PostEdit
+    return <Wrapper>
+      <PostForm post={post} onSubmit={values => {
+          updatePost(post.id, values).then(() => history.push(`/${post.slug}`))
+        }} />
+        <div onClick={() => {
+          if (window.confirm(`Are you sure you want to delete this post?`)) {
+            deletePost(post).then( () => history.push(`/`))
+          }
+        }}>delete post</div>
+    </Wrapper>
+
+  }} />
+)
+
+export default withRouter(EditPost)

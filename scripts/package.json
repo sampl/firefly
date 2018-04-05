@@ -1,0 +1,10 @@
+{
+  "name": "firefly-scripts",
+  "version": "1.0.0",
+  "description": "maint scripts to help developers work with data in firefly apps",
+  "main": "index.js",
+  "dependencies": {
+    "chalk": "^2.3.2",
+    "firebase-admin": "^5.11.0"
+  }
+}
