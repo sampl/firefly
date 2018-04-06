@@ -2,6 +2,7 @@ import React from 'react'
 
 import Error from '../Error'
 import PostsProvider from '../../data/PostsProvider'
+import AuthProvider from '../../data/AuthProvider'
 import {
   Page,
   AppLink,
@@ -27,7 +28,9 @@ const Posts = () => (
       }
 
       return <div>
-        <AppLink to="/new">+ New post</AppLink>
+        <AuthProvider render={ ({auth}) => (
+          auth ? <AppLink to="/new">+ New post</AppLink> : null
+        )}/>
         {posts.map(post => (
           <div key={post.id}>
             <h2>

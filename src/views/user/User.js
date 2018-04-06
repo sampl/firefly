@@ -1,4 +1,5 @@
 import React from 'react'
+import { withRouter } from 'react-router-dom'
 
 import logOut from '../../actions/logOut'
 import AuthProvider from '../../data/AuthProvider'
@@ -7,7 +8,7 @@ import {
   Page,
 } from '../../styles/global'
 
-const User = ({loading, auth, error}) => (
+const User = ({loading, auth, error, history}) => (
   <Page>
     <AuthProvider render={ ({loading, auth, error}) => {
 
@@ -27,11 +28,11 @@ const User = ({loading, auth, error}) => (
         {auth.email}
         <br />
         <br />
-        <button onClick={logOut}>log out</button>
+        <button onClick={() => logOut().then( () => history.push(`/`)) }>log out</button>
       </div>
 
     }}/>
   </Page>
 )
 
-export default User
+export default withRouter(User)
