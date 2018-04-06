@@ -6,6 +6,7 @@ import Post from './views/posts/Post'
 import PostEdit from './views/posts/PostEdit'
 import PostNew from './views/posts/PostNew'
 import Search from './views/search/Search'
+import User from './views/user/User'
 import Error from './views/Error'
 
 const Routes = () => (
@@ -13,6 +14,7 @@ const Routes = () => (
     <Route exact path="/" component={Posts} />
     <Route path="/new" component={PostNew} />
     <Route path="/search" component={Search} />
+    <Route path="/me" component={User} />
     <Route path="/:slug/edit" render={ ({match}) => <PostEdit slug={match.params.slug} /> } />
     <Route path="/:slug" render={ ({match}) => <Post slug={match.params.slug} /> } />
     <Route component={Error} />

@@ -5,7 +5,7 @@ import Firebase from 'firebase'
 import Firestore from 'firebase/firestore'
 import { BrowserRouter } from 'react-router-dom'
 
-import App from './views/App'
+import App from './views/_layout/App'
 
 // LOGGING
 console.log('create-react-app env:', process.env.NODE_ENV)

@@ -1,20 +1,24 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-import Routes from '../Routes'
-import User from './User'
+import Routes from '../../Routes'
+import Account from './components/Account'
+import IconSearch from './components/ic_search_black_24px'
+
 import {
   Wrapper
-} from '../styles/global'
+} from '../../styles/global'
 
 const App = () => (
   <Wrapper>
     <Link to="/">Firefly</Link>
 
     <div style={{float: 'right'}}>
-      <Link to="/search">🔎</Link>
+      <Link to="/search">
+        <IconSearch />
+      </Link>
       {' '}
-      <User />
+      <Account />
     </div>
 
     <br />
