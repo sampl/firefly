@@ -4,13 +4,13 @@ import { withRouter } from 'react-router-dom'
 import createPost from '../../actions/createPost'
 import PostForm from './PostForm'
 import {
-  Wrapper,
+  Page,
 } from '../../styles/global'
 
 const NewPost = ({history}) => {
-  return <Wrapper>
+  return <Page>
     <PostForm onSubmit={values => createPost(values).then(p => history.push(`/${p.slug}`))} />
-  </Wrapper>
+  </Page>
 }
 
 export default withRouter(NewPost)

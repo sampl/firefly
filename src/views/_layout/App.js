@@ -5,15 +5,17 @@ import Account from './components/Account'
 import IconSearch from './components/ic_search_black_24px'
 
 import {
-  Wrapper,
-  AppLink,
-  Logo,
+  AppWrapper,
   Header,
+  Logo,
   Footer,
+} from '../../styles/layout'
+import {
+  AppLink,
 } from '../../styles/global'
 
 const App = () => (
-  <Wrapper>
+  <AppWrapper>
     <Header>
       <Logo to="/">Firefly</Logo>
 
@@ -30,7 +32,7 @@ const App = () => (
 
     <Footer>&copy; {(new Date()).getFullYear()}</Footer>
 
-  </Wrapper>
+  </AppWrapper>
 )
 
 export default App

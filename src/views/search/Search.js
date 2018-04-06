@@ -4,7 +4,7 @@ import { InstantSearch, Hits, SearchBox} from 'react-instantsearch/dom'
 import './algolia-instant-search-reset.css'
 
 import {
-  Wrapper,
+  Page,
 } from '../../styles/global'
 import {
   Hit,
@@ -12,7 +12,7 @@ import {
 
 // https://community.algolia.com/react-instantsearch/Getting_started.html#install-react-instantsearch
 const Search = () => (
-  <Wrapper>
+  <Page>
     <h1>Search</h1>
     <InstantSearch
       appId={process.env.REACT_APP_ALGOLIA_APP_ID}
@@ -22,7 +22,7 @@ const Search = () => (
       <SearchBox />
       <Hits hitComponent={Product} />
     </InstantSearch>
-  </Wrapper>
+  </Page>
 )
 
 const Product = ({hit}) => <Hit to={`/${hit.slug}`}>{hit.title}</Hit>

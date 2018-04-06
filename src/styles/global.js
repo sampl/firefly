@@ -3,6 +3,8 @@ import { injectGlobal } from 'styled-components'
 import { Link } from 'react-router-dom'
 
 import colors from './colors'
+// eslint-disable-next-line
+import animation from './animation'
 
 // GLOBAL STYLES
 injectGlobal`
@@ -20,17 +22,20 @@ injectGlobal`
     padding: 0;
     line-height: 1.4;
   }
+
+  html,
+  body,
+  #root {
+    min-height: 100vh;
+  }
 `
 
-const Wrapper = styled.div`
-  max-width: 500px;
-  margin: 2rem auto;
-`
-
-const Logo = styled(Link)`
-  color: ${colors.black};
-  font-weight: 700;
-  text-decoration: none;
+const Page = styled.div`
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
 `
 
 const AppLink = styled(Link)`
@@ -43,21 +48,7 @@ const AppLink = styled(Link)`
   }
 `
 
-const Header = styled.div`
-  margin: 0 0 2rem;
-`
-
-const Footer = styled.div`
-  text-align: center;
-  font-size: .9rem;
-  color: ${colors.lightGray};
-  margin: 4rem 0 0;
-`
-
 export {
-  Wrapper,
-  Logo,
+  Page,
   AppLink,
-  Header,
-  Footer,
 }

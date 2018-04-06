@@ -13,6 +13,7 @@ class AuthProvider extends React.Component {
   }
 
   componentWillMount() {
+    this._isMounted = true
     this._subscribeToAuthChanges()
   }
 
@@ -25,21 +26,26 @@ class AuthProvider extends React.Component {
       this.unsubscribe()
     }
     this.unsubscribe = Firebase.auth().onAuthStateChanged( auth => {
-      this.setState({
-        loading: false,
-        auth,
-        error: null,
-      })
+      if (this._isMounted) {
+        this.setState({
+          loading: false,
+          auth,
+          error: null,
+        })
+      }
     }, error => {
-      this.setState({
-        loading: false,
-        auth: null,
-        error,
-      })
+      if (this._isMounted) {
+        this.setState({
+          loading: false,
+          auth: null,
+          error,
+        })
+      }
     })
   }
 
   componentWillUnmount() {
+    this._isMounted = false
     if (this.unsubscribe) {
       this.unsubscribe()
     }
