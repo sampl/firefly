@@ -6,7 +6,7 @@ import Firestore from 'firebase/firestore'
 import ReactGA from 'react-ga'
 import { BrowserRouter } from 'react-router-dom'
 
-import App from './views/_layout/App'
+import App from './views/App'
 
 console.log('create-react-app env:', process.env.NODE_ENV)
 console.log('firefly app env:', process.env.REACT_APP_ENV)

@@ -6,7 +6,7 @@ const updatePost = (postId, values) => {
 
   ReactGA.event({
     category: 'Post',
-    action: 'Updating post',
+    action: 'Update post',
   })
 
   return Firebase.firestore().collection('posts').doc(postId).update(prepareDocForUpdate(values))
