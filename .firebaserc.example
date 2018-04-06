@@ -1,0 +1,7 @@
+{
+  "projects": {
+    "dev": "FIREBASE PROJECT ID GOES HERE",
+    "stage": "FIREBASE PROJECT ID GOES HERE",
+    "live": "FIREBASE PROJECT ID GOES HERE"
+  }
+}

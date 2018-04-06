@@ -1,8 +1,13 @@
 import Firebase from 'firebase'
+import ReactGA from 'react-ga'
 import { prepareDocForUpdate } from '../data/firestore_utils'
 
 const updatePost = (postId, values) => {
-  console.log(`updating existing post`)
+
+  ReactGA.event({
+    category: 'Post',
+    action: 'Updating post',
+  })
 
   return Firebase.firestore().collection('posts').doc(postId).update(prepareDocForUpdate(values))
     .catch( error => {

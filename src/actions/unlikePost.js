@@ -1,7 +1,13 @@
 import Firebase from 'firebase'
+import ReactGA from 'react-ga'
 
 const unlikePost = (userLike) => {
-  console.log(`unliking post`)
+
+  ReactGA.event({
+    category: 'Post',
+    action: 'Unlike post',
+  })
+
   return Firebase.firestore().collection('postLikes').doc(userLike.id).delete()
 }
 

@@ -1,7 +1,13 @@
 import Firebase from 'firebase'
+import ReactGA from 'react-ga'
 
 const logOut = () => {
-  console.log(`logged out`)
+
+  ReactGA.event({
+    category: 'User',
+    action: 'Log out',
+  })
+
   return Firebase.auth().signOut()
 }
 

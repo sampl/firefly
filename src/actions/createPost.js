@@ -1,10 +1,15 @@
 import Firebase from 'firebase'
+import ReactGA from 'react-ga'
 import slugify from 'slugify'
 
 import { prepareDocForCreate } from '../data/firestore_utils'
 
 const createPost = (values) => {
-  console.log(`creating new post`)
+
+  ReactGA.event({
+    category: 'Post',
+    action: 'Create post',
+  })
 
   values.slug = slugify(values.title, {lower: true})
 

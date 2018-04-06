@@ -1,4 +1,5 @@
 import React from 'react'
+import ReactGA from 'react-ga'
 import { Switch, Route, withRouter } from 'react-router-dom'
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
 
@@ -25,9 +26,18 @@ const Routes = ({location}) => (
         <Route path="/:slug/edit" render={ ({match}) => <PostEdit slug={match.params.slug} /> } />
         <Route path="/:slug" render={ ({match}) => <Post slug={match.params.slug} /> } />
         <Route component={Error} />
+        <Route path="/" component={Analytics}/>
       </Switch>
     </CSSTransition>
   </TransitionGroup>
 )
+
+// Track Google Analytics page view for every route
+// https://github.com/react-ga/react-ga/issues/122#issuecomment-319546248
+const Analytics = ({location}) => {
+  ReactGA.set({ page: location.pathname + location.search })
+  ReactGA.pageview(location.pathname + location.search)
+  return null
+}
 
 export default withRouter(Routes)
