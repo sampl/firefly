@@ -1,35 +1,34 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 
 import Routes from '../../Routes'
 import Account from './components/Account'
 import IconSearch from './components/ic_search_black_24px'
 
 import {
-  Wrapper
+  Wrapper,
+  AppLink,
+  Logo,
+  Header,
+  Footer,
 } from '../../styles/global'
 
 const App = () => (
   <Wrapper>
-    <Link to="/">Firefly</Link>
+    <Header>
+      <Logo to="/">Firefly</Logo>
 
-    <div style={{float: 'right'}}>
-      <Link to="/search">
-        <IconSearch />
-      </Link>
-      {' '}
-      <Account />
-    </div>
-
-    <br />
-    <br />
+      <div style={{float: 'right'}}>
+        <AppLink to="/search">
+          <IconSearch />
+        </AppLink>
+        {' '}
+        <Account />
+      </div>
+    </Header>
 
     <Routes />
 
-    <br />
-    <br />
-
-    &copy; 2018
+    <Footer>&copy; {(new Date()).getFullYear()}</Footer>
 
   </Wrapper>
 )

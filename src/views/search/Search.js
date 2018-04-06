@@ -4,10 +4,10 @@ import { InstantSearch, Hits, SearchBox} from 'react-instantsearch/dom'
 import './algolia-instant-search-reset.css'
 
 import {
-  Wrapper
+  Wrapper,
 } from '../../styles/global'
 import {
-  Hit
+  Hit,
 } from '../../styles/search'
 
 // https://community.algolia.com/react-instantsearch/Getting_started.html#install-react-instantsearch

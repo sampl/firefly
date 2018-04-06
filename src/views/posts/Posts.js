@@ -1,10 +1,10 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 
 import Error from '../Error'
 import PostsProvider from '../../data/PostsProvider'
 import {
-  Wrapper
+  Wrapper,
+  AppLink,
 } from '../../styles/global'
 
 const Posts = () => (
@@ -12,7 +12,6 @@ const Posts = () => (
 
     if (loading) {
       return <Wrapper>
-        <h1>All Posts</h1>
         <p>loading posts...</p>
       </Wrapper>
     }
@@ -23,22 +22,20 @@ const Posts = () => (
 
     if (posts.length === 0) {
       return <Wrapper>
-        <h1>All Posts</h1>
+        <AppLink to="/new">New post</AppLink>
         <p>No posts yet!</p>
-        <Link to="/new">New post</Link>
       </Wrapper>
     }
 
     return <Wrapper>
-      <h1>All Posts</h1>
+      <AppLink to="/new">+ New post</AppLink>
       {posts.map(post => (
         <div key={post.id}>
-          <Link to={`/${post.slug}`}>{post.title}</Link>
-          <br />
+          <h2>
+            <AppLink to={`/${post.slug}`}>{post.title}</AppLink>
+          </h2>
         </div>
       ))}
-      <br />
-      <Link to="/new">+ New post</Link>
     </Wrapper>
 
   }} />

@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom'
 import createPost from '../../actions/createPost'
 import PostForm from './PostForm'
 import {
-  Wrapper
+  Wrapper,
 } from '../../styles/global'
 
 const NewPost = ({history}) => {

@@ -4,7 +4,7 @@ import logOut from '../../actions/logOut'
 import AuthProvider from '../../data/AuthProvider'
 import Error from '../Error'
 import {
-  Wrapper
+  Wrapper,
 } from '../../styles/global'
 
 const User = ({loading, auth, error}) => (

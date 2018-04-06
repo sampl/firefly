@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 
 import AuthProvider from '../../data/AuthProvider'
 import PostSlugProvider from '../../data/PostSlugProvider'
@@ -7,7 +6,8 @@ import LikeCount from '../postLikes/LikeCount'
 import LikeButton from '../postLikes/LikeButton'
 import Error from '../Error'
 import {
-  Wrapper
+  Wrapper,
+  AppLink,
 } from '../../styles/global'
 
 const Post = ({slug}) => (
@@ -26,10 +26,10 @@ const Post = ({slug}) => (
 
     return <Wrapper>
       <h1>{post.title}</h1>
-      <p>{post.content}</p>
       <LikeCount post={post} />
       <LikeButton post={post} />
-      <AuthProvider render={ ({auth}) => auth ? <Link to={`/${post.slug}/edit`}>Edit</Link> : null } />
+      <p>{post.content}</p>
+      <AuthProvider render={ ({auth}) => auth ? <AppLink to={`/${post.slug}/edit`}>Edit</AppLink> : null } />
     </Wrapper>
 
   }} />

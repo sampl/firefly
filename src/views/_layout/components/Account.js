@@ -1,8 +1,12 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 
 import logIn from '../../../actions/logIn'
 import AuthProvider from '../../../data/AuthProvider'
+import IconAccount from './ic_account_circle_black_24px'
+
+import {
+  AppLink,
+} from '../../../styles/global'
 
 const Account = ({loading, auth, error}) => (
   <AuthProvider render={ ({loading, auth, error}) => {
@@ -16,7 +20,7 @@ const Account = ({loading, auth, error}) => (
     }
 
     if (auth) {
-      return <Link to={`/me`}>{auth.displayName}</Link>
+      return <AppLink to={`/me`}><IconAccount /></AppLink>
     }
 
     return <button onClick={logIn}>log in</button>

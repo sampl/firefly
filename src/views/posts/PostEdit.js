@@ -7,7 +7,7 @@ import PostSlugProvider from '../../data/PostSlugProvider'
 import Error from '../Error'
 import PostForm from './PostForm'
 import {
-  Wrapper
+  Wrapper,
 } from '../../styles/global'
 
 const EditPost = ({slug, history}) => (

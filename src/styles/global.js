@@ -1,5 +1,8 @@
 import styled from 'styled-components'
 import { injectGlobal } from 'styled-components'
+import { Link } from 'react-router-dom'
+
+import colors from './colors'
 
 // GLOBAL STYLES
 injectGlobal`
@@ -24,6 +27,37 @@ const Wrapper = styled.div`
   margin: 2rem auto;
 `
 
+const Logo = styled(Link)`
+  color: ${colors.black};
+  font-weight: 700;
+  text-decoration: none;
+`
+
+const AppLink = styled(Link)`
+  color: ${colors.blue};
+  text-decoration: none;
+
+  &:hover,
+  &:active {
+    text-decoration: underline;
+  }
+`
+
+const Header = styled.div`
+  margin: 0 0 2rem;
+`
+
+const Footer = styled.div`
+  text-align: center;
+  font-size: .9rem;
+  color: ${colors.lightGray};
+  margin: 4rem 0 0;
+`
+
 export {
   Wrapper,
+  Logo,
+  AppLink,
+  Header,
+  Footer,
 }
