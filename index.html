@@ -13,7 +13,7 @@
     }
     body {
       font-family: system-ui, sans-serif;
-      line-height: 1.4;
+      line-height: 1.5;
       margin: 0 auto;
       max-width: 900px;
       color: #444555;
@@ -22,14 +22,12 @@
     /* HERO */
 
     header {
-      /*min-height: 90vh;*/
-      margin: 15px;
       padding: 2rem;
     }
 
     @media (max-width:770px) {
       header {
-        padding: 0rem;
+        padding: 1rem;
         min-height: 20rem;
       }
     }
@@ -41,10 +39,15 @@
       justify-content: space-between;
       margin: 0 0 3rem;
     }
-    .top-bar h1 {
+    .top-bar a.logo {
       font-size: 1.1rem;
       margin: 0;
       font-weight: 500;
+      font-family: 'Roboto Mono', monospace;
+      color: #FF5555;
+    }
+    .top-bar a.logo:hover {
+      text-decoration: none;
     }
     header nav {
       margin: 0;
@@ -55,18 +58,14 @@
       margin-left: 1rem;
       font-weight: 500;
     }
+    header nav :hover {
+      text-decoration: none;
+    }
 
     /* hero content */
 
     .hero-content {
-      padding: 2.5rem;
-      text-align: center;
-      width: 100%;
-    }
-    @media (max-width:770px) {
-      .hero-content {
-        padding: 1rem;
-      }
+      padding: 3rem 33% 3rem 0;
     }
     .headline {
       font-family: 'Roboto Mono', monospace;
@@ -74,14 +73,13 @@
     }
     .sub-headline-big {
       font-size: 1.2rem;
-      margin: 0 0 3rem;
+      margin: 0 0 1rem;
+      /* color: #777888; */
     }
     .sub-headline {
       font-size: 1rem;
-      margin: 0 0 2rem;
-    }
-    .hero-content a {
-      text-decoration: underline;
+      margin: 0 0 3rem;
+      color: #777888;
     }
     .hero-content a.button {
       text-decoration: none;
@@ -94,6 +92,7 @@
       border-radius: 4px;
       font-size: 1.2rem;
       font-weight: 500;
+      transition: all .2s ease;
     }
     .hero-content a.button:hover {
       background: rgba(251,71,74,1);
@@ -151,6 +150,7 @@
     aside nav a.secondary {
       color: #777888;
       font-size: 0.9rem;
+      font-weight: 500;
     }
 
     @media (max-width:770px) {
@@ -244,24 +244,37 @@
 
 <header>
   <div class="top-bar">
-    <h1>Firefly</h1>
+    <a class="logo" href="#">Firefly</a>
     <nav>
-      <a href="#start">Guide</a>
       <a href="https://github.com/sampl/firefly">Source</a>
       <a href="https://demo.getfirefly.org">Demo</a>
     </nav>
   </div>
 
   <div class="hero-content">
-    <!-- <p class="headline">Making real websites is easier than you think</p> -->
-    <p class="headline"><span style="text-decoration: underline;">You</span> can build real web apps, too</p>
-    <p class="sub-headline-big">Let Firefly teach you how. It's the friendly project boilerplate for devs who just want to ship.</p>
-    <p class="sub-headline">It's a web based on Create React App and Firebase</p>
-    <a class="button" href="#start">Read the Guide</a>
+
+    <p class="headline" id="type_target"></p>
+    <p class="sub-headline-big">Firefly can teach you how&mdash;it's the friendly starter kit for new devs who just want to ship 🔥</p>
+    <p class="sub-headline">Firefly is a learner-focused, bare-bones, modern web app project boilerplate and tutorial based on Create React App and Firebase</p>
+    <a class="button" href="#getting-started">Start building</a>
     <p>
       or <a href="https://github.com/sampl/firefly">view source on Github</a></p>
     </p>
   </div>
+
+  <script>
+    var counter = 0
+    var text = '*You* can learn to build real web apps, too.'
+    var speed = 50
+    function type() {
+      if (counter < text.length) {
+        document.getElementById("type_target").innerHTML += text.charAt(counter)
+        counter++
+        setTimeout(type, speed)
+      }
+    }
+    type()
+  </script>
 
 </header>
 
@@ -289,24 +302,23 @@
 
 <section>
 
-  <!-- rewrite to be about ME -->
+  <div style="font-size: 1.15rem">
 
-  <p id="start"><strong>Making websites is <em>still too hard</em>.</strong></p>
+    <strong>Making websites is <em>hard</em>.</strong></p>
 
-  <p>Building a static site is pretty easy&mdash;but letting users log in, submit forms, and search is an order of magnitude harder. Many people who try just give up.</p>
+    <p>Writing HTML is pretty easy&mdash;but building an authentication system, securely processing forms, managing database migrations, and adding search is <em>way</em> harder. Most people who try give up. I almost did.</p>
 
-  <p>Luckily, some new tools are making it easier. Together, they make a pretty compelling package.</p>
-
-  <p>That's what Firefly is&mdash;a couple modern web tools put together to help you build real web apps. Think of it as a tiny alternative to Rails for building MVPs.</p>
-
-  <p>I built Firefly for myself to help me with my own projects. I hope you use it to make something of your own.</p>
+    <p>Luckily, I found some tools that make everything a LOT simpler. I've spent months refining a starter project I can use to ship my own projects faster&mdash;that's Firefly.</p>
+  </div>
 
 
   <h1 id="philosophy">Philosophy</h1>
 
-  <p>Firefly embraces modern javascript syntax, the huge NPM ecosystem, React, Create React App, Firebase, single-page front-end applications, serverless backends, schemaless data backends, and 3rd-party APIs for hard things like auth and search. Most of these were chosen to keep lines of code small and make the app simpler to reason about (no API, no server to maintain, no spaghetti jQuery templates to manage, etc).</p>
+  <p>Firefly is built to help new devs learn and build simple sites quickly.</p>
 
-  <p>That said, nothing Firefly uses is bleeding edge: its <a href="https://github.com/sampl/firefly/blob/master/package.json">dependencies</a> are all usually by a large tech company, used in production by large projects, hugely popular in the community, and will likely be supported for years to come.</p>
+  <p>It embraces modern javascript syntax, the huge NPM ecosystem, React, Create React App, Firebase, single-page front-end applications, serverless backends, schemaless data backends, and 3rd-party APIs for hard things like auth and search&mdash;all to keep the codebase small and make the things "easier to reason about" (no API, no server to monitor, etc).</p>
+
+  <p>That said, nothing Firefly uses is bleeding edge: all <a href="https://github.com/sampl/firefly/blob/master/package.json">dependencies</a> are used by a large tech companies in production, are hugely popular in the community, and will likely be supported for years to come.</p>
 
 
   <h1 id="how-it-works">How it works</h1>
@@ -482,7 +494,7 @@
   <br/>
   <br/>
 
-  <em>Did I miss something? Could something be more clear? <a href="https://github.com/sampl/firefly/issues">Submit issues and PRs</a></em>
+  <em>Did I miss something? Was something confusing? I'd love to hear from you; <a href="https://github.com/sampl/firefly/issues">submit an issue</a> or <a href="https://github.com/sampl/firefly/pulls">pull request</a>.</em>
 
   <footer>by <a href="http://sampl.us/">Sam Pierce Lolla</a></footer>
 
