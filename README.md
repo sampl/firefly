@@ -1,14 +1,8 @@
-**Making websites is still too hard.**
+A modern web-app boilerplate with Create React App and Firebase. Focused on simplicity for new devs, rapid prototyping, and smallish projects.
 
-Building a static HTML/CSS site is pretty easy—but building log in, forms, and search is way harder. Most people who try to learn just give up.
+### **Full documentation at [getfirefly.org](https://getfirefly.org)**
 
-Firefly is a modern web app boilerplate for junior devs who just want to make something cool. Firefly uses a lot of, but does without Redux and a lot of the complicated things that get in the way of shipping. Think of it as a tiny alternative to Rails for people learning JS.
-
-I built Firefly for myself to help me with my own projects. I hope you use it to make something of your own.
-
-### **Full documentation at [getfirefly.org](http://getfirefly.org)**
-
-**[Live Demo](https://firefly-a64d8.firebaseapp.com/)**
+### **[Live Demo](https://demo.getfirefly.org)**
 
 
 ## App Structure
@@ -27,7 +21,7 @@ I built Firefly for myself to help me with my own projects. I hope you use it to
 
 MIT License
 
-Copyright (c) 2017 Samuel Pierce Lolla
+Copyright (c) 2018 Samuel Pierce Lolla
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
