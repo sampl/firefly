@@ -306,15 +306,15 @@
 
     <strong>Making websites is <em>hard</em>.</strong></p>
 
-    <p>Writing HTML is pretty easy&mdash;but building an authentication system, securely processing forms, managing database migrations, and adding search is <em>way</em> harder. Most people who try give up. I almost did.</p>
+    <p>Sure, writing HTML is pretty easy&mdash;but building an authentication system, securely processing forms, managing database migrations, and adding search is <em>way</em> harder. Most people who try just give up. I almost did.</p>
 
-    <p>Luckily, I found some tools that make everything a LOT simpler. I've spent months refining a starter project I can use to ship my own projects faster&mdash;that's Firefly.</p>
+    <p>Luckily, I found some tools that make things simpler. I've spent months refining a starter project I use to ship my own projects faster&mdash;that's Firefly.</p>
   </div>
 
 
   <h1 id="philosophy">Philosophy</h1>
 
-  <p>Firefly is built to help new devs learn and build simple sites quickly.</p>
+  <p>Firefly does away with a lot of the stuff that teams of professional engineers use to build large, high-volume, scalable applications. Instead, it's designed to help new devs learn and build simple sites quickly.</p>
 
   <p>It embraces modern javascript syntax, the huge NPM ecosystem, React, Create React App, Firebase, single-page front-end applications, serverless backends, schemaless data backends, and 3rd-party APIs for hard things like auth and search&mdash;all to keep the codebase small and make the things "easier to reason about" (no API, no server to monitor, etc).</p>
 
@@ -332,13 +332,17 @@
 
   <p>Most of Firefly is built with <a href="">React</a>. React can feel weird at first&mdash;it looks funny, and it doesn't use normal HTML and CSS. Stick with it though&mdash;using components will feel like a revelation soon. Get started by reading the excellent <a href="https://facebook.github.io/react/docs/hello-world.html">official React guide</a>.</p>
 
-  <h3>React</h3>
+  <h3>Presentation views</h3>
 
-  <p>Generally, it's a good idea to keep your views simple and functional.
+  <p>The main UI of a firebase app is a bunch of simple React components in the /views folder. These are usually stateless, presentational components written in the simple functional React style. Think of them like templates in MVC--their job is basically just to show HTML.</p>
+
+  <h3>Styles</h3>
+
+  <p>Firefly uses styled-components to add style. These are React components written with CSS, and they live in the /styles folder. Think of them as a replacement for SASS or LESS files.</p>
 
   <h3>Routing</h3>
 
-  <p>The router is the part of the app that shows different pages based on the URL. React has no router built-in, so we use the popular <a href="https://reacttraining.com/react-router/web/guides">React Router</a>.</p>
+  <p>The router is the part of the app that shows different pages based on the URL. React has no built-in router, so we use the popular <a href="https://reacttraining.com/react-router/web/guides">React Router</a>. All our app's routes live in the Routes.js file.</p>
 
 
   <h2 id="how-it-works-data">Data</h2>
@@ -347,15 +351,15 @@
   <p>Firefly uses the NoSQL <a href="">Firebase Firestore database</a> for saving data. Firestore organizes your data into "collections" (kind of like SQL tables) which have "documents" (kind of like rows, or big blobs of JSON). You write to the Firebase database directly from the user's web browser (no server required). Before you go much further, you should read the <a href="https://firebase.google.com/docs/firestore/web/start">Firebase Firestore Database Guide</a>.</p>
   <p>Firestore queries use javascript Promises to make async requests and error handling very simple. If you're not familiar with promises, learn a bit about <a href="https://www.youtube.com/watch?v=f8IgdnYIwOU">how promises work</a>.</p>
 
-  <h3>Data Providers</h3>
-  <p>So how do you get your data into your views? Firefly comes with a bunch of "provider" components in the /data folder to do just that--their responsibility is to listen for data and pass it down to the views using the <a>render prop</a> pattern.</p>
-  <p>Many React apps use something like <a href="https://egghead.io/courses/getting-started-with-redux">Redux</a> to for state management (which sort of a fancy way of saying "keep my UI up-to-date when my data changes"). Many developers agree that <a>Redux is overkill</a> for a lot of simple apps, so Firefly just uses render methods and Firebase subscriptions to keep everything up-to-date.</p>
+  <h3>Data providers</h3>
+  <p>So how do you get your data into your views? Firefly comes with a bunch of "provider" react components in the /data folder to do just that--their responsibility is to listen for data from the database and pass it down to the views using the <a>render prop</a> pattern.</p>
+  <p>Many other React apps use something like <a href="https://egghead.io/courses/getting-started-with-redux">Redux</a> to keep their UI up-to-date when my data changes, but many developers agree that <a>Redux is overkill</a> for a lot of simple apps, so Firefly just uses render methods and Firebase subscriptions.</p>
 
   <h3>Securing your data</h3>
-  <p>Because any browser can write data directly into your database, you need some security rules to keep bad guys from deleting data or viewing private stuff. Firefly comes with a default set of rules for posts that you can use can copy. <a href="https://firebase.google.com/docs/database/security">This video</a> does a great job explaining how these rules work.</p>
+  <p>Because any browser can write data directly into your database, you need some Firebase security rules to keep hackers from deleting data or viewing private stuff. Firefly comes with a default set of rules for posts that you can use can copy. <a href="https://firebase.google.com/docs/database/security">This video</a> does a great job explaining how these rules work.</p>
 
   <h3>Relational data</h3>
-  <p>Handling data that "relates" to other data is one of the trickier parts of web development. Because Firestore is a NoSQL database, you'll need to handle this differently than you would in Rails, for example.</p>
+  <p>Handling data that "relates" to other data is one of the trickier parts of web development. Because Firestore is a NoSQL database, you'll need to handle this differently than you would in Rails (for example).</p>
 
   <p>In Firefly, each collection can be directly manipulated by the clients. Which clients can update which collection is restricted by the security rules the developer writes.</p>
 
@@ -373,9 +377,9 @@
 
   <h2 id="how-it-works-actions">Actions</h2>
 
-  <p>So now you know how Firefly shows UI with real data. Now, how to you make the app react when the user clicks something?</p>
+  <p>OK, so now you know how Firefly shows UI with data from the database. But how do you make the app change when the user clicks something?</p>
 
-  <p>The answer is "actions"&mdash;plain old javascript functions that live in the "actions" folder. When the user wants to add a post, for example, the add post view will call the add post action, which takes care of sending the new post to the database. When the database gets the new post, the data providers will send it to the views, and now everything's updated!</p>
+  <p>The answer is "actions"&mdash;plain old javascript functions that live in the "actions" folder. When the user wants to add a post, for example, the "add post" view will call the "add post" action, which takes care of sending the new post to the database. When the database gets the new post, the data providers will automatically send it to the views so everything's always up-to-date.</p>
 
 
   <h2 id="how-it-works-other">Other stuff</h2>
