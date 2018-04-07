@@ -9,6 +9,7 @@ const AppWrapper = styled.div`
   display: grid;
   min-height: 100vh;
   grid-template-rows: 5rem auto 5rem;
+  padding: 0 1rem;
 `
 
 const Header = styled.div`
