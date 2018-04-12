@@ -1,7 +1,7 @@
 import Firebase from 'firebase'
 import ReactGA from 'react-ga'
 
-const unlikePost = (userLike) => {
+const unlikePost = userLike => {
 
   ReactGA.event({
     category: 'Post',

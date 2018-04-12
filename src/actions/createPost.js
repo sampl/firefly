@@ -4,7 +4,7 @@ import slugify from 'slugify'
 
 import { prepareDocForCreate } from '../data/firestore_utils'
 
-const createPost = (values) => {
+const createPost = values => {
 
   ReactGA.event({
     category: 'Post',

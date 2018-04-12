@@ -1,6 +1,7 @@
 import React from 'react'
 
 import createSubscription from '../../actions/createSubscription'
+import deleteSubscription from '../../actions/deleteSubscription'
 import UserSubscriptionProvider from '../../data/UserSubscriptionProvider'
 
 class Subscription extends React.Component {
@@ -38,16 +39,31 @@ class Subscription extends React.Component {
         return 'Sorry, there was an error getting your subscription. Try refreshing the page?'
       }
 
+      if (subscription && subscription.temp_stripe_payment_token_id) {
+        return 'Subscribing you to the paid plan...'
+      }
+
+      if (subscription && subscription.stripe_subscription_error) {
+        return <span style={{color: 'red'}}>Whoops&mdash;there was an error creating your subscription. Sorry about that!</span>
+      }
+
       if (subscription) {
         return <div>
-          'You are subscribed!'
-          { subscription.stripe_subscription_error && <span style={{color: 'red'}}>stripe sub error</span>}
-          {/* subscription details go here */}
+          You are subscribed!
+          <br/>
+          Status: {subscription.stripe_subscription_status}
+          <br/>
+          <button onClick={() => {
+            if (window.confirm(`Are you sure you want to cancel your subscription? You won't have access to paid Firefly features.`)) {
+              deleteSubscription(subscription)
+            }
+          }}>Cancel subscription</button>
         </div>
       }
 
       return <div>
-        'You are not subscribed'
+        Subscribe now to get paid features
+        <br/>
         <button onClick={this._openPaymentWindow}>Subscribe now</button>
       </div>
     }} />

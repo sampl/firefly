@@ -3,7 +3,7 @@ import ReactGA from 'react-ga'
 
 import { prepareDocForCreate } from '../data/firestore_utils'
 
-const likePost = (post) => {
+const likePost = post => {
 
   ReactGA.event({
     category: 'Post',

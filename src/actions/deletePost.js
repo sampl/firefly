@@ -1,7 +1,7 @@
 import Firebase from 'firebase'
 import ReactGA from 'react-ga'
 
-const deletePost = (post) => {
+const deletePost = post => {
 
   ReactGA.event({
     category: 'Post',

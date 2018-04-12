@@ -10,12 +10,12 @@ import {
   Page,
 } from '../../styles/global'
 
-const User = ({loading, auth, error, history}) => (
+const Account = ({loading, auth, error, history}) => (
   <Page>
     <AuthProvider render={ ({loading, auth, error}) => {
 
       if (loading) {
-        return <p>Loading user...</p>
+        return <p>Loading your account...</p>
       }
 
       if (error) {
@@ -24,8 +24,7 @@ const User = ({loading, auth, error, history}) => (
 
       if (!auth) {
         return <div>
-          <h1>Log in to see your profile</h1>
-          <h1>You'll be able to see your profile, change your settings, and buy a subscription</h1>
+          <p>Log in to see your account</p>
           <button onClick={logIn}>Log in</button>
         </div>
       }
@@ -36,7 +35,6 @@ const User = ({loading, auth, error, history}) => (
         <strong>{auth.displayName}</strong>
         <br />
         {auth.email}
-        <br />
         <br />
         <button onClick={() => logOut().then( () => history.push(`/`)) }>log out</button>
         <br />
@@ -49,4 +47,4 @@ const User = ({loading, auth, error, history}) => (
   </Page>
 )
 
-export default withRouter(User)
+export default withRouter(Account)

@@ -29,7 +29,7 @@ const Layout = ({children}) => (
         <AuthProvider render={ ({loading, auth, error}) => {
           if (error)   { return '⚠️ login error' }
           if (loading) { return '...' }
-          if (auth)    { return <AppLink to={`/me`}><IconAccount /></AppLink> }
+          if (auth)    { return <AppLink to={`/account`}><IconAccount /></AppLink> }
           return <button onClick={logIn}>log in</button>
         }}/>
       </div>

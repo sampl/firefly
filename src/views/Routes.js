@@ -7,7 +7,7 @@ import Post from './posts/Post'
 import PostEdit from './posts/PostEdit'
 import PostNew from './posts/PostNew'
 import Search from './search/Search'
-import User from './user/User'
+import Account from './account/Account'
 import Error from './Error'
 import {
   PageContainer,
@@ -21,7 +21,7 @@ const Routes = ({location}) => (
         <Route exact path="/" component={Posts} />
         <Route path="/new" component={PostNew} />
         <Route path="/search" component={Search} />
-        <Route path="/me" component={User} />
+        <Route path="/account" component={Account} />
         <Route path="/:slug/edit" render={ ({match}) => <PostEdit slug={match.params.slug} /> } />
         <Route path="/:slug" render={ ({match}) => <Post slug={match.params.slug} /> } />
         <Route component={Error} />

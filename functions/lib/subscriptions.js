@@ -10,11 +10,11 @@ exports.updateStripeSubscription = (change, context) => {
 
   // Subscription has been deleted
   if (!change.after.exists) {
-    return null
+    return stripe.subscriptions.del(change.before.data().stripe_subscription_id)
   }
 
   // Subscription already has a stripe subscription
-  // TODO - update stripe subscription with whatever details changed?
+  // TODO - update stripe subscription with new details (ie new email)?
   if (subscription.stripe_subscription_id) {
     return null
   }
