@@ -10,26 +10,22 @@ const getOneFromDocumentSnapshot = snapshot => {
   if (!snapshot.exists) {
     return null
   }
-  let doc = snapshot.data()
-  doc.id = snapshot.id
-  return doc
+  return {
+    ...snapshot.data(),
+    id: snapshot.id,
+  }
 }
 
 const getOneFromQuerySnapshot = snapshot => {
-  if (snapshot.empty) {
-    return null
-  }
-  let doc = snapshot.docs[0].data()
-  doc.id = snapshot.docs[0].id
-  return doc
+  return getManyFromQuerySnapshot(snapshot)[0]
 }
 
 const getManyFromQuerySnapshot = snapshot => {
-  return snapshot.docs.map( snap => {
-    const doc = snap.data()
-    doc.id = snap.id
-    return doc
-  })
+  return snapshot.docs.map( snap => ({
+      ...snap.data(),
+      id: snap.id,
+    })
+  )
 }
 
 // SETTERS
