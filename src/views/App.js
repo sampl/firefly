@@ -15,8 +15,9 @@ const App = () => (
 // Track Google Analytics page view for every route
 // https://github.com/react-ga/react-ga/issues/122#issuecomment-319546248
 const Analytics = ({location}) => {
-  ReactGA.set({ page: location.pathname + location.search })
-  ReactGA.pageview(location.pathname + location.search)
+  const page = location.pathname + location.search
+  ReactGA.set({ page })
+  ReactGA.pageview(page)
   return null
 }
 

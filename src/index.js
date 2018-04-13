@@ -1,8 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import Firebase from 'firebase'
-// eslint-disable-next-line
-import Firestore from 'firebase/firestore'
+import 'firebase/firestore'
 import ReactGA from 'react-ga'
 import { BrowserRouter } from 'react-router-dom'
 
