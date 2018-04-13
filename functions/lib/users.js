@@ -6,7 +6,7 @@ exports.createUser = user => {
 
   const createStripeCustomer = email => {
     return stripe.customers.create({
-      email: email,
+      email,
     })
   }
 
@@ -18,6 +18,8 @@ exports.createUser = user => {
 
   return createStripeCustomer(user.email)
     .then(saveStripeCustomerToDatabase)
-    .catch(error => console.error("couldn't create a user and stripe customer", error))
+    .catch(error => {
+      console.error("couldn't create a user and stripe customer", error)
+    })
 
 }
