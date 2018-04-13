@@ -4,7 +4,6 @@ import { withRouter } from 'react-router-dom'
 import deletePost from '../../actions/deletePost'
 import updatePost from '../../actions/updatePost'
 import PostSlugProvider from '../../data/PostSlugProvider'
-import Error from '../Error'
 import PostForm from './PostForm'
 import {
   Page,
@@ -12,18 +11,10 @@ import {
 
 const EditPost = ({slug, history}) => (
   <Page>
-    <PostSlugProvider slug={slug} render={ ({loading, post, error}) => {
-
-      if (loading) {
-        return <p>Loading post...</p>
-      }
-
-      if (error) {
-        return <Error error={error} />
-      }
-
-      return <div>
-        <PostForm post={post} onSubmit={values => {
+    <PostSlugProvider slug={slug}>
+      { post => (
+        <div>
+          <PostForm post={post} onSubmit={values => {
             updatePost(post.id, values).then(() => history.push(`/${post.slug}`))
           }} />
           <div onClick={() => {
@@ -31,9 +22,9 @@ const EditPost = ({slug, history}) => (
               deletePost(post).then( () => history.push(`/`))
             }
           }}>delete post</div>
-      </div>
-
-    }} />
+        </div>
+      )}
+    </PostSlugProvider>
   </Page>
 )
 

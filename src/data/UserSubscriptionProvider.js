@@ -2,61 +2,75 @@ import React from 'react'
 import Firebase from 'firebase'
 
 import { getOneFromQuerySnapshot } from './firestore_utils'
+import Error from '../views/Error'
 
 class UserSubscriptionProvider extends React.Component {
 
-  constructor(props) {
-    super(props)
-    this.state = {
-      loading: true,
-      error: null,
-      subscription: null,
-    }
+  state = {
+    loading: true,
+    error: null,
+    subscription: null,
   }
 
-  componentWillMount() {
-    this._subscribeToChanges()
+  componentDidMount() {
+    this.updateSubscription()
   }
 
-  componentWillReceiveProps() {
-    if (this.unsubscribe) {
-      this.unsubscribe()
-    }
-    this._subscribeToChanges()
-  }
-
-  _subscribeToChanges = () => {
-    if (Firebase.auth().currentUser) {
-      this.unsubscribe = Firebase.firestore().collection('subscriptions')
-      .where('user', '==', Firebase.auth().currentUser.uid)
-      .onSnapshot( snap => {
-        this.setState({
-          loading: false,
-          subscription: getOneFromQuerySnapshot(snap),
-          error: null,
-        })
-      }, error => {
-        this.setState({
-          loading: false,
-          subscription: null,
-          error,
-        })
-      })
+  componentDidUpdate(props) {
+    if (this.props.auth.uid !== props.auth.uid) {
+      this.updateSubscription()
     }
   }
 
   componentWillUnmount() {
-    if (this.unsubscribe) {
-      this.unsubscribe()
+    this.cancelSubscription()
+  }
+
+  updateSubscription = () => {
+    this.cancelSubscription()
+
+    const query = Firebase.firestore()
+      .collection('subscriptions')
+      .where('user', '==', this.props.auth.uid)
+      .onSnapshot(this.setSubscription, this.handleError)
+
+    this.setState({
+      unsubscribe: query,
+    })
+  }
+
+  setSubscription = snap => {
+    this.setState({
+      loading: false,
+      subscription: getOneFromQuerySnapshot(snap),
+      error: null,
+    })
+  }
+
+  handleError = error => {
+    this.setState({
+      loading: false,
+      subscription: null,
+      error,
+    })
+  }
+
+  cancelSubscription = () => {
+    if (this.state.unsubscribe) {
+      this.state.unsubscribe()
     }
   }
 
   render() {
-    return this.props.render({
-      loading: this.state.loading,
-      subscription: this.state.subscription,
-      error: this.state.error,
-    })
+    if (this.state.error) {
+      return this.props.error || <Error error={this.state.error} />
+    }
+
+    if (this.state.loading) {
+      return this.props.loading || 'loading...'
+    }
+
+    return this.props.children(this.state.subscription)
   }
 
 }

@@ -21,7 +21,7 @@ class Subscription extends React.Component {
     })
   }
 
-  _openPaymentWindow = () => {
+  openPaymentWindow = () => {
     this._handler.open()
   }
 
@@ -30,43 +30,38 @@ class Subscription extends React.Component {
   }
 
   render() {
-    return <UserSubscriptionProvider render={ ({loading, subscription, error}) => {
-      if (loading) {
-        return 'Loading subscription...'
-      }
+    return <UserSubscriptionProvider auth={this.props.auth}>
+      { subscription => {
 
-      if (error) {
-        return 'Sorry, there was an error getting your subscription. Try refreshing the page?'
-      }
+        if (subscription && subscription.temp_stripe_payment_token_id) {
+          return 'Subscribing you to the paid plan...'
+        }
 
-      if (subscription && subscription.temp_stripe_payment_token_id) {
-        return 'Subscribing you to the paid plan...'
-      }
+        if (subscription && subscription.stripe_subscription_error) {
+          return <span style={{color: 'red'}}>Whoops&mdash;there was an error creating your subscription. Sorry about that!</span>
+        }
 
-      if (subscription && subscription.stripe_subscription_error) {
-        return <span style={{color: 'red'}}>Whoops&mdash;there was an error creating your subscription. Sorry about that!</span>
-      }
+        if (subscription) {
+          return <div>
+            You are subscribed!
+            <br/>
+            Status: {subscription.stripe_subscription_status}
+            <br/>
+            <button onClick={() => {
+              if (window.confirm(`Are you sure you want to cancel your subscription? You won't have access to paid Firefly features.`)) {
+                deleteSubscription(subscription)
+              }
+            }}>Cancel subscription</button>
+          </div>
+        }
 
-      if (subscription) {
         return <div>
-          You are subscribed!
+          Subscribe now to get paid features
           <br/>
-          Status: {subscription.stripe_subscription_status}
-          <br/>
-          <button onClick={() => {
-            if (window.confirm(`Are you sure you want to cancel your subscription? You won't have access to paid Firefly features.`)) {
-              deleteSubscription(subscription)
-            }
-          }}>Cancel subscription</button>
+          <button onClick={this.openPaymentWindow}>Subscribe now</button>
         </div>
-      }
-
-      return <div>
-        Subscribe now to get paid features
-        <br/>
-        <button onClick={this._openPaymentWindow}>Subscribe now</button>
-      </div>
-    }} />
+      }}
+    </UserSubscriptionProvider>
   }
 }
 

@@ -2,57 +2,75 @@ import React from 'react'
 import Firebase from 'firebase'
 
 import { getManyFromQuerySnapshot } from './firestore_utils'
+import Error from '../views/Error'
 
 class PostLikesProvider extends React.Component {
 
-  constructor(props) {
-    super(props)
-    this.state = {
-      loading: true,
-      error: null,
-      postLikes: [],
+  state = {
+    loading: true,
+    error: null,
+    postLikes: [],
+  }
+
+  componentDidMount() {
+    this.updateSubscription()
+  }
+
+  componentDidUpdate(props) {
+    if (this.props.post.id !== props.post.id) {
+      this.updateSubscription()
     }
-  }
-
-  componentWillMount() {
-    this._subscribeToChanges()
-  }
-
-  componentWillReceiveProps() {
-    if (this.unsubscribe) {
-      this.unsubscribe()
-    }
-    this._subscribeToChanges()
-  }
-
-  _subscribeToChanges = () => {
-    this.unsubscribe = Firebase.firestore().collection('postLikes').where('post', '==', this.props.post.id).onSnapshot( snap => {
-      this.setState({
-        loading: false,
-        postLikes: getManyFromQuerySnapshot(snap),
-        error: null,
-      })
-    }, error => {
-      this.setState({
-        loading: false,
-        postLikes: [],
-        error,
-      })
-    })
   }
 
   componentWillUnmount() {
-    if (this.unsubscribe) {
-      this.unsubscribe()
+    this.cancelSubscription()
+  }
+
+  updateSubscription = () => {
+    this.cancelSubscription()
+
+    const query = Firebase.firestore()
+      .collection('postLikes')
+      .where('post', '==', this.props.post.id)
+      .onSnapshot(this.setPosts, this.handleError)
+
+    this.setState({
+      unsubscribe: query,
+    })
+  }
+
+  setPosts = snap => {
+    this.setState({
+      loading: false,
+      postLikes: getManyFromQuerySnapshot(snap),
+      error: null,
+    })
+  }
+
+  handleError = error => {
+    this.setState({
+      loading: false,
+      postLikes: [],
+      error,
+    })
+  }
+
+  cancelSubscription = () => {
+    if (this.state.unsubscribe) {
+      this.state.unsubscribe()
     }
   }
 
   render() {
-    return this.props.render({
-      loading: this.state.loading,
-      postLikes: this.state.postLikes,
-      error: this.state.error,
-    })
+    if (this.state.error) {
+      return this.props.error || <Error error={this.state.error} />
+    }
+
+    if (this.state.loading) {
+      return this.props.loading || 'loading...'
+    }
+
+    return this.props.children(this.state.postLikes)
   }
 
 }

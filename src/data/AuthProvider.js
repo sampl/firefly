@@ -1,62 +1,65 @@
 import React from 'react'
 import Firebase from 'firebase'
 
+import Error from '../views/Error'
+
 class AuthProvider extends React.Component {
 
-  constructor(props) {
-    super(props)
-    this.state = {
-      loading: true,
-      error: null,
-      auth: null,
-    }
+  state = {
+    loading: true,
+    error: null,
+    auth: null,
   }
 
-  componentWillMount() {
-    this._isMounted = true
-    this._subscribeToAuthChanges()
-  }
-
-  componentWillReceiveProps() {
-    this._subscribeToAuthChanges()
-  }
-
-  _subscribeToAuthChanges = () => {
-    if (this.unsubscribe) {
-      this.unsubscribe()
-    }
-    this.unsubscribe = Firebase.auth().onAuthStateChanged( auth => {
-      if (this._isMounted) {
-        this.setState({
-          loading: false,
-          auth,
-          error: null,
-        })
-      }
-    }, error => {
-      if (this._isMounted) {
-        this.setState({
-          loading: false,
-          auth: null,
-          error,
-        })
-      }
-    })
+  componentDidMount() {
+    this.updateSubscription()
   }
 
   componentWillUnmount() {
-    this._isMounted = false
-    if (this.unsubscribe) {
-      this.unsubscribe()
+    this.cancelSubscription()
+  }
+
+  updateSubscription = () => {
+    const query = Firebase.auth()
+      .onAuthStateChanged(this.setAuth, this.handleError)
+
+    this.setState({
+      unsubscribe: query,
+    })
+  }
+
+  setAuth = auth => {
+    this.setState({
+      loading: false,
+      auth,
+      error: null,
+    })
+  }
+
+  handleError = error => {
+    this.setState({
+      loading: false,
+      auth: null,
+      error,
+    })
+  }
+
+  cancelSubscription = () => {
+    if (this.state.unsubscribe) {
+      this.state.unsubscribe()
     }
   }
 
   render() {
-    return this.props.render({
-      loading: this.state.loading,
-      auth: this.state.auth,
-      error: this.state.error,
-    })
+    if (this.state.error) {
+      return this.props.error || <Error error={this.state.error} />
+    }
+
+    if (this.state.loading) {
+      return this.props.loading || 'loading...'
+    }
+
+    return this.props.children(this.state.auth)
   }
 
 }

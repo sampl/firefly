@@ -6,21 +6,30 @@ import UserLikeProvider from '../../data/UserLikeProvider'
 import AuthProvider from '../../data/AuthProvider'
 
 const LikeButton = ({post}) => (
-  <AuthProvider render={ ({auth}) => (
-    <UserLikeProvider post={post} render={ ({loading, error, userLike}) => {
+  <AuthProvider>
+    { auth => {
       if (!auth) return null
 
-      return <button disabled={loading || error} onClick={ () => {
-          if (userLike) {
-            unlikePost(userLike)
-          } else {
-            likePost(post)
-          }
-        }}>
-        {userLike ? 'unlike' : 'like'}
-      </button>
-    }} />
-  )} />
+      return <UserLikeProvider
+        post={post}
+        auth={auth}
+        loading={<button disabled>...</button>}
+        error={<button disabled>...</button>}
+      >
+        { userLike => (
+          <button onClick={ () => {
+            if (userLike) {
+              unlikePost(userLike)
+            } else {
+              likePost(post)
+            }
+          }}>
+            {userLike ? 'unlike' : 'like'}
+          </button>
+        )}
+      </UserLikeProvider>
+    }}
+  </AuthProvider>
 )
 
 export default LikeButton
