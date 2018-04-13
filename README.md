@@ -7,6 +7,8 @@ A modern web-app boilerplate with Create React App and Firebase. Focused on simp
 
 ## App Structure
 
+- [`/`](https://github.com/sampl/firefly/tree/master) - The root directory just contains configuration files for Firebase, NPM, and git (The `package.json` scripts pull the environment variables from an `.env` file
+before calling react-scripts. Learn how it works [here](https://medium.com/@tacomanator/environments-with-create-react-app-7b645312c09d))
 - [`/functions`](https://github.com/sampl/firefly/tree/master/functions) - contains the little backend code necessary for the app (just one function to update our search index when a post chances).
 - [`/public`](https://github.com/sampl/firefly/tree/master/public) - files that will be available as-is when you go live
 - [`/scripts`](https://github.com/sampl/firefly/tree/master/scripts) - little javascript scripts you can manually run on your database. Useful for adding dummy data, "migrations", etc.
