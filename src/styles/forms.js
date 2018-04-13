@@ -1,5 +1,10 @@
 import styled from 'styled-components'
 
+const FormRow = styled.div`
+  display: block;
+  margin: 0 0 1rem;
+`
+
 const Label = styled.label`
   display: block;
   margin: 0 0 .33rem;
@@ -18,11 +23,6 @@ const Input = styled.input`
   }
 `
 
-const ValidationError = styled.div`
-  color: red;
-  margin: -1rem 0 0;
-`
-
 const Button = styled.button`
   padding: .5rem;
   border-radius: 3px;
@@ -35,8 +35,8 @@ const Button = styled.button`
 `
 
 export {
+  FormRow,
   Label,
   Input,
-  ValidationError,
   Button,
 }

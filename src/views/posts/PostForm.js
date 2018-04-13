@@ -1,76 +1,65 @@
+// This is an uncontrolled React form, which is way simpler than the standard
+// React form setup
+// https://reactjs.org/docs/uncontrolled-components.html
+//
+// You can often simply use browser form validation these days, and just get the
+// form contents on submit (see example below).
+//
+// If you need more from your forms, consider using Formik
+// https://github.com/jaredpalmer/formik
+
 import React from 'react'
-import { Formik } from 'formik'
 
 import {
+  FormRow,
   Label,
   Input,
-  ValidationError,
   Button,
 } from '../../styles/forms'
 
 class PostForm extends React.Component {
 
-  _validate = values => {
-    let errors = {}
-    if (!values.title) {
-      errors.title = 'You have to add a title to your post'
-    }
-    return errors
+  state = {
+    disabled: false,
   }
 
-  _submit = values => {
-    this.props.onSubmit(values)
+  submit = event => {
+    event.preventDefault()
+
+    this.setState({
+      disabled: true,
+    })
+
+    const {title, content} = event.target.elements
+
+    const values = {
+      title: title.value,
+      content: content.value,
+    }
+
+    this.props.onSubmit(values).then(() => {
+      this.setState({
+        disabled: false,
+      })
+    })
   }
 
   render() {
-    return <Formik
-      initialValues={{
-        title: this.props.post ? this.props.post.title : '',
-        content: this.props.post ? this.props.post.content : '',
-      }}
-      validate={this._validate}
-      onSubmit={this._submit}
-      render={({
-        values,
-        errors,
-        touched,
-        handleChange,
-        handleBlur,
-        handleSubmit,
-        isSubmitting,
-      }) => (
-        <form onSubmit={handleSubmit}>
+    return <form onSubmit={this.submit}>
 
-          <Label for="title">Title</Label>
-          <Input
-            type="text"
-            name="title"
-            onChange={handleChange}
-            onBlur={handleBlur}
-            value={values.title}
-          />
-          {touched.title && errors.title && <ValidationError>{errors.title}</ValidationError>}
+      <FormRow>
+        <Label for="title">Title</Label>
+        <Input type="text" name="title" defaultValue={this.props.post.title || ''} required />
+      </FormRow>
 
-          <br />
+      <FormRow>
+        <Label for="content">Content</Label>
+        <Input type="text" name="content" defaultValue={this.props.post.content || ''} required />
+      </FormRow>
 
-          <Label for="content">Content</Label>
-          <Input
-            type="text"
-            name="content"
-            onChange={handleChange}
-            onBlur={handleBlur}
-            value={values.content}
-          />
-          {touched.content && errors.content && <ValidationError>{errors.content}</ValidationError>}
+      <Button type="submit" disabled={this.state.disabled}>Submit</Button>
 
-          <br />
-
-          <Button type="submit" disabled={isSubmitting}>Submit</Button>
-
-        </form>
-      )}
-    />
-
+    </form>
   }
 }
 

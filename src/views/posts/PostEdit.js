@@ -14,14 +14,20 @@ const EditPost = ({slug, history}) => (
     <PostSlugProvider slug={slug}>
       { post => (
         <div>
+
           <PostForm post={post} onSubmit={values => {
-            updatePost(post.id, values).then(() => history.push(`/${post.slug}`))
+            return updatePost(post.id, values)
+              .then(() => history.push(`/${post.slug}`))
           }} />
+
+          or
           <div onClick={() => {
             if (window.confirm(`Are you sure you want to delete this post?`)) {
-              deletePost(post).then( () => history.push(`/`))
+              deletePost(post)
+                .then( () => history.push(`/`))
             }
           }}>delete post</div>
+
         </div>
       )}
     </PostSlugProvider>
