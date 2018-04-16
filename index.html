@@ -261,7 +261,7 @@
 
     <p class="headline" id="type_target"></p>
     <p class="sub-headline-big">Firefly can teach you how&mdash;it's the friendly starter kit for designers and front-end devs who want to ship their own projects 🔥💪🚢</p>
-    <p class="sub-headline">Firefly is a learner-focused, bare-bones, modern web-app Javascript boilerplate and development guide based on Create React App and Firebase</p>
+    <p class="sub-headline">Firefly is a learner-focused modern web-app Javascript boilerplate and development guide based on Create React App and Firebase</p>
     <a class="button" href="#getting-started">Start building</a>
     <p class="sub-headline">or <a href="https://github.com/sampl/firefly">view source on Github</a></p>
   </div>
@@ -292,7 +292,6 @@
     <a class="primary" href="#how-it-works">How it works</a>
     <a class="secondary" href="#how-it-works-views">Views</a>
     <a class="secondary" href="#how-it-works-data">Data</a>
-    <a class="secondary" href="#how-it-works-actions">Actions</a>
     <a class="secondary" href="#how-it-works-other">Other stuff</a>
 
     <a class="primary" href="#getting-started">Getting started</a>
@@ -354,13 +353,15 @@
 
   <h2 id="how-it-works-data">Data</h2>
 
+  <p>Instead of a datastore like Redux, in Firefly you directly query the using Firebase</p>
+
   <h3>The database</h3>
   <p>Firefly uses the NoSQL <a href="">Firebase Firestore database</a> for saving data. Firestore organizes your data into "collections" (kind of like SQL tables) which have "documents" (kind of like rows, or big blobs of JSON). You write to the Firebase database directly from the user's web browser (no server required). Before you go much further, you should read the <a href="https://firebase.google.com/docs/firestore/web/start">Firebase Firestore Database Guide</a>.</p>
   <p>Firestore queries use javascript Promises to make async requests and error handling very simple. If you're not familiar with promises, learn a bit about <a href="https://www.youtube.com/watch?v=f8IgdnYIwOU">how promises work</a>.</p>
 
   <h3>Data providers</h3>
-  <p>So how do you get your data into your views? Firefly comes with a bunch of "provider" react components in the /data folder to do just that--their responsibility is to listen for data from the database and pass it down to the views using the <a>render prop</a> pattern.</p>
-  <p>Many other React apps use something like <a href="https://egghead.io/courses/getting-started-with-redux">Redux</a> to keep their UI up-to-date when my data changes, but many developers agree that <a>Redux is overkill</a> for a lot of simple apps, so Firefly just uses render methods and Firebase subscriptions.</p>
+  <p>So how do you get your data into your views? Firefly comes with a bunch of "provider" react components in the /data folder to do just that--their responsibility is to listen for data from the database and pass it down to the views using the <a href="https://reactjs.org/docs/render-props.html">render prop</a> pattern.</p>
+  <p>Many other React apps use something like <a href="https://egghead.io/courses/getting-started-with-redux">Redux</a> to keep their UI up-to-date when data changes, but many developers agree that <a>Redux is overkill</a> for a lot of simple apps, so Firefly just uses render methods and Firebase subscriptions.</p>
 
   <h3>Securing your data</h3>
   <p>Because any browser can write data directly into your database, you need some Firebase security rules to keep hackers from deleting data or viewing private stuff. Firefly comes with a default set of rules for posts that you can use can copy. <a href="https://firebase.google.com/docs/database/security">This video</a> does a great job explaining how these rules work.</p>
@@ -381,7 +382,7 @@
   <!-- TODO - better docs here -->
 
 
-  <h2 id="how-it-works-actions">Actions</h2>
+  <h3>Actions</h3>
 
   <p>OK, so now you know how Firefly shows UI with data from the database. But how do you make the app change when the user clicks something?</p>
 
@@ -401,16 +402,22 @@
     <h3 id="getting-started-quick-start">Quick start</h2>
 
     <ol>
-      <li><code>git clone https://github.com/sampl/firefly &amp;&amp; cd firefly &amp;&amp; npm install</code></li>
-      <li><code>mv .firebaserc.example .firebaserc &amp;&amp; mv env.dev.example env.dev &amp;&amp; mv .env.stage.example .env.stage &amp;&amp; mv .env.live.example .env.live</code></li>
-      <li>create firebase projects and add keys to <code>.firebaserc</code> and the <code>.env</code> files</li>
-      <li><code>npm start</code> for development, <code>npm run live</code> to deploy</li>
+      <li>
+        Clone the repo and install the packages with
+        <code>git clone https://github.com/sampl/firefly &amp;&amp; cd firefly &amp;&amp; npm install</code>
+      </li>
+      <li>
+        Remove `.example` from the names of your environment files with
+        <code>mv .firebaserc.example .firebaserc &amp;&amp; mv env.dev.example env.dev &amp;&amp; mv .env.stage.example .env.stage &amp;&amp; mv .env.live.example .env.live</code>
+      </li>
+      <li>Create firebase projects in the <a href="https://console.firebase.google.com/">Firebase console</a> and add keys to <code>.firebaserc</code> and the <code>.env</code> files</li>
+      <li>Start development with <code>npm start</code> and deploy with <code>npm run live</code></li>
     </ol>
   </div>
 
   <h2 id="getting-started-prerequisites">Before you begin</h2>
 
-  <p>If you're not already a Git user, <a href="https://www.codecademy.com/learn/learn-git">you can learn about it here</a>.</p>
+  <p>You'll need <a href="https://en.wikipedia.org/wiki/Git">git</a> to use Firefly. If you don't already know how to use git, <a href="https://www.codecademy.com/learn/learn-git">you can learn on Codecademy</a>.</p>
 
   <p><a href="https://nodejs.org/en/download">Download and install Node JS</a> if you haven't already.</p>
 
@@ -426,14 +433,14 @@
     <li>In your terminal, <code>cd</code> to the folder where you want your project to live</li>
     <li>Clone this repo by running <code>git clone https://github.com/sampl/firefly</code></li>
     <li>Move "into" the folder you just created with <code>cd firefly</code> (you can also safely rename the <code>firefly</code> folder to the name of your project)</li>
-    <li>Run <code>npm install</code> to install all the javasctip packages Firefly needs</li>
+    <li>Run <code>npm install</code> to install all the javascript packages Firefly needs</li>
   </ol>
 
   <h3>Connect to the database</h3>
 
   <p>Firefly projects only have one codebase, but use three Firebase projects. Each project has its own URL and its own separate copy of the database. This lets you develop and stage your app without affecting the live version.</p>
   <ol>
-    <li>Go to the <a href="console.firebase.google.com">Firebase console</a> and sign in with your Google account</li>
+    <li>Go to the <a href="https://console.firebase.google.com">Firebase console</a> and sign in with your Google account</li>
     <li>Create three new projects, and name them something like <code>MyProject Dev</code>, <code>MyProject Stage</code>, and <code>MyProject LIVE</code></li>
   </ol>
 
