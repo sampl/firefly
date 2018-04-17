@@ -1,6 +1,7 @@
 import React from 'react'
 
 import createSubscription from '../../actions/createSubscription'
+import updateSubscription from '../../actions/updateSubscription'
 import deleteSubscription from '../../actions/deleteSubscription'
 import UserSubscriptionProvider from '../../data/UserSubscriptionProvider'
 
@@ -17,12 +18,19 @@ class Subscription extends React.Component {
       email: this.props.auth.email,
       allowRememberMe: false,
       amount: 39 * 100, // in cents
-      token: token => createSubscription(token),
     })
   }
 
-  openPaymentWindow = () => {
-    this._handler.open()
+  makeNewPayment = () => {
+    this._handler.open({
+      token: createSubscription,
+    })
+  }
+
+  updatePaymentMethod = subscription_id => {
+    this._handler.open({
+      token: token => updateSubscription(subscription_id, token),
+    })
   }
 
   componentWillUnmount() {
@@ -33,12 +41,12 @@ class Subscription extends React.Component {
     return <UserSubscriptionProvider auth={this.props.auth}>
       { subscription => {
 
-        if (subscription && subscription.temp_stripe_payment_token_id) {
-          return 'Subscribing you to the paid plan...'
+        if (subscription && subscription.stripe_subscription_error) {
+          return <span style={{color: 'red'}}>Whoops&mdash;there was an error updating your subscription. Sorry about that!</span>
         }
 
-        if (subscription && subscription.stripe_subscription_error) {
-          return <span style={{color: 'red'}}>Whoops&mdash;there was an error creating your subscription. Sorry about that!</span>
+        if (subscription && subscription.temp_stripe_payment_token_id) {
+          return 'Updating your subscription...'
         }
 
         if (subscription) {
@@ -47,18 +55,19 @@ class Subscription extends React.Component {
             <br/>
             Status: {subscription.stripe_subscription_status}
             <br/>
-            <button onClick={() => {
+            <button onClick={() => this.updatePaymentMethod(subscription.id)}>Update payment method</button>
+            <div onClick={() => {
               if (window.confirm(`Are you sure you want to cancel your subscription? You won't have access to paid Firefly features.`)) {
                 deleteSubscription(subscription)
               }
-            }}>Cancel subscription</button>
+            }}>Cancel subscription</div>
           </div>
         }
 
         return <div>
-          Subscribe now to get paid features
+          Subscribe to Firefly to get paid features
           <br/>
-          <button onClick={this.openPaymentWindow}>Subscribe now</button>
+          <button onClick={this.makeNewPayment}>Subscribe now</button>
         </div>
       }}
     </UserSubscriptionProvider>

@@ -8,7 +8,10 @@ const deleteSubscription = subscription => {
     action: 'Delete subscription',
   })
 
-  return Firebase.firestore().collection('subscriptions').doc(subscription.id).delete()
+  return Firebase.firestore()
+    .collection('subscriptions')
+    .doc(subscription.id)
+    .delete()
     .catch( error => {
       alert(`Whoops, couldn't delete the subscription: ${error.message}`)
     })

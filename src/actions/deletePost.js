@@ -8,7 +8,10 @@ const deletePost = post => {
     action: 'Delete post',
   })
 
-  return Firebase.firestore().collection('posts').doc(post.id).delete()
+  return Firebase.firestore()
+    .collection('posts')
+    .doc(post.id)
+    .delete()
     .catch( error => {
       alert(`Whoops, couldn't delete the post: ${error.message}`)
     })

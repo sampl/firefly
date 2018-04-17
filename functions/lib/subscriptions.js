@@ -8,20 +8,7 @@ exports.updateStripeSubscription = (change, context) => {
 
   const subscription = change.after.data()
 
-  // Subscription has been deleted
-  if (!change.after.exists) {
-    return stripe.subscriptions.del(change.before.data().stripe_subscription_id)
-  }
-
-  // Subscription already has a stripe subscription
-  // TODO - update stripe subscription with new details (ie new email)?
-  if (subscription.stripe_subscription_id) {
-    return null
-  }
-
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // helper functions should be inside parent to get scope for uid, etc
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
   const getStripeCustomerIdForUser = userId => {
     return admin.firestore().collection('users').doc(userId).get().then( doc => {
@@ -41,23 +28,58 @@ exports.updateStripeSubscription = (change, context) => {
     })
   }
 
+  const updateStripePaymentMethod = stripe_customer_id => {
+    console.log(`
+      updating payment method for
+      cust ${stripe_customer_id}
+      to
+      ${subscription.temp_stripe_payment_token_id}
+    `)
+    return stripe.customers.update(stripe_customer_id, {
+      source: subscription.temp_stripe_payment_token_id,
+    })
+  }
+
   const saveStripeSubscriptionToDatabase = stripe_subscription => {
-    change.after.ref.update({
-      temp_stripe_payment_token_id: FieldValue.delete(), // we don't need this anymore, it's on the customer obj now
+    return change.after.ref.update({
       stripe_subscription_id: stripe_subscription.id,
       stripe_subscription_status: stripe_subscription.status,
     })
+  }
+
+  const removeTempPaymentMethod = () => {
+    return change.after.ref.update({
+      // we don't need this anymore, it's on the customer obj now
+      temp_stripe_payment_token_id: FieldValue.delete(),
+    })
+  }
+
+  const handleSubscriptionError = error => {
+    console.error("...couldn't update stripe subscription", error)
+    return change.after.ref.update({
+      stripe_subscription_error: error.message,
+    })
+  }
+
+
+  // Subscription has been deleted
+  if (!change.after.exists) {
+    return stripe.subscriptions.del(change.before.data().stripe_subscription_id)
+  }
+
+  // Updating an existing subscription
+  if (subscription.stripe_subscription_id) {
+    return getStripeCustomerIdForUser(subscription.user)
+      .then(updateStripePaymentMethod)
+      .then(removeTempPaymentMethod)
+      .catch(handleSubscriptionError)
   }
 
   // Create a new stripe subscription
   return getStripeCustomerIdForUser(subscription.user)
     .then(createStripeSubscription)
     .then(saveStripeSubscriptionToDatabase)
-    .catch(error => {
-      console.error("...couldn't subscribe this user", error)
-      return change.after.ref.update({
-        stripe_subscription_error: error.message,
-      })
-    })
+    .then(removeTempPaymentMethod)
+    .catch(handleSubscriptionError)
 
 }

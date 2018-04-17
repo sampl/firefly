@@ -13,7 +13,9 @@ const createPost = values => {
 
   values.slug = slugify(values.title, {lower: true})
 
-  return Firebase.firestore().collection('posts').add(prepareDocForCreate(values))
+  return Firebase.firestore()
+    .collection('posts')
+    .add(prepareDocForCreate(values))
     .then( () => values)
     .catch( error => {
       alert(`Whoops, couldn't create the post: ${error.message}`)

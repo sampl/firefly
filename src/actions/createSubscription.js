@@ -14,7 +14,9 @@ const createSubscription = token => {
     user: Firebase.auth().currentUser.uid,
     temp_stripe_payment_token_id: token.id,
   })
-  return Firebase.firestore().collection('subscriptions').add(prepareDocForCreate(subscription))
+  return Firebase.firestore()
+    .collection('subscriptions')
+    .add(prepareDocForCreate(subscription))
     .catch( error => {
       alert(`Whoops, couldn't create the subscription: ${error.message}`)
     })

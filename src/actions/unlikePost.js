@@ -8,7 +8,10 @@ const unlikePost = userLike => {
     action: 'Unlike post',
   })
 
-  return Firebase.firestore().collection('postLikes').doc(userLike.id).delete()
+  return Firebase.firestore()
+    .collection('postLikes')
+    .doc(userLike.id)
+    .delete()
 }
 
 export default unlikePost
