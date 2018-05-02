@@ -259,7 +259,10 @@
 
   <div class="hero-content">
 
-    <p class="headline" id="type_target"></p>
+    <p class="headline">
+      <span id="type_target"></span>
+      <span id="spacer_target" style="opacity: 0;"></span>
+    </p>
     <p class="sub-headline-big">Firefly can teach you how&mdash;it's the friendly starter kit for designers and front-end devs who want to ship their own projects 🔥💪🚢</p>
     <p class="sub-headline">Firefly is a learner-focused modern web-app Javascript boilerplate and development guide based on Create React App and Firebase</p>
     <a class="button" href="#getting-started">Start building</a>
@@ -270,9 +273,16 @@
     var counter = 0
     var text = '*You* can learn to build real web apps, too.'
     var speed = 45
+    var typeTarget = document.getElementById("type_target")
+    var spacerTarget = document.getElementById("spacer_target")
+
+    // add clear text to the spacer to adding type doesn't make the page jump
+    spacerTarget.innerHTML = text
+
     function type() {
       if (counter < text.length) {
-        document.getElementById("type_target").innerHTML += text.charAt(counter)
+        spacerTarget.innerHTML = spacerTarget.innerHTML.slice(0, -1)
+        typeTarget.innerHTML += text.charAt(counter)
         counter++
         setTimeout(type, speed)
       }
