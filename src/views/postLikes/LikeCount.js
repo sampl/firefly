@@ -1,14 +1,26 @@
 import React from 'react'
-
-import PostLikesProvider from '../../data/PostLikesProvider'
+import { FirestoreCollection } from 'react-firestore'
 
 const LikeCount = ({post}) => (
-  <PostLikesProvider post={post} loading="..." error="? likes">
-    { postLikes => {
+  <FirestoreCollection
+    path={'postLikes'}
+    filter={['post', '==', post.id]}
+  >
+    { ({error, isLoading, data}) => {
+      if (error) {
+        return "? likes"
+      }
+
+      if (isLoading) {
+        return "..."
+      }
+
+      const postLikes = data
+
       const label = postLikes.length === 1 ? 'like' : 'likes'
       return <span>{postLikes.length} {label}</span>
     }}
-  </PostLikesProvider>
+  </FirestoreCollection>
 )
 
 export default LikeCount

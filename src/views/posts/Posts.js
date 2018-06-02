@@ -1,6 +1,7 @@
 import React from 'react'
+import { FirestoreCollection } from 'react-firestore'
 
-import PostsProvider from '../../data/PostsProvider'
+import Error from '../Error'
 import AuthProvider from '../../data/AuthProvider'
 import {
   Page,
@@ -9,8 +10,19 @@ import {
 
 const Posts = () => (
   <Page>
-    <PostsProvider>
-      { posts => {
+    <FirestoreCollection path={'posts'}>
+      { ({error, isLoading, data}) => {
+
+        if (error) {
+          return <Error error={error} />
+        }
+
+        if (isLoading) {
+          return 'loading...'
+        }
+
+        const posts = data
+
         if (posts.length === 0) {
           return [
             <AppLink to="/new">New post</AppLink>,
@@ -34,7 +46,7 @@ const Posts = () => (
         </div>
 
       }}
-    </PostsProvider>
+    </FirestoreCollection>
   </Page>
 )
 

@@ -1,9 +1,10 @@
 import React from 'react'
+import { FirestoreCollection } from 'react-firestore'
 
+import Error from '../Error'
 import createSubscription from '../../actions/createSubscription'
 import updateSubscription from '../../actions/updateSubscription'
 import deleteSubscription from '../../actions/deleteSubscription'
-import UserSubscriptionProvider from '../../data/UserSubscriptionProvider'
 
 class Subscription extends React.Component {
 
@@ -38,8 +39,21 @@ class Subscription extends React.Component {
   }
 
   render() {
-    return <UserSubscriptionProvider auth={this.props.auth}>
-      { subscription => {
+    return <FirestoreCollection
+      path="subscriptions"
+      filter={['user', '==', this.props.auth.id]}
+    >
+      { ({error, isLoading, data}) => {
+
+        if (error || data.length === 0) {
+          return <Error error={error} />
+        }
+
+        if (isLoading) {
+          return 'loading...'
+        }
+
+        const subscription = data[0]
 
         if (subscription && subscription.stripe_subscription_error) {
           return <span style={{color: 'red'}}>Whoops&mdash;there was an error updating your subscription. Sorry about that!</span>
@@ -70,7 +84,7 @@ class Subscription extends React.Component {
           <button onClick={this.makeNewPayment}>Subscribe now</button>
         </div>
       }}
-    </UserSubscriptionProvider>
+    </FirestoreCollection>
   }
 }
 

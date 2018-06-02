@@ -1,7 +1,8 @@
 import React from 'react'
+import { FirestoreCollection } from 'react-firestore'
 
+import Error from '../Error'
 import AuthProvider from '../../data/AuthProvider'
-import PostSlugProvider from '../../data/PostSlugProvider'
 import LikeCount from '../postLikes/LikeCount'
 import LikeButton from '../postLikes/LikeButton'
 import {
@@ -11,9 +12,22 @@ import {
 
 const Post = ({slug}) => (
   <Page>
-    <PostSlugProvider slug={slug}>
-      { post => (
-        <div>
+    <FirestoreCollection
+      path={'posts'}
+      filter={['slug', '==', slug]}
+    >
+      { ({error, isLoading, data}) => {
+        if (error || data.length === 0) {
+          return <Error error={error} />
+        }
+
+        if (isLoading) {
+          return 'loading...'
+        }
+
+        const post = data[0]
+
+        return <div>
           <h1>{post.title}</h1>
           <LikeCount post={post} />
           <LikeButton post={post} />
@@ -24,8 +38,8 @@ const Post = ({slug}) => (
             )}
           </AuthProvider>
         </div>
-      )}
-    </PostSlugProvider>
+      }}
+    </FirestoreCollection>
   </Page>
 )
 

@@ -4,6 +4,7 @@ import Firebase from 'firebase'
 import 'firebase/firestore'
 import ReactGA from 'react-ga'
 import { BrowserRouter } from 'react-router-dom'
+import { FirestoreProvider } from 'react-firestore'
 
 import App from './views/App'
 
@@ -25,4 +26,10 @@ if (process.env.NODE_ENV === 'production') {
   window.Raven.config(process.env.REACT_APP_SENTRY_RAVEN_TRACKING_URL).install()
 }
 
-ReactDOM.render(<BrowserRouter><App /></BrowserRouter>, document.getElementById('root'))
+ReactDOM.render(
+  <FirestoreProvider firebase={Firebase}>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </FirestoreProvider>
+, document.getElementById('root'))

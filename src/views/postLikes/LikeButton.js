@@ -1,8 +1,8 @@
 import React from 'react'
+import { FirestoreCollection } from 'react-firestore'
 
 import likePost from '../../actions/likePost'
 import unlikePost from '../../actions/unlikePost'
-import UserLikeProvider from '../../data/UserLikeProvider'
 import AuthProvider from '../../data/AuthProvider'
 
 const LikeButton = ({post}) => (
@@ -10,14 +10,22 @@ const LikeButton = ({post}) => (
     { auth => {
       if (!auth) return null
 
-      return <UserLikeProvider
-        post={post}
-        auth={auth}
-        loading={<button disabled>...</button>}
-        error={<button disabled>...</button>}
+      return <FirestoreCollection
+        path={'postLikes'}
+        filter={[
+          ['post', '==', post.id],
+          ['user', '==', auth.uid],
+        ]}
       >
-        { userLike => (
-          <button onClick={ () => {
+        { ({error, isLoading, data}) => {
+
+          if (error || isLoading) {
+            return <button disabled>...</button>
+          }
+
+          const userLike = data[0]
+
+          return <button onClick={ () => {
             if (userLike) {
               unlikePost(userLike)
             } else {
@@ -26,8 +34,8 @@ const LikeButton = ({post}) => (
           }}>
             {userLike ? 'unlike' : 'like'}
           </button>
-        )}
-      </UserLikeProvider>
+        }}
+      </FirestoreCollection>
     }}
   </AuthProvider>
 )
