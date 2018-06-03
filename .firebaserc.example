@@ -1,0 +1,7 @@
+{
+  "projects": {
+    "dev": "PROJECT_ID_GOES_HERE",
+    "stage": "PROJECT_ID_GOES_HERE",
+    "live": "PROJECT_ID_GOES_HERE"
+  }
+}
