@@ -17,6 +17,7 @@ const dbConfig = {
   projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
 }
 let FirebaseApp = Firebase.initializeApp(dbConfig)
+Firebase.firestore().settings({timestampsInSnapshots: true})
 window.firebase = FirebaseApp // debugging
 
 // TRACKING
