@@ -434,7 +434,7 @@
         Remove `.example` from the names of your environment files with
         <code>mv .firebaserc.example .firebaserc &amp;&amp; mv .env.dev.example env.dev &amp;&amp; mv .env.stage.example .env.stage &amp;&amp; mv .env.live.example .env.live</code>
       </li>
-      <li>Create firebase projects in the <a href="https://console.firebase.google.com/">Firebase console</a> and add keys to <code>.firebaserc</code> and the <code>.env</code> files</li>
+      <li>Create firebase projects in the <a href="https://console.firebase.google.com/">Firebase console</a>, add keys to <code>.firebaserc</code> and the <code>.env</code> files, enable Google auth, and upgrade to Blaze plan</li>
       <li>Start development with <code>npm start</code> and deploy with <code>npm run live</code></li>
     </ol>
   </div>
@@ -445,7 +445,7 @@
 
   <p><a href="https://nodejs.org/en/download">Download and install Node JS</a> if you haven't already.</p>
 
-  <p>Run <code>npm install -g firebase-tools</code> to install the <a href="https://firebase.google.com/docs/cli/">Firebase command line tools</a>. You only need to do this once per computer.</p>
+  <p>Run <code>npm install -g firebase-tools</code> to install the <a href="https://firebase.google.com/docs/cli/">Firebase command line tools</a>. After it installs, run <code>firebase login</code>. You only need to do this once per computer.</p>
 
   <h2 id="getting-started-create">Creating your app</h2>
 
@@ -491,10 +491,9 @@
 
   <h3>Set up Firebase Functions</h3>
 
-  <p>Before your app can run any backend functions.</p>
+  <p>Firebase Cloud Functions only work if your project has a paid plan, so <a href="https://console.firebase.google.com">upgrade your Firebase project</a> to "Blaze". This should still be free to use (unless you get a lot of traffic).</p>
 
-  Firebase Cloud Functions only work if your project has a paid plan, so <a href="https://console.firebase.google.com">upgrade your Firebase project</a> to "Blaze". This should still be free to use (unless you get a lot of traffic).
-  <p><a href="https://firebase.google.com/docs/admin/setup#add_firebase_to_your_app">Create a Service Account</a> to run maintenance scripts</p>
+  <p>You'll also need to <a href="https://firebase.google.com/docs/admin/setup#add_firebase_to_your_app">Create a Service Account</a> to before you can run the scripts in the Firefly "scripts" folder.</p>
 
 
   <h3>Other services</h3>
