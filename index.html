@@ -434,7 +434,8 @@
         Remove `.example` from the names of your environment files with
         <code>mv .firebaserc.example .firebaserc &amp;&amp; mv .env.dev.example env.dev &amp;&amp; mv .env.stage.example .env.stage &amp;&amp; mv .env.live.example .env.live</code>
       </li>
-      <li>Create firebase projects in the <a href="https://console.firebase.google.com/">Firebase console</a>, add keys to <code>.firebaserc</code> and the <code>.env</code> files, enable Google auth, and upgrade to Blaze plan</li>
+      <li>Create firebase projects in the <a href="https://console.firebase.google.com/">Firebase console</a> and add keys to <code>.firebaserc</code> and the <code>.env</code> files</li>
+      <li>For each project, enable Google auth, enable Firestore beta, and upgrade to the Blaze plan</li>
       <li>Start development with <code>npm start</code> and deploy with <code>npm run live</code></li>
     </ol>
   </div>
@@ -478,7 +479,7 @@
   </ol>
 
 
-  <h3>Set up authentication</h3>
+  <h3>Set up your Firebase projects</h3>
 
   <p>Before you can add any posts, you'll have to allow sign-in with Google. Firebase makes this very easy.</p>
 
@@ -488,12 +489,17 @@
     <li>Click "Google", toggle the "Enable" switch, and hit "Save"</li>
   </ol>
 
+  <p>The Firebase database we're using, Firestore, is still in beta. You'll also have to enable Firestore for each of your projects on the Firebase website.</p>
 
-  <h3>Set up Firebase Functions</h3>
+  <ol>
+    <li>In the <a href="https://console.firebase.google.com/">Firebase console</a>, click on "Database" in the sidebar on the left</li>
+    <li>Under "Cloud Firestore Beta", click "Get Started"</li>
+    <li>Choose "Start in test mode" and hit "Enable"</li>
+  </ol>
 
-  <p>Firebase Cloud Functions only work if your project has a paid plan, so <a href="https://console.firebase.google.com">upgrade your Firebase project</a> to "Blaze". This should still be free to use (unless you get a lot of traffic).</p>
+  <p>Firebase Cloud Functions only work if your project is on a paid plan, so <a href="https://console.firebase.google.com">upgrade your Firebase project</a> to "Blaze". This should still be free to use (unless you get a lot of traffic).</p>
 
-  <p>You'll also need to <a href="https://firebase.google.com/docs/admin/setup#add_firebase_to_your_app">Create a Service Account</a> to before you can run the scripts in the Firefly "scripts" folder.</p>
+  <p>This isn't necessary to start Firefly, but you'll eventually need to <a href="https://firebase.google.com/docs/admin/setup#add_firebase_to_your_app">Create a Service Account</a> before you run the scripts in the Firefly "scripts" folder.</p>
 
 
   <h3>Other services</h3>
