@@ -10,6 +10,10 @@ import {
 const NewPost = ({history}) => {
   return <Page>
     <PostForm
+      post={{
+        title: '',
+        content: '',
+      }}
       onSubmit={values => {
         return createPost(values)
           .then(p => history.push(`/${p.slug}`))

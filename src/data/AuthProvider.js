@@ -20,12 +20,8 @@ class AuthProvider extends React.Component {
   }
 
   updateSubscription = () => {
-    const query = Firebase.auth()
+    this.unsubscribe = Firebase.auth()
       .onAuthStateChanged(this.setAuth, this.handleError)
-
-    this.setState({
-      unsubscribe: query,
-    })
   }
 
   setAuth = auth => {
@@ -45,8 +41,8 @@ class AuthProvider extends React.Component {
   }
 
   cancelSubscription = () => {
-    if (this.state.unsubscribe) {
-      this.state.unsubscribe()
+    if (this.unsubscribe) {
+      this.unsubscribe()
     }
   }
 

@@ -41,10 +41,10 @@ class Subscription extends React.Component {
   render() {
     return <FirestoreCollection
       path="subscriptions"
-      filter={['user', '==', this.props.auth.id]}
+      filter={['user', '==', this.props.auth.uid]}
     >
       { ({error, isLoading, data}) => {
-
+                
         if (error || data.length === 0) {
           return <Error error={error} />
         }
@@ -55,34 +55,35 @@ class Subscription extends React.Component {
 
         const subscription = data[0]
 
-        if (subscription && subscription.stripe_subscription_error) {
-          return <span style={{color: 'red'}}>Whoops&mdash;there was an error updating your subscription. Sorry about that!</span>
-        }
-
-        if (subscription && subscription.temp_stripe_payment_token_id) {
-          return 'Updating your subscription...'
-        }
-
-        if (subscription) {
+        if (!subscription) {
           return <div>
-            You are subscribed!
+            Subscribe to Firefly to get paid features
             <br/>
-            Status: {subscription.stripe_subscription_status}
-            <br/>
-            <button onClick={() => this.updatePaymentMethod(subscription.id)}>Update payment method</button>
-            <div onClick={() => {
-              if (window.confirm(`Are you sure you want to cancel your subscription? You won't have access to paid Firefly features.`)) {
-                deleteSubscription(subscription)
-              }
-            }}>Cancel subscription</div>
+            <button onClick={this.makeNewPayment}>Subscribe now</button>
           </div>
         }
 
+        if (subscription.stripe_subscription_error) {
+          return <span style={{color: 'red'}}>Whoops&mdash;there was an error updating your subscription. Sorry about that!</span>
+        }
+
+        if (subscription.temp_stripe_payment_token_id) {
+          return 'Updating your subscription...'
+        }
+
         return <div>
-          Subscribe to Firefly to get paid features
+          You are subscribed!
           <br/>
-          <button onClick={this.makeNewPayment}>Subscribe now</button>
+          Status: {subscription.stripe_subscription_status}
+          <br/>
+          <button onClick={() => this.updatePaymentMethod(subscription.id)}>Update payment method</button>
+          <div onClick={() => {
+            if (window.confirm(`Are you sure you want to cancel your subscription? You won't have access to paid Firefly features.`)) {
+              deleteSubscription(subscription)
+            }
+          }}>Cancel subscription</div>
         </div>
+
       }}
     </FirestoreCollection>
   }
