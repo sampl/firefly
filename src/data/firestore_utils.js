@@ -4,33 +4,6 @@
 
 const Firebase = require('firebase')
 
-// GETTERS
-
-const getOneFromDocumentSnapshot = snapshot => {
-  if (!snapshot.exists) {
-    return null
-  }
-  return {
-    ...snapshot.data(),
-    id: snapshot.id,
-  }
-}
-
-const getOneFromQuerySnapshot = snapshot => {
-  return getManyFromQuerySnapshot(snapshot)[0]
-}
-
-const getManyFromQuerySnapshot = snapshot => {
-  return snapshot.docs.map( snap => ({
-      ...snap.data(),
-      id: snap.id,
-    })
-  )
-}
-
-// SETTERS
-// adds timestamps and saves which user created/updated
-
 const prepareDocForCreate = doc => {
 
   // timestamps
@@ -60,9 +33,6 @@ const prepareDocForUpdate = doc => {
 }
 
 export {
-  getOneFromDocumentSnapshot,
-  getOneFromQuerySnapshot,
-  getManyFromQuerySnapshot,
   prepareDocForCreate,
   prepareDocForUpdate,
 }

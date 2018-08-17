@@ -1,9 +1,10 @@
 import React from 'react'
 import { withRouter } from 'react-router-dom'
+import { FirestoreCollection } from 'react-firestore'
 
+import Error from '../Error'
 import deletePost from '../../actions/deletePost'
 import updatePost from '../../actions/updatePost'
-import PostSlugProvider from '../../data/PostSlugProvider'
 import PostForm from './PostForm'
 import {
   Page,
@@ -11,9 +12,22 @@ import {
 
 const EditPost = ({slug, history}) => (
   <Page>
-    <PostSlugProvider slug={slug}>
-      { post => (
-        <div>
+    <FirestoreCollection
+      path={'posts'}
+      filter={['slug', '==', slug]}
+    >
+      { ({error, isLoading, data}) => {
+        if (error || data.length === 0) {
+          return <Error error={error} />
+        }
+
+        if (isLoading) {
+          return 'loading...'
+        }
+
+        const post = data[0]
+
+        return <div>
 
           <PostForm post={post} onSubmit={values => {
             return updatePost(post.id, values)
@@ -29,8 +43,8 @@ const EditPost = ({slug, history}) => (
           }}>delete post</div>
 
         </div>
-      )}
-    </PostSlugProvider>
+      }}
+    </FirestoreCollection>
   </Page>
 )
 
