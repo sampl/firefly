@@ -3,9 +3,11 @@ import { FirestoreCollection } from 'react-firestore'
 
 import Error from '../Error'
 import {
-  Page,
   AppLink,
 } from '../../styles/global'
+import {
+  Page,
+} from '../../styles/layout'
 
 const Posts = () => (
   <Page>

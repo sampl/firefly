@@ -30,14 +30,6 @@ injectGlobal`
   }
 `
 
-const Page = styled.div`
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  top: 0;
-  left: 0;
-`
-
 // INTERNAL link
 const AppLink = styled(Link)`
   color: ${colors.blue};
@@ -50,6 +42,5 @@ const AppLink = styled(Link)`
 `
 
 export {
-  Page,
   AppLink,
 }

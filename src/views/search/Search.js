@@ -5,7 +5,7 @@ import './algolia-instant-search-reset.css'
 
 import {
   Page,
-} from '../../styles/global'
+} from '../../styles/layout'
 import {
   Hit,
 } from '../../styles/search'

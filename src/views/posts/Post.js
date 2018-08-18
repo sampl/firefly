@@ -7,8 +7,10 @@ import LikeCount from '../postLikes/LikeCount'
 import LikeButton from '../postLikes/LikeButton'
 import {
   AppLink,
-  Page,
 } from '../../styles/global'
+import {
+  Page,
+} from '../../styles/layout'
 
 const Post = ({slug}) => (
   <Page>

@@ -5,7 +5,7 @@ import createPost from '../../actions/createPost'
 import PostForm from './PostForm'
 import {
   Page,
-} from '../../styles/global'
+} from '../../styles/layout'
 
 const PostNew = ({history}) => {
   return <Page>

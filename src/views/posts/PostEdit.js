@@ -8,7 +8,7 @@ import updatePost from '../../actions/updatePost'
 import PostForm from './PostForm'
 import {
   Page,
-} from '../../styles/global'
+} from '../../styles/layout'
 
 const PostEdit = ({slug, history}) => (
   <Page>

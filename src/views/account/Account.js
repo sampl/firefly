@@ -8,7 +8,7 @@ import Subscription from './Subscription'
 import Error from '../Error'
 import {
   Page,
-} from '../../styles/global'
+} from '../../styles/layout'
 
 const Account = ({history}) => (
   <Page>
