@@ -1,15 +1,24 @@
 import React from 'react'
 import ReactGA from 'react-ga'
-import { Route } from 'react-router-dom'
+import { BrowserRouter, Route } from 'react-router-dom'
+import Firebase from 'firebase/app'
+import { FirestoreProvider } from 'react-firestore'
 
+import ErrorBoundary from './ErrorBoundary'
 import Routes from './Routes'
 import Layout from './layout/Layout'
 
 const App = () => (
-  <Layout>
-    <Route path="/" key="analytics-router" component={Analytics}/>
-    <Routes />
-  </Layout>
+  <FirestoreProvider firebase={Firebase}>
+    <BrowserRouter>
+      <ErrorBoundary>
+        <Layout>
+          <Route path="/" key="analytics-router" component={Analytics}/>
+          <Routes />
+        </Layout>
+      </ErrorBoundary>
+    </BrowserRouter>
+  </FirestoreProvider>
 )
 
 // Track Google Analytics page view for every route
