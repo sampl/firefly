@@ -19,10 +19,10 @@ const prepareDocForUpdate = doc => {
   doc.updatedBy = Firebase.auth().currentUser ? Firebase.auth().currentUser.uid : null
   doc.updatedOn = new Date()
 
-  // ensure we're not trying to write the key as part of the document
+  // don't save the id as part of the document
   delete doc.id
 
-  // ensure we're not writing derived attrs (attrs that start with "_")
+  // don't save values that start with an underscore (these are calculated by the backend)
   Object.keys(doc).forEach( key => {
     if (key.indexOf('_') === 0) {
       delete doc[key]

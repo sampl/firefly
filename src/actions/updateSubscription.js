@@ -1,6 +1,6 @@
 import Firebase from 'firebase'
 import ReactGA from 'react-ga'
-import { prepareDocForUpdate } from '../data/firestore_utils'
+import { prepareDocForUpdate } from './helpers/firestore_helpers'
 
 const updateSubscription = (subscriptionId, token) => {
 

@@ -1,7 +1,7 @@
 import Firebase from 'firebase'
 import ReactGA from 'react-ga'
 
-import { prepareDocForCreate } from '../data/firestore_utils'
+import { prepareDocForCreate } from './helpers/firestore_helpers'
 
 const likePost = post => {
 
