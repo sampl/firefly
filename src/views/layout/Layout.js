@@ -21,7 +21,7 @@ const Layout = ({children}) => (
 
       <div style={{float: 'right'}}>
         <AppLink to="/search">
-          <IconSearch />
+          <span role="img" aria-label="search">🔎</span>
         </AppLink>
         {' '}
         <FirebaseAuth loading="..." error="⚠️ login error">
