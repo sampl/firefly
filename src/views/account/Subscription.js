@@ -50,15 +50,14 @@ class Subscription extends React.Component {
         }
 
         if (isLoading) {
-          return 'loading...'
+          return <p>loading...</p>
         }
 
         const subscription = data[0]
 
         if (!subscription) {
           return <div>
-            Subscribe to Firefly to get paid features
-            <br/>
+            <p>Subscribe to Firefly to get paid features</p>
             <button onClick={this.makeNewPayment}>Subscribe now</button>
           </div>
         }
@@ -68,20 +67,18 @@ class Subscription extends React.Component {
         }
 
         if (subscription.temp_stripe_payment_token_id) {
-          return 'Updating your subscription...'
+          return <p>Updating your subscription...</p>
         }
 
         return <div>
-          You are subscribed!
-          <br/>
-          Status: {subscription.stripe_subscription_status}
-          <br/>
+          <p>You are subscribed!</p>
+          <p>Status: {subscription.stripe_subscription_status}</p>
           <button onClick={() => this.updatePaymentMethod(subscription.id)}>Update payment method</button>
-          <div onClick={() => {
+          <button onClick={() => {
             if (window.confirm(`Are you sure you want to cancel your subscription? You won't have access to paid Firefly features.`)) {
               deleteSubscription(subscription)
             }
-          }}>Cancel subscription</div>
+          }}>Cancel subscription</button>
         </div>
 
       }}

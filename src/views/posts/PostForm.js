@@ -1,12 +1,9 @@
-// This is an uncontrolled React form, which is way simpler than the standard
-// React form setup
+// This is an uncontrolled React form, which is way simpler than
+// the standard React form setup
 // https://reactjs.org/docs/uncontrolled-components.html
 //
-// You can often simply use browser form validation these days, and just get the
-// form contents on submit (see example below).
-//
-// If you need more from your forms, consider using Formik
-// https://github.com/jaredpalmer/formik
+// You can use browser form validation these days, and just
+// get the form contents on submit.
 
 import React from 'react'
 
@@ -14,7 +11,6 @@ import {
   FormRow,
   Label,
   Input,
-  Button,
 } from '../../styles/forms'
 
 class PostForm extends React.Component {
@@ -57,8 +53,7 @@ class PostForm extends React.Component {
         <Input type="text" name="content" defaultValue={this.props.post.content || ''} required />
       </FormRow>
 
-      <Button type="submit" disabled={this.state.disabled}>Submit</Button>
-
+      <button type="submit" disabled={this.state.disabled}>Save post</button>
     </form>
   }
 }

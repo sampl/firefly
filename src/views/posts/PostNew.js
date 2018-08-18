@@ -7,7 +7,7 @@ import {
   Page,
 } from '../../styles/global'
 
-const NewPost = ({history}) => {
+const PostNew = ({history}) => {
   return <Page>
     <PostForm
       post={{
@@ -22,4 +22,4 @@ const NewPost = ({history}) => {
   </Page>
 }
 
-export default withRouter(NewPost)
+export default withRouter(PostNew)

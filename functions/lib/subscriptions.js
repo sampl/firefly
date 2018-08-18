@@ -28,6 +28,13 @@ exports.updateStripeSubscription = (change, context) => {
     })
   }
 
+  const saveStripeSubscriptionToDatabase = stripe_subscription => {
+    return change.after.ref.update({
+      stripe_subscription_id: stripe_subscription.id,
+      stripe_subscription_status: stripe_subscription.status,
+    })
+  }
+
   const updateStripePaymentMethod = stripe_customer_id => {
     console.log(`
       updating payment method for
@@ -37,13 +44,6 @@ exports.updateStripeSubscription = (change, context) => {
     `)
     return stripe.customers.update(stripe_customer_id, {
       source: subscription.temp_stripe_payment_token_id,
-    })
-  }
-
-  const saveStripeSubscriptionToDatabase = stripe_subscription => {
-    return change.after.ref.update({
-      stripe_subscription_id: stripe_subscription.id,
-      stripe_subscription_status: stripe_subscription.status,
     })
   }
 

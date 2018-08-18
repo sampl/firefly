@@ -17,9 +17,11 @@ const dbConfig = {
   authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
   projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
 }
-let FirebaseApp = Firebase.initializeApp(dbConfig)
+Firebase.initializeApp(dbConfig)
+
+// remove in future firebase version
+// https://firebase.google.com/docs/reference/js/firebase.firestore.Settings#~timestampsInSnapshots
 Firebase.firestore().settings({timestampsInSnapshots: true})
-window.firebase = FirebaseApp // debugging
 
 // TRACKING
 ReactGA.initialize(process.env.REACT_APP_GOOGLE_ANALYTICS_TRACKING_ID, {debug: true})

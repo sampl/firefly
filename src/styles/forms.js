@@ -23,20 +23,8 @@ const Input = styled.input`
   }
 `
 
-const Button = styled.button`
-  padding: .5rem;
-  border-radius: 3px;
-  font-size: 16px;
-  outline: none;
-
-  &:focus {
-    box-shadow: 0 0 0 1px;
-  }
-`
-
 export {
   FormRow,
   Label,
   Input,
-  Button,
 }

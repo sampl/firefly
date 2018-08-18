@@ -12,7 +12,7 @@ injectGlobal`
   *:after,
   * {
     box-sizing: border-box;
-    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: sans-serif;
     -webkit-tap-highlight-color: rgba(0,0,0,0);
   }
 
@@ -38,6 +38,7 @@ const Page = styled.div`
   left: 0;
 `
 
+// INTERNAL link
 const AppLink = styled(Link)`
   color: ${colors.blue};
   text-decoration: none;

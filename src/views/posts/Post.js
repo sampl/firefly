@@ -2,7 +2,7 @@ import React from 'react'
 import { FirestoreCollection } from 'react-firestore'
 
 import Error from '../Error'
-import AuthProvider from '../../data/AuthProvider'
+import FirebaseAuth from '../FirebaseAuth'
 import LikeCount from '../postLikes/LikeCount'
 import LikeButton from '../postLikes/LikeButton'
 import {
@@ -22,7 +22,7 @@ const Post = ({slug}) => (
         }
 
         if (isLoading) {
-          return 'loading...'
+          return <p>loading...</p>
         }
 
         const post = data[0]

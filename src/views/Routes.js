@@ -13,8 +13,8 @@ import {
   PageContainer,
 } from '../styles/layout'
 
+// https://codesandbox.io/embed/YE6l8EmR9
 const Routes = ({location}) => (
-  // https://codesandbox.io/embed/YE6l8EmR9
   <TransitionGroup key="transition-group" component={PageContainer}>
     <CSSTransition key={location.pathname} classNames="fade" timeout={1000} mountOnEnter={true} unmountOnExit={true}>
       <Switch location={location}>

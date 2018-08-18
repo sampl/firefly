@@ -9,6 +9,7 @@ import {
 
 const Posts = () => (
   <Page>
+    <AppLink to="/new">New post</AppLink>
     <FirestoreCollection path={'posts'}>
       { ({error, isLoading, data}) => {
 
@@ -17,26 +18,20 @@ const Posts = () => (
         }
 
         if (isLoading) {
-          return 'loading...'
+          return <p>loading...</p>
         }
 
         const posts = data
 
         if (posts.length === 0) {
-          return <div>
-            <AppLink to="/new">New post</AppLink>,
-            <p>No posts yet!</p>
-          </div>
+          return <p>No posts yet!</p>
         }
 
         return <div>
-          <AppLink to="/new">New post</AppLink>
           {posts.map(post => (
-            <div key={post.id}>
-              <h2>
-                <AppLink to={`/${post.slug}`}>{post.title}</AppLink>
-              </h2>
-            </div>
+            <h2 key={post.id}>
+              <AppLink to={`/${post.slug}`}>{post.title}</AppLink>
+            </h2>
           ))}
         </div>
 

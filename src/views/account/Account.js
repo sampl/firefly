@@ -32,14 +32,12 @@ const Account = ({history}) => (
 
         return <div>
           <img src={auth.photoURL} alt={auth.displayName} width="100" height="100" />
-          <br />
-          <strong>{auth.displayName}</strong>
-          <br />
-          {auth.email}
-          <br />
+          <p><strong>{auth.displayName}</strong></p>
+          <p>{auth.email}</p>
           <button onClick={() => logOut().then( () => history.push(`/`)) }>log out</button>
-          <br />
-          <br />
+
+          <hr />
+          
           <h2>Subscription</h2>
           <Subscription auth={auth} />
         </div>

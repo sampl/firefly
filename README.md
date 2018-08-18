@@ -14,7 +14,6 @@ before calling react-scripts. Learn how it works [here](https://medium.com/@taco
 - [`/scripts`](https://github.com/sampl/firefly/tree/master/scripts) - little javascript scripts you can manually run on your database. Useful for adding dummy data, "migrations", etc.
 - [`/src`](https://github.com/sampl/firefly/tree/master/src) - contains most of the app. These are create components that are compiled into a single JS file and sent to the user's browser.
 - [`/src/actions`](https://github.com/sampl/firefly/tree/master/src/actions) - plain old javascript functions that "do things" in your app like log out or create a post (similar to MVC "controllers")
-- [`/src/data`](https://github.com/sampl/firefly/tree/master/src/data) - react components that get data from your Firebase database for your views (think "models" in MVC)
 - [`/src/styles`](https://github.com/sampl/firefly/tree/master/src/styles) - low-level react components for use in your views (replaces your CSS/SASS files)
 - [`/src/views`](https://github.com/sampl/firefly/tree/master/src/views) - mostly-stateless react components that show your app's UI ("views" in MVC)
 

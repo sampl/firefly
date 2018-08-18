@@ -6,9 +6,6 @@ import colors from './colors'
 const AppWrapper = styled.div`
   max-width: 500px;
   margin: 0 auto;
-  display: grid;
-  min-height: 100vh;
-  grid-template-rows: 5rem auto 5rem;
   padding: 0 1rem;
 `
 
@@ -25,18 +22,11 @@ const Logo = styled(Link)`
 const PageContainer = styled.div`
   position: relative;
 `
-
-const Footer = styled.div`
-  text-align: center;
-  font-size: .9rem;
-  color: ${colors.lightGray};
-  padding: 2rem 0;
-`
+// PAGE GOES HERE!!!
 
 export {
   AppWrapper,
   PageContainer,
   Header,
   Logo,
-  Footer,
 }

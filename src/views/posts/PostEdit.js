@@ -10,7 +10,7 @@ import {
   Page,
 } from '../../styles/global'
 
-const EditPost = ({slug, history}) => (
+const PostEdit = ({slug, history}) => (
   <Page>
     <FirestoreCollection
       path={'posts'}
@@ -22,7 +22,7 @@ const EditPost = ({slug, history}) => (
         }
 
         if (isLoading) {
-          return 'loading...'
+          return <p>loading...</p>
         }
 
         const post = data[0]
@@ -35,12 +35,13 @@ const EditPost = ({slug, history}) => (
           }} />
 
           or
-          <div onClick={() => {
+
+          <button onClick={() => {
             if (window.confirm(`Are you sure you want to delete this post?`)) {
               deletePost(post)
                 .then( () => history.push(`/`))
             }
-          }}>delete post</div>
+          }}>delete post</button>
 
         </div>
       }}
@@ -48,4 +49,4 @@ const EditPost = ({slug, history}) => (
   </Page>
 )
 
-export default withRouter(EditPost)
+export default withRouter(PostEdit)

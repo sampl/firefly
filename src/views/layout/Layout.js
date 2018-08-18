@@ -7,7 +7,6 @@ import {
   AppWrapper,
   Header,
   Logo,
-  Footer,
 } from '../../styles/layout'
 import {
   AppLink,
@@ -39,8 +38,6 @@ const Layout = ({children}) => (
     </Header>
 
     {children}
-
-    <Footer>&copy; {(new Date()).getFullYear()}</Footer>
 
   </AppWrapper>
 )
