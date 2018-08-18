@@ -3,11 +3,20 @@ import { FirestoreCollection } from 'react-firestore'
 
 import likePost from '../../actions/likePost'
 import unlikePost from '../../actions/unlikePost'
-import AuthProvider from '../../data/AuthProvider'
+import FirebaseAuth from '../FirebaseAuth'
 
 const LikeButton = ({post}) => (
-  <AuthProvider>
-    { auth => {
+  <FirebaseAuth>
+    { ({isLoading, error, auth}) => {
+
+      if (isLoading) {
+        return <button disabled>...</button>
+      }
+
+      if (error) {
+        return <button disabled>...</button>
+      }
+
       if (!auth) return null
 
       return <FirestoreCollection
@@ -37,7 +46,7 @@ const LikeButton = ({post}) => (
         }}
       </FirestoreCollection>
     }}
-  </AuthProvider>
+  </FirebaseAuth>
 )
 
 export default LikeButton

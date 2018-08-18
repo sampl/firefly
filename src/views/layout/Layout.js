@@ -1,9 +1,7 @@
 import React from 'react'
 
 import logIn from '../../actions/logIn'
-import AuthProvider from '../../data/AuthProvider'
-import IconSearch from './ic_search_black_24px'
-import IconAccount from './ic_account_circle_black_24px'
+import FirebaseAuth from '../FirebaseAuth'
 
 import {
   AppWrapper,
@@ -26,15 +24,17 @@ const Layout = ({children}) => (
           <IconSearch />
         </AppLink>
         {' '}
-        <AuthProvider loading="..." error="⚠️ login error">
-          { auth => {
+        <FirebaseAuth loading="..." error="⚠️ login error">
+          { ({auth}) => {
             if (auth) {
-              return <AppLink to={`/account`}><IconAccount /></AppLink>
+              return <AppLink to={`/account`}>
+                <span role="img" aria-label="account">👤</span>
+              </AppLink>
             }
 
             return <button onClick={logIn}>log in</button>
           }}
-        </AuthProvider>
+        </FirebaseAuth>
       </div>
     </Header>
 

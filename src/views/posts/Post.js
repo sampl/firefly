@@ -32,11 +32,11 @@ const Post = ({slug}) => (
           <LikeCount post={post} />
           <LikeButton post={post} />
           <p>{post.content}</p>
-          <AuthProvider>
-            {auth => (
+          <FirebaseAuth>
+            { ({auth}) => (
               auth ? <AppLink to={`/${post.slug}/edit`}>Edit</AppLink> : null
             )}
-          </AuthProvider>
+          </FirebaseAuth>
         </div>
       }}
     </FirestoreCollection>

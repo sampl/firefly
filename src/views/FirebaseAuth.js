@@ -1,12 +1,14 @@
+// wrapper for Firebase Authentication
+// similar API to react-firestore, but instead of returning a collection or document
+// it returns the logged in user or null if not logged in (along with loading state and errors)
+
 import React from 'react'
 import Firebase from 'firebase'
 
-import Error from '../views/Error'
-
-class AuthProvider extends React.Component {
+class FirebaseAuth extends React.Component {
 
   state = {
-    loading: true,
+    isLoading: true,
     error: null,
     auth: null,
   }
@@ -26,7 +28,7 @@ class AuthProvider extends React.Component {
 
   setAuth = auth => {
     this.setState({
-      loading: false,
+      isLoading: false,
       auth,
       error: null,
     })
@@ -34,7 +36,7 @@ class AuthProvider extends React.Component {
 
   handleError = error => {
     this.setState({
-      loading: false,
+      isLoading: false,
       auth: null,
       error,
     })
@@ -47,17 +49,9 @@ class AuthProvider extends React.Component {
   }
 
   render() {
-    if (this.state.error) {
-      return this.props.error || <Error error={this.state.error} />
-    }
-
-    if (this.state.loading) {
-      return this.props.loading || 'loading...'
-    }
-
-    return this.props.children(this.state.auth)
+    return this.props.children(this.state)
   }
 
 }
 
-export default AuthProvider
+export default FirebaseAuth

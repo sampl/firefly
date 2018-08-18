@@ -3,16 +3,25 @@ import { withRouter } from 'react-router-dom'
 
 import logIn from '../../actions/logIn'
 import logOut from '../../actions/logOut'
-import AuthProvider from '../../data/AuthProvider'
+import FirebaseAuth from '../FirebaseAuth'
 import Subscription from './Subscription'
+import Error from '../Error'
 import {
   Page,
 } from '../../styles/global'
 
 const Account = ({history}) => (
   <Page>
-    <AuthProvider>
-      { auth => {
+    <FirebaseAuth>
+      { ({isLoading, error, auth}) => {
+
+        if (isLoading) {
+          return <p>loading...</p>
+        }
+
+        if (error) {
+          return <Error error={error} />
+        }
 
         if (!auth) {
           return <div>
@@ -36,7 +45,7 @@ const Account = ({history}) => (
         </div>
 
       }}
-    </AuthProvider>
+    </FirebaseAuth>
   </Page>
 )
 
