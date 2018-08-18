@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import Firebase from 'firebase'
+import Firebase from 'firebase/app'
 import 'firebase/firestore'
 import ReactGA from 'react-ga'
 import { BrowserRouter } from 'react-router-dom'
