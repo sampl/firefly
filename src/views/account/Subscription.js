@@ -45,7 +45,7 @@ class Subscription extends React.Component {
     >
       { ({error, isLoading, data}) => {
                 
-        if (error || data.length === 0) {
+        if (error) {
           return <Error error={error} />
         }
 
