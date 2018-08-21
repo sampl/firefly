@@ -1,8 +1,8 @@
+import Firebase from 'firebase/app'
+import { FirestoreProvider } from 'react-firestore'
 import React from 'react'
 import ReactGA from 'react-ga'
 import { BrowserRouter, Route } from 'react-router-dom'
-import Firebase from 'firebase/app'
-import { FirestoreProvider } from 'react-firestore'
 
 import ErrorBoundary from './ErrorBoundary'
 import Routes from './Routes'

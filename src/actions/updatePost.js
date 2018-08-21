@@ -1,4 +1,4 @@
-import Firebase from 'firebase'
+import Firebase from 'firebase/app'
 import ReactGA from 'react-ga'
 import { prepareDocForUpdate } from './helpers/firestore_helpers'
 
