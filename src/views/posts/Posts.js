@@ -12,7 +12,11 @@ import {
 const Posts = () => (
   <Page>
     <AppLink to="/new">New post</AppLink>
-    <FirestoreCollection path={'posts'}>
+    <hr/>
+    <FirestoreCollection
+      path={'posts'}
+      sort="_likeCount:desc"
+    >
       { ({error, isLoading, data}) => {
 
         if (error) {
@@ -23,17 +27,20 @@ const Posts = () => (
           return <p>loading...</p>
         }
 
-        const posts = data
-
-        if (posts.length === 0) {
+        if (data.length === 0) {
           return <p>No posts yet!</p>
         }
 
         return <div>
-          {posts.map(post => (
-            <h2 key={post.id}>
+          {data.map(post => (
+            <div key={post.id}>
               <AppLink to={`/${post.slug}`}>{post.title}</AppLink>
-            </h2>
+              <p>
+                {post._likeCount || 0}
+                {' '}
+                {post._likeCount && post._likeCount === 1 ? 'like' : 'likes'}
+              </p>
+            </div>
           ))}
         </div>
 

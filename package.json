@@ -6,9 +6,9 @@
     "firebase": "^5.0.4",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
+    "react-firestore": "^0.8.1",
     "react-ga": "^2.5.3",
     "react-instantsearch": "^5.1.0",
-    "react-firestore": "^0.8.1",
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.1.4",
     "react-transition-group": "^2.3.1",
@@ -16,11 +16,9 @@
     "styled-components": "^3.3.2"
   },
   "scripts": {
-    "start": "sh -ac '. ./.env.dev; firebase use dev && react-scripts start'",
-    "dev": "sh -ac '. ./.env.dev; firebase use dev && react-scripts build && firebase deploy'",
+    "start": "sh -ac '. ./.env.dev;   firebase use dev   && firebase serve --only functions | react-scripts start'",
+    "dev": "  sh -ac '. ./.env.dev;   firebase use dev   && react-scripts build && firebase deploy'",
     "stage": "sh -ac '. ./.env.stage; firebase use stage && react-scripts build && firebase deploy'",
-    "live": "sh -ac '. ./.env.live;  firebase use live  && react-scripts build && firebase deploy'",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "live": " sh -ac '. ./.env.live;  firebase use live  && react-scripts build && firebase deploy'"
   }
 }

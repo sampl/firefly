@@ -9,15 +9,7 @@ const LikeButton = ({post}) => (
   <FirebaseAuth>
     { ({isLoading, error, auth}) => {
 
-      if (isLoading) {
-        return <button disabled>...</button>
-      }
-
-      if (error) {
-        return <button disabled>...</button>
-      }
-
-      if (!auth) return null
+      if (!auth || isLoading || error) return null
 
       return <FirestoreCollection
         path={'postLikes'}

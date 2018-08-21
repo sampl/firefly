@@ -3,8 +3,7 @@ import { FirestoreCollection } from 'react-firestore'
 
 import Error from '../Error'
 import FirebaseAuth from '../FirebaseAuth'
-import LikeCount from '../postLikes/LikeCount'
-import LikeButton from '../postLikes/LikeButton'
+import LikeButton from './LikeButton'
 import {
   AppLink,
 } from '../../styles/global'
@@ -31,7 +30,11 @@ const Post = ({slug}) => (
 
         return <div>
           <h1>{post.title}</h1>
-          <LikeCount post={post} />
+          <p>
+            {post._likeCount || 0}
+            {' '}
+            {post._likeCount && post._likeCount === 1 ? 'like' : 'likes'}
+          </p>
           <LikeButton post={post} />
           <p>{post.content}</p>
           <FirebaseAuth>

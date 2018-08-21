@@ -28,6 +28,10 @@ injectGlobal`
   #root {
     min-height: 100vh;
   }
+
+  p {
+    margin: 0 0 1rem;
+  }
 `
 
 // INTERNAL link
