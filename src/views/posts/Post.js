@@ -5,8 +5,8 @@ import Error from '../Error'
 import FirebaseAuth from '../FirebaseAuth'
 import LikeButton from './LikeButton'
 import {
-  AppLink,
-} from '../../styles/global'
+  InternalLink,
+} from '../../styles/links'
 import {
   Page,
 } from '../../styles/layout'
@@ -39,7 +39,7 @@ const Post = ({slug}) => (
           <p>{post.content}</p>
           <FirebaseAuth>
             { ({auth}) => (
-              auth ? <AppLink to={`/${post.slug}/edit`}>Edit</AppLink> : null
+              auth ? <InternalLink to={`/${post.slug}/edit`}>Edit</InternalLink> : null
             )}
           </FirebaseAuth>
         </div>

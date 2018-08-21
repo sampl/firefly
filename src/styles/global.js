@@ -1,8 +1,5 @@
-import styled from 'styled-components'
 import { injectGlobal } from 'styled-components'
-import { Link } from 'react-router-dom'
 
-import colors from './colors'
 // eslint-disable-next-line
 import animation from './animation'
 
@@ -33,18 +30,3 @@ injectGlobal`
     margin: 0 0 1rem;
   }
 `
-
-// INTERNAL link
-const AppLink = styled(Link)`
-  color: ${colors.blue};
-  text-decoration: none;
-
-  &:hover,
-  &:active {
-    text-decoration: underline;
-  }
-`
-
-export {
-  AppLink,
-}

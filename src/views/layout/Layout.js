@@ -9,8 +9,8 @@ import {
   Logo,
 } from '../../styles/layout'
 import {
-  AppLink,
-} from '../../styles/global'
+  InternalLink,
+} from '../../styles/links'
 
 const Layout = ({children}) => (
   <AppWrapper>
@@ -19,16 +19,16 @@ const Layout = ({children}) => (
       <Logo to="/">Firefly</Logo>
 
       <div style={{float: 'right'}}>
-        <AppLink to="/search">
+        <InternalLink to="/search">
           <span role="img" aria-label="search">🔎</span>
-        </AppLink>
+        </InternalLink>
         {' '}
         <FirebaseAuth loading="..." error="⚠️ login error">
           { ({auth}) => {
             if (auth) {
-              return <AppLink to={`/account`}>
+              return <InternalLink to={`/account`}>
                 <span role="img" aria-label="account">👤</span>
-              </AppLink>
+              </InternalLink>
             }
 
             return <button onClick={logIn}>log in</button>

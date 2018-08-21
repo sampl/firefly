@@ -3,15 +3,15 @@ import { FirestoreCollection } from 'react-firestore'
 
 import Error from '../Error'
 import {
-  AppLink,
-} from '../../styles/global'
+  InternalLink,
+} from '../../styles/links'
 import {
   Page,
 } from '../../styles/layout'
 
 const Posts = () => (
   <Page>
-    <AppLink to="/new">New post</AppLink>
+    <InternalLink to="/new">New post</InternalLink>
     <hr/>
     <FirestoreCollection
       path={'posts'}
@@ -34,7 +34,7 @@ const Posts = () => (
         return <div>
           {data.map(post => (
             <div key={post.id}>
-              <AppLink to={`/${post.slug}`}>{post.title}</AppLink>
+              <InternalLink to={`/${post.slug}`}>{post.title}</InternalLink>
               <p>
                 {post._likeCount || 0}
                 {' '}
