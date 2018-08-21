@@ -8,7 +8,7 @@ const prepareDocForCreate = doc => {
 
   // timestamps
   doc.createdBy = Firebase.auth().currentUser ? Firebase.auth().currentUser.uid : null
-  doc.createdOn = new Date()
+  doc.createdOn = Firebase.firestore.Timestamp.now()
 
   return doc
 }
@@ -17,7 +17,7 @@ const prepareDocForUpdate = doc => {
 
   // timestamps
   doc.updatedBy = Firebase.auth().currentUser ? Firebase.auth().currentUser.uid : null
-  doc.updatedOn = new Date()
+  doc.updatedOn = Firebase.firestore.Timestamp.now()
 
   // don't save the id as part of the document
   delete doc.id
