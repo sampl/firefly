@@ -14,19 +14,17 @@ class FirebaseAuth extends React.Component {
   }
 
   componentDidMount() {
-    this.updateSubscription()
+    this.unsubscribe = Firebase.auth()
+      .onAuthStateChanged(this.handleAuth, this.handleError)
   }
 
   componentWillUnmount() {
-    this.cancelSubscription()
+    if (this.unsubscribe) {
+      this.unsubscribe()
+    }
   }
 
-  updateSubscription = () => {
-    this.unsubscribe = Firebase.auth()
-      .onAuthStateChanged(this.setAuth, this.handleError)
-  }
-
-  setAuth = auth => {
+  handleAuth = auth => {
     this.setState({
       isLoading: false,
       auth,
@@ -40,12 +38,6 @@ class FirebaseAuth extends React.Component {
       auth: null,
       error,
     })
-  }
-
-  cancelSubscription = () => {
-    if (this.unsubscribe) {
-      this.unsubscribe()
-    }
   }
 
   render() {
