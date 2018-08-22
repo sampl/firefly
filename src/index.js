@@ -28,4 +28,5 @@ if (process.env.NODE_ENV === 'production') {
   window.Raven.config(process.env.REACT_APP_SENTRY_RAVEN_TRACKING_URL).install()
 }
 
+// REACT
 ReactDOM.render(<App />, document.getElementById('root'))
