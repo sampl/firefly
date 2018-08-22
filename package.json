@@ -8,7 +8,7 @@
     "react-dom": "^16.4.0",
     "react-firestore": "^0.8.1",
     "react-ga": "^2.5.3",
-    "react-instantsearch": "^5.1.0",
+    "react-instantsearch-dom": "^5.2.3",
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.1.4",
     "react-transition-group": "^2.3.1",

@@ -4,6 +4,7 @@ import React from 'react'
 import ReactGA from 'react-ga'
 import { BrowserRouter, Route } from 'react-router-dom'
 
+import '../styles/global'
 import ErrorBoundary from './ErrorBoundary'
 import Routes from './Routes'
 import Layout from './layout/Layout'
