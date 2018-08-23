@@ -11,11 +11,11 @@ import {
   Page,
 } from '../../styles/layout'
 
-const Post = ({slug}) => (
+const Post = ({match}) => (
   <Page>
     <FirestoreCollection
       path={'posts'}
-      filter={['slug', '==', slug]}
+      filter={['slug', '==', match.params.slug]}
     >
       { ({error, isLoading, data}) => {
         if (error || data.length === 0) {
@@ -34,8 +34,9 @@ const Post = ({slug}) => (
             {post._likeCount || 0}
             {' '}
             {post._likeCount && post._likeCount === 1 ? 'like' : 'likes'}
+            {' '}
+            <LikeButton post={post} />
           </p>
-          <LikeButton post={post} />
           <p>{post.content}</p>
           <FirebaseAuth>
             { ({auth}) => (

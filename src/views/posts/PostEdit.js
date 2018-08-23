@@ -9,11 +9,11 @@ import {
   Page,
 } from '../../styles/layout'
 
-const PostEdit = ({slug, history}) => (
+const PostEdit = ({match, history}) => (
   <Page>
     <FirestoreCollection
       path={'posts'}
-      filter={['slug', '==', slug]}
+      filter={['slug', '==', match.params.slug]}
     >
       { ({error, isLoading, data}) => {
         if (error || data.length === 0) {
@@ -27,21 +27,17 @@ const PostEdit = ({slug, history}) => (
         const post = data[0]
 
         return <div>
-
           <PostForm post={post} onSubmit={values => {
             return updatePost(post.id, values)
               .then(() => history.push(`/${post.slug}`))
           }} />
-
           or
-
           <button onClick={() => {
             if (window.confirm(`Are you sure you want to delete this post?`)) {
               deletePost(post)
                 .then( () => history.push(`/`))
             }
           }}>delete post</button>
-
         </div>
       }}
     </FirestoreCollection>

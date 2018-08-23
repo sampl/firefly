@@ -15,7 +15,7 @@ const PostNew = ({history}) => (
       }}
       onSubmit={values => {
         return createPost(values)
-          .then(p => history.push(`/${p.slug}`))
+          .then(post => history.push(`/${post.slug}`))
       }}
     />
   </Page>

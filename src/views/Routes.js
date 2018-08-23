@@ -23,8 +23,8 @@ const Routes = () => (
           <Route path="/new" component={PostNew} />
           <Route path="/search" component={Search} />
           <Route path="/account" component={Account} />
-          <Route path="/:slug/edit" render={ ({match}) => <PostEdit slug={match.params.slug} /> } />
-          <Route path="/:slug" render={ ({match}) => <Post slug={match.params.slug} /> } />
+          <Route path="/:slug/edit" component={PostEdit} />
+          <Route path="/:slug" component={Post} />
           <Route component={Error} />
         </Switch>
       </CSSTransition>
