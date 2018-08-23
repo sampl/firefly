@@ -12,6 +12,7 @@ const createPost = values => {
   })
 
   values.slug = slugify(values.title, {lower: true})
+  values._likeCount = 0
 
   return Firebase.firestore()
     .collection('posts')
