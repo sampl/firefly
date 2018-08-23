@@ -1,5 +1,4 @@
 import React from 'react'
-import { withRouter } from 'react-router-dom'
 import { FirestoreCollection } from 'react-firestore'
 
 import Error from '../Error'
@@ -49,4 +48,4 @@ const PostEdit = ({slug, history}) => (
   </Page>
 )
 
-export default withRouter(PostEdit)
+export default PostEdit

@@ -14,7 +14,7 @@ const App = () => (
     <BrowserRouter>
       <ErrorBoundary>
         <Layout>
-          <Route path="/" key="analytics-router" component={Analytics}/>
+          <Route path="/" component={Analytics}/>
           <Routes />
         </Layout>
       </ErrorBoundary>

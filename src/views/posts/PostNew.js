@@ -1,5 +1,4 @@
 import React from 'react'
-import { withRouter } from 'react-router-dom'
 
 import createPost from '../../actions/createPost'
 import PostForm from './PostForm'
@@ -7,8 +6,8 @@ import {
   Page,
 } from '../../styles/layout'
 
-const PostNew = ({history}) => {
-  return <Page>
+const PostNew = ({history}) => (
+  <Page>
     <PostForm
       post={{
         title: '',
@@ -20,6 +19,6 @@ const PostNew = ({history}) => {
       }}
     />
   </Page>
-}
+)
 
-export default withRouter(PostNew)
+export default PostNew

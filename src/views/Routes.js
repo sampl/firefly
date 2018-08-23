@@ -1,5 +1,5 @@
 import React from 'react'
-import { Switch, Route, withRouter } from 'react-router-dom'
+import { Switch, Route } from 'react-router-dom'
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
 
 import Posts from './posts/Posts'
@@ -14,20 +14,22 @@ import {
 } from '../styles/layout'
 
 // https://codesandbox.io/embed/YE6l8EmR9
-const Routes = ({location}) => (
-  <TransitionGroup key="transition-group" component={PageContainer}>
-    <CSSTransition key={location.pathname} classNames="fade" timeout={1000} mountOnEnter={true} unmountOnExit={true}>
-      <Switch location={location}>
-        <Route exact path="/" component={Posts} />
-        <Route path="/new" component={PostNew} />
-        <Route path="/search" component={Search} />
-        <Route path="/account" component={Account} />
-        <Route path="/:slug/edit" render={ ({match}) => <PostEdit slug={match.params.slug} /> } />
-        <Route path="/:slug" render={ ({match}) => <Post slug={match.params.slug} /> } />
-        <Route component={Error} />
-      </Switch>
-    </CSSTransition>
-  </TransitionGroup>
+const Routes = () => (
+  <Route render={ ({location}) => (
+    <TransitionGroup key="transition-group" component={PageContainer}>
+      <CSSTransition key={location.pathname} classNames="fade" timeout={1000} mountOnEnter={true} unmountOnExit={true}>
+        <Switch location={location}>
+          <Route exact path="/" component={Posts} />
+          <Route path="/new" component={PostNew} />
+          <Route path="/search" component={Search} />
+          <Route path="/account" component={Account} />
+          <Route path="/:slug/edit" render={ ({match}) => <PostEdit slug={match.params.slug} /> } />
+          <Route path="/:slug" render={ ({match}) => <Post slug={match.params.slug} /> } />
+          <Route component={Error} />
+        </Switch>
+      </CSSTransition>
+    </TransitionGroup>
+  )} />
 )
 
-export default withRouter(Routes)
+export default Routes
