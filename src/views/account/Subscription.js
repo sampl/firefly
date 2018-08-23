@@ -8,9 +8,9 @@ import deleteSubscription from '../../actions/deleteSubscription'
 
 class Subscription extends React.Component {
 
+  // https://stripe.com/docs/checkout
   componentDidMount() {
-    // https://stripe.com/docs/checkout
-    this._handler = window.StripeCheckout.configure({
+    this.stripeCheckout = window.StripeCheckout.configure({
       key: process.env.REACT_APP_STRIPE_PUBLIC_KEY,
       locale: 'auto',
       image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
@@ -22,20 +22,20 @@ class Subscription extends React.Component {
     })
   }
 
-  makeNewPayment = () => {
-    this._handler.open({
+  newSubscription = () => {
+    this.stripeCheckout.open({
       token: createSubscription,
     })
   }
 
   updatePaymentMethod = subscription_id => {
-    this._handler.open({
+    this.stripeCheckout.open({
       token: token => updateSubscription(subscription_id, token),
     })
   }
 
   componentWillUnmount() {
-    this._handler.close()
+    this.stripeCheckout.close()
   }
 
   render() {
@@ -58,7 +58,7 @@ class Subscription extends React.Component {
         if (!subscription) {
           return <div>
             <p>Subscribe to Firefly to get paid features</p>
-            <button onClick={this.makeNewPayment}>Subscribe now</button>
+            <button onClick={this.newSubscription}>Subscribe now</button>
           </div>
         }
 
@@ -70,12 +70,13 @@ class Subscription extends React.Component {
           return <p>Updating your subscription...</p>
         }
 
+        const cancelConfirmation = `Are you sure you want to cancel your subscription? You won't have access to paid Firefly features.`
         return <div>
           <p>You are subscribed!</p>
           <p>Status: {subscription.stripe_subscription_status}</p>
           <button onClick={() => this.updatePaymentMethod(subscription.id)}>Update payment method</button>
           <button onClick={() => {
-            if (window.confirm(`Are you sure you want to cancel your subscription? You won't have access to paid Firefly features.`)) {
+            if (window.confirm(cancelConfirmation)) {
               deleteSubscription(subscription)
             }
           }}>Cancel subscription</button>
