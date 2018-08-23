@@ -18,8 +18,9 @@ const dbConfig = {
 }
 Firebase.initializeApp(dbConfig)
 
-// remove in future firebase version
 // https://firebase.google.com/docs/reference/js/firebase.firestore.Settings#~timestampsInSnapshots
+// temporary setting to squash error date warning
+// TODO - remove once this is the firebase default behavior
 Firebase.firestore().settings({timestampsInSnapshots: true})
 
 // TRACKING
