@@ -1,8 +1,8 @@
 import React from 'react'
 import { FirestoreCollection } from 'react-firestore'
 
-import Error from '../Error'
-import FirebaseAuth from '../FirebaseAuth'
+import Error from '../misc/Error'
+import FirebaseAuth from '../misc/FirebaseAuth'
 import LikeButton from './LikeButton'
 import {
   InternalLink,

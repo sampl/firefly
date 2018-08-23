@@ -3,7 +3,7 @@ import { FirestoreCollection } from 'react-firestore'
 
 import likePost from '../../actions/likePost'
 import unlikePost from '../../actions/unlikePost'
-import FirebaseAuth from '../FirebaseAuth'
+import FirebaseAuth from '../misc/FirebaseAuth'
 
 const LikeButton = ({post}) => (
   <FirebaseAuth>

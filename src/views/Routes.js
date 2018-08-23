@@ -8,7 +8,7 @@ import PostEdit from './posts/PostEdit'
 import PostNew from './posts/PostNew'
 import Search from './search/Search'
 import Account from './account/Account'
-import Error from './Error'
+import Error from './misc/Error'
 import {
   PageContainer,
 } from '../styles/layout'

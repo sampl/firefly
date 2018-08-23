@@ -2,7 +2,7 @@ import React from 'react'
 
 import {
   InternalLink,
-} from '../styles/links'
+} from '../../styles/links'
 
 const Error = ({error}) => (
   <div>

@@ -3,9 +3,9 @@ import { Route } from 'react-router-dom'
 
 import logIn from '../../actions/logIn'
 import logOut from '../../actions/logOut'
-import FirebaseAuth from '../FirebaseAuth'
+import FirebaseAuth from '../misc/FirebaseAuth'
+import Error from '../misc/Error'
 import Subscription from './Subscription'
-import Error from '../Error'
 import {
   Page,
 } from '../../styles/layout'
@@ -39,7 +39,6 @@ const Account = () => (
 
             <hr />
             
-            <h2>Subscription</h2>
             <Subscription auth={auth} />
           </div>
 

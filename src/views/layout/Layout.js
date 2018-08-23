@@ -1,7 +1,7 @@
 import React from 'react'
 
 import logIn from '../../actions/logIn'
-import FirebaseAuth from '../FirebaseAuth'
+import FirebaseAuth from '../misc/FirebaseAuth'
 
 import {
   AppWrapper,

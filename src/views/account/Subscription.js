@@ -1,7 +1,7 @@
 import React from 'react'
 import { FirestoreCollection } from 'react-firestore'
 
-import Error from '../Error'
+import Error from '../misc/Error'
 import createSubscription from '../../actions/createSubscription'
 import updateSubscription from '../../actions/updateSubscription'
 import deleteSubscription from '../../actions/deleteSubscription'

@@ -1,7 +1,7 @@
 import React from 'react'
 import { FirestoreCollection } from 'react-firestore'
 
-import Error from '../Error'
+import Error from '../misc/Error'
 import deletePost from '../../actions/deletePost'
 import updatePost from '../../actions/updatePost'
 import PostForm from './PostForm'
