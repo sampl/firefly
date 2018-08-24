@@ -7,6 +7,9 @@ const stripe = require('stripe')(functions.config().stripe.secret_key)
 // up-to-date when users CRUD db subscriptions
 // https://stripe.com/docs/billing/quickstart
 
+// NOTE - this code DOES NOT update your database if a user's card fails
+// when it's time to automate failed suscriptions, use
+// https://stripe.com/docs/webhooks or a service like Charify or Recurly
 exports.updateStripeSubscription = (change, context) => {
   
   // if subscription has been deleted
