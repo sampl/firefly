@@ -1,9 +1,6 @@
 import { injectGlobal } from 'styled-components'
 
-// eslint-disable-next-line
-import animation from './animation'
-
-// GLOBAL STYLES
+// https://www.styled-components.com/docs/api#injectglobal
 injectGlobal`
   *:before,
   *:after,
@@ -28,5 +25,12 @@ injectGlobal`
 
   p {
     margin: 0 0 1rem;
+  }
+
+  hr {
+    border: none;
+    height: 1px;
+    background: #eee;
+    margin: 1rem 0;
   }
 `
