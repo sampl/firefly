@@ -12,7 +12,13 @@ const InternalLink = styled(Link)`
     text-decoration: underline;
   }
 `
+const HeaderLink = styled(Link)`
+  color: ${colors.black};
+  text-decoration: none;
+  font-size: 1.2rem;
+`
 
 export {
   InternalLink,
+  HeaderLink,
 }

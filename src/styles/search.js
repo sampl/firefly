@@ -34,6 +34,6 @@ injectGlobal`
   .ais-Hits-item a {
     display: block;
     text-decoration: none;
-    padding: 1rem;
+    padding: 1rem 0;
   }
 `

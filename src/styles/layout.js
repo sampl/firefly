@@ -1,7 +1,4 @@
 import styled from 'styled-components'
-import { Link } from 'react-router-dom'
-
-import colors from './colors'
 
 const AppWrapper = styled.div`
   max-width: 500px;
@@ -10,11 +7,6 @@ const AppWrapper = styled.div`
 `
 const Header = styled.div`
   padding: 2rem 0;
-`
-const Logo = styled(Link)`
-  color: ${colors.black};
-  font-weight: 700;
-  text-decoration: none;
 `
 const PageContainer = styled.div`
   position: relative;
@@ -30,7 +22,6 @@ const Page = styled.div`
 export {
   AppWrapper,
   Header,
-  Logo,
   PageContainer,
   Page,
 }

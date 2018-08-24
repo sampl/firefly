@@ -6,29 +6,28 @@ import FirebaseAuth from '../misc/FirebaseAuth'
 import {
   AppWrapper,
   Header,
-  Logo,
 } from '../../styles/layout'
 import {
-  InternalLink,
+  HeaderLink,
 } from '../../styles/links'
 
 const Layout = ({children}) => (
   <AppWrapper>
 
     <Header>
-      <Logo to="/">Firefly</Logo>
+      <HeaderLink to="/">Firefly</HeaderLink>
 
       <div style={{float: 'right'}}>
-        <InternalLink to="/search">
+        <HeaderLink to="/search">
           <span role="img" aria-label="search">🔎</span>
-        </InternalLink>
+        </HeaderLink>
         {' '}
         <FirebaseAuth loading="..." error="⚠️ login error">
           { ({auth}) => {
             if (auth) {
-              return <InternalLink to={`/account`}>
+              return <HeaderLink to={`/account`}>
                 <span role="img" aria-label="account">👤</span>
-              </InternalLink>
+              </HeaderLink>
             } else {
               return <button onClick={logIn}>log in</button>
             }
