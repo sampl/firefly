@@ -8,7 +8,7 @@ import deleteSubscription from '../../actions/deleteSubscription'
 
 class Subscription extends React.Component {
 
-  // https://stripe.com/docs/checkout
+  // https://stripe.com/docs/checkout#integration-custom
   componentDidMount() {
     this.stripeCheckout = window.StripeCheckout.configure({
       key: process.env.REACT_APP_STRIPE_PUBLIC_KEY,
@@ -18,7 +18,7 @@ class Subscription extends React.Component {
       description: 'Subscribe to Firefly',
       email: this.props.auth.email,
       allowRememberMe: false,
-      amount: 39 * 100, // in cents
+      amount: 20 * 100, // in cents
     })
   }
 
@@ -63,7 +63,10 @@ class Subscription extends React.Component {
         }
 
         if (subscription.stripe_subscription_error) {
-          return <span style={{color: 'red'}}>Whoops&mdash;there was an error updating your subscription. Sorry about that!</span>
+          return <div style={{color: 'red'}}>
+            <p>Whoops&mdash;there was an error updating your subscription.</p>
+            <p style={{fontFamily: 'monospace'}}>{subscription.stripe_subscription_error}</p>
+          </div>
         }
 
         if (subscription.temp_stripe_payment_token_id) {

@@ -1,28 +1,26 @@
 const admin = require('firebase-admin')
 
-// update like count on posts when postLikes are changed
-exports.updatePostLikeCount = change => {
+// update _likeCount on a post when it's liked or unliked
+exports.updatePostLikeCount = (change, context) => {
   console.log('updating post like count')
-  
   const postId = change.after.exists ? change.after.data().post : change.before.data().post
+  return getNumberOfPostLikes(postId)
+    .then(count => setPostLikeCount(postId, count) )
+}
 
-  const getNumberOfPostLikes = () => {
-    return admin.firestore()
-      .collection('postLikes')
-      .where('post', '==', postId)
-      .get()
-      .then( snapshot => snapshot.size)
-  }
+const getNumberOfPostLikes = postId => {
+  return admin.firestore()
+    .collection('postLikes')
+    .where('post', '==', postId)
+    .get()
+    .then( snapshot => snapshot.size)
+}
 
-  const setPostLikeCount = likeCount => {
-    return admin.firestore()
-      .collection('posts')
-      .doc(postId)
-      .update({
-        _likeCount: likeCount,
-      })
-  }
-
-  return getNumberOfPostLikes()
-    .then(setPostLikeCount)
+const setPostLikeCount = (postId, count) => {
+  return admin.firestore()
+    .collection('posts')
+    .doc(postId)
+    .update({
+      _likeCount: count,
+    })
 }
