@@ -4,25 +4,28 @@ const FormRow = styled.div`
   display: block;
   margin: 0 0 1rem;
 `
-const Label = styled.label`
+const FormLabel = styled.label`
   display: block;
   margin: 0 0 .33rem;
 `
-const Input = styled.input`
+const TextInput = styled.input`
   padding: .5rem;
   border-radius: 3px;
   font-size: 16px;
-  outline: none;
   border: 1px solid #ddd;
   margin: 0 0 1rem;
-
-  &:focus {
-    box-shadow: 0 0 0 1px;
-  }
+`
+const TextArea = styled.textarea`
+  padding: .5rem;
+  border-radius: 3px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  margin: 0 0 1rem;
 `
 
 export {
   FormRow,
-  Label,
-  Input,
+  FormLabel,
+  TextInput,
+  TextArea,
 }

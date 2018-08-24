@@ -9,8 +9,9 @@ import React from 'react'
 
 import {
   FormRow,
-  Label,
-  Input,
+  FormLabel,
+  TextInput,
+  TextArea,
 } from '../../styles/forms'
 
 class PostForm extends React.Component {
@@ -44,13 +45,13 @@ class PostForm extends React.Component {
     return <form onSubmit={this.submit}>
 
       <FormRow>
-        <Label for="title">Title</Label>
-        <Input type="text" name="title" defaultValue={this.props.post.title || ''} required />
+        <FormLabel for="title">Title</FormLabel>
+        <TextInput type="text" name="title" defaultValue={this.props.post.title || ''} required />
       </FormRow>
 
       <FormRow>
-        <Label for="content">Content</Label>
-        <Input type="text" name="content" defaultValue={this.props.post.content || ''} required />
+        <FormLabel for="content">Content</FormLabel>
+        <TextArea type="text" name="content" defaultValue={this.props.post.content || ''} required />
       </FormRow>
 
       <button type="submit" disabled={this.state.disabled}>Save post</button>
