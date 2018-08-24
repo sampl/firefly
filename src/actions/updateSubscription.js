@@ -1,6 +1,6 @@
 import Firebase from 'firebase/app'
 import ReactGA from 'react-ga'
-import { prepareDocForUpdate } from './helpers/firestore_helpers'
+import { prepareDocForUpdate } from './helpers/firestoreHelpers'
 
 const updateSubscription = (subscriptionId, token) => {
 
@@ -10,7 +10,7 @@ const updateSubscription = (subscriptionId, token) => {
   })
 
   const subscription = prepareDocForUpdate({
-    temp_stripe_payment_token_id: token.id,
+    tempStripePaymentTokenId: token.id,
   })
 
   return Firebase.firestore()

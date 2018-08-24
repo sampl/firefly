@@ -2,7 +2,7 @@ import Firebase from 'firebase/app'
 import ReactGA from 'react-ga'
 import slugify from 'slugify'
 
-import { prepareDocForCreate } from './helpers/firestore_helpers'
+import { prepareDocForCreate } from './helpers/firestoreHelpers'
 
 const createPost = values => {
 

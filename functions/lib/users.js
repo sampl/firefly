@@ -1,6 +1,9 @@
 const admin = require('firebase-admin')
 const functions = require('firebase-functions')
-const stripe = require('stripe')(functions.config().stripe.secret_key)
+const Stripe = require('stripe')
+
+const STRIPE_SECRET_KEY = functions.config().stripe.secret_key
+const stripe = Stripe(STRIPE_SECRET_KEY)
 
 exports.createUser = user => {
   return createStripeCustomer(user.email)
@@ -20,6 +23,6 @@ const saveStripeCustomerToDatabase = (customerId, userId) => {
   return admin.firestore()
     .collection('users')
     .doc(userId).set({
-      stripe_customer_id: customerId,
+      stripeCustomerId: customerId,
     })
 }

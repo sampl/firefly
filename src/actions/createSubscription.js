@@ -1,7 +1,7 @@
 import Firebase from 'firebase/app'
 import ReactGA from 'react-ga'
 
-import { prepareDocForCreate } from './helpers/firestore_helpers'
+import { prepareDocForCreate } from './helpers/firestoreHelpers'
 
 const createSubscription = token => {
 
@@ -12,7 +12,7 @@ const createSubscription = token => {
 
   const subscription = prepareDocForCreate({
     user: Firebase.auth().currentUser.uid,
-    temp_stripe_payment_token_id: token.id,
+    tempStripePaymentTokenId: token.id,
   })
   return Firebase.firestore()
     .collection('subscriptions')

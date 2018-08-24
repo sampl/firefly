@@ -28,9 +28,9 @@ class Subscription extends React.Component {
     })
   }
 
-  updatePaymentMethod = subscription_id => {
+  updatePaymentMethod = subscriptionId => {
     this.stripeCheckout.open({
-      token: token => updateSubscription(subscription_id, token),
+      token: token => updateSubscription(subscriptionId, token),
     })
   }
 
@@ -62,21 +62,21 @@ class Subscription extends React.Component {
           </div>
         }
 
-        if (subscription.stripe_subscription_error) {
+        if (subscription.stripeSubscriptionError) {
           return <div style={{color: 'red'}}>
             <p>Whoops&mdash;there was an error updating your subscription.</p>
-            <p style={{fontFamily: 'monospace'}}>{subscription.stripe_subscription_error}</p>
+            <p style={{fontFamily: 'monospace'}}>{subscription.stripeSubscriptionError}</p>
           </div>
         }
 
-        if (subscription.temp_stripe_payment_token_id) {
+        if (subscription.tempStripePaymentTokenId) {
           return <p>Updating your subscription...</p>
         }
 
         const cancelConfirmation = `Are you sure you want to cancel your subscription? You won't have access to paid Firefly features.`
         return <div>
           <p>You are subscribed!</p>
-          <p>Status: {subscription.stripe_subscription_status}</p>
+          <p>Status: {subscription.stripeSubscriptionStatus}</p>
           <button onClick={() => this.updatePaymentMethod(subscription.id)}>Update payment method</button>
           <button onClick={() => {
             if (window.confirm(cancelConfirmation)) {

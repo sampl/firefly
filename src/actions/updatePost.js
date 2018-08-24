@@ -1,6 +1,6 @@
 import Firebase from 'firebase/app'
 import ReactGA from 'react-ga'
-import { prepareDocForUpdate } from './helpers/firestore_helpers'
+import { prepareDocForUpdate } from './helpers/firestoreHelpers'
 
 const updatePost = (postId, values) => {
 

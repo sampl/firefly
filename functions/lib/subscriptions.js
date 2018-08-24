@@ -1,7 +1,11 @@
 const admin = require('firebase-admin')
 const FieldValue = require('firebase-admin').firestore.FieldValue
 const functions = require('firebase-functions')
-const stripe = require('stripe')(functions.config().stripe.secret_key)
+const Stripe = require('stripe')
+
+const STRIPE_SECRET_KEY = functions.config().stripe.secret_key
+const STRIPE_PLAN_ID = functions.config().stripe.plan_id
+const stripe = Stripe(STRIPE_SECRET_KEY)
 
 // this backend code is responsible for keeping the Stripe subscriptions 
 // up-to-date when users CRUD db subscriptions
@@ -15,26 +19,26 @@ exports.updateStripeSubscription = (change, context) => {
   // if subscription has been deleted
   if (!change.after.exists) {
     const oldSubscription = change.before.data()
-    console.log(`deleted subscription ${change.before.id}; deleting ${oldSubscription.stripe_subscription_id}`)
-    return stripe.subscriptions.del(oldSubscription.stripe_subscription_id)
+    console.log(`deleted subscription ${change.before.id}; deleting ${oldSubscription.stripeSubscriptionId}`)
+    return stripe.subscriptions.del(oldSubscription.stripeSubscriptionId)
   }
   
   const subscription = change.after.data()
   subscription.id = change.after.id
 
   // if subscription's payment is waiting to be sent to Stripe
-  const tokenId = subscription.temp_stripe_payment_token_id
+  const tokenId = subscription.tempStripePaymentTokenId
   if (tokenId) {
     console.log(`update subscription ${subscription.id} with ${tokenId}`)
     return getStripeCustomerIdForUser(subscription.user)
       .then(customerId => updateStripeCustomerPaymentMethod(customerId, tokenId) )
-      .then(stripeCustomer => createOrGetStripeSubscription(stripeCustomer.id, subscription.stripe_subscription_id))
+      .then(stripeCustomer => createOrGetStripeSubscription(stripeCustomer.id, subscription.stripeSubscriptionId))
       .then(stripeSubscription => saveSubscriptionToDatabase(subscription.id, stripeSubscription))
       .catch(error => {
         console.error("couldn't update stripe subscription", error)
         return change.after.ref.update({
-          stripe_subscription_error: error.message,
-          temp_stripe_payment_token_id: FieldValue.delete(),
+          stripeSubscriptionError: error.message,
+          tempStripePaymentTokenId: FieldValue.delete(),
         })
       })
   }
@@ -60,9 +64,9 @@ const getStripeCustomerIdForUser = userId => {
     .doc(userId)
     .get()
     .then( doc => {
-      const stripeCustomerId = doc.data().stripe_customer_id
+      const stripeCustomerId = doc.data().stripeCustomerId
       if (!stripeCustomerId) {
-        throw new Error(`user ${userId} has no stripe_customer_id`)
+        throw new Error(`user ${userId} has no stripeCustomerId`)
       }
       return stripeCustomerId
     })
@@ -73,9 +77,9 @@ const saveSubscriptionToDatabase = (subscriptionId, stripeSubscription) => {
     .collection('subscriptions')
     .doc(subscriptionId)
     .update({
-      stripe_subscription_id: stripeSubscription.id,
-      stripe_subscription_status: stripeSubscription.status,
-      temp_stripe_payment_token_id: FieldValue.delete(),
+      stripeSubscriptionId: stripeSubscription.id,
+      stripeSubscriptionStatus: stripeSubscription.status,
+      tempStripePaymentTokenId: FieldValue.delete(),
     })
 }
 
@@ -93,7 +97,7 @@ const updateStripeCustomerPaymentMethod = (stripeCustomerId, tokenId) => {
 const createStripeSubscription = stripeCustomerId => {
   return stripe.subscriptions.create({
     customer: stripeCustomerId,
-    items: [{plan: functions.config().stripe.plan_id}],
+    items: [{plan: STRIPE_PLAN_ID}],
   })
 }
 

@@ -1,7 +1,9 @@
 const functions = require('firebase-functions')
 const Algolia = require('algoliasearch')
 
-let algolia = Algolia(functions.config().algolia.app_id, functions.config().algolia.admin_key)
+const ALGOLIA_APP_ID = functions.config().algolia.app_id
+const ALGOLIA_ADMIN_KEY = functions.config().algolia.admin_key
+let algolia = Algolia(ALGOLIA_APP_ID, ALGOLIA_ADMIN_KEY)
 let postIndex = algolia.initIndex('posts')
 
 // Algolia search - update search index
