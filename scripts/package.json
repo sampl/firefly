@@ -4,7 +4,12 @@
   "description": "maint scripts to help developers work with data in firefly apps",
   "main": "index.js",
   "dependencies": {
+    "bluebird": "^3.5.1",
     "chalk": "^2.3.2",
     "firebase-admin": "^5.11.0"
+  },
+  "scripts": {
+    "migrate": "node sample-migration.js",
+    "addFake": "node add-fake-posts.js"
   }
 }
