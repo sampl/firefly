@@ -18,12 +18,16 @@ const Post = ({match}) => (
       filter={['slug', '==', match.params.slug]}
     >
       { ({error, isLoading, data}) => {
-        if (error || data.length === 0) {
+        if (error) {
           return <Error error={error} />
         }
 
         if (isLoading) {
           return <p>loading...</p>
+        }
+
+        if (!isLoading && data.length === 0) {
+          return <Error />
         }
 
         const post = data[0]

@@ -16,12 +16,16 @@ const PostEdit = ({match, history}) => (
       filter={['slug', '==', match.params.slug]}
     >
       { ({error, isLoading, data}) => {
-        if (error || data.length === 0) {
+        if (error) {
           return <Error error={error} />
         }
 
         if (isLoading) {
           return <p>loading...</p>
+        }
+        
+        if (!isLoading && data.length === 0) {
+          return <Error />
         }
 
         const post = data[0]
@@ -31,13 +35,13 @@ const PostEdit = ({match, history}) => (
             return updatePost(post.id, values)
               .then(() => history.push(`/${post.slug}`))
           }} />
-          or
+          <br />
           <button onClick={() => {
             if (window.confirm(`Are you sure you want to delete this post?`)) {
               deletePost(post)
                 .then( () => history.push(`/`))
             }
-          }}>delete post</button>
+          }}>Delete post</button>
         </div>
       }}
     </FirestoreCollection>
