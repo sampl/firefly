@@ -4,6 +4,7 @@ const exitDuration = 100
 const enterDuration = 100
 const slideDistance = '.2rem'
 
+// https://www.styled-components.com/docs/api#injectglobal
 injectGlobal`
   .fade-exit {
     opacity: 1;

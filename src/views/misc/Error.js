@@ -1,3 +1,5 @@
+// a generic error page to show whenever something goes wrong in other views
+
 import React from 'react'
 
 import {

@@ -1,3 +1,9 @@
+// the main routes of our app are defined here using react-router
+// https://reacttraining.com/react-router/web/example/basic
+//
+// includes a simple route change animation
+// https://codesandbox.io/embed/YE6l8EmR9
+
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
@@ -13,7 +19,6 @@ import {
   PageContainer,
 } from '../styles/layout'
 
-// https://codesandbox.io/embed/YE6l8EmR9
 const Routes = () => (
   <Route render={ ({location}) => (
     <TransitionGroup key="transition-group" component={PageContainer}>

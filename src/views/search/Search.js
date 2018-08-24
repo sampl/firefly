@@ -1,3 +1,6 @@
+// lets users search posts using the Algolia API
+// https://community.algolia.com/react-instantsearch/Getting_started.html#install-react-instantsearch
+
 import React from 'react'
 import {
   InstantSearch,
@@ -11,7 +14,6 @@ import {
   Page,
 } from '../../styles/layout'
 
-// https://community.algolia.com/react-instantsearch/Getting_started.html#install-react-instantsearch
 const Search = () => (
   <Page>
     <InstantSearch

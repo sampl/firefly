@@ -1,9 +1,10 @@
-import { injectGlobal } from 'styled-components'
-
 // aloglia makes you style search widgets with global css
 // https://community.algolia.com/react-instantsearch/guide/Styling_widgets.html
-injectGlobal`
+// https://www.styled-components.com/docs/api#injectglobal
 
+import { injectGlobal } from 'styled-components'
+
+injectGlobal`
   .ais-SearchBox-input {
     padding: .5rem;
     border-radius: 3px;

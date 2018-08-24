@@ -29,9 +29,9 @@ const Layout = ({children}) => (
               return <InternalLink to={`/account`}>
                 <span role="img" aria-label="account">👤</span>
               </InternalLink>
+            } else {
+              return <button onClick={logIn}>log in</button>
             }
-
-            return <button onClick={logIn}>log in</button>
           }}
         </FirebaseAuth>
       </div>
