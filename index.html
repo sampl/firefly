@@ -278,7 +278,7 @@
       <span id="spacer_target" style="opacity: 0;"></span>
     </p>
     <p class="sub-headline-big">Firefly can teach you how—it's the friendly starter kit for designers and front-end devs who want to ship their own projects 🔥💪🚢</p>
-    <p class="sub-headline">Firefly is based on Create React App and Firebase</p>
+    <p class="sub-headline">Firefly is a JS boilerplate based on React and Firebase</p>
     <a class="button" href="#getting-started">Start building</a>
     <p class="sub-headline">or <a href="https://github.com/sampl/firefly">view source on Github</a></p>
   </div>
@@ -331,31 +331,33 @@
 
   <div style="font-size: 1.15rem">
 
-    <strong>Making websites is <em>hard</em>.</strong></p>
+    <strong>Making websites is hard.</strong></p>
 
-    <p>Sure, writing HTML is easy—but letting users log in, save data, search, and buy subscriptions is <em>way</em> harder. Most people who try just give up. I almost did.</p>
+    <p>Sure, writing HTML is easy—but letting users log in, save data, search, and buy things is <em>much</em> harder. Most people who try just give up. I almost did.</p>
 
-    <p>Luckily, new tools are making it simpler. After months of combing through documentation (and plenty of mistakes), I made an empty "starter project" to help me start my own projects. That's Firefly.</p>
+    <p>Luckily, some tools are making it easier. After months of combing through documentation (and plenty of mistakes), I made an empty "starter project" to make creating new sites faster. That's Firefly.</p>
   </div>
 
   <h1 id="philosophy">Philosophy</h1>
 
   <ul>
     <li>
-      <strong>Built for learners</strong> - Everything about Firefly is made to help developers build apps as quickly as possible. The codebase is as small, written to be readable, and includes helpful comments. This guide will walk you through it every step of the way.
+      <strong>Built for learners</strong> - Everything about Firefly is made to help developers build apps as quickly as possible. The codebase is as small, written to be readable, and includes helpful comments and readmes throughout. This page includes videos and guides that will walk you through it every step of the way.
     </li>
     <li>
-      <strong>Low cognitive overhead</strong> - Firefly has no server to monitor, no database instance to host, no REST API to maintain, no containers, no password salts, no webpack config, and no HTTP or SQL.
+      <strong>Low cognitive overhead</strong> - There's not much <a href="https://github.com/sampl/firefly">code</a> in Firefly. Firefly has no server to monitor, no database instance to host, and no REST API to maintain, no containers, no password salts, no webpack config, no CSS framework, no ORM, no forms library, no Redux, and no SQL. It's just Javascript.
+    </li>
+    <li>
+      <strong>Production worthy</strong> - It’s a real app, including CRUD, full text search, SSO auth, payments, and relational data. Firefly has real security, is <a href="#getting-started-next-steps">easily extensible</a>, and uses separate dev, staging, and live environments. It's even <a href="https://12factor.net/">12 factor complete</a>.
     </li>
     <li>
       <strong>Forward-leaning</strong> - Firefly embraces modern javascript syntax (ES6), the large NPM ecosystem, single-page front-end applications, serverless backends, schemaless databases, and using 3rd-party APIs for things like auth and search.
     </li>
     <li>
-      <strong>Reasonably stable</strong> - Almost all <a href="https://github.com/sampl/firefly/blob/master/package.json">Firefly dependencies</a> are used by large tech companies in production, are popular in the community, and will likely be supported for years to come.
+      <strong>Reasonably stable</strong> - There are very few <a href="https://github.com/sampl/firefly/blob/master/package.json">Firefly dependencies</a>, and most are used by large tech companies in production, are popular in the community, and will likely be supported for years to come.
     </li>
   </ul>
   
-
   <h1 id="how-it-works">How it works</h1>
 
   <p>Firefly isn't a framework or library—it's just a sample project that you can copy and make your own changes to.</p>
@@ -368,13 +370,13 @@
 
   <p>Most of Firefly is built with <a href="">React</a>. If you're not used to React, start by reading the excellent <a href="https://facebook.github.io/react/docs/hello-world.html">official React guide</a>.</p>
 
-  <h3>Templates</h3>
+  <h3>Views</h3>
 
-  <p>The main UI of a firebase app is a bunch of React components in the <code><a href="https://github.com/sampl/firefly/tree/master/src/views">/views</a></code> folder. These are mostly written in the simple functional React style. Think of them like templates—their job is basically just to show HTML.</p>
+  <p>The main UI of a firebase app is a bunch of React components in the <code><a href="https://github.com/sampl/firefly/tree/master/src/views">/views</a></code> folder. Think of them almost like templates—their job is mostly to show HTML. These are mostly written in the simple functional React style.</p>
 
   <h3>Styles</h3>
 
-  <p>Firefly uses <code><a href="https://www.styled-components.com/docs/basics">styled-components</a></code> to add CSS to your components. These are React components written with CSS, and they live in the <code><a href="https://github.com/sampl/firefly/tree/master/src/styles">/styles</a></code> folder. Think of them as a replacement for SASS or LESS files.</p>
+  <p>Firefly uses <code><a href="https://www.styled-components.com/docs/basics">styled-components</a></code> to add CSS to your components. These are React components written with CSS, and they live in the <code><a href="https://github.com/sampl/firefly/tree/master/src/styles">/styles</a></code> folder.</p>
 
   <h3>Routing</h3>
 
@@ -384,17 +386,18 @@
   <h2 id="how-it-works-data">Data</h2>
 
   <h3>The database</h3>
-  <p>Firefly uses the NoSQL <a href="https://firebase.google.com/docs/firestore/">Firebase Firestore database</a> for saving data. Firestore organizes your data into "collections" (kind of like SQL tables) which have "documents" (kind of like rows). Before you go much further, you should read the <a href="https://firebase.google.com/docs/firestore/web/start">Firebase Firestore Database Guide</a>.</p>
+  
+  <p>Firefly uses Firebase's NoSQL <a href="https://firebase.google.com/docs/firestore/">Firestore database</a> for saving data. Firestore organizes your data into "collections" (kind of like SQL tables) which have "documents" (kind of like rows). Before you go much further, you should read the <a href="https://firebase.google.com/docs/firestore/web/start">Firestore Database Guide</a>.</p>
 
   <h3>Queries</h3>
-  <p>So how do you get data from your database into your views? In Firefly, you directly query your database from the browser. Firefly uses <code><a href="https://github.com/green-arrow/react-firestore">react-firestore</a></code> components to listen for data from the database and pass it down to the views using the <a href="https://reactjs.org/docs/render-props.html">render prop</a> pattern.</p>
-  <!-- <p>Many other React apps use something like <a href="https://egghead.io/courses/getting-started-with-redux">Redux</a> to keep their UI up-to-date when data changes, but many developers agree that <a>Redux is overkill</a> for a lot of simple apps.</p> -->
+
+  <p>How do you get data from your database into your views? In Firefly, you directly query your database from the browser. Firefly uses <code><a href="https://github.com/green-arrow/react-firestore">react-firestore</a></code> components to listen for changes from the database and pass the data down to the views using the <a href="https://reactjs.org/docs/render-props.html">render prop</a> pattern.</p>
 
   <h3>Actions</h3>
 
-  <p>Now you know how Firefly shows data from the database. But how do you let users change that data? The answer in Firefly is "actions", normal javascript functions that live in the <code><a href="https://github.com/sampl/firefly/tree/master/src/actions">/actions</a></code> folder.</p>
+  <p>So how do you let users change data? The answer in Firefly is "actions", normal javascript functions that live in the <code><a href="https://github.com/sampl/firefly/tree/master/src/actions">/actions</a></code> folder. You import these files and call them from your views.</p>
 
-  <p>For example, when the user wants to add a post, we call the "add post" action which will send the new post to the database. When the database gets the new post, React will automatically update our views.</p>
+  <p>For example, when the user wants to add a post, the post form will call the "add post" action, which will send the new post to the database. When the database gets the new post, React will automatically update our list of posts.</p>
 
   <p>Actions use <a href="https://www.youtube.com/watch?v=f8IgdnYIwOU">Javascript promises</a> to make async requests and error handling easier. This means you can show success or error messages in your views using <code>.then()</code> and <code>.catch()</code>.</p>
 
@@ -405,16 +408,20 @@
   <h3>Relational data</h3>
   <p>Handling data that "relates" to other data is one of the trickier parts of web development. Most sites use backends that run SQL joins on their datadase—but because Firestore is a NoSQL database, you'll need to handle this differently.</p>
 
-  <p>You can just save the id of a document on another document. For example, each <code>postLike</code> has an attribute called "post", which has the id of the post that the user liked.</p>
+  <p>Most of the time, you can just save the id of a document on another document.</p>
 
-  <p>To handle things like sorting, Firefly uses another trick. Some documents have attributes that are automatically calculated by Firebase server cloud functions. These are designated with an underscore at the beginning of their name.</p>
+  <p>For example, each "post" includes the id of the user who wrote it. To figure out if a user can edit that post, Firefly checks if the post's <code>createdBy</code> value matches the logged in user's id.</p>
 
-  <p>For example: when you "like" a post in Firefly, the Firebase client adds a new "like" to <code>postLikes</code> in the database. Then, <a href="https://github.com/sampl/firefly/blob/master/functions/lib/postLikes.js">a Firebase function watching that collection</a> finds the post you liked and updates the post's <code>_likeCount</code> attribute. Now the browser can query and sort posts by <code>_likeCount</code>—but users can't edit other users' likes.</p>
+  <p>To handle things like sorting, Firefly uses another trick: some documents have attributes that are automatically updated by the backend. These attributes have an underscore at the beginning of their name.</p>
+
+  <p>For example: when you "like" a post in Firefly, the Firebase client adds a new "like" to <code>postLikes</code> in the database. Then, <a href="https://github.com/sampl/firefly/blob/master/functions/lib/postLikes.js">a Firebase function watching that collection</a> finds the post you liked and updates the post's <code>_likeCount</code> attribute. Now the browser can query and sort posts by <code>_likeCount</code> (but users can't edit other users' likes).</p>
 
 
   <h3>Authentication</h3>
 
-  <p>Firefly uses <a href="https://firebase.google.com/docs/auth/web/start">Firebase Authentication</a> for logging users in. There's also a <code>FirebaseAuth</code> component that listens for auth changes and updates views. This means views can simply call the <code>logIn</code> action and the rest of the app will update to show the user automatically.</p>
+  <p>Firefly uses <a href="https://firebase.google.com/docs/auth/web/start">Firebase Authentication</a> for logging users in.</p>
+
+  <p>There's also a <code><a href="https://github.com/sampl/firefly/blob/master/src/views/misc/FirebaseAuth.js">FirebaseAuth</a></code> component that listens for auth changes and updates views. This means you can call the <code>logIn</code> action anywhere and the rest of the app will automatically update.</p>
 
 
   <h2 id="how-it-works-other">Other stuff</h2>
@@ -450,12 +457,14 @@
   <p><a href="https://nodejs.org/en/download">Download and install Node JS</a> if you haven't already.</p>
 
   <p>Run <code>npm install -g firebase-tools</code> to install the <a href="https://firebase.google.com/docs/cli/">Firebase command line tools</a>. After it installs, run <code>firebase login</code>. You only need to do this once per computer.</p>
+  
+  <p>I also recommend installing the <a href="https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en">React extension for Chrome DevTools</a>.</p>
 
   <h2 id="getting-started-create">Creating your app</h2>
 
   <h3>Get the code</h3>
 
-  <p>Firefly is a boilerplate, so to start a new Firefly project, we just make a copy of Firefly.</p>
+  <p>Because Firefly is a boilerplate, we start new Firefly projects by just making a copy of Firefly.</p>
 
   <ol>
     <li>In your terminal, <code>cd</code> to the folder where you want your project to live</li>
@@ -474,7 +483,7 @@
     <li>Create three new projects, and name them something like <code>MyProject Dev</code>, <code>MyProject Stage</code>, and <code>MyProject LIVE</code></li>
   </ol>
 
-  <p>Now let's connect our databases to our app by adding their "keys" to our app's environment env files. You should generally keep connection keys like this secret, so first we'll rename our environment files to keep them from getting committed into git (the new filenames are listed in <code>.gitignore</code>).</p>
+  <p>Now let's connect our app to the databases by adding the database keys to our app's environment files. You should not commit keys like this to version control, so first we'll rename our environment files to match the names in our <code>.gitignore</code>.</p>
 
   <ol>
     <li>First, rename <code>.firebaserc.example</code> to <code>.firebaserc</code></li>
@@ -494,7 +503,7 @@
     <li>Click "Google", toggle the "Enable" switch, and hit "Save"</li>
   </ol>
 
-  <p>The Firebase database we're using, Firestore, is still in beta, so you'll also have to enable it for each of your projects too:</p>
+  <p>The Firestore database is still in beta, so you'll have to enable it for each of your projects:</p>
 
   <ol>
     <li>In the <a href="https://console.firebase.google.com/">Firebase console</a>, click on "Database" in the sidebar on the left</li>
@@ -524,14 +533,14 @@
 
   <p>Try logging in, then make sure you can create, like, edit, and delete posts.</p>
 
-  <p>Now go back to your text editor and try editing some files. When you save, the changes should automatically appear in the browser.</p>
+  <p>Now go back to your text editor and try editing some files. When you save, the changes should automatically appear in the browser without refreshing.</p>
 
   <p>Now is probably a good time to CTRL-F for all the instances of "Firefly" in the codebase and rename them to the name of your project. You should also probably do this for "post", too.</p>
 
 
   <h3>Deploy</h3>
 
-  <p>Firefly is insecure by default. <strong>Before going live, <a href="https://firebase.google.com/docs/firestore/security/get-started">secure your app</a> by writing rules in <code>database.rules.json</code></strong>.</p>
+  <p>Firefly is insecure by default. <strong>Before going live, <a href="https://firebase.google.com/docs/firestore/security/get-started">secure your app</a> by writing rules in the <code><a href="https://github.com/sampl/firefly/blob/master/firestore.rules">firestore.rules</a></code> file</strong>.</p>
 
   <p>You can deploy your project to your test stage URL by running <code>npm run stage</code>.</p>
 
@@ -543,16 +552,16 @@
   <ul>
     <li>Since Firefly is just a Javascript app, adding javascript packages is as simple as running an <code>npm install foo</code> and adding <code>import Foo from 'foo'</code> in your code.</li>
 
-    <li>This <a href="https://github.com/agarrharr/awesome-static-website-services">Awesome Static Website Services</a> has a lot of examples of things that you can integrate with a Firefly-style app.</li>
-
     <li>The <a href="https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md">Create React App user guide</a> has a ton of great guides for adding things like CSS Preprocessors, unit testing, and more.</li>
+
+    <li>This <a href="https://github.com/agarrharr/awesome-static-website-services">Awesome Static Website Services</a> has a lot of examples of things that you can integrate with a Firefly-style app.</li>
 
     <li>Firebase has a large repo of <a href="https://github.com/firebase/functions-samples">Firebase functions samples</a> for common backend tasks like sending emails and taking payments.</li>
   </ul>
 
   <p>That's it!</p>
 
-  <p>Remember that <strong>learning this stuff is always hard—for everyone</strong>. Take small bites, Google what you don't understand, and keep at it. Eventually you'll build something amazing.</p>
+  <p>Remember, <strong>learning web dev is hard for everyone</strong>. Take small bites, Google what you don't understand, and keep at it. Eventually you'll build something amazing.</p>
 
   <p style="font-size: 2rem;">🎉 🎉 🎉</p>
 
