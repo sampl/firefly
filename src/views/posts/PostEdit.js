@@ -31,17 +31,14 @@ const PostEdit = ({match, history}) => (
         const post = data[0]
 
         return <div>
-          <PostForm post={post} onSubmit={values => {
-            return updatePost(post.id, values)
-              .then(() => history.push(`/${post.slug}`))
-          }} />
+          <PostForm
+            post={post}
+            onSubmit={values => updatePost(post.id, values).then(() => history.push(`/${post.slug}`))}
+          />
           <br />
-          <button onClick={() => {
-            if (window.confirm(`Are you sure you want to delete this post?`)) {
-              deletePost(post)
-                .then( () => history.push(`/`))
-            }
-          }}>Delete post</button>
+          <button
+            onClick={() => deletePost(post).then( () => history.push(`/`))}
+          >Delete post</button>
         </div>
       }}
     </FirestoreCollection>

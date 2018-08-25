@@ -16,45 +16,29 @@ import {
 
 class PostForm extends React.Component {
 
-  state = {
-    disabled: false,
-  }
-
-  submit = event => {
+  onSubmit = event => {
     event.preventDefault()
-
-    this.setState({
-      disabled: true,
-    })
-
     const {title, content} = event.target.elements
-
     const values = {
       title: title.value,
       content: content.value,
     }
-
-    this.props.onSubmit(values).then(() => {
-      this.setState({
-        disabled: false,
-      })
-    })
+    this.props.onSubmit(values)
   }
 
-  render() {
-    return <form onSubmit={this.submit}>
-
+  render() {    
+    return <form onSubmit={this.onSubmit}>
       <FormRow>
         <FormLabel for="title">Title</FormLabel>
-        <TextInput type="text" name="title" defaultValue={this.props.post.title || ''} required />
+        <TextInput type="text" name="title" defaultValue={this.props.post ? this.props.post.title : ''} required />
       </FormRow>
 
       <FormRow>
         <FormLabel for="content">Content</FormLabel>
-        <TextArea type="text" name="content" defaultValue={this.props.post.content || ''} required />
+        <TextArea type="text" name="content" defaultValue={this.props.post ? this.props.post.content : ''} required />
       </FormRow>
 
-      <button type="submit" disabled={this.state.disabled}>Save post</button>
+      <button type="submit">Save post</button>
     </form>
   }
 }
