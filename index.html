@@ -4,8 +4,9 @@
 
 <head>
   <meta name="viewport" content="width=device-width">
-  <title>Firefly | A Simple Javascript App Boilerplate</title>
+  <title>Firefly | Build JS web apps quickly</title>
   <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:300,400,500,700" rel="stylesheet">
+  <meta name="description" content="React/Firebase boilerplate. Firefly is the friendly starter kit for front-end devs who want to ship their own projects 🔥💪🚢.">
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-10319722-13"></script>
@@ -45,7 +46,7 @@
       }
     }
 
-    /* hero nav */
+    /* top nav */
 
     .top-bar {
       display: flex;
@@ -55,9 +56,10 @@
     .top-bar a.logo {
       font-size: 1.1rem;
       margin: 0;
-      font-weight: 500;
+      font-weight: bold;
       font-family: 'Roboto Mono', monospace;
       color: #FF5555;
+      border: none;
     }
     .top-bar a.logo:hover {
       text-decoration: none;
@@ -88,7 +90,7 @@
     .headline {
       font-family: 'Roboto Mono', monospace;
       font-size: 2rem;
-      font-weight: 500;
+      font-weight: 400;
       line-height: 1.3;
     }
     .sub-headline-big {
@@ -107,15 +109,60 @@
       margin: 0 auto 1rem;
       color: white;
       display: inline-block;
-      background: rgba(251,71,74,.9);
       padding: .66rem 1.33rem;
       border-radius: 4px;
       font-size: 1.2rem;
       font-weight: 500;
       transition: all .2s ease;
+      box-shadow: 0 10px 20px -10px hsla(0, 96%, 63%, 0.5);
+      background: linear-gradient(
+        45deg,
+        hsla(350, 96%, 63%, 1),
+        hsla(10, 96%, 63%, 1)
+      );
+      opacity: .9;
     }
+    .hero-content a.button:focus,
     .hero-content a.button:hover {
-      background: rgba(251,71,74,1);
+      box-shadow: 0 10px 20px -5px hsla(0, 96%, 63%, 0.5);
+      transform: translate(0, -1px);
+    }
+    .hero-content a.button:active {
+      transform: translate(0, 0);
+    }
+
+    /* bio */
+
+    .callout {
+      padding: 1.25rem;
+      margin: 2rem 0;
+      color: #666777;
+      background: hsl(220, 100%, 97%);
+      display: grid;
+      grid-template-columns: max-content auto;
+      grid-column-gap: 1.5rem;
+      border-radius: 1rem;
+    }
+    .headshot {
+      width: 5rem;
+      height: 5rem;
+      border-radius: .5rem;
+      overflow: hidden;
+    }
+    .headshot img {
+      width: 100%;
+      height: 100%;
+    }
+    .bio h3 {
+      color: hsl(220, 60%, 40%);
+      margin: 0 0 .5rem;
+    }
+    .bio p {
+      color: hsl(220, 60%, 60%);
+      margin: 0;
+    }
+    .bio a {
+      font-weight: 600;
     }
 
     /* MAIN */
@@ -166,11 +213,13 @@
       font-weight: 500;
       font-size: 1.1rem;
       font-size: 1rem;
+      border: none;
     }
     aside nav a.secondary {
       color: #777888;
       font-size: 0.9rem;
       font-weight: 500;
+      border: none;
     }
 
     @media (max-width:770px) {
@@ -223,30 +272,16 @@
     a {
       color: #8e5eed;
       text-decoration: none;
+      border-bottom: 1.5px solid transparent;
+      transition: border-color .1s ease;
     }
     a:hover {
-      text-decoration: underline;
+      border-color: #8e5eed70;
     }
-    .callout {
-      padding: 0.01rem 1rem 1rem 1.5rem;
-      margin: 0 0 1rem;
-      color: #666777;
-      border-left: 3px solid rgba(251,71,74,.8);
-      background: hsl(236, 100%, 98%);
-    }
-    .callout h3 {
-      color: #444555;
-    }
-    .callout code {
-      background: white;
-    }
-    blockquote {
-      color: #777888;
-      border-left: 2px solid #dddeee;
-      font-style: italic;
-      margin: 1rem 0;
-      padding-left: 1rem;
-    }
+    
+
+    /* footer */
+
     footer {
       margin: 8rem 0 0;
       text-align: center;
@@ -255,6 +290,7 @@
     footer a {
       color: #999aaa;
       text-decoration: underline;
+      border: none;
     }
 
   </style>
@@ -277,27 +313,27 @@
       <span id="type_target"></span>
       <span id="spacer_target" style="opacity: 0;"></span>
     </p>
-    <p class="sub-headline-big">Firefly can teach you how—it's the friendly starter kit for designers and front-end devs who want to ship their own projects 🔥💪🚢</p>
-    <p class="sub-headline">Firefly is a JS boilerplate based on React and Firebase</p>
+    <p class="sub-headline-big">Firefly is the friendly starter kit for front-end devs who want to ship their own projects 🔥💪🚢</p>
+    <p class="sub-headline">A modern Javascript boilerplate based on Create React App and Firebase</p>
     <a class="button" href="#getting-started">Start building</a>
     <p class="sub-headline">or <a href="https://github.com/sampl/firefly">view source on Github</a></p>
   </div>
 
   <script>
-    var counter = 0
-    var text = '*You* can learn to build real web apps, too.'
+    var currentChar = 0
+    var text = 'Build and deploy real web apps in minutes.'
     var speed = 30
-    var typeTarget = document.getElementById("type_target")
-    var spacerTarget = document.getElementById("spacer_target")
+    var $typeTarget = document.getElementById("type_target")
+    var $spacerTarget = document.getElementById("spacer_target")
 
-    // add clear text to the spacer to adding type doesn't make the page jump
-    spacerTarget.innerHTML = text
+    // add clear text to the spacer so adding type doesn't make the page jump
+    $spacerTarget.innerHTML = text
 
     function type() {
-      if (counter < text.length) {
-        spacerTarget.innerHTML = spacerTarget.innerHTML.slice(0, -1)
-        typeTarget.innerHTML += text.charAt(counter)
-        counter++
+      if (currentChar < text.length) {
+        $spacerTarget.innerHTML = $spacerTarget.innerHTML.slice(0, -1)
+        $typeTarget.innerHTML += text.charAt(currentChar)
+        currentChar++
         setTimeout(type, speed)
       }
     }
@@ -313,16 +349,16 @@
   <nav>
     <a class="primary" href="#philosophy">Philosophy</a>
 
-    <a class="primary" href="#how-it-works">How it works</a>
+    <a class="primary"   href="#how-it-works">How it works</a>
     <a class="secondary" href="#how-it-works-views">Views</a>
     <a class="secondary" href="#how-it-works-data">Data</a>
     <a class="secondary" href="#how-it-works-other">Other stuff</a>
 
-    <a class="primary" href="#getting-started">Getting started</a>
-    <a class="secondary" href="#getting-started-quick-start">Quick start</a>
-    <a class="secondary" href="#getting-started-prerequisites">Before you begin</a>
+    <a class="primary"   href="#getting-started">Getting started</a>
+    <a class="secondary" href="#getting-started-before">Before you begin</a>
     <a class="secondary" href="#getting-started-create">Creating your app</a>
-    <a class="secondary" href="#getting-started-working">As you work</a>
+    <a class="secondary" href="#getting-started-changes">Making changes</a>
+    <a class="secondary" href="#getting-started-shipping">Shipping</a>
     <a class="secondary" href="#getting-started-next-steps">Next steps</a>
   </nav>
 </aside>
@@ -333,44 +369,55 @@
 
     <strong>Making websites is hard.</strong></p>
 
-    <p>Sure, writing HTML is easy—but letting users log in, save data, search, and buy things is <em>much</em> harder. Most people who try just give up. I almost did.</p>
+    <p>Sure, writing HTML is easy—but letting users log in, save data, search, and purchase is <em>much</em> harder. Most people who try just give up.</p>
 
-    <p>Luckily, some tools are making it easier. After months of combing through documentation (and plenty of mistakes), I made an empty "starter project" to make creating new sites faster. That's Firefly.</p>
+    <p>Luckily, new tools are making web dev a lot easier. I put together a boilerplate with all the code patterns I've learned over the past couple yesrs so I could ship my own projects faster. That's Firefly.</p>
+
+    <!-- <p>It's almost as powerful as Rails, but a whole lot simpler.</p> -->
   </div>
 
   <h1 id="philosophy">Philosophy</h1>
 
   <ul>
     <li>
-      <strong>Built for learners</strong> - Everything about Firefly is made to help developers build apps as quickly as possible. The codebase is as small, written to be readable, and includes helpful comments and readmes throughout. This page includes videos and guides that will walk you through it every step of the way.
+      <strong>Low cognitive overhead</strong> - There's <a href="https://github.com/sampl/firefly/tree/master/">not much code</a> in Firefly. It has no server to monitor, no database instance to host, and no REST API to maintain, no containers, no password salts, no webpack config, no CSS framework, no ORM, no forms library, no Redux, and no SQL. It's just JavaScript.
     </li>
     <li>
-      <strong>Low cognitive overhead</strong> - There's not much <a href="https://github.com/sampl/firefly">code</a> in Firefly. Firefly has no server to monitor, no database instance to host, and no REST API to maintain, no containers, no password salts, no webpack config, no CSS framework, no ORM, no forms library, no Redux, and no SQL. It's just Javascript.
+      <strong>Built for learners</strong> - Everything about Firefly was made to help developers build apps as quickly as possible. The codebase is readable, and includes helpful comments and readmes throughout.
+      <!-- This page includes videos and guides that will walk you through it every step of the way. -->
     </li>
     <li>
-      <strong>Production worthy</strong> - It’s a real app, including CRUD, full text search, SSO auth, payments, and relational data. Firefly has real security, is <a href="#getting-started-next-steps">easily extensible</a>, and uses separate dev, staging, and live environments. It's even <a href="https://12factor.net/">12 factor complete</a>.
+      <strong>Production worthy</strong> - It’s a real app, including CRUD, full text search, SSO auth, payments, and relational data. Firefly has <a href="https://firebase.google.com/docs/firestore/security/get-started">real security</a> built in, is <a href="#getting-started-next-steps">easily extensible</a>, and has separate dev, staging, and live environments. It's even <a href="https://12factor.net/">12 factor complete</a>.
     </li>
     <li>
-      <strong>Forward-leaning</strong> - Firefly embraces modern javascript syntax (ES6), the large NPM ecosystem, single-page front-end applications, serverless backends, schemaless databases, and using 3rd-party APIs for things like auth and search.
+      <strong>Forward leaning</strong> - Firefly embraces modern JavaScript syntax, the large NPM ecosystem, single-page front-end applications, serverless backends, schemaless databases, and using 3rd-party APIs for things like auth and search.
     </li>
     <li>
       <strong>Reasonably stable</strong> - There are very few <a href="https://github.com/sampl/firefly/blob/master/package.json">Firefly dependencies</a>, and most are used by large tech companies in production, are popular in the community, and will likely be supported for years to come.
     </li>
   </ul>
   
+  <div class="callout">
+    <div class="headshot">
+      <img src="sam.jpg" />
+    </div>
+    <div class="bio">
+      <h3>Need some design help at your startup?</h3>
+      <p>I use design to help companies get traction. Learn how at <a href="http://directedworks.com/">directedworks.com</a>.</p>
+    </div>
+  </div>
+  
   <h1 id="how-it-works">How it works</h1>
 
-  <p>Firefly isn't a framework or library—it's just a sample project that you can copy and make your own changes to.</p>
+  <p>Firefly isn't a framework or library—it's just a boilerplate. Once you copy the Firefly code, you can change it to do whatever you want.</p>
 
-  <p>When you make a Firefly project, you'll see an empty list of "posts". Users can read individual posts or search for posts. Once they log in, they can like posts or create and edit their own posts. They can even buy a subscription to the site.</p>
+  <p>By default, a Firefly project shows a list of "posts". Users can read individual posts or search for posts. Once they log in, they can like posts or create and edit their own posts. They can even buy a subscription to the site. Try the <a href="https://demo.getfirefly.org/">live demo</a> to see it in action.</p>
 
-  <p>Try the <a href="https://demo.getfirefly.org/">live demo</a> to see how it works.</p>
+  <p>Firefly is primarily based on <a href="https://www.google.com/search?q=create+react+app&oq=create+react+app&aqs=chrome..69i57j69i60l3j69i59l2.1961j0j1&sourceid=chrome&ie=UTF-8">Create React App</a>, a no-configuration way to compile  <a href="https://reactjs.org/">React</a> apps, and <a href="https://firebase.google.com/">Firebase</a>, Google's beginner-friendly cloud platform suite.</p>
 
   <h2 id="how-it-works-views">Views</h2>
 
   <p>Most of Firefly is built with <a href="">React</a>. If you're not used to React, start by reading the excellent <a href="https://facebook.github.io/react/docs/hello-world.html">official React guide</a>.</p>
-
-  <h3>Views</h3>
 
   <p>The main UI of a firebase app is a bunch of React components in the <code><a href="https://github.com/sampl/firefly/tree/master/src/views">/views</a></code> folder. Think of them almost like templates—their job is mostly to show HTML. These are mostly written in the simple functional React style.</p>
 
@@ -384,33 +431,31 @@
 
 
   <h2 id="how-it-works-data">Data</h2>
-
-  <h3>The database</h3>
   
-  <p>Firefly uses Firebase's NoSQL <a href="https://firebase.google.com/docs/firestore/">Firestore database</a> for saving data. Firestore organizes your data into "collections" (kind of like SQL tables) which have "documents" (kind of like rows). Before you go much further, you should read the <a href="https://firebase.google.com/docs/firestore/web/start">Firestore Database Guide</a>.</p>
+  <p>Firefly uses Firebase's NoSQL <a href="https://firebase.google.com/docs/firestore/">Firestore database</a> for saving data. Firestore organizes your data into "collections" (kind of like SQL tables) which have "documents" (kind of like rows). Before you go much further, you should read the <a href="https://firebase.google.com/docs/firestore/">Firestore docs</a>.</p>
 
   <h3>Queries</h3>
 
-  <p>How do you get data from your database into your views? In Firefly, you directly query your database from the browser. Firefly uses <code><a href="https://github.com/green-arrow/react-firestore">react-firestore</a></code> components to listen for changes from the database and pass the data down to the views using the <a href="https://reactjs.org/docs/render-props.html">render prop</a> pattern.</p>
+  <p>In Firefly, your views query the database right from the browser. Firefly uses <code><a href="https://github.com/green-arrow/react-firestore">react-firestore</a></code> components to listen for changes from the database and pass the data down to the views using the <a href="https://reactjs.org/docs/render-props.html">render prop</a> pattern.</p>
 
   <h3>Actions</h3>
 
-  <p>So how do you let users change data? The answer in Firefly is "actions", normal javascript functions that live in the <code><a href="https://github.com/sampl/firefly/tree/master/src/actions">/actions</a></code> folder. You import these files and call them from your views.</p>
+  <p>So how do you let users change data? The answer in Firefly is "actions", normal JavaScript functions that live in the <code><a href="https://github.com/sampl/firefly/tree/master/src/actions">/actions</a></code> folder. You import these files into your views and call them when a user clicks a button or submits a form, etc.</p>
 
-  <p>For example, when the user wants to add a post, the post form will call the "add post" action, which will send the new post to the database. When the database gets the new post, React will automatically update our list of posts.</p>
+  <p>For example, when the user wants to add a post, the <code><a href="https://github.com/sampl/firefly/tree/master/src/views/posts/PostNew.js">PostNew</a></code> view will call the <code><a href="https://github.com/sampl/firefly/tree/master/src/actions/addPost.js">addPost</a></code> action, which will send the new post to the database. When the database gets the new post, React will automatically update our <a href="https://github.com/sampl/firefly/tree/master/src/views/posts/Posts.js">list of posts</a>.</p>
 
-  <p>Actions use <a href="https://www.youtube.com/watch?v=f8IgdnYIwOU">Javascript promises</a> to make async requests and error handling easier. This means you can show success or error messages in your views using <code>.then()</code> and <code>.catch()</code>.</p>
+  <p>Actions use <a href="https://www.youtube.com/watch?v=f8IgdnYIwOU">JavaScript promises</a> to make async requests and error handling easier. This means you can show success or error messages in your views using <code>.then()</code> and <code>.catch()</code>.</p>
 
   <h3>Security</h3>
 
   <p>Because any browser can write data directly into your database, you need some rules to keep hackers from deleting data or seeing private data. Firefly comes with a <a href="https://github.com/sampl/firefly/blob/master/firestore.rules">default set of rules</a> that you can use (<a href="https://firebase.google.com/docs/firestore/security/get-started">this article</a> explains how they work).</p>
 
   <h3>Relational data</h3>
-  <p>Handling data that "relates" to other data is one of the trickier parts of web development. Most sites use backends that run SQL joins on their datadase—but because Firestore is a NoSQL database, you'll need to handle this differently.</p>
+  <p>Handling data that "relates" to other data is one of the trickier parts of web development. Most sites use backends that run SQL joins on their database—but because Firestore is a NoSQL database, you'll need to handle this differently.</p>
 
-  <p>Most of the time, you can just save the id of a document on another document.</p>
+  <p>Most of the time, you can just save the ID of a document on another document.</p>
 
-  <p>For example, each "post" includes the id of the user who wrote it. To figure out if a user can edit that post, Firefly checks if the post's <code>createdBy</code> value matches the logged in user's id.</p>
+  <p>For example, each "post" includes the ID of the user who wrote it. To decide if a user can edit a post, Firefly checks if the post's <code>createdBy</code> value matches the logged in user's ID.</p>
 
   <p>To handle things like sorting, Firefly uses another trick: some documents have attributes that are automatically updated by the backend. These attributes have an underscore at the beginning of their name.</p>
 
@@ -421,7 +466,7 @@
 
   <p>Firefly uses <a href="https://firebase.google.com/docs/auth/web/start">Firebase Authentication</a> for logging users in.</p>
 
-  <p>There's also a <code><a href="https://github.com/sampl/firefly/blob/master/src/views/misc/FirebaseAuth.js">FirebaseAuth</a></code> component that listens for auth changes and updates views. This means you can call the <code>logIn</code> action anywhere and the rest of the app will automatically update.</p>
+  <p>It also includes a <code><a href="https://github.com/sampl/firefly/blob/master/src/views/misc/FirebaseAuth.js">FirebaseAuth</a></code> component that listens for auth changes and updates views. This means you can call the <code>logIn</code> action anywhere and the rest of the app will automatically update.</p>
 
 
   <h2 id="how-it-works-other">Other stuff</h2>
@@ -433,44 +478,42 @@
 
   <h1 id="getting-started">Getting Started</h1>
 
-  <div class="callout">
+  <p>This section will show you how to create a new app, customize it, and ship it live. Once you're used to these steps, creating a new app only takes a few minutes.</p>
+
+  <!-- <div class="callout">
     <h3 id="getting-started-quick-start">Quick start (experts only)</h2>
 
     <ol>
-      <li>
-        Clone <a href="https://github.com/sampl/firefly">the repo</a> and <code>npm install</code>
-      </li>
-      <li>
-        Remove <code>.example</code> from the names of your environment files
-      </li>
-      <li>Create dev/stage/live projects in the <a href="https://console.firebase.google.com/">Firebase console</a>, then add keys to <code>.firebaserc</code> and <code>.env</code> files</li>
+      <li>Create dev/stage/live projects in the <a href="https://console.firebase.google.com/">Firebase console</a></li>
+      <li>Enable Google auth, Firestore beta, and Blaze plan in the <a href="https://console.firebase.google.com/">Firebase console</a> for each project</li>
+      <li>Clone <a href="https://github.com/sampl/firefly">the repo</a> and <code>npm install</code></li>
+      <li>Add Firebase API keys to <code>.firebaserc</code> and <code>.env</code> files, and remove <code>.example</code> from the names of your environment files</li>
       <li>Add Algolia and Stripe secret keys to <a href="https://firebase.google.com/docs/functions/config-env">functions config</a></li>
-      <li>Enable Google auth, Firestore beta, and Blaze plan for each project</li>
       <li>Start development with <code>npm start</code> and deploy with <code>npm run live</code></li>
     </ol>
-  </div>
+  </div> -->
 
-  <h2 id="getting-started-prerequisites">Before you begin</h2>
+  <h2 id="getting-started-before">Before you begin</h2>
 
-  <p>You'll need <a href="https://en.wikipedia.org/wiki/Git">git</a> to use Firefly. If you don't already know how to use git, <a href="https://www.codecademy.com/learn/learn-git">you can learn on Codecademy</a>.</p>
-
-  <p><a href="https://nodejs.org/en/download">Download and install Node JS</a> if you haven't already.</p>
+  <p>Make sure you have <a href="https://www.codecademy.com/learn/learn-git">git</a> and <a href="https://nodejs.org/en/download">Node JS</a> installed.</p>
 
   <p>Run <code>npm install -g firebase-tools</code> to install the <a href="https://firebase.google.com/docs/cli/">Firebase command line tools</a>. After it installs, run <code>firebase login</code>. You only need to do this once per computer.</p>
   
-  <p>I also recommend installing the <a href="https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en">React extension for Chrome DevTools</a>.</p>
+  <p>Installing the <a href="https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en">React extension for Chrome DevTools</a> is also a good idea.</p>
 
   <h2 id="getting-started-create">Creating your app</h2>
 
+  <p>We're going to clone the <a href="https://github.com/sampl/firefly">Firefly repo</a> onto your computer, create Firebase projects in the <a href="https://console.firebase.google.com">Firebase console</a>, and then add keys from the console to your code.</p>
+
   <h3>Get the code</h3>
 
-  <p>Because Firefly is a boilerplate, we start new Firefly projects by just making a copy of Firefly.</p>
+  <p>Because Firefly is a boilerplate, we start new Firefly projects simply by making a copy of Firefly.</p>
 
   <ol>
     <li>In your terminal, <code>cd</code> to the folder where you want your project to live</li>
     <li>Clone this repo by running <code>git clone https://github.com/sampl/firefly</code></li>
     <li>Move into the folder you just created with <code>cd firefly</code> (you can also safely rename the <code>firefly</code> folder to the name of your project)</li>
-    <li>Run <code>npm install</code> to install all the javascript packages Firefly needs</li>
+    <li>Run <code>npm install</code> to install all the JavaScript packages Firefly needs</li>
   </ol>
 
   <p>To make the project your own, simply find-and-replace all the instaces of "Firefly" and "posts" to match your own project.</p>
@@ -516,20 +559,18 @@
   <p>This isn't necessary to start Firefly, but you'll eventually need to <a href="https://firebase.google.com/docs/admin/setup#add_firebase_to_your_app">Create a Service Account</a> before you run the scripts in the Firefly "scripts" folder.</p>
 
 
-  <h3>Other services</h3>
+  <h3>Other services (optional)</h3>
 
-  <p>Firefly comes with a search powered by <a href="https://www.algolia.com">Algolia</a>. To enable search, <a href="https://www.algolia.com">create an account</a>, <a href="https://firebase.google.com/docs/functions/config-env">configure your functions credentials</a>. See <a href="https://github.com/sampl/firefly/blob/master/functions/index.js">index.js</a> for full instructions.</p>
+  <p>If you need search, Firefly comes with a search powered by <a href="https://www.algolia.com">Algolia</a>. If you don't need search, you can removeTo enable search, <a href="https://www.algolia.com">create an account</a>, <a href="https://firebase.google.com/docs/functions/config-env">configure your functions credentials</a>. See <a href="https://github.com/sampl/firefly/blob/master/functions/index.js">index.js</a> for full instructions.</p>
 
-  <p>There's also a simple <a href="https://stripe.com/" target="_blank">Stripe</a> integration for creating subscriptions and charging users. If you're not asking users for money, you can get rid of the files with "subscription" in the name. If you are, add your Stripe keys to the <code>.env</code> files and your Firebase functions config.</p>
+  <p>If you want to charge users, there's also a sample <a href="https://stripe.com/" target="_blank">Stripe</a> integration for creating subscriptions. If you're not asking users for money, you can get rid of the files with "subscription" in the name. If you are, add your Stripe keys to the <code>.env</code> files and your Firebase functions config.</p>
 
   <p>Firefly also comes with <a href="https://analytics.google.com/" target="_blank">Google Analytics</a> for tracking page views and <a href="https://docs.sentry.io/clients/javascript/" target="_blank">Sentry</a> for monitoring errors. To use them, just create an account and project on each site, then add your tracking codes to your <code>.env</code> files.</p>
 
 
-  <h2 id="getting-started-working">As you work</h2>
+  <h2 id="getting-started-changes">Making changes</h2>
 
-  <h3>Develop</h3>
-
-  <p>Start your app with <code>npm start</code>. You should see a basic web app appear in your browser!</p>
+  <p>When you're finished setting things up, start your app by running <code>npm start</code> in your terminal. You should see a basic web app appear in your browser.</p>
 
   <p>Try logging in, then make sure you can create, like, edit, and delete posts.</p>
 
@@ -538,7 +579,7 @@
   <p>Now is probably a good time to CTRL-F for all the instances of "Firefly" in the codebase and rename them to the name of your project. You should also probably do this for "post", too.</p>
 
 
-  <h3>Deploy</h3>
+  <h2 id="getting-started-shipping">Shipping</h2>
 
   <p>Firefly is insecure by default. <strong>Before going live, <a href="https://firebase.google.com/docs/firestore/security/get-started">secure your app</a> by writing rules in the <code><a href="https://github.com/sampl/firefly/blob/master/firestore.rules">firestore.rules</a></code> file</strong>.</p>
 
@@ -550,18 +591,18 @@
   <h2 id="getting-started-next-steps">Next Steps</h2>
 
   <ul>
-    <li>Since Firefly is just a Javascript app, adding javascript packages is as simple as running an <code>npm install foo</code> and adding <code>import Foo from 'foo'</code> in your code.</li>
+    <li>Since Firefly is just a JavaScript app, adding JavaScript packages is as simple as running an <code>npm install foo</code> and adding <code>import Foo from 'foo'</code> in your code.</li>
 
     <li>The <a href="https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md">Create React App user guide</a> has a ton of great guides for adding things like CSS Preprocessors, unit testing, and more.</li>
 
     <li>This <a href="https://github.com/agarrharr/awesome-static-website-services">Awesome Static Website Services</a> has a lot of examples of things that you can integrate with a Firefly-style app.</li>
 
-    <li>Firebase has a large repo of <a href="https://github.com/firebase/functions-samples">Firebase functions samples</a> for common backend tasks like sending emails and taking payments.</li>
+    <li>Firebase has a large repo of <a href="https://github.com/firebase/functions-samples">Firebase functions samples</a> for common backend tasks like sending emails.</li>
   </ul>
 
   <p>That's it!</p>
 
-  <p>Remember, <strong>learning web dev is hard for everyone</strong>. Take small bites, Google what you don't understand, and keep at it. Eventually you'll build something amazing.</p>
+  <p>If you're having trouble, remember that <strong>learning web development is hard</strong>. Take small bites, Google what you don't understand, and keep at it. Eventually you'll build something amazing.</p>
 
   <p style="font-size: 2rem;">🎉 🎉 🎉</p>
 
@@ -572,7 +613,7 @@
   </p>
 
   <p>
-    <em>Thanks to Chris Schneider, Luke Persola, Andrew Walton, Brett Warner, and aaaronMF for thoughts and help with this project.</em>
+    <em>Thanks to Luke Persola, Chris Schneider, Andrew Walton, Brett Warner, and aaaronMF for thoughts and help with this project.</em>
   </p>
 
   <footer>by <a href="http://sampl.us/">Sam Pierce Lolla</a> at <a href="http://directedworks.com/">Directed Works</a></footer>
