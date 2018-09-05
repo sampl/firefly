@@ -1,3 +1,6 @@
+// this Layout component wraps every page with the app header on top
+// check out App.js to see how it's used
+
 import React from 'react'
 
 import logIn from '../../actions/logIn'

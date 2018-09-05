@@ -1,4 +1,8 @@
-Firefly backend functions
+# Firebase backend functions
+
+This folder contains a few backend functions.
+
+**[Documentation for Firebase Functions](https://firebase.google.com/docs/functions/)**
 
 ## Setting environment variables
 

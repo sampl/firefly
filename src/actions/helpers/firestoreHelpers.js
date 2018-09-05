@@ -1,6 +1,4 @@
-/*
- *   Helper functions for working with Firebase Firestore
- */
+// Helper functions for working with Firebase Firestore
 
 import Firebase from 'firebase/app'
 import 'firebase/auth'
