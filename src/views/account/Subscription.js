@@ -1,10 +1,10 @@
 import React from 'react'
-import { FirestoreCollection } from 'react-firestore'
 
 import Error from '../misc/Error'
 import createSubscription from '../../actions/createSubscription'
 import updateSubscription from '../../actions/updateSubscription'
 import deleteSubscription from '../../actions/deleteSubscription'
+import FireflySubscription from '../misc/FireflySubscription'
 
 class Subscription extends React.Component {
 
@@ -39,12 +39,9 @@ class Subscription extends React.Component {
   }
 
   render() {
-    return <FirestoreCollection
-      path="subscriptions"
-      filter={['user', '==', this.props.auth.uid]}
-    >
-      { ({error, isLoading, data}) => {
-                
+    return <FireflySubscription>
+      { ({error, isLoading, subscription}) => {
+        
         if (error) {
           return <Error error={error} />
         }
@@ -53,11 +50,10 @@ class Subscription extends React.Component {
           return <p>loading...</p>
         }
 
-        const subscription = data[0]
-
         if (!subscription) {
           return <div>
-            <p>Subscribe to Firefly to get paid features</p>
+            <p><strong>Subscribe to get paid features</strong></p>
+            <p>Use Stripe test card number <span style={{fontFamily: 'monospace'}}>4242 4242 4242 4242</span>, any pin, and any future expiration date</p>
             <button onClick={this.newSubscription}>Subscribe now</button>
           </div>
         }
@@ -66,6 +62,7 @@ class Subscription extends React.Component {
           return <div style={{color: 'red'}}>
             <p>Whoops&mdash;there was an error updating your subscription.</p>
             <p style={{fontFamily: 'monospace'}}>{subscription.stripeSubscriptionError}</p>
+            <button onClick={() => deleteSubscription(subscription)}>Delete and try again</button>
           </div>
         }
 
@@ -74,6 +71,7 @@ class Subscription extends React.Component {
         }
 
         const cancelConfirmation = `Are you sure you want to cancel your subscription? You won't have access to paid Firefly features.`
+
         return <div>
           <p>You are subscribed!</p>
           <p>Status: {subscription.stripeSubscriptionStatus}</p>
@@ -86,7 +84,7 @@ class Subscription extends React.Component {
         </div>
 
       }}
-    </FirestoreCollection>
+    </FireflySubscription>
   }
 }
 

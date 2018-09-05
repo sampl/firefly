@@ -8,7 +8,7 @@ import React from 'react'
 import { Switch, Route } from 'react-router-dom'
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
 
-import Posts from './posts/Posts'
+import PostList from './posts/PostList'
 import Post from './posts/Post'
 import PostEdit from './posts/PostEdit'
 import PostNew from './posts/PostNew'
@@ -24,7 +24,7 @@ const Routes = () => (
     <TransitionGroup key="transition-group" component={PageContainer}>
       <CSSTransition key={location.pathname} classNames="fade" timeout={1000} mountOnEnter={true} unmountOnExit={true}>
         <Switch location={location}>
-          <Route exact path="/" component={Posts} />
+          <Route exact path="/" component={PostList} />
           <Route path="/new" component={PostNew} />
           <Route path="/search" component={Search} />
           <Route path="/account" component={Account} />

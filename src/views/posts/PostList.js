@@ -8,8 +8,9 @@ import {
 import {
   Page,
 } from '../../styles/layout'
+import FireflySubscription from '../misc/FireflySubscription';
 
-const Posts = () => (
+const PostList = () => (
   <Page>
     <InternalLink to="/new">New post</InternalLink>
     <hr/>
@@ -46,7 +47,35 @@ const Posts = () => (
 
       }}
     </FirestoreCollection>
+
+    <hr />
+    
+    {/* For paid subscribers only */}
+    <FireflySubscription>
+      { ({isLoading, error, subscription}) => {
+
+        if (error) {
+          return <Error error={error} />
+        }
+
+        if (isLoading) {
+          return <p>loading...</p>
+        }
+
+        if (!subscription) {
+          return <div>
+            <p>Only paid subscribers can see what goes here</p>
+            <InternalLink to={`/account`}>Subscribe now</InternalLink>
+          </div>
+        }
+
+        return <div>
+          <p>Super-fancy subscription-only features go here!</p>
+        </div>
+
+      }}
+    </FireflySubscription>
   </Page>
 )
 
-export default Posts
+export default PostList
