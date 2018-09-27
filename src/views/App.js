@@ -4,11 +4,10 @@ import React from 'react'
 import ReactGA from 'react-ga'
 import { BrowserRouter, Route } from 'react-router-dom'
 
-import '../styles/global'
-import '../styles/animation'
 import ErrorBoundary from './misc/ErrorBoundary'
 import Routes from './Routes'
 import Layout from './layout/Layout'
+import '../styles/global'
 
 const App = () => (
   <FirestoreProvider firebase={Firebase}>

@@ -2,13 +2,13 @@ import React from 'react'
 import { FirestoreCollection } from 'react-firestore'
 
 import Error from '../misc/Error'
+import FireflySubscription from '../misc/FireflySubscription'
 import {
   InternalLink,
 } from '../../styles/links'
 import {
   Page,
 } from '../../styles/layout'
-import FireflySubscription from '../misc/FireflySubscription';
 
 const PostList = () => (
   <Page>

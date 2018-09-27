@@ -6,7 +6,6 @@ import React from 'react'
 import Error from './Error'
 
 class ErrorBoundary extends React.Component {
-
   state = {
     error: null,
   }

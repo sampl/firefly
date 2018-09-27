@@ -5,7 +5,6 @@ import React from 'react'
 
 import logIn from '../../actions/logIn'
 import FirebaseAuth from '../misc/FirebaseAuth'
-
 import {
   HeaderFooterWrapper,
   Header,

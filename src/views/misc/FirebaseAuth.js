@@ -1,6 +1,6 @@
 // wrapper for Firebase Authentication
-// similar API to react-firestore, but instead of returning a collection or document
-// it returns the logged in user or null if not logged in (along with loading state and errors)
+// similar API to react-firestore, but instead of returning a collection or document,
+// it returns the logged in user (or null if not logged in) along with loading state and errors
 
 import Firebase from 'firebase/app'
 import React from 'react'

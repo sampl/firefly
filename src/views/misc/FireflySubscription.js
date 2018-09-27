@@ -1,5 +1,5 @@
-// provides a Firefly subscription for the currently logged-in user
-// (if they're a subscriber)
+// if the currently logged-in user is a paid subscriber,
+// this will provide their Firefly subscription
 
 import React from 'react'
 import FirebaseAuth from './FirebaseAuth'

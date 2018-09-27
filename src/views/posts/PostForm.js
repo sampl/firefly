@@ -1,9 +1,9 @@
 // This is an uncontrolled React form, which is way simpler than
-// the standard React form setup
+// the normal React controlled form
 // https://reactjs.org/docs/uncontrolled-components.html
 //
 // You can use browser form validation these days, and just
-// get the form contents on submit.
+// get the values from the form on submit.
 
 import React from 'react'
 

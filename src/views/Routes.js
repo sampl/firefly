@@ -5,11 +5,11 @@ import React from 'react'
 import { Switch, Route } from 'react-router-dom'
 
 import PostList from './posts/PostList'
-import Post from './posts/Post'
-import PostEdit from './posts/PostEdit'
 import PostNew from './posts/PostNew'
 import Search from './search/Search'
 import Account from './account/Account'
+import PostEdit from './posts/PostEdit'
+import Post from './posts/Post'
 import Error from './misc/Error'
 
 const Routes = () => (
