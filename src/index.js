@@ -11,9 +11,9 @@ import ReactGA from 'react-ga'
 import App from './views/App'
 
 console.log('create-react-app env:', process.env.NODE_ENV)
-console.log('firefly app env:', process.env.REACT_APP_ENV)
+console.log('firefly project:', process.env.REACT_APP_ENV)
 
-// connects our app to firebase 
+// connect our app to firebase 
 const dbConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
   authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
@@ -21,16 +21,18 @@ const dbConfig = {
 }
 Firebase.initializeApp(dbConfig)
 
-// https://firebase.google.com/docs/reference/js/firebase.firestore.Settings#~timestampsInSnapshots
-// temporary setting to squash error date warning
+// temporary config to squash error date warning
 // TODO - remove once this is the firebase default behavior
+// https://firebase.google.com/docs/reference/js/firebase.firestore.Settings#~timestampsInSnapshots
 Firebase.firestore().settings({timestampsInSnapshots: true})
 
-// initialize analytics and error tracking libraries
-ReactGA.initialize(process.env.REACT_APP_GOOGLE_ANALYTICS_TRACKING_ID, {debug: true})
-if (process.env.NODE_ENV === 'production') {
-  window.Raven.config(process.env.REACT_APP_SENTRY_RAVEN_TRACKING_URL).install()
-}
+// Google Analytics
+// https://github.com/react-ga/react-ga#api
+ReactGA.initialize(process.env.REACT_APP_GOOGLE_ANALYTICS_TRACKING_ID)
+
+// Sentry
+// https://docs.sentry.io/clients/javascript/integrations/react/
+window.Raven.config(process.env.REACT_APP_SENTRY_RAVEN_TRACKING_URL).install()
 
 // render the App component to our document root with React
 ReactDOM.render(<App />, document.getElementById('root'))
