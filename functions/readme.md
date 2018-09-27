@@ -6,12 +6,14 @@ This folder contains a few backend functions.
 
 ## Setting environment variables
 
-Before running backend functions, you have to give Firebase your secret API keys. Unlike the front-end app, which uses `.env` files, you set environment vars in Cloud Functions in the Firefly CLI.
+Before running backend functions, you have to give Firebase your secret API keys. This can be done manually using the [Firebase CLI](https://firebase.google.com/docs/functions/config-env).
 
-Official docs: **https://firebase.google.com/docs/functions/config-env**
+For your convenience, Firefly makes this a little easier by including `.env` files in the functions directory.
 
-1. First make sure you're using the right Firebase project with `firebase use dev`, for example. You should also set up keys for `stage` and `live`.
+1. First you'll have to remove ".example" from the filename of the `.env` files in `functions/`
 
-2. Then run this in your terminal, replacing "paste here" with the actual keys from the algolia and stripe website: `firebase functions:config:set algolia.appId="PASTE_HERE" algolia.adminKey="PASTE_HERE" stripe.secretKey="PASTE_HERE" stripe.planId="PASTE_HERE"` (add as many keys as necessary).
+2. Add the actual keys from the algolia and stripe websites to those files
 
-3. When you're done, run `npm run dev` (or stage, or live) to push the keys to the server.
+3. Save keys to Firebase servers by running `sh functions/.env.dev`, `sh functions/.env.stage`, or `sh functions/.env.live`
+
+You can also simply copy & paste the contents of functions env files in your terminal.
