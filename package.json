@@ -2,7 +2,7 @@
   "name": "firefly",
   "version": "0.1.0",
   "private": true,
-  "homepage" : "http://demo.getfirefly.org",
+  "homepage": "http://demo.getfirefly.org",
   "dependencies": {
     "firebase": "^5.0.4",
     "react": "^16.4.0",
