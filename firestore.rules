@@ -9,15 +9,14 @@ service cloud.firestore {
 
     match /postLikes/{postLike} {
       allow read: if true;
-      allow create: if request.auth.uid == request.resource.data.user;
-      allow update, delete: if request.auth.uid == resource.data.user;
+      allow create: if request.auth.uid == request.resource.data.createdBy;
+      allow update, delete: if request.auth.uid == resource.data.createdBy;
     }
 
     match /subscriptions/{subscription} {
-      allow read: if true;
-
-      allow create: if request.auth.uid == request.resource.data.user;
-      allow update, delete: if request.auth.uid == resource.data.user;
+      allow read: if request.auth.uid == resource.data.createdBy;
+      allow create: if request.auth.uid == request.resource.data.createdBy;
+      allow update, delete: if request.auth.uid == resource.data.createdBy;
     }
 
   }
