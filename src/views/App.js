@@ -15,6 +15,7 @@ const App = () => (
     <BrowserRouter>
       <ErrorBoundary>
         <Layout>
+          <Route path="/" component={ScrollToTop}/>
           <Route path="/" component={Analytics}/>
           <Routes />
         </Layout>
@@ -22,6 +23,19 @@ const App = () => (
     </BrowserRouter>
   </FirestoreProvider>
 )
+
+// scroll to top on route change
+// https://github.com/ReactTraining/react-router/blob/master/packages/react-router-dom/docs/guides/scroll-restoration.md#scroll-to-top
+class ScrollToTop extends React.Component {
+  componentDidUpdate(prevProps) {
+    if (this.props.location !== prevProps.location) {
+      window.scrollTo(0, 0)
+    }
+  }
+  render() {
+    return null
+  }
+}
 
 // Track Google Analytics page view for every route
 // https://github.com/react-ga/react-ga/issues/122#issuecomment-319546248
