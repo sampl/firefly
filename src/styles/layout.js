@@ -1,27 +1,27 @@
 import styled from 'styled-components'
 
-const AppWrapper = styled.div`
+const HeaderFooterWrapper = styled.div`
   max-width: 500px;
   margin: 0 auto;
-  padding: 0 1rem;
+  display: grid;
+  grid-template-rows: max-content auto max-content;
+  min-height: 100vh;
 `
 const Header = styled.div`
-  padding: 2rem 0;
-`
-const PageContainer = styled.div`
-  position: relative;
+  padding: 2rem 1rem 1rem;
 `
 const Page = styled.div`
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  top: 0;
-  left: 0;
+  padding: 1rem;
+`
+const Footer = styled.div`
+  padding: 1rem;
+  text-align: center;
+  opacity: .3;
 `
 
 export {
-  AppWrapper,
+  HeaderFooterWrapper,
   Header,
-  PageContainer,
   Page,
+  Footer,
 }

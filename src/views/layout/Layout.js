@@ -7,15 +7,16 @@ import logIn from '../../actions/logIn'
 import FirebaseAuth from '../misc/FirebaseAuth'
 
 import {
-  AppWrapper,
+  HeaderFooterWrapper,
   Header,
+  Footer,
 } from '../../styles/layout'
 import {
   HeaderLink,
 } from '../../styles/links'
 
 const Layout = ({children}) => (
-  <AppWrapper>
+  <HeaderFooterWrapper>
 
     <Header>
       <HeaderLink to="/">Firefly</HeaderLink>
@@ -47,7 +48,11 @@ const Layout = ({children}) => (
 
     {children}
 
-  </AppWrapper>
+    <Footer>
+      © {(new Date()).getFullYear()}
+    </Footer>
+
+  </HeaderFooterWrapper>
 )
 
 export default Layout
