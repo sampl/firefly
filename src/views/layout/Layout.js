@@ -25,8 +25,14 @@ const Layout = ({children}) => (
           <span role="img" aria-label="search">🔎</span>
         </HeaderLink>
         {' '}
-        <FirebaseAuth loading="..." error="⚠️ login error">
-          { ({auth}) => {
+        <FirebaseAuth>
+          { ({isLoading, error, auth}) => {
+            if (isLoading) {
+              return '...'
+            }
+            if (error) {
+              return '⚠️ login error'
+            }
             if (auth) {
               return <HeaderLink to={`/account`}>
                 <span role="img" aria-label="account">👤</span>
