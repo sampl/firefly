@@ -18,9 +18,8 @@ exports.updateStripeSubscription = (change, context) => {
   
   // if subscription has been deleted
   if (!change.after.exists) {
-    const oldSubscription = change.before.data()
-    console.log(`deleted subscription ${change.before.id}; deleting ${oldSubscription.stripeSubscriptionId}`)
-    return stripe.subscriptions.del(oldSubscription.stripeSubscriptionId)
+    console.log(`deleted subscription ${change.before.id}: ${change.before.data()}`)
+    return stripe.subscriptions.del(change.before.data().stripeSubscriptionId)
   }
   
   const subscription = change.after.data()
@@ -30,7 +29,7 @@ exports.updateStripeSubscription = (change, context) => {
   const tokenId = subscription.tempStripePaymentTokenId
   if (tokenId) {
     console.log(`update subscription ${subscription.id} with ${tokenId}`)
-    return getStripeCustomerIdForUser(subscription.user)
+    return getStripeCustomerIdForUser(subscription.createdBy)
       .then(customerId => updateStripeCustomerPaymentMethod(customerId, tokenId) )
       .then(stripeCustomer => createOrGetStripeSubscription(stripeCustomer.id, subscription.stripeSubscriptionId))
       .then(stripeSubscription => saveSubscriptionToDatabase(subscription.id, stripeSubscription))

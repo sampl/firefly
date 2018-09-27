@@ -19,13 +19,13 @@ const FireflySubscription = ({children}) => (
 
       return <FirestoreCollection
         path="subscriptions"
-        filter={['user', '==', auth.uid]}
+        filter={['createdBy', '==', auth.uid]}
       >
         { ({error, isLoading, data}) => {
           return children({
             error,
             isLoading,
-            subscription: data.length > 0 ? data[0] : null
+            subscription: data.length > 0 ? data[0] : null,
           })
         }}
       </FirestoreCollection>

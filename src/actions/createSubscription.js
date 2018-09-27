@@ -11,9 +11,9 @@ const createSubscription = token => {
   })
 
   const subscription = prepareDocForCreate({
-    user: Firebase.auth().currentUser.uid,
     tempStripePaymentTokenId: token.id,
   })
+
   return Firebase.firestore()
     .collection('subscriptions')
     .add(prepareDocForCreate(subscription))

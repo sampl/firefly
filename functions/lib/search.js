@@ -9,7 +9,6 @@ let postIndex = algolia.initIndex('posts')
 // Algolia search - update search index
 // https://www.algolia.com/doc/tutorials/indexing/3rd-party-service/firebase-algolia/
 exports.updatePostInSearchIndex = (change, context) => {
-  console.log('updating post in search index')
   const post = change.after.data()
 
   if (!post) {

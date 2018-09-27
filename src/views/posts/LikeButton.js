@@ -14,8 +14,8 @@ const LikeButton = ({post}) => (
       return <FirestoreCollection
         path={'postLikes'}
         filter={[
-          ['post', '==', post.id],
-          ['user', '==', auth.uid],
+          ['postId', '==', post.id],
+          ['createdBy', '==', auth.uid],
         ]}
       >
         { ({error, isLoading, data}) => {

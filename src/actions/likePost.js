@@ -11,9 +11,9 @@ const likePost = post => {
   })
 
   const like = prepareDocForCreate({
-    user: Firebase.auth().currentUser.uid,
-    post: post.id,
+    postId: post.id,
   })
+
   return Firebase.firestore().collection('postLikes').add(like)
 }
 
