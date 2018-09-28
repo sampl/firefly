@@ -28,7 +28,7 @@ const PostList = () => (
           return <p>loading...</p>
         }
 
-        if (!isLoading && data.length === 0) {
+        if (data.length === 0) {
           return <p>No posts yet!</p>
         }
 

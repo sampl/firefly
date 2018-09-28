@@ -24,7 +24,7 @@ const PostEdit = ({match, history}) => (
           return <p>loading...</p>
         }
         
-        if (!isLoading && data.length === 0) {
+        if (data.length === 0) {
           return <Error />
         }
 
