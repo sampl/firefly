@@ -9,7 +9,9 @@ const LikeButton = ({post}) => (
   <FirebaseAuth>
     { ({isLoading, error, auth}) => {
 
-      if (!auth || isLoading || error) return null
+      if (!auth || isLoading || error) {
+        return <button disabled>like</button>
+      }
 
       return <FirestoreCollection
         path={'postLikes'}
@@ -21,7 +23,7 @@ const LikeButton = ({post}) => (
         { ({error, isLoading, data}) => {
 
           if (error || isLoading) {
-            return <button disabled>...</button>
+            return <button disabled>like</button>
           }
 
           const userLike = data[0]
