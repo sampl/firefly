@@ -6,12 +6,12 @@ A modern web-app boilerplate with Create React App and Firebase. Focused on simp
 
 ## Folders
 
+Child folders each have their own readmes
+
 - [`/functions`](https://github.com/sampl/firefly/tree/master/functions) - contains all the backend code (not much)
 - [`/public`](https://github.com/sampl/firefly/tree/master/public) - files that will be available as-is on the web server
 - [`/scripts`](https://github.com/sampl/firefly/tree/master/scripts) - convenience scripts for developers
 - [`/src`](https://github.com/sampl/firefly/tree/master/src) - the front-end app
-
-(Child folders each have their own readmes)
 
 ## License
 
