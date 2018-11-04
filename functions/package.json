@@ -7,7 +7,11 @@
     "shell": "firebase experimental:functions:shell",
     "start": "npm run shell",
     "deploy": "firebase deploy --only functions",
-    "logs": "firebase functions:log"
+    "logs": "firebase functions:log",
+    "firebase:save:keys": "npm run firebase:upload:env:dev && npm run firebase:upload:env:stage && npm run firebase:upload:env:live",
+    "firebase:upload:env:dev": "sh .env.dev",
+    "firebase:upload:env:stage": "sh .env.stage",
+    "firebase:upload:env:live": "sh .env.live"
   },
   "dependencies": {
     "algoliasearch": "^3.26.0",

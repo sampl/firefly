@@ -12,6 +12,6 @@ For your convenience, Firefly makes this a little easier by including `.env` fil
 
 1. First you'll have to remove ".example" from the filename of the `.env` files in `functions/`
 2. Add the actual keys from the algolia and stripe websites to those files
-3. Save keys to Firebase servers by running `sh functions/.env.dev`, `sh functions/.env.stage`, or `sh functions/.env.live`
+3. Save keys to Firebase servers by running `npm run firebase:save:keys`.
 
 You can also simply copy/paste the contents of functions env files in your terminal.
