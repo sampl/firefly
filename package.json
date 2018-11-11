@@ -14,7 +14,8 @@
     "react-scripts": "1.1.4",
     "react-transition-group": "^2.3.1",
     "slugify": "^1.3.0",
-    "styled-components": "^3.3.2"
+    "styled-components": "^3.3.2",
+    "tsc": "^1.20150623.0"
   },
   "scripts": {
     "": "How these scripts work: https://medium.com/@tacomanator/environments-with-create-react-app-7b645312c09d",
