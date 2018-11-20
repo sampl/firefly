@@ -1,5 +1,5 @@
-const functions = require('firebase-functions')
-const Algolia = require('algoliasearch')
+import * as functions from "firebase-functions";
+import * as Algolia from "algoliasearch";
 
 const ALGOLIA_APP_ID = functions.config().algolia.app_id
 const ALGOLIA_ADMIN_KEY = functions.config().algolia.admin_key

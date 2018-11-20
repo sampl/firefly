@@ -17,6 +17,8 @@
     "stripe": "^5.8.0"
   },
   "devDependencies": {
+    "@types/algoliasearch": "^3.30.1",
+    "@types/stripe": "^6.0.4",
     "awesome-typescript-loader": "^5.2.1",
     "eslint": "^4.12.0",
     "eslint-plugin-promise": "^3.6.0",

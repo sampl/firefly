@@ -17,6 +17,10 @@
     "styled-components": "^3.3.2",
     "tsc": "^1.20150623.0"
   },
+  "devDependencies": {
+    "@types/algoliasearch": "^3.30.1",
+    "@types/stripe": "^6.0.3"
+  },
   "scripts": {
     "": "How these scripts work: https://medium.com/@tacomanator/environments-with-create-react-app-7b645312c09d",
     "start": "sh -ac '. ./.env.dev;   firebase use dev   && react-scripts start'",

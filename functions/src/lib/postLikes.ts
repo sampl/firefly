@@ -1,4 +1,4 @@
-const admin = require('firebase-admin')
+import * as admin from "firebase-admin";
 
 // update _likeCount on a post when it's liked or unliked
 exports.updatePostLikeCount = (change, context) => {

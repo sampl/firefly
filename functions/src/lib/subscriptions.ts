@@ -1,11 +1,12 @@
-const admin = require('firebase-admin')
-const FieldValue = require('firebase-admin').firestore.FieldValue
-const functions = require('firebase-functions')
-const Stripe = require('stripe')
+import * as Stripe from 'stripe';
+import * as admin from "firebase-admin";
+import { firestore } from  "firebase-admin";
+import FieldValue = firestore.FieldValue;
+import * as functions from "firebase-functions";
 
 const STRIPE_SECRET_KEY = functions.config().stripe.secret_key
 const STRIPE_PLAN_ID = functions.config().stripe.plan_id
-const stripe = Stripe(STRIPE_SECRET_KEY)
+const stripe = new Stripe(STRIPE_SECRET_KEY)
 
 // this backend code is responsible for keeping the Stripe subscriptions 
 // up-to-date when users CRUD db subscriptions
@@ -131,10 +132,12 @@ const updateStripeCustomerPaymentMethod = (stripeCustomerId, tokenId) => {
 
 // https://stripe.com/docs/api#create_subscription-items-plan
 const createStripeSubscription = stripeCustomerId => {
-  return stripe.subscriptions.create({
+  let subOptions: StripeNode.subscriptions.ISubscriptionCreationOptions;
+  subOptions = {
     customer: stripeCustomerId,
-    items: [{plan: STRIPE_PLAN_ID}],
-  })
+    plan: STRIPE_PLAN_ID,
+  };
+  return stripe.subscriptions.create(subOptions)
 }
 
 // https://stripe.com/docs/api#retrieve_subscription
