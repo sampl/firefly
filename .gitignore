@@ -9,3 +9,4 @@ firebase-debug.log
 serviceAccountKey*
 functions/dist
 dist
+lib

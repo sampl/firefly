@@ -16,3 +16,8 @@ Child folders each have their own readmes
 ## License
 
 [MIT License](https://en.wikipedia.org/wiki/MIT_License)
+
+## Typescript Path
+1. Fix errors
+2. Consider reving the stripe version... https://github.com/stripe/stripe-node is at 6.15
+3. Profit?
