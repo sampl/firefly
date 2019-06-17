@@ -4,7 +4,7 @@
   "private": true,
   "homepage": "http://demo.getfirefly.org",
   "dependencies": {
-    "firebase": "^5.0.4",
+    "firebase": "^6.1.0",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
     "react-firestore": "^0.8.1",
