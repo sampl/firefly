@@ -7,3 +7,4 @@ firebase-debug.log
 .env.stage
 .env.live
 serviceAccountKey*
+.firebase
