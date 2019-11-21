@@ -80,8 +80,10 @@ const getUser = userId => {
     .doc(userId)
     .get()
     .then(doc => {
-      const user = doc.data()
-      user.id = doc.id
+      const user = {
+        id: userId,
+        ...doc.data(),
+      }
       return user
     })
 }
