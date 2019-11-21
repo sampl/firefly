@@ -21,11 +21,6 @@ const dbConfig = {
 }
 Firebase.initializeApp(dbConfig)
 
-// temporary config to squash error date warning
-// TODO - remove once this is the firebase default behavior
-// https://firebase.google.com/docs/reference/js/firebase.firestore.Settings#~timestampsInSnapshots
-Firebase.firestore().settings({timestampsInSnapshots: true})
-
 // Google Analytics
 // https://github.com/react-ga/react-ga#api
 ReactGA.initialize(process.env.REACT_APP_GOOGLE_ANALYTICS_TRACKING_ID)
