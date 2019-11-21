@@ -22,5 +22,17 @@
     "dev": "  sh -ac '. ./.env.dev;   firebase use dev   && react-scripts build && firebase deploy'",
     "stage": "sh -ac '. ./.env.stage; firebase use stage && react-scripts build && firebase deploy'",
     "live": " sh -ac '. ./.env.live;  firebase use live  && react-scripts build && firebase deploy'"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
