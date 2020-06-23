@@ -8,7 +8,12 @@ import FireflySubscription from '../misc/FireflySubscription'
 
 class Subscription extends React.Component {
 
-  // https://stripe.com/docs/checkout#integration-custom
+  // Careful, this is the legacy checkout
+  // https://stripe.com/docs/legacy-checkout#integration-custom
+ 
+  // New stripe checkout here:
+  // https://stripe.com/docs/payments/checkout#integration-custom
+
   componentDidMount() {
     this.stripeCheckout = window.StripeCheckout.configure({
       key: process.env.REACT_APP_STRIPE_PUBLIC_KEY,
