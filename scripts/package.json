@@ -6,6 +6,6 @@
   "dependencies": {
     "bluebird": "^3.5.1",
     "chalk": "^2.3.2",
-    "firebase-admin": "^5.11.0"
+    "firebase-admin": "^11.4.1"
   }
 }
